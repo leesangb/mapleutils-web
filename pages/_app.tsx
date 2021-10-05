@@ -3,9 +3,9 @@ import Head from 'next/head';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import theme from '../styles/muiTheme';
-import createEmotionCache from '../src/tools/createEmotionCache';
-import Seo from '../src/seo/Seo';
+import theme from '@/styles/muiTheme';
+import createEmotionCache from '@/tools/createEmotionCache';
+import Seo from '@/components/seo/Seo';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
