@@ -1,0 +1,10 @@
+.idea
+build
+node_modules
+public
+.babelrc
+.gitignore
+*.json
+*.md
+config-overrides.js
+.prettierrc
