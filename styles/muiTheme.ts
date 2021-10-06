@@ -1,6 +1,11 @@
+import { useStore } from '@/stores/StoreContext';
 import { createTheme, PaletteOptions } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
-import { PaletteMode } from '@mui/material';
+import { PaletteMode, Theme, ThemeOptions } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { createBreakpoints } from '@mui/system';
+
+const breakpoints = createBreakpoints({});
 
 const darkPaletteOptions: PaletteOptions = {
     text: {
@@ -56,8 +61,115 @@ const buildPaletteOptions = (mode: PaletteMode): PaletteOptions => ({
     ...(mode === 'dark' ? darkPaletteOptions : lightPaletteOptions),
 });
 
-const theme = createTheme({
-    palette: buildPaletteOptions('light'),
+const borderRadius = '16px';
+
+const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
+    typography: {
+        fontFamily: ['Spoqa Han Sans Neo', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(','),
+    },
+    palette: buildPaletteOptions(mode),
+    components: {
+        MuiAppBar: {
+            styleOverrides: {
+                colorDefault: {
+                    backgroundColor:
+                        mode === 'dark'
+                            ? darkPaletteOptions.background?.default
+                            : lightPaletteOptions.background?.default,
+                },
+            },
+        },
+        MuiList: {
+            styleOverrides: {
+                padding: {
+                    paddingBottom: '0px',
+                    paddingTop: '0px',
+                },
+            },
+        },
+        MuiListItem: {
+            styleOverrides: {
+                button: {
+                    borderRadius,
+                },
+            },
+        },
+        MuiPaper: {
+            styleOverrides: {
+                rounded: {
+                    borderRadius,
+                },
+            },
+        },
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    borderRadius,
+                },
+            },
+        },
+        MuiCardContent: {
+            styleOverrides: {
+                root: {
+                    '&:last-child': {
+                        paddingBottom: '12px',
+                    },
+                    '&>p': {
+                        fontSize: '16px',
+                    },
+                    [breakpoints.down('xs')]: {
+                        padding: '12px',
+                    },
+                },
+            },
+        },
+        MuiCardActionArea: {
+            styleOverrides: {
+                root: {
+                    borderRadius,
+                },
+            },
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    borderRadius,
+                },
+            },
+        },
+    },
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 600,
+            md: 900,
+            lg: 1280,
+            xl: 1800,
+        },
+    },
 });
 
-export default theme;
+export const defaultTheme = createTheme(buildThemeOptions('light'));
+
+export const useDarkMode = () => {
+    const { app } = useStore();
+
+    const [themeOptions, setThemeOptions] = useState<ThemeOptions>(buildThemeOptions(app.preference.theme));
+    const [theme, setTheme] = useState<Theme>(defaultTheme);
+
+    useEffect(() => {
+        setTheme(createTheme(themeOptions));
+    }, [themeOptions]);
+
+    const toggleDarkMode = () => {
+        const mode = themeOptions?.palette?.mode === 'light' ? 'dark' : 'light';
+        const newTheme = buildThemeOptions(mode);
+        app.changeTheme(mode);
+        setThemeOptions(newTheme);
+    };
+
+    return {
+        theme,
+        toggleDarkMode,
+    };
+};

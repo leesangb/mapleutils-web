@@ -29,6 +29,9 @@
       ],
       "@/styles/*": [
         "styles/*"
+      ],
+      "@/stores/*": [
+        "src/stores/*"
       ]
     }
   },

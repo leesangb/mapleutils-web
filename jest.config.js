@@ -14,6 +14,7 @@ module.exports = {
         '^@/components/(.*)$': '<rootDir>/src/components/$1',
         '^@/tools/(.*)$': '<rootDir>/src/tools/$1',
         '^@/styles/(.*)$': '<rootDir>/styles/$1',
+        '^@/stores/(.*)$': '<rootDir>/src/stores/$1',
     },
     testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
