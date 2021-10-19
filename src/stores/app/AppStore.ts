@@ -1,5 +1,5 @@
 import { PaletteMode } from '@mui/material';
-import { LocalStorageHelper, LocalStorageKey } from './../../tools/localStorageHelper';
+import { LocalStorageHelper, LocalStorageKey } from '@/tools/localStorageHelper';
 import { makeAutoObservable } from 'mobx';
 import { Preference } from './Preference';
 
