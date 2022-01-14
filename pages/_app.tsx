@@ -6,7 +6,7 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import createEmotionCache from '@/tools/createEmotionCache';
 import Seo from '@/components/seo/Seo';
 import { observer } from 'mobx-react';
-import { StoreProvider, useStore } from 'src/stores/StoreContext';
+import { StoreProvider } from 'src/stores/StoreContext';
 import Header from '@/components/header/Header';
 import { useDarkMode } from '@/styles/muiTheme';
 
@@ -24,8 +24,9 @@ const App = observer((props: AppProps) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header themeType={theme.palette.mode} toggleDarkMode={toggleDarkMode} />
-            <Component {...pageProps} />
+            <Header themeType={theme.palette.mode} toggleDarkMode={toggleDarkMode}>
+                <Component {...pageProps} />
+            </Header>
         </ThemeProvider>
     );
 });
@@ -57,4 +58,5 @@ function MyApp(props: MyAppProps) {
         </CacheProvider>
     );
 }
+
 export default MyApp;
