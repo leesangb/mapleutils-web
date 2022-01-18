@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RootStore } from './RootStore';
 import { enableStaticRendering } from 'mobx-react-lite';
-import { isServerSide } from '@/tools/helper';
+import { isServerSide } from '@tools/helper';
 
 const store = new RootStore();
 

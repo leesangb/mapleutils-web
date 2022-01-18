@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { SITE_URL } from '@/tools/config';
+import { SITE_URL } from '@tools/config';
 
 interface SeoProps {
     title: string;

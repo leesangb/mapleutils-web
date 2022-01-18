@@ -1,4 +1,4 @@
-import { useStore } from '@/stores/StoreContext';
+import { useStore } from '@stores/StoreContext';
 import { createTheme, PaletteOptions } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import { PaletteMode, Theme, ThemeOptions } from '@mui/material';

@@ -16,7 +16,7 @@ import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import StopRoundedIcon from '@mui/icons-material/StopRounded';
 import DarkModeIcon from '@mui/icons-material/Brightness4Rounded';
 import LightModeIcon from '@mui/icons-material/Brightness7Rounded';
-import { useStore } from '@/stores/StoreContext';
+import { useStore } from '@stores/StoreContext';
 import { SxProps } from '@mui/system';
 import { observer } from 'mobx-react';
 

@@ -1,4 +1,4 @@
-import { Preference } from '@/stores/app/Preference';
+import { Preference } from '@stores/app/Preference';
 import { isServerSide } from './helper';
 
 export enum LocalStorageKey {

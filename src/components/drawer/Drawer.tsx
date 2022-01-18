@@ -1,8 +1,8 @@
 import { Box } from '@mui/system';
 import { Avatar, CSSObject, Divider, List, ListItem, ListItemIcon, ListItemText, styled, Theme } from '@mui/material';
-import Link from '@/components/link/Link';
+import Link from '@components/link/Link';
 import MuiDrawer from '@mui/material/Drawer';
-import DrawerHeader from '@/components/drawer/DrawerHeader';
+import DrawerHeader from '@components/drawer/DrawerHeader';
 
 interface DrawerProps {
     open: boolean;

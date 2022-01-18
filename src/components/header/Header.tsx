@@ -7,8 +7,8 @@ import { Menu } from '@mui/icons-material';
 
 
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Drawer, { DRAWER_WIDTH } from '@/components/drawer/Drawer';
-import DrawerHeader from '@/components/drawer/DrawerHeader';
+import Drawer, { DRAWER_WIDTH } from '@components/drawer/Drawer';
+import DrawerHeader from '@components/drawer/DrawerHeader';
 
 interface HeaderProps {
     children: ReactNode;

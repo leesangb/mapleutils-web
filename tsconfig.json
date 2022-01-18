@@ -21,17 +21,20 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
+      "@components/*": [
         "src/components/*"
       ],
-      "@/tools/*": [
+      "@tools/*": [
         "src/tools/*"
       ],
-      "@/styles/*": [
+      "@styles/*": [
         "styles/*"
       ],
-      "@/stores/*": [
+      "@stores/*": [
         "src/stores/*"
+      ],
+      "@data/*": [
+        "data/*"
       ]
     },
     "incremental": true
