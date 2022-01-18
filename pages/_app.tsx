@@ -3,12 +3,12 @@ import Head from 'next/head';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import createEmotionCache from '@/tools/createEmotionCache';
-import Seo from '@/components/seo/Seo';
+import createEmotionCache from '@tools/createEmotionCache';
+import Seo from '@components/seo/Seo';
 import { observer } from 'mobx-react';
 import { StoreProvider } from 'src/stores/StoreContext';
-import Header from '@/components/header/Header';
-import { useDarkMode } from '@/styles/muiTheme';
+import Header from '@components/header/Header';
+import { useDarkMode } from '@styles/muiTheme';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

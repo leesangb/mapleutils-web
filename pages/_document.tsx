@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import createEmotionCache from '@/tools/createEmotionCache';
-import { defaultTheme } from '@/styles/muiTheme';
+import createEmotionCache from '@tools/createEmotionCache';
+import { defaultTheme } from '@styles/muiTheme';
 
 export default class MyDocument extends Document {
     render() {
@@ -16,8 +16,8 @@ export default class MyDocument extends Document {
                     />
                 </Head>
                 <body>
-                    <Main />
-                    <NextScript />
+                <Main />
+                <NextScript />
                 </body>
             </Html>
         );
