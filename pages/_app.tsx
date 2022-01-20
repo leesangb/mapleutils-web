@@ -7,8 +7,8 @@ import createEmotionCache from '@tools/createEmotionCache';
 import Seo from '@components/seo/Seo';
 import { observer } from 'mobx-react';
 import { StoreProvider } from 'src/stores/StoreContext';
-import Header from '@components/header/Header';
 import { useDarkMode } from '@styles/muiTheme';
+import GlobalLayout from '@components/layout/GlobalLayout';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -24,9 +24,9 @@ const App = observer((props: AppProps) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header themeType={theme.palette.mode} toggleDarkMode={toggleDarkMode}>
+            <GlobalLayout themeType={theme.palette.mode} toggleDarkMode={toggleDarkMode}>
                 <Component {...pageProps} />
-            </Header>
+            </GlobalLayout>
         </ThemeProvider>
     );
 });

@@ -2,18 +2,17 @@ import { Button, IconButton, PaletteMode, styled, Toolbar } from '@mui/material'
 import { Box } from '@mui/system';
 import Link from '../link/Link';
 import SettingsButton from './SettingsButton';
-import { ReactNode, useState } from 'react';
 import { Menu } from '@mui/icons-material';
 
 
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Drawer, { DRAWER_WIDTH } from '@components/drawer/Drawer';
-import DrawerHeader from '@components/drawer/DrawerHeader';
+import { DRAWER_WIDTH } from '@components/drawer/Drawer';
 
 interface HeaderProps {
-    children: ReactNode;
     themeType: PaletteMode;
     toggleDarkMode: () => void;
+    open?: boolean;
+    toggleOpen?: () => void;
 }
 
 interface AppBarProps extends MuiAppBarProps {
@@ -41,27 +40,19 @@ const AppBar = styled(MuiAppBar, {
 
 
 const Header = (props: HeaderProps) => {
-    const [open, setOpen] = useState<boolean>(false);
     return (
-        <Box display={'flex'}>
-            <AppBar position='fixed' color={'inherit'} open={open} elevation={0}>
-                <Toolbar>
-                    <IconButton onClick={() => setOpen(open => !open)}>
-                        <Menu />
-                    </IconButton>
-                    <Button component={Link} href='/' noLinkStyle>
-                        홈
-                    </Button>
-                    <Box sx={{ flexGrow: 1 }} />
-                    <SettingsButton toggleDarkMode={props.toggleDarkMode} />
-                </Toolbar>
-            </AppBar>
-            <Drawer open={open} />
-            <Box component={'main'} sx={{ flexGrow: 1, p: 3 }}>
-                <DrawerHeader />
-                {props.children}
-            </Box>
-        </Box>
+        <AppBar position='fixed' color={'inherit'} open={props.open} elevation={0}>
+            <Toolbar>
+                <IconButton onClick={props.toggleOpen}>
+                    <Menu />
+                </IconButton>
+                <Button component={Link} href='/' noLinkStyle>
+                    홈
+                </Button>
+                <Box sx={{ flexGrow: 1 }} />
+                <SettingsButton toggleDarkMode={props.toggleDarkMode} />
+            </Toolbar>
+        </AppBar>
     );
 };
 export default Header;
