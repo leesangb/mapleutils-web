@@ -65,6 +65,7 @@ const borderRadius = '16px';
 
 const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
     typography: {
+        fontSize: 13,
         fontFamily: ['Spoqa Han Sans Neo', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(','),
     },
     palette: buildPaletteOptions(mode),
