@@ -79,7 +79,7 @@ const Drawer = (props: DrawerProps) => {
     return (
         <StyledDrawer variant={'permanent'} open={open}>
             <DrawerHeader />
-            <Box sx={{ padding: '8px' }}>
+            <Box sx={theme => ({ padding: theme.spacing(1) })}>
                 <List>
                     {
                         seeds.map(seed => (
@@ -92,7 +92,6 @@ const Drawer = (props: DrawerProps) => {
                             </ListItem>))
                     }
                     <Divider />
-
                 </List>
             </Box>
         </StyledDrawer>

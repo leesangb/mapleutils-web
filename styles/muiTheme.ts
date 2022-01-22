@@ -67,6 +67,25 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
     typography: {
         fontSize: 13,
         fontFamily: ['Spoqa Han Sans Neo', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(','),
+        h1: {
+            fontSize: 32,
+            fontWeight: 'bold',
+        },
+        h2: {
+            fontSize: 28,
+        },
+        h3: {
+            fontSize: 24,
+        },
+        h4: {
+            fontSize: 22,
+        },
+        h5: {
+            fontSize: 18,
+        },
+        h6: {
+            fontSize: 14,
+        },
     },
     palette: buildPaletteOptions(mode),
     components: {

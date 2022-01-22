@@ -41,12 +41,12 @@ const AppBar = styled(MuiAppBar, {
 
 const Header = (props: HeaderProps) => {
     return (
-        <AppBar position='fixed' color={'inherit'} open={props.open} elevation={0}>
+        <AppBar position={'fixed'} color={'inherit'} open={props.open} elevation={0}>
             <Toolbar>
                 <IconButton onClick={props.toggleOpen}>
                     <Menu />
                 </IconButton>
-                <Button component={Link} href='/' noLinkStyle>
+                <Button component={Link} href={'/'} noLinkStyle>
                     홈
                 </Button>
                 <Box sx={{ flexGrow: 1 }} />
