@@ -1,35 +1,33 @@
-import data from '@data/seed/39.json';
-import { Card, CardContent, Grid, Typography } from '@mui/material';
+import { Card, CardContent, Grid, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/system';
-
-interface QuestionAnswer {
-    question: string;
-    choices: [string, string, string, string];
-    answer: 0 | 1 | 2 | 3;
-}
+import { useCallback } from 'react';
+import useWindowDimensions from '../../src/hooks/useWindowDimensions';
+import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
+import { QuestionAnswer, seed39Data } from '@data/seed/39';
 
 interface Seed39Props {
     data: QuestionAnswer[];
 }
 
-interface QuestionAnswerItemProps {
-    qa: QuestionAnswer;
+interface QuestionAnswerItemProps extends QuestionAnswer {
 }
 
-const QuestionAnswerItem = (props: QuestionAnswerItemProps) => {
-    const { question, answer, choices } = props.qa;
-    const theme = useTheme();
 
+const QuestionAnswerItem = (props: QuestionAnswerItemProps) => {
+    const { question, answer, choices } = props;
     return (
         <Grid container alignItems='center' spacing={1}>
             <Grid item xs={12} sm={12} md={4}>
-                <Typography>{question}</Typography>
+                <Typography variant={'body1'}>{question}</Typography>
             </Grid>
             {
                 choices.map((choice, i) => (
                     <Grid item xs={12} sm={12} md={2} key={`${choice}-${answer}`}>
-                        <Card elevation={0} variant={answer === i ? 'outlined' : undefined}>
-                            <Typography variant={'body2'}>{i + 1}. {choice}</Typography>
+                        <Card sx={{ backgroundColor: answer === i ? 'primary.light' : 'background.default' }}
+                              elevation={0}>
+                            <CardContent sx={(theme) => ({ padding: theme.spacing(1.5) })}>
+                                <Typography variant={'subtitle2'}>{i + 1}. {choice}</Typography>
+                            </CardContent>
                         </Card>
                     </Grid>
                 ))
@@ -38,22 +36,44 @@ const QuestionAnswerItem = (props: QuestionAnswerItemProps) => {
     );
 };
 
+
 const Seed39 = (props: Seed39Props) => {
+    const { height } = useWindowDimensions();
+    const theme = useTheme();
+    const xsDown = useMediaQuery(theme.breakpoints.down('md'));
+
+    const rowRenderer = useCallback(
+        (item: QuestionAnswer) => <QuestionAnswerItem {...item} />,
+        [],
+    );
+
     return (
-        <Card>
-            <CardContent>
-                {
-                    props.data.map((d, i) => <QuestionAnswerItem qa={d} key={i} />)
-                }
-            </CardContent>
-        </Card>
+        <>
+            <Card elevation={0} variant={'outlined'} sx={(theme) => ({ marginBottom: theme.spacing(1) })}>
+                <CardContent>
+                    <Typography variant={'h1'}>
+                        시드 39층
+                    </Typography>
+                </CardContent>
+            </Card>
+            <Card elevation={0} variant={'outlined'}>
+                <CardContent>
+                    <VirtualizedFixedList height={height - 250}
+                                          width={'100%'}
+                                          items={props.data}
+                                          rowSize={xsDown ? 280 : 70}
+                                          divider
+                                          rowRenderer={rowRenderer} />
+                </CardContent>
+            </Card>
+        </>
     );
 };
 
 export const getStaticProps = () => {
     return {
         props: {
-            data: data.sort((a, b) => a.question.localeCompare(b.question)),
+            data: seed39Data.sort((a, b) => a.question.localeCompare(b.question)),
         },
     };
 };
