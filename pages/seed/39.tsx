@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import useWindowDimensions from '../../src/hooks/useWindowDimensions';
 import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
 import { QuestionAnswer, seed39Data } from '@data/seed/39';
+import { isHangulMatching } from '@tools/string';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -47,6 +48,10 @@ const Seed39 = (props: Seed39Props) => {
         [],
     );
 
+    const searchFilter = useCallback((item: QuestionAnswer, pattern: string) => {
+        return isHangulMatching(pattern, item.question, ...item.choices);
+    }, []);
+
     return (
         <>
             <Card elevation={0} variant={'outlined'} sx={(theme) => ({ marginBottom: theme.spacing(1) })}>
@@ -56,13 +61,15 @@ const Seed39 = (props: Seed39Props) => {
                     </Typography>
                 </CardContent>
             </Card>
-            <Card elevation={0} variant={'outlined'}>
+            <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>
                     <VirtualizedFixedList height={height - 250}
                                           width={'100%'}
                                           items={props.data}
                                           rowSize={xsDown ? 280 : 70}
                                           divider
+                                          searchFilter={searchFilter}
+                                          placeholder={'문제 또는 답 검색 (예: 골드비치, ㄱㄷㅂㅊ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱'}
                                           rowRenderer={rowRenderer} />
                 </CardContent>
             </Card>
