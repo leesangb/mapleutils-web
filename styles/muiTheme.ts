@@ -89,6 +89,13 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
     },
     palette: buildPaletteOptions(mode),
     components: {
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    borderRadius,
+                },
+            },
+        },
         MuiAppBar: {
             styleOverrides: {
                 colorDefault: {
