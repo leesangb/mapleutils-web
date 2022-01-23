@@ -26,5 +26,5 @@ module.exports = {
         '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
     },
     transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
-    testMatch: ['**/?(*.)+test.[tj]s?(x)'],
+    testMatch: ['**/*.test.[tj]s?(x)'],
 };
