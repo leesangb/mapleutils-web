@@ -13,18 +13,24 @@ interface Seed39Props {
 interface QuestionAnswerItemProps extends QuestionAnswer {
 }
 
-
 const QuestionAnswerItem = (props: QuestionAnswerItemProps) => {
     const { question, answer, choices } = props;
     return (
         <Grid container alignItems='center' spacing={1}>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={12} sm={12} md={12} lg={4}>
                 <Typography variant={'body1'}>{question}</Typography>
             </Grid>
             {
                 choices.map((choice, i) => (
-                    <Grid item xs={12} sm={12} md={2} key={`${choice}-${answer}`}>
-                        <Card sx={{ backgroundColor: answer === i ? 'primary.light' : 'background.default' }}
+                    <Grid item xs={12} sm={12} md={3} lg={2} key={`${choice}-${answer}`}>
+                        <Card sx={theme => ({
+                            bgcolor: answer === i
+                                ? theme.palette.primary.light
+                                : theme.palette.background.default,
+                            color: answer === i
+                                ? theme.palette.getContrastText(theme.palette.primary.light)
+                                : theme.palette.getContrastText(theme.palette.background.default),
+                        })}
                               elevation={0}>
                             <CardContent sx={(theme) => ({ padding: theme.spacing(1.5) })}>
                                 <Typography variant={'subtitle2'}>{i + 1}. {choice}</Typography>
@@ -41,7 +47,8 @@ const QuestionAnswerItem = (props: QuestionAnswerItemProps) => {
 const Seed39 = (props: Seed39Props) => {
     const { height } = useWindowDimensions();
     const theme = useTheme();
-    const xsDown = useMediaQuery(theme.breakpoints.down('md'));
+    const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
     const rowRenderer = useCallback(
         (item: QuestionAnswer) => <QuestionAnswerItem {...item} />,
@@ -66,10 +73,10 @@ const Seed39 = (props: Seed39Props) => {
                     <VirtualizedFixedList height={height - 250}
                                           width={'100%'}
                                           items={props.data}
-                                          rowSize={xsDown ? 280 : 70}
+                                          rowSize={mdDown ? 280 : lgDown ? 100 : 70}
                                           divider
                                           searchFilter={searchFilter}
-                                          placeholder={'문제 또는 답 검색 (예: 골드비치, ㄱㄷㅂㅊ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱'}
+                                          placeholder={'문제 또는 답 검색 (예: 골드비치, ㄱㄷㅂㅊ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱, 초성 검색 ✅'}
                                           rowRenderer={rowRenderer} />
                 </CardContent>
             </Card>
