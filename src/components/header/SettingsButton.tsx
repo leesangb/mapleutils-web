@@ -71,7 +71,7 @@ const SettingsButton = observer((props: SettingsButtonProps) => {
                 </IconButton>
             </Tooltip>
             <Popover
-                PaperProps={{ variant: 'outlined' }}
+                PaperProps={{ variant: 'outlined', elevation: 0 }}
                 id={id}
                 open={open}
                 anchorEl={anchorEl}

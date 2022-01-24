@@ -25,7 +25,9 @@ const Header = (props: HeaderProps) => {
     return (
         <AppBar position={'fixed'} variant={'outlined'} color={'inherit'} elevation={0}>
             <Toolbar>
-                <IconButton onClick={props.toggleOpen}>
+                <IconButton onClick={props.toggleOpen}
+                            size='large'
+                            edge='start'>
                     <Menu />
                 </IconButton>
                 <Button component={Link} href={'/'} noLinkStyle>

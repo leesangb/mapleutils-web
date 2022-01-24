@@ -5,6 +5,7 @@ import MuiDrawer from '@mui/material/Drawer';
 import DrawerHeader from '@components/drawer/DrawerHeader';
 import Footer from '@components/footer/Footer';
 import { ReactNode } from 'react';
+import { useRouter } from 'next/router';
 
 interface DrawerProps {
     open: boolean;
@@ -89,6 +90,16 @@ type DrawerItem = {
     }[]
 }
 
+const LinkAvatar = (props: any) => {
+    const location = useRouter();
+
+    return <Avatar sx={theme => ({
+        bgcolor: props.link.includes(location.pathname)
+            ? theme.palette.primary.light
+            : theme.palette.grey[400],
+    })}>{props.text}</Avatar>;
+};
+
 const drawerItems: DrawerItem[] = [
     {
         category: {
@@ -101,7 +112,7 @@ const drawerItems: DrawerItem[] = [
                 title: `시드 ${seed.floor}층`,
                 subtitle: seed.shortDescription,
                 link: `/seed/${seed.floor}`,
-                icon: <Avatar>{seed.floor}</Avatar>,
+                icon: <LinkAvatar link={`/seed/${seed.floor}`} text={seed.floor} />,
             })),
     },
     {
@@ -114,13 +125,13 @@ const drawerItems: DrawerItem[] = [
                 key: 'farm-combine',
                 title: '스페셜 조합식',
                 link: '/farm/combine',
-                icon: <Avatar>조합</Avatar>,
+                icon: <LinkAvatar link={'/farm/combine'} text={'조합'} />,
             },
             {
                 key: 'farm-info',
                 title: '몬스터 정리',
                 link: '/farm/info',
-                icon: <Avatar>몹</Avatar>,
+                icon: <LinkAvatar link={'/farm/info'} text={'몹'} />,
             },
         ],
     },
