@@ -3,13 +3,21 @@ import Drawer from '@components/drawer/Drawer';
 import DrawerHeader from '@components/drawer/DrawerHeader';
 import { ReactNode, useCallback, useState } from 'react';
 import Header from '@components/header/Header';
-import { PaletteMode } from '@mui/material';
+import { PaletteMode, Paper, Skeleton, Stack } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 interface GlobalLayoutProps {
     children: ReactNode;
     themeType: PaletteMode;
     toggleDarkMode: () => void;
 }
+
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+}));
 
 const GlobalLayout = (props: GlobalLayoutProps) => {
     const { children, themeType, toggleDarkMode } = props;
@@ -18,14 +26,20 @@ const GlobalLayout = (props: GlobalLayoutProps) => {
 
     return (
         <Box display={'flex'}>
-            <Header open={open}
-                    toggleOpen={toggleOpen}
+            <Header toggleOpen={toggleOpen}
                     themeType={themeType}
                     toggleDarkMode={toggleDarkMode} />
             <Drawer open={open} />
             <Box component={'main'} sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
-                {children}
+                <Box sx={{ display: 'flex' }}>
+                    <Box sx={{ display: 'unset', flexGrow: 1 }}>
+                        {children}
+                    </Box>
+                    <Stack alignItems={'center'} sx={theme => ({ marginLeft: theme.spacing(1), minWidth: '260px' })}>
+                        <Skeleton sx={{ margin: 'auto' }} width={250} height={600} />
+                    </Stack>
+                </Box>
             </Box>
         </Box>
     );

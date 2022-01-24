@@ -3,6 +3,8 @@ import { Avatar, CSSObject, Divider, List, ListItem, ListItemIcon, ListItemText,
 import Link from '@components/link/Link';
 import MuiDrawer from '@mui/material/Drawer';
 import DrawerHeader from '@components/drawer/DrawerHeader';
+import Footer from '@components/footer/Footer';
+import { ReactNode } from 'react';
 
 interface DrawerProps {
     open: boolean;
@@ -73,27 +75,109 @@ const seeds = [
     },
 ];
 
+type DrawerItem = {
+    category: {
+        name: string,
+        short: string,
+    },
+    children: {
+        key: string,
+        title: string,
+        subtitle?: string,
+        link: string,
+        icon: ReactNode
+    }[]
+}
+
+const drawerItems: DrawerItem[] = [
+    {
+        category: {
+            name: '더 시드',
+            short: '시드',
+        },
+        children:
+            seeds.map(seed => ({
+                key: `seed-${seed.floor}`,
+                title: `시드 ${seed.floor}층`,
+                subtitle: seed.shortDescription,
+                link: `/seed/${seed.floor}`,
+                icon: <Avatar>{seed.floor}</Avatar>,
+            })),
+    },
+    {
+        category: {
+            name: '몬스터 라이프',
+            short: '몬라',
+        },
+        children: [
+            {
+                key: 'farm-combine',
+                title: '스페셜 조합식',
+                link: '/farm/combine',
+                icon: <Avatar>조합</Avatar>,
+            },
+            {
+                key: 'farm-info',
+                title: '몬스터 정리',
+                link: '/farm/info',
+                icon: <Avatar>몹</Avatar>,
+            },
+        ],
+    },
+];
+
+interface DrawerChildItemProps {
+    link: string;
+    icon: ReactNode;
+    title: string;
+    subtitle?: string;
+}
+
+const DrawerChildItem = (props: DrawerChildItemProps) => {
+    return (
+        <ListItem component={Link}
+                  href={props.link}
+                  sx={theme => ({ paddingLeft: theme.spacing(1) })}
+                  button
+                  dense>
+            <ListItemIcon>
+                {props.icon}
+            </ListItemIcon>
+            <ListItemText primary={props.title} secondary={props.subtitle} />
+        </ListItem>
+    );
+};
+
+interface DrawerItemListProps {
+    open?: boolean;
+    item: DrawerItem;
+}
+
+const DrawerItemList = (props: DrawerItemListProps) => {
+    const { open, item } = props;
+    return (
+        <>
+            <ListItem>
+                <ListItemText primary={open ? item.category.name : item.category.short} />
+            </ListItem>
+            {item.children.map(({ key, ...rest }) => <DrawerChildItem key={key} {...rest} />)}
+            <Divider sx={theme => ({ margin: theme.spacing(1) })} />
+        </>
+    );
+};
+
 const Drawer = (props: DrawerProps) => {
     const { open } = props;
 
     return (
         <StyledDrawer variant={'permanent'} open={open}>
             <DrawerHeader />
-            <Box sx={theme => ({ padding: theme.spacing(1) })}>
+            <Box sx={theme => ({ padding: theme.spacing(1), flex: 'auto' })}>
                 <List>
-                    {
-                        seeds.map(seed => (
-                            <ListItem component={Link} href={`/seed/${seed.floor}`} sx={{ paddingLeft: '8px' }}
-                                      button key={seed.floor} dense>
-                                <ListItemIcon>
-                                    <Avatar>{seed.floor}</Avatar>
-                                </ListItemIcon>
-                                <ListItemText primary={`시드 ${seed.floor}층`} secondary={seed.shortDescription} />
-                            </ListItem>))
-                    }
-                    <Divider />
+                    {drawerItems.map(item => <DrawerItemList open={open} key={item.category.name} item={item} />)}
                 </List>
             </Box>
+            <Footer open={open} />
         </StyledDrawer>
     );
 };
