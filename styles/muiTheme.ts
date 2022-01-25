@@ -73,18 +73,23 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
         },
         h2: {
             fontSize: 28,
+            fontWeight: 'bold',
         },
         h3: {
             fontSize: 24,
+            fontWeight: 'bold',
         },
         h4: {
             fontSize: 22,
+            fontWeight: 'bold',
         },
         h5: {
             fontSize: 18,
+            fontWeight: 'bold',
         },
         h6: {
             fontSize: 14,
+            fontWeight: 'bold',
         },
     },
     palette: buildPaletteOptions(mode),

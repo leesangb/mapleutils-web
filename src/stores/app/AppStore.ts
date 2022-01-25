@@ -15,9 +15,4 @@ export class AppStore {
         this.preference.theme = theme;
         LocalStorageHelper.save(LocalStorageKey.PREFERENCE, this.preference);
     }
-
-    changeAnimation(animation: boolean) {
-        this.preference.animation = animation;
-        LocalStorageHelper.save(LocalStorageKey.PREFERENCE, this.preference);
-    }
 }
