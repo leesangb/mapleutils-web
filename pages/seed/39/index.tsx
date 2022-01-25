@@ -1,7 +1,7 @@
 import { Card, CardContent, Grid, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { useCallback } from 'react';
-import useWindowDimensions from '../../src/hooks/useWindowDimensions';
+import useWindowDimensions from '../../../src/hooks/useWindowDimensions';
 import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
 import { QuestionAnswer, seed39Data } from '@data/seed/39';
 import { isHangulMatching } from '@tools/string';
