@@ -15,11 +15,11 @@ const PlayerVolumeSlider = () => {
     };
 
     return (
-        <Grid container alignItems='center' spacing={2}>
-            <Grid item>
+        <Grid container alignItems='center' spacing={1}>
+            <Grid item xs={1}>
                 <Tooltip title={'음소거'}>
-                    <IconButton onClick={() => setVolume(0)}>
-                        <VolumeDownRounded />
+                    <IconButton sx={theme => ({ marginTop: theme.spacing(-1) })} onClick={() => setVolume(0)}>
+                        <VolumeDownRounded fontSize={'small'} />
                     </IconButton>
                 </Tooltip>
             </Grid>
@@ -27,6 +27,7 @@ const PlayerVolumeSlider = () => {
                 <Slider
                     min={0}
                     max={100}
+                    valueLabelDisplay='auto'
                     value={volume}
                     onChange={handleChangeVolume}
                     sx={{
@@ -44,10 +45,10 @@ const PlayerVolumeSlider = () => {
                     aria-labelledby='player-volume-slider'
                 />
             </Grid>
-            <Grid item>
+            <Grid item xs={1}>
                 <Tooltip title={'음량 최대'}>
-                    <IconButton onClick={() => setVolume(100)}>
-                        <VolumeUpRounded />
+                    <IconButton sx={theme => ({ marginTop: theme.spacing(-1) })} onClick={() => setVolume(100)}>
+                        <VolumeUpRounded fontSize={'small'} />
                     </IconButton>
                 </Tooltip>
             </Grid>

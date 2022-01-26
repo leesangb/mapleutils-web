@@ -86,7 +86,7 @@ const PlayerButtons = () => {
     };
 
     return (
-        <Box sx={{ textAlign: 'center', position: 'relative' }}>
+        <Box sx={theme => ({ textAlign: 'center', position: 'relative', marginTop: theme.spacing(-2) })}>
             <Tooltip title={'정지'}>
                 <IconButton disabled={!track} onClick={handleStop}>
                     <StopRounded sx={theme => ({
