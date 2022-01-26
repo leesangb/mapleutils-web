@@ -16,7 +16,7 @@ const parsePreference = (): Preference => {
         const value = JSON.parse(json) as any;
         preference.theme = value.theme || preference.theme;
         preference.version = value.version || preference.version;
-        preference.animation = !(value.animation === false);
+        preference.seed = value.seed || preference.seed;
     }
     localStorage.clear();
     LocalStorageHelper.save(LocalStorageKey.PREFERENCE, preference);

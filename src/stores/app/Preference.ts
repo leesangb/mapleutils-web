@@ -2,13 +2,15 @@ import { PaletteMode } from '@mui/material';
 
 interface SeedPreference {
     24: {
-        volume: number
+        volume: number,
+        autoClip: boolean,
     };
 }
 
 const defaultSeedPreference = () => ({
     24: {
         volume: 50,
+        autoClip: true,
     },
 });
 

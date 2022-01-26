@@ -15,4 +15,14 @@ export class AppStore {
         this.preference.theme = theme;
         LocalStorageHelper.save(LocalStorageKey.PREFERENCE, this.preference);
     }
+
+    changeSeed24Volume(volume: number) {
+        this.preference.seed['24'].volume = volume;
+        LocalStorageHelper.save(LocalStorageKey.PREFERENCE, this.preference);
+    }
+
+    changeSeed24AutoClip(autoClip: boolean) {
+        this.preference.seed['24'].autoClip = autoClip;
+        LocalStorageHelper.save(LocalStorageKey.PREFERENCE, this.preference);
+    }
 }
