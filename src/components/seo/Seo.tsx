@@ -2,12 +2,12 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { SITE_URL } from '@tools/config';
 
-interface SeoProps {
+export interface SeoProps {
     title: string;
     keywords: string[];
     description: string;
     image?: string;
-    noIndex: boolean;
+    noIndex?: boolean;
 }
 
 const defaultKeywords = [
@@ -20,6 +20,9 @@ const defaultKeywords = [
     '시드',
     '더 시드',
     '메이플 유틸',
+    '몬라',
+    '몬스터 라이프',
+    'monster life',
 ];
 
 const defaultTitle = '메이플 유틸';

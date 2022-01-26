@@ -5,6 +5,7 @@ import useWindowDimensions from '../../../src/hooks/useWindowDimensions';
 import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
 import { QuestionAnswer, seed39Data } from '@data/seed/39';
 import { isHangulMatching } from '@tools/string';
+import { Seo, SeoProps } from '@components/seo';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -43,6 +44,12 @@ const QuestionAnswerItem = (props: QuestionAnswerItemProps) => {
     );
 };
 
+const seoProps: SeoProps = {
+    title: '더 시드 39층',
+    keywords: ['39층', '족보', '문제 풀이', '문제', '정답', '퀴즈', '2급', '리레', '웨펖', '웨폰', '시린이'],
+    description: '더 시드 39층 문제 풀이, 족보',
+    image: '/images/39.png',
+};
 
 const Seed39 = (props: Seed39Props) => {
     const { height } = useWindowDimensions();
@@ -61,6 +68,7 @@ const Seed39 = (props: Seed39Props) => {
 
     return (
         <>
+            <Seo {...seoProps} />
             <Card elevation={0} variant={'outlined'} sx={(theme) => ({ marginBottom: theme.spacing(1) })}>
                 <CardContent>
                     <Typography variant={'h1'}>
