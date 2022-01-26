@@ -24,7 +24,7 @@ const MusicItem = (props: MusicItemProps) => {
     return useMemo(() => (
         <ListItem button onClick={togglePlay}>
             <ListItemIcon>
-                <Avatar src={icon} variant='rounded' />
+                <Avatar sx={{ pointerEvents: 'none' }} src={icon} variant='rounded' />
             </ListItemIcon>
             <ListItemText>
                 <Typography variant='h6' component='div'>

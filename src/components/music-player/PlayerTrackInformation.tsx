@@ -19,6 +19,7 @@ const PlayerTrackInformation = () => {
                             borderRadius: '22px',
                             transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
                             filter: isPlaying ? undefined : 'grayscale(100%)',
+                            pointerEvents: 'none',
                         }}
                         src={track?.coverImg}>
                     <MusicNoteRounded fontSize={'large'} />
