@@ -13,6 +13,7 @@ const PlayerTimeSlider = () => {
     return (
         <Box alignItems='center' justifyContent={'space-between'}>
             <Slider
+                disabled={duration <= 0}
                 value={time}
                 size={'small'}
                 onChange={handleChangeTime}
