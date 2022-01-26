@@ -14,7 +14,7 @@ const defaultSeedPreference = () => ({
     },
 });
 
-export class Preference {
+class Preference {
     theme: PaletteMode;
     version: string;
     seed: SeedPreference;
@@ -27,3 +27,5 @@ export class Preference {
         this.seed = seed;
     }
 }
+
+export { Preference };

@@ -9,6 +9,7 @@ const PlayerSettings = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const { app } = useStore();
+    const [autoClip, setAutoClip] = useState(app.preference.seed['24'].autoClip);
 
     const id = open ? 'player-more-settings' : undefined;
 
@@ -19,7 +20,8 @@ const PlayerSettings = () => {
         setAnchorEl(null);
     };
     const toggleAutoClip = () => {
-        app.changeSeed24AutoClip(!app.preference.seed['24'].autoClip);
+        setAutoClip(!autoClip);
+        app.changeSeed24AutoClip(!autoClip);
     };
 
     return (
@@ -54,7 +56,7 @@ const PlayerSettings = () => {
                             <Switch
                                 edge='end'
                                 onChange={toggleAutoClip}
-                                checked={app.preference.seed['24'].autoClip}
+                                checked={autoClip}
                                 inputProps={{
                                     'aria-labelledby': 'switch-auto-clip-on-play',
                                 }}
@@ -81,7 +83,7 @@ const PlayerButtons = () => {
 
     const handleClip = () => {
         onClip(track?.name);
-    }
+    };
 
     return (
         <Box sx={{ textAlign: 'center', position: 'relative' }}>
