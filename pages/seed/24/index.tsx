@@ -1,5 +1,6 @@
 import { Card, CardContent, Typography } from '@mui/material';
 import MusicPlayer from '@components/music-player/MusicPlayer';
+import { seed24AudioData } from '@data/seed/24';
 
 const Seed24 = () => {
 
@@ -14,7 +15,7 @@ const Seed24 = () => {
             </Card>
             <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>
-                    <MusicPlayer tracks={[]} />
+                    <MusicPlayer tracks={seed24AudioData} />
                 </CardContent>
             </Card>
         </>
