@@ -6,6 +6,7 @@ import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedL
 import { QuestionAnswer, seed39Data } from '@data/seed/39';
 import { isHangulMatching } from '@tools/string';
 import { Seo, SeoProps } from '@components/seo';
+import { TitleCard } from '@components/card';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -69,13 +70,7 @@ const Seed39 = (props: Seed39Props) => {
     return (
         <>
             <Seo {...seoProps} />
-            <Card elevation={0} variant={'outlined'} sx={(theme) => ({ marginBottom: theme.spacing(1) })}>
-                <CardContent>
-                    <Typography variant={'h1'}>
-                        시드 39층
-                    </Typography>
-                </CardContent>
-            </Card>
+            <TitleCard title={'시드 39층'} />
             <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>
                     <VirtualizedFixedList height={height - 250}
