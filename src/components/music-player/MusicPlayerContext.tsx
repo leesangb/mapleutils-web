@@ -163,7 +163,7 @@ const MusicPlayerProvider = (props: PropsWithChildren<MusicPlayerProviderProps>)
                 autoHideDuration={3000}
                 onClose={handleClose}
             >
-                <Paper elevation={0}>
+                <Paper elevation={8}>
                     <Alert variant={'outlined'} severity={'success'}>{message}</Alert>
                 </Paper>
             </Snackbar>
