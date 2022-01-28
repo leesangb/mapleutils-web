@@ -34,7 +34,6 @@ describe('isHangulMatching', () => {
             '안녕',
             '안ㄴ',
             'ㅌㅅ',
-            '안녕하세요',
         ];
         shouldMatch.forEach(pattern => {
             it(`should match with "${pattern}"`, () => {

@@ -10,7 +10,7 @@ const getChosung = (str: string): string => {
 
 export const isHangulMatching = (pattern: string, ...words: string[]): boolean => {
     const searched = removeSpecialChars(pattern);
-    const escapedWords = words.map(word => removeSpecialChars(word)).join('');
+    const escapedWords = words.map(word => removeSpecialChars(word)).join('|');
 
     if (!Hangul.isJongAll(searched) && Hangul.search(escapedWords, searched) !== -1) {
         return true;
