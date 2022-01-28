@@ -1,20 +1,8 @@
 import { Seo, SeoProps } from '@components/seo';
-import { TitleCard } from '@components/card';
+import { MonsterCard, TitleCard } from '@components/card';
 import { seed49Data, SeedLocation, SeedMobData } from '@data/seed/49';
 import { Masonry } from '@mui/lab';
-import {
-    Alert,
-    Box,
-    Button,
-    Card,
-    CardActionArea,
-    CardContent,
-    Chip,
-    Paper,
-    Snackbar,
-    Tooltip,
-    Typography,
-} from '@mui/material';
+import { Alert, Box, Button, Card, CardContent, Paper, Snackbar, Tooltip } from '@mui/material';
 import { styled } from '@mui/system';
 import NextImage from 'next/image';
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
@@ -32,7 +20,7 @@ interface Seed49Props {
     data: SeedLocation[];
 }
 
-interface MonsterCardProps {
+interface ContentProps {
     mob: SeedMobData & { location: string };
     silhouette: boolean;
 }
@@ -47,7 +35,7 @@ const StyledImg = styled(NextImage)((props: StyledImgProps) => ({
     pointerEvents: 'none',
 }));
 
-const MonsterCard = (props: MonsterCardProps) => {
+const Content = (props: ContentProps) => {
     const { mob } = props;
     const [silhouette, setSilhouette] = useState(true);
 
@@ -71,30 +59,17 @@ const MonsterCard = (props: MonsterCardProps) => {
     return (
         <>
             <Tooltip title={'클릭하여 복사하기'} arrow placement={'top'}>
-                <Card variant={'outlined'}
-                      onMouseEnter={() => setSilhouette(false)}
-                      onMouseLeave={() => setSilhouette(true)}>
-                    <CardActionArea onClick={onClip}>
-                        <CardContent>
-                            <Chip label={mob.location} sx={{ position: 'absolute' }} />
-                            <Box sx={theme => ({
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                marginTop: theme.spacing(2),
-                                marginBottom: theme.spacing(3),
-                                position: 'relative',
-                            })}>
-                                <StyledImg width={mob.width}
-                                           height={mob.height}
-                                           src={`/images/seed/49/${mob.name}.png`}
-                                           silhouette={props.silhouette && silhouette}
-                                           alt={mob.name} />
-                            </Box>
-                            <Typography align={'center'}>{mob.name}</Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
+                <MonsterCard tags={[mob.location]}
+                             name={mob.name}
+                             onClick={onClip}
+                             onMouseEnter={() => setSilhouette(false)}
+                             onMouseLeave={() => setSilhouette(true)}>
+                    <StyledImg width={mob.width}
+                               height={mob.height}
+                               src={`/images/seed/49/${mob.name}.png`}
+                               silhouette={props.silhouette && silhouette}
+                               alt={mob.name} />
+                </MonsterCard>
             </Tooltip>
 
             <Snackbar
@@ -151,7 +126,7 @@ const Seed49 = (props: Seed49Props) => {
             </Card>
             <Masonry spacing={1} columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
                 {
-                    filtered.map(mob => <MonsterCard silhouette={silhouette} mob={mob} key={mob.name} />)
+                    filtered.map(mob => <Content silhouette={silhouette} mob={mob} key={mob.name} />)
                 }
             </Masonry>
 
