@@ -48,7 +48,7 @@ const Content = (props: PropsWithChildren<MonsterCardContentProps>) => {
                 </CardContent>
             </Card>
 
-            <Typography align={'center'}>{props.name}</Typography>
+            <Typography fontWeight={'medium'} align={'center'}>{props.name}</Typography>
         </Box>
     );
 };
