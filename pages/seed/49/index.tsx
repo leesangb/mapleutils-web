@@ -1,7 +1,7 @@
 import { Seo, SeoProps } from '@components/seo';
 import { MonsterCard, TitleCard } from '@components/card';
 import { seed49Data, SeedLocation, SeedMobData } from '@data/seed/49';
-import { Masonry } from '@mui/lab';
+import { Masonry as MuiMasonry } from '@mui/lab';
 import { Alert, Box, Button, Card, CardContent, Paper, Snackbar, Tooltip } from '@mui/material';
 import { styled } from '@mui/system';
 import NextImage from 'next/image';
@@ -124,11 +124,12 @@ const Seed49 = (props: Seed49Props) => {
                     </Box>
                 </CardContent>
             </Card>
-            <Masonry spacing={1} columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
+            <MuiMasonry spacing={1} columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
                 {
                     filtered.map(mob => <Content silhouette={silhouette} mob={mob} key={mob.name} />)
                 }
-            </Masonry>
+            </MuiMasonry>
+
 
         </>
     );
