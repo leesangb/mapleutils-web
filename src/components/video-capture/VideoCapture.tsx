@@ -147,6 +147,12 @@ const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
     }, [stream]);
 
 
+    useEffect(() => {
+        return () => {
+            handleStop();
+        };
+    });
+
     return (
         <>
             <CaptureHelp />
