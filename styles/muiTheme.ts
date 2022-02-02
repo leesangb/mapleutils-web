@@ -93,14 +93,10 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
         },
     },
     palette: buildPaletteOptions(mode),
+    shape: {
+        borderRadius,
+    },
     components: {
-        MuiOutlinedInput: {
-            styleOverrides: {
-                root: {
-                    borderRadius,
-                },
-            },
-        },
         MuiAppBar: {
             styleOverrides: {
                 colorDefault: {
@@ -119,27 +115,6 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
                 },
             },
         },
-        MuiListItem: {
-            styleOverrides: {
-                button: {
-                    borderRadius,
-                },
-            },
-        },
-        MuiPaper: {
-            styleOverrides: {
-                rounded: {
-                    borderRadius,
-                },
-            },
-        },
-        MuiCard: {
-            styleOverrides: {
-                root: {
-                    borderRadius,
-                },
-            },
-        },
         MuiCardContent: {
             styleOverrides: {
                 root: {
@@ -152,20 +127,6 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
                     [breakpoints.down('xs')]: {
                         padding: '12px',
                     },
-                },
-            },
-        },
-        MuiCardActionArea: {
-            styleOverrides: {
-                root: {
-                    borderRadius,
-                },
-            },
-        },
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    borderRadius,
                 },
             },
         },
