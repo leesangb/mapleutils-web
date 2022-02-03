@@ -3,8 +3,9 @@ import Drawer from '@components/drawer/Drawer';
 import DrawerHeader from '@components/drawer/DrawerHeader';
 import { ReactNode, useCallback, useState } from 'react';
 import Header from '@components/header/Header';
-import { PaletteMode, Paper, Skeleton, Stack } from '@mui/material';
+import { PaletteMode, Paper, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import AdSense, { AdSenseSlot } from '@components/adsense/AdSense';
 
 interface GlobalLayoutProps {
     children: ReactNode;
@@ -37,7 +38,7 @@ const GlobalLayout = (props: GlobalLayoutProps) => {
                         {children}
                     </Box>
                     <Stack alignItems={'center'} sx={theme => ({ marginLeft: theme.spacing(1), minWidth: '260px' })}>
-                        <Skeleton sx={{ margin: 'auto' }} width={250} height={600} />
+                        <AdSense slot={AdSenseSlot.LeftMenu} responsive width={250} height={600} />
                     </Stack>
                 </Box>
             </Box>
