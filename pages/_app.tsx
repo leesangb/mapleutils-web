@@ -9,6 +9,10 @@ import { observer } from 'mobx-react';
 import { StoreProvider } from 'src/stores/StoreContext';
 import { useDarkMode } from '@styles/muiTheme';
 import GlobalLayout from '@components/layout/GlobalLayout';
+import { useEffect } from 'react';
+import { isProduction } from '@tools/helper';
+import * as gtag from '@components/adsense/lib/gtag';
+import { useRouter } from 'next/router';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -33,6 +37,19 @@ const App = observer((props: AppProps) => {
 
 function MyApp(props: MyAppProps) {
     const { emotionCache = clientSideEmotionCache, ...appProps } = props;
+    const router = useRouter();
+
+    useEffect(() => {
+        const handleRouteChange = (url: URL) => {
+            /* invoke analytics function only for production */
+            if (isProduction) gtag.pageview(url);
+        };
+        router.events.on('routeChangeComplete', handleRouteChange);
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChange);
+        };
+    }, [router.events]);
+
     return (
         <CacheProvider value={emotionCache}>
             <Seo />

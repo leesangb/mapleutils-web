@@ -3,6 +3,8 @@ import Document, { Head, Html, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '@tools/createEmotionCache';
 import { defaultTheme } from '@styles/muiTheme';
+import { ADSENSE_ID, GA_TRACKING_ID } from '@components/adsense/lib/gtag';
+import { isProduction } from '@tools/helper';
 
 export default class MyDocument extends Document {
     render() {
@@ -14,6 +16,29 @@ export default class MyDocument extends Document {
                         rel='stylesheet'
                         href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
                     />
+                    <script
+                        data-ad-client={ADSENSE_ID}
+                        async
+                        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+                    />
+                    {isProduction && (
+                        <>
+                            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+                            <script
+                                // eslint-disable-next-line react/no-danger
+                                dangerouslySetInnerHTML={{
+                                    __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+                                }}
+                            />
+                        </>
+                    )}
                 </Head>
                 <body>
                 <Main />
