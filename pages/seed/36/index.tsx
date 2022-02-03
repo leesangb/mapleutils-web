@@ -39,6 +39,7 @@ const Content = (props: ContentProps) => {
                             seed36Data.map((mob, choice) => (
                                 <Grid item xs={3} sm={2} key={`${i}-${choice}`}>
                                     <CardActionArea sx={theme => ({
+                                        borderRadius: theme.shape.borderRadius,
                                         marginBottom: theme.spacing(2),
                                         height: theme.spacing(9),
                                         bgcolor: steps[i] === choice

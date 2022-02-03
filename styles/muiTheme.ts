@@ -115,6 +115,20 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
                 },
             },
         },
+        MuiListItem: {
+            styleOverrides: {
+                root: {
+                    borderRadius,
+                },
+            },
+        },
+        MuiAvatar: {
+            styleOverrides: {
+                rounded: {
+                    borderRadius: '4px'
+                }
+            }
+        },
         MuiCardContent: {
             styleOverrides: {
                 root: {
