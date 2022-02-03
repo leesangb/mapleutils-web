@@ -12,7 +12,7 @@ interface VirtualizedFixedListItemProps<T> extends ListChildComponentProps<{ ite
 const VirtualizedFixedListItem = <T, >(props: VirtualizedFixedListItemProps<T>) => {
     const { data, index, style, divider } = props;
     return (
-        <ListItem style={style} divider={divider}>
+        <ListItem style={{ ...style, borderRadius: '0px' }} divider={divider}>
             {props.rowRenderer(data.items[index], index)}
         </ListItem>
     );
