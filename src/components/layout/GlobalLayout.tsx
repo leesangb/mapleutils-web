@@ -3,8 +3,7 @@ import Drawer from '@components/drawer/Drawer';
 import DrawerHeader from '@components/drawer/DrawerHeader';
 import { ReactNode, useCallback, useState } from 'react';
 import Header from '@components/header/Header';
-import { PaletteMode, Paper, Stack } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { PaletteMode, Stack } from '@mui/material';
 import AdSense, { AdSenseSlot } from '@components/adsense/AdSense';
 
 interface GlobalLayoutProps {
@@ -12,13 +11,6 @@ interface GlobalLayoutProps {
     themeType: PaletteMode;
     toggleDarkMode: () => void;
 }
-
-const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
 
 const GlobalLayout = (props: GlobalLayoutProps) => {
     const { children, themeType, toggleDarkMode } = props;
@@ -38,7 +30,7 @@ const GlobalLayout = (props: GlobalLayoutProps) => {
                         {children}
                     </Box>
                     <Stack alignItems={'center'} sx={theme => ({ marginLeft: theme.spacing(1), minWidth: '260px' })}>
-                        <AdSense slot={AdSenseSlot.LeftMenu} responsive width={250} height={600} />
+                        <AdSense slot={AdSenseSlot.RightContent} responsive width={250} height={600} />
                     </Stack>
                 </Box>
             </Box>
