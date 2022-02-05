@@ -133,8 +133,8 @@ const Seed49 = (props: Seed49Props) => {
                         <Grid item>
                             <Button onClick={() => setCollapse(!collapse)}
                                     endIcon={collapse
-                                        ? <KeyboardArrowUpRounded />
-                                        : <KeyboardArrowDownRounded />}>
+                                        ? <KeyboardArrowDownRounded />
+                                        : <KeyboardArrowUpRounded />}>
                                 필터
                             </Button>
                         </Grid>
