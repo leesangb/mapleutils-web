@@ -1,6 +1,6 @@
 import { Button, IconButton, PaletteMode, styled, Toolbar } from '@mui/material';
 import { Box } from '@mui/system';
-import Link from '../link/Link';
+import { Link } from '@components/link';
 import SettingsButton from './SettingsButton';
 import { Menu } from '@mui/icons-material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
