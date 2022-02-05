@@ -20,3 +20,5 @@ export const isHangulMatching = (pattern: string, ...words: string[]): boolean =
         .join('')
         .includes(getChosung(searched));
 };
+
+export const includesOneOf = (str: string, words: string[]): boolean => words.some((w) => str.includes(w));
