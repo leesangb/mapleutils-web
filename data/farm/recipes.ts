@@ -27,13 +27,13 @@ export interface MonsterLifeFamilyRoot extends MonsterLifeFamily {
 const MONSTER_LIFE_RECIPES_LITE: MonsterLifeRecipeLite[] = recipes as MonsterLifeRecipeLite[];
 
 
-export const MONSTER_LIFE_RECIPES: MonsterLifeRecipe[] = MONSTER_LIFE_RECIPES_LITE.map((r) => ({
+export const monsterLifeRecipes: MonsterLifeRecipe[] = MONSTER_LIFE_RECIPES_LITE.map((r) => ({
     parents: r.parents.map((p) => monsterLifeMobs.find((mob) => mob.name === p)!) as [MonsterLifeMob, MonsterLifeMob],
     mob: monsterLifeMobs.find((mob) => mob.name === r.name)!,
 }));
 
 
-export const MONSTER_LIFE_INGREDIENTS: MonsterLifeMob[] = MONSTER_LIFE_RECIPES.flatMap((r) => r.parents).filter(
+export const MONSTER_LIFE_INGREDIENTS: MonsterLifeMob[] = monsterLifeRecipes.flatMap((r) => r.parents).filter(
     (mob, index, arr) => index === arr.findIndex((m) => m.name === mob.name),
 );
 
@@ -43,7 +43,7 @@ export const MONSTER_LIFE_RESULTS: MonsterLifeMob[] = monsterLifeMobs.filter(
 
 
 const buildFamilyRec = (name: string, level: number): { family: MonsterLifeFamily; level: number } => {
-    const recipe = MONSTER_LIFE_RECIPES.find((r) => r.mob.name === name);
+    const recipe = monsterLifeRecipes.find((r) => r.mob.name === name);
     if (!recipe)
         return {
             family: {
@@ -64,7 +64,7 @@ const buildFamilyRec = (name: string, level: number): { family: MonsterLifeFamil
 };
 
 const buildFamily = (name: string): MonsterLifeFamilyRoot => {
-    const recipe = MONSTER_LIFE_RECIPES.find((r) => r.mob.name === name)!;
+    const recipe = monsterLifeRecipes.find((r) => r.mob.name === name)!;
     const { family: father, level: fatherLevel } = buildFamilyRec(recipe.parents[0].name, 0);
     const { family: mother, level: motherLevel } = buildFamilyRec(recipe.parents[1].name, 0);
 
@@ -76,7 +76,7 @@ const buildFamily = (name: string): MonsterLifeFamilyRoot => {
     };
 };
 
-export const MONSTER_LIFE_FAMILIES: MonsterLifeFamilyRoot[] = MONSTER_LIFE_RECIPES.map((r) =>
+export const MONSTER_LIFE_FAMILIES: MonsterLifeFamilyRoot[] = monsterLifeRecipes.map((r) =>
     buildFamily(r.mob.name),
 ).sort((a, b) => b.level - a.level);
 
