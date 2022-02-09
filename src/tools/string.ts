@@ -22,3 +22,5 @@ export const isHangulMatching = (pattern: string, ...words: string[]): boolean =
 };
 
 export const includesOneOf = (str: string, words: string[]): boolean => words.some((w) => str.includes(w));
+
+export const formatNumberComma = (n: number): string => new Intl.NumberFormat().format(n);
