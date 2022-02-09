@@ -1,32 +1,29 @@
 import { MonsterLifeMob } from '@data/farm/mobs';
 import { monsterLifeFamilyMapping } from '@data/farm/recipes';
-import { Avatar, Button, Card, CardActionArea, CardActions, CardContent, Chip, Grid, Typography } from '@mui/material';
+import { Button, Card, CardActionArea, CardActions, Grid, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { CardGiftcardRounded, SearchRounded } from '@mui/icons-material';
+import GradeChip from '@components/card/monster-life/GradeChip';
+import { getExtendCost } from '@data/farm/monsterLifeCost';
+import CostChip from '@components/card/monster-life/CostChip';
+import NextImage from 'next/image';
 
-interface MonsterLifeMobCardProps {
+interface MobCardProps {
     mob: MonsterLifeMob;
 }
 
-const StyledImg = styled('img')(({ theme }) => ({
+const StyledImg = styled(NextImage)(({ theme }) => ({
     transition: '0.2s',
     pointerEvents: 'none',
-    maxHeight: '100%',
-    maxWidth: '100%',
-    width: 'auto',
-    height: 'auto',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    right: theme.spacing(3),
-    margin: 'auto',
+    objectFit: 'scale-down',
 }));
 
-const MonsterLifeMobCard = (props: MonsterLifeMobCardProps) => {
+const MobCard = (props: MobCardProps) => {
     const { mob } = props;
 
     const family = monsterLifeFamilyMapping[mob.name];
     const isBox = mob.other === '상자' || mob.name === '쁘띠 루미너스(빛)';
+    const extendCost = getExtendCost(mob);
 
     return (
         <Card variant={'outlined'} sx={{
@@ -44,36 +41,31 @@ const MonsterLifeMobCard = (props: MonsterLifeMobCardProps) => {
                         <Grid direction={'column'} container
                               sx={theme => ({ position: 'absolute', margin: theme.spacing(0) })}
                               spacing={1}>
+                            {
+                                extendCost > 0 && (
+                                    <Grid item>
+                                        <CostChip cost={extendCost} />
+                                    </Grid>
+                                )
+                            }
                             <Grid item>
-                                <Chip size={'small'}
-                                      avatar={<Avatar>{mob.grade}</Avatar>}
-                                      label={mob.category}
-                                />
+                                <GradeChip grade={mob.grade} category={mob.category} />
                             </Grid>
                         </Grid>
-                        <CardContent>
-                            <Box sx={theme => ({
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                marginTop: theme.spacing(1),
-                                marginBottom: theme.spacing(1),
-                                position: 'relative',
-                            })}>
-                                <Box sx={(theme) => ({
-                                    height: '100px',
-                                    width: '100%',
-                                    overflow: 'hidden',
-                                    position: 'relative',
-                                    [theme.breakpoints.down('xs')]: {
-                                        height: '50px',
-                                    },
-                                })}>
-                                    <StyledImg src={`/images/monster-life/${mob.name}.png`}
-                                               alt={mob.name} />
-                                </Box>
-                            </Box>
-                        </CardContent>
+                        <Box sx={(theme) => ({
+                            height: '100px',
+                            width: '100%',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            margin: theme.spacing(2),
+                            [theme.breakpoints.down('xs')]: {
+                                height: '50px',
+                            },
+                        })}>
+                            <StyledImg layout={'fill'}
+                                       src={`/images/monster-life/${mob.name}.png`}
+                                       alt={mob.name} />
+                        </Box>
                     </Card>
                     <Box sx={theme => ({ paddingLeft: theme.spacing(1) })}>
                         <Typography fontWeight={'bold'}>
@@ -83,7 +75,7 @@ const MonsterLifeMobCard = (props: MonsterLifeMobCardProps) => {
                                     paragraph
                                     sx={(theme) => ({
                                         color: theme.palette.text.secondary,
-                                        height: theme.spacing(3),
+                                        height: theme.spacing(7),
                                         whiteSpace: mob.effect.includes('\n') ? 'pre' : 'none',
                                     })}>
                             {mob.effect}
@@ -119,4 +111,4 @@ const MonsterLifeMobCard = (props: MonsterLifeMobCardProps) => {
     );
 };
 
-export default MonsterLifeMobCard;
+export default MobCard;
