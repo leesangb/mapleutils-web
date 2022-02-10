@@ -2,11 +2,12 @@ import { MonsterLifeMob } from '@data/farm/mobs';
 import { monsterLifeFamilyMapping } from '@data/farm/recipes';
 import { Button, Card, CardActionArea, CardActions, Grid, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
-import { CardGiftcardRounded, SearchRounded } from '@mui/icons-material';
+import { SearchRounded } from '@mui/icons-material';
 import GradeChip from '@components/card/monster-life/GradeChip';
 import { getExtendCost } from '@data/farm/monsterLifeCost';
 import CostChip from '@components/card/monster-life/CostChip';
 import NextImage from 'next/image';
+import MobBoxModal from '@components/card/monster-life/MobBoxModal';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
@@ -73,10 +74,10 @@ const MobCard = (props: MobCardProps) => {
                         </Typography>
                         <Typography variant={'body2'}
                                     paragraph
+                                    noWrap
                                     sx={(theme) => ({
                                         color: theme.palette.text.secondary,
-                                        height: theme.spacing(7),
-                                        whiteSpace: mob.effect.includes('\n') ? 'pre' : 'none',
+                                        height: theme.spacing(5),
                                     })}>
                             {mob.effect}
                         </Typography>
@@ -93,16 +94,15 @@ const MobCard = (props: MobCardProps) => {
                     family && (
                         <Button sx={theme => ({ color: theme.palette.text.primary })}
                                 startIcon={<SearchRounded />}>
-                            전체 조합식
+                            <Typography noWrap variant={'body2'} component={'p'} fontWeight={'medium'}>
+                                전체 조합식
+                            </Typography>
                         </Button>
                     )
                 }
                 {
                     isBox && (
-                        <Button sx={theme => ({ color: theme.palette.text.primary })}
-                                startIcon={<CardGiftcardRounded />}>
-                            상자
-                        </Button>
+                        <MobBoxModal mob={mob} />
                     )
                 }
 
