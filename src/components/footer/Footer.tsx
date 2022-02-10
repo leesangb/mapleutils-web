@@ -20,30 +20,29 @@ const Footer = (props: FooterProps) => {
         <StyledFooter>
             <Grid container direction={props.open ? 'row' : 'column'} justifyContent={'center'}>
                 <Grid item sx={{ alignSelf: 'center' }}>
-                    <IconButton component={'a'} href={'https://open.kakao.com/o/sDbLVFoc'}>
+                    <IconButton component={'a'}
+                                target={'_blank'}
+                                rel={'noreferrer noopener'}
+                                href={'https://open.kakao.com/o/sDbLVFoc'}>
                         <KakaoTalkIcon />
                     </IconButton>
                 </Grid>
                 <Grid item sx={{ alignSelf: 'center' }}>
                     <IconButton component={'a'}
+                                target={'_blank'}
+                                rel={'noreferrer noopener'}
                                 href={'https://github.com/leesangb/mapleutils-web'}>
                         <GitHub />
                     </IconButton>
                 </Grid>
             </Grid>
-            {
-                props.open
-                    ? (
-                        <Typography variant={'caption'}>
-                            © {currentYear} mapleutils All rights reserved. mapleutils is not associated
-                            with NEXON Korea.
-                        </Typography>
-                    ) : (
-                        <Typography variant={'caption'}>
-                            © {currentYear} mapleutils
-                        </Typography>
-                    )
-            }
+            <Typography variant={'caption'}>
+                {
+                    props.open
+                        ? `© ${currentYear} mapleutils All rights reserved. mapleutils is not associated with NEXON Korea.`
+                        : `© ${currentYear} mapleutils`
+                }
+            </Typography>
 
         </StyledFooter>
     );
