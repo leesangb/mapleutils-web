@@ -122,6 +122,13 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
                 },
             },
         },
+        MuiListItemButton: {
+            styleOverrides: {
+                root: {
+                    borderRadius
+                }
+            }
+        },
         MuiAvatar: {
             styleOverrides: {
                 rounded: {

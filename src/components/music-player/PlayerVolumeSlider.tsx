@@ -2,17 +2,40 @@ import { useMusicPlayerContext } from '@components/music-player/MusicPlayerConte
 import { Grid, IconButton, Slider, Tooltip } from '@mui/material';
 import { VolumeDownRounded, VolumeUpRounded } from '@mui/icons-material';
 import { useStore } from '@stores/StoreContext';
+import { useEffect } from 'react';
 
 
 const PlayerVolumeSlider = () => {
     const { volume, setVolume } = useMusicPlayerContext();
     const { app } = useStore();
 
-    const handleChangeVolume = (_: any, newValue: number | number[]) => {
-        const value: number = newValue as number;
+    const changeVolume = (value: number) => {
+        if (value < 0) value = 0;
+        if (value > 100) value = 100;
         setVolume(value);
         app.changeSeed24Volume(value);
     };
+
+    const handleChangeVolume = (_: any, newValue: number | number[]) => {
+        const value: number = newValue as number;
+        changeVolume(value);
+    };
+
+    useEffect(() => {
+        const volumeUpDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                changeVolume(volume + 5);
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                changeVolume(volume - 5);
+            }
+        };
+        window.addEventListener('keydown', volumeUpDown);
+        return () => {
+            window.removeEventListener('keydown', volumeUpDown);
+        };
+    });
 
     return (
         <Grid container alignItems='center' spacing={1}>

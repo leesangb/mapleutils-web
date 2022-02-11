@@ -2,13 +2,34 @@ import { useMusicPlayerContext } from '@components/music-player/MusicPlayerConte
 import { Slider, Typography } from '@mui/material';
 import { toMinuteSecond } from '@tools/time';
 import { Box } from '@mui/system';
+import { useEffect } from 'react';
 
 const PlayerTimeSlider = () => {
     const { time, setTime, duration } = useMusicPlayerContext();
 
-    const handleChangeTime = (_: any, newValue: number | number[]) => {
-        setTime((newValue as number));
+    const changeTime = (value: number) => {
+        setTime(value);
     };
+
+    const handleChangeTime = (_: any, newValue: number | number[]) => {
+        changeTime((newValue as number));
+    };
+
+    useEffect(() => {
+        const timeUpDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                changeTime(time - 5);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                changeTime(time + 5);
+            }
+        };
+        window.addEventListener('keydown', timeUpDown);
+        return () => {
+            window.removeEventListener('keydown', timeUpDown);
+        };
+    });
 
     return (
         <Box alignItems='center' justifyContent={'space-between'}>
