@@ -1,16 +1,19 @@
 import { MonsterLifeMob } from '@data/farm/mobs';
 import { monsterLifeFamilyMapping } from '@data/farm/recipes';
-import { Button, Card, CardActionArea, CardActions, Grid, Typography } from '@mui/material';
-import { Box, styled } from '@mui/system';
-import { SearchRounded } from '@mui/icons-material';
+import { Box, Card, CardActionArea, CardActions, Grid, Typography } from '@mui/material';
+import { styled } from '@mui/system';
 import GradeChip from '@components/card/monster-life/GradeChip';
 import { getExtendCost } from '@data/farm/monsterLifeCost';
 import CostChip from '@components/card/monster-life/CostChip';
 import NextImage from 'next/image';
 import MobBoxModal from '@components/card/monster-life/MobBoxModal';
+import MobTreeModal from '@components/card/monster-life/MobTreeModal';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
+    small?: boolean;
+    hideRecipe?: boolean;
+    selected?: boolean;
 }
 
 const StyledImg = styled(NextImage)(({ theme }) => ({
@@ -20,7 +23,7 @@ const StyledImg = styled(NextImage)(({ theme }) => ({
 }));
 
 const MobCard = (props: MobCardProps) => {
-    const { mob } = props;
+    const { mob, small, hideRecipe, selected } = props;
 
     const family = monsterLifeFamilyMapping[mob.name];
     const isBox = mob.other === '상자' || mob.name === '쁘띠 루미너스(빛)';
@@ -32,57 +35,68 @@ const MobCard = (props: MobCardProps) => {
             position: 'relative',
         }}>
             <CardActionArea>
-                <Box sx={(theme) => ({ padding: theme.spacing(1) })}>
-                    <Card elevation={0}
-                          variant={'outlined'}
-                          sx={theme => ({
-                              marginBottom: theme.spacing(1),
-                              backgroundColor: theme.palette.background.default,
-                          })}>
-                        <Grid direction={'column'} container
-                              sx={theme => ({ position: 'absolute', margin: theme.spacing(0) })}
-                              spacing={1}>
-                            {
-                                extendCost > 0 && (
+                <Box sx={(theme) => ({
+                    paddingTop: theme.spacing(1),
+                    paddingLeft: theme.spacing(1),
+                    paddingRight: theme.spacing(1),
+                })}>
+                    <Grid container>
+                        <Grid item xs={small ? undefined : 12}>
+                            <Card elevation={0}
+                                  variant={'outlined'}
+                                  sx={theme => ({
+                                      marginBottom: theme.spacing(1),
+                                      backgroundColor: selected
+                                          ? theme.palette.primary[theme.palette.mode]
+                                          : theme.palette.background.default,
+                                  })}>
+                                <Grid direction={'column'} container
+                                      sx={theme => ({ position: 'absolute', margin: theme.spacing(0) })}
+                                      spacing={1}>
                                     <Grid item>
-                                        <CostChip cost={extendCost} />
+                                        <GradeChip grade={mob.grade} category={mob.category} />
                                     </Grid>
-                                )
-                            }
-                            <Grid item>
-                                <GradeChip grade={mob.grade} category={mob.category} />
-                            </Grid>
+                                    {
+                                        !small && extendCost > 0 && (
+                                            <Grid item>
+                                                <CostChip cost={extendCost} />
+                                            </Grid>
+                                        )
+                                    }
+                                </Grid>
+                                <Box sx={(theme) => ({
+                                    height: small ? theme.spacing(6) : '100px',
+                                    width: small ? theme.spacing(18) : '100%',
+                                    overflow: 'hidden',
+                                    position: 'relative',
+                                    margin: theme.spacing(2),
+                                    [theme.breakpoints.down('xs')]: {
+                                        height: '50px',
+                                    },
+                                })}>
+                                    <StyledImg layout={'fill'}
+                                               src={`/images/monster-life/${mob.name}.png`}
+                                               alt={mob.name} />
+                                </Box>
+                            </Card>
                         </Grid>
-                        <Box sx={(theme) => ({
-                            height: '100px',
-                            width: '100%',
-                            overflow: 'hidden',
-                            position: 'relative',
-                            margin: theme.spacing(2),
-                            [theme.breakpoints.down('xs')]: {
-                                height: '50px',
-                            },
-                        })}>
-                            <StyledImg layout={'fill'}
-                                       src={`/images/monster-life/${mob.name}.png`}
-                                       alt={mob.name} />
-                        </Box>
-                    </Card>
-                    <Box sx={theme => ({ paddingLeft: theme.spacing(1) })}>
-                        <Typography fontWeight={'bold'}>
-                            {mob.name}
-                        </Typography>
-                        <Typography variant={'body2'}
-                                    paragraph
-                                    noWrap
-                                    sx={(theme) => ({
-                                        color: theme.palette.text.secondary,
-                                        height: theme.spacing(5),
-                                    })}>
-                            {mob.effect}
-                        </Typography>
-                    </Box>
-
+                        <Grid item xs={small ? true : 12}>
+                            <Box sx={theme => ({ paddingLeft: theme.spacing(1) })}>
+                                <Typography fontWeight={'bold'}>
+                                    {mob.name}
+                                </Typography>
+                                <Typography variant={'body2'}
+                                            paragraph
+                                            noWrap
+                                            sx={(theme) => ({
+                                                color: theme.palette.text.secondary,
+                                                height: theme.spacing(5),
+                                            })}>
+                                    {mob.effect}
+                                </Typography>
+                            </Box>
+                        </Grid>
+                    </Grid>
                 </Box>
             </CardActionArea>
             <CardActions sx={(theme) => ({
@@ -90,22 +104,8 @@ const MobCard = (props: MobCardProps) => {
                 bottom: theme.spacing(0),
                 right: theme.spacing(0),
             })}>
-                {
-                    family && (
-                        <Button sx={theme => ({ color: theme.palette.text.primary })}
-                                startIcon={<SearchRounded />}>
-                            <Typography noWrap variant={'body2'} component={'p'} fontWeight={'medium'}>
-                                전체 조합식
-                            </Typography>
-                        </Button>
-                    )
-                }
-                {
-                    isBox && (
-                        <MobBoxModal mob={mob} />
-                    )
-                }
-
+                {!hideRecipe && family && (<MobTreeModal mob={mob} />)}
+                {isBox && (<MobBoxModal mob={mob} />)}
             </CardActions>
         </Card>
     );

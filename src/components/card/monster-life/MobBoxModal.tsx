@@ -88,12 +88,12 @@ const MobBoxModal = ({ mob }: MobBoxModalProps) => {
                 </Typography>
             </Button>
 
-            <Dialog open={open} onClose={handleClose} scroll='paper' maxWidth='xl'>
+            <Dialog open={open} onClose={handleClose} scroll='paper' maxWidth='lg'>
                 <DialogTitle>어떤 상자에서 나오나요?</DialogTitle>
                 <DialogContent>
                     <Grid container spacing={2} justifyContent='center'>
                         {boxes.map((b) => (
-                            <Grid item xs={6} key={b.name}>
+                            <Grid item xs key={b.name}>
                                 <BoxCard box={b} />
                             </Grid>
                         ))}
