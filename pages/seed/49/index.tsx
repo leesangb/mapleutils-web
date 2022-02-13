@@ -2,7 +2,7 @@ import { Seo, SeoProps } from '@components/seo';
 import { MonsterCard, TitleCard } from '@components/card';
 import { seed49Data, SeedLocation, SeedMobData } from '@data/seed/49';
 import { Button, Card, CardContent, Collapse, Divider, Grid, Tooltip } from '@mui/material';
-import { styled } from '@mui/system';
+import { Box, styled } from '@mui/system';
 import NextImage from 'next/image';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { SearchBar } from '@components/input';
@@ -10,6 +10,7 @@ import { isHangulMatching } from '@tools/string';
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
 import { Masonry } from '@mui/lab';
 import useCopy from '@hooks/useCopy';
+import useWindowDimensions from '@hooks/useWindowDimensions';
 
 const seoProps: SeoProps = {
     title: '더 시드 49층',
@@ -68,6 +69,7 @@ const Seed49 = (props: Seed49Props) => {
     const allLocations = useMemo(() => data.map(l => l.location).sort((a, b) => a.localeCompare(b)), [data]);
     const [locations, setLocations] = useState(allLocations);
     const [collapse, setCollapse] = useState(true);
+    const { height } = useWindowDimensions();
 
     const [search, setSearch] = useState<string>('');
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -154,12 +156,16 @@ const Seed49 = (props: Seed49Props) => {
                     </Collapse>
                 </CardContent>
             </Card>
-            <Masonry spacing={1} columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
-                {
-                    filtered.map(mob => <Content silhouette={silhouette} mob={mob} key={mob.name} />)
-                }
-            </Masonry>
-
+            <Box sx={theme => ({ borderRadius: theme.shape.borderRadius })}
+                 overflow={'scroll'}
+                 maxHeight={height - 350}
+                 height={height - 350}>
+                <Masonry spacing={1} columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
+                    {
+                        filtered.map(mob => <Content silhouette={silhouette} mob={mob} key={mob.name} />)
+                    }
+                </Masonry>
+            </Box>
 
         </>
     );

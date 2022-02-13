@@ -61,7 +61,7 @@ const buildPaletteOptions = (mode: PaletteMode): PaletteOptions => ({
     ...(mode === 'dark' ? darkPaletteOptions : lightPaletteOptions),
 });
 
-const borderRadius = 16;
+const borderRadius = '16px';
 
 const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
     typography: {
@@ -125,9 +125,9 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
         MuiListItemButton: {
             styleOverrides: {
                 root: {
-                    borderRadius
-                }
-            }
+                    borderRadius,
+                },
+            },
         },
         MuiAvatar: {
             styleOverrides: {
