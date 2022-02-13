@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { OptionName } from '@data/farm';
 import { mobsByEffect } from '@data/farm/mobsByEffect';
 import { MobCard } from '@components/card/monster-life';
+import { Comments } from '@components/comments';
 
 const seoProps: SeoProps = {
     title: '몬스터 라이프 - 몬스터 정리',
@@ -79,6 +80,7 @@ const FarmInfo = () => {
                     )}
                 </CardContent>
             </Card>
+            <Comments pageKey={'monster-life_information'} />
         </>
     );
 };

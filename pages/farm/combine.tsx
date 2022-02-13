@@ -7,6 +7,7 @@ import useWindowDimensions from '@hooks/useWindowDimensions';
 import { isHangulMatching } from '@tools/string';
 import { Seo, SeoProps } from '@components/seo';
 import { MobCard } from '@components/card/monster-life';
+import { Comments } from '@components/comments';
 
 const seoProps: SeoProps = {
     title: '몬스터 라이프 - 조합식',
@@ -69,6 +70,7 @@ const FarmCombine = (props: FarmCombineProps) => {
                                           rowRenderer={rowRenderer} />
                 </CardContent>
             </Card>
+            <Comments pageKey={'monster-life_combine'} />
         </>
     );
 };

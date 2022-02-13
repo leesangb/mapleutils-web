@@ -11,6 +11,7 @@ import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-mat
 import { Masonry } from '@mui/lab';
 import useCopy from '@hooks/useCopy';
 import useWindowDimensions from '@hooks/useWindowDimensions';
+import { Comments } from '@components/comments';
 
 const seoProps: SeoProps = {
     title: '더 시드 49층',
@@ -166,7 +167,7 @@ const Seed49 = (props: Seed49Props) => {
                     }
                 </Masonry>
             </Box>
-
+            <Comments pageKey={'seed49'} />
         </>
     );
 };

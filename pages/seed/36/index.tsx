@@ -4,6 +4,7 @@ import { TitleCard } from '@components/card';
 import { useState } from 'react';
 import { seed36Data } from '@data/seed/36';
 import { ReplayRounded } from '@mui/icons-material';
+import { Comments } from '@components/comments';
 
 const seoProps: SeoProps = {
     title: '더 시드 36층',
@@ -93,6 +94,7 @@ const Seed36 = () => {
                     <Content steps={steps} onChangeStep={onChangeStep} resetSteps={resetSteps} />
                 </CardContent>
             </Card>
+            <Comments pageKey={'seed36'} />
         </>
     );
 };

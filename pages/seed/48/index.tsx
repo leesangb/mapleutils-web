@@ -1,6 +1,7 @@
 import { TitleCard } from '@components/card';
 import { Card, CardContent } from '@mui/material';
 import { VideoCapture } from '@components/video-capture';
+import { Comments } from '@components/comments';
 
 const Seed48 = () => {
     return (
@@ -11,6 +12,7 @@ const Seed48 = () => {
                     <VideoCapture />
                 </CardContent>
             </Card>
+            <Comments pageKey={'seed48'} />
         </>
     );
 };

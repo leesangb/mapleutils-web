@@ -3,6 +3,7 @@ import { MusicPlayer } from '@components/music-player';
 import { seed24AudioData } from '@data/seed/24';
 import { Seo, SeoProps } from '@components/seo';
 import { TitleCard } from '@components/card';
+import { Comments } from '@components/comments';
 
 const seoProps: SeoProps = {
     title: '더 시드 24층',
@@ -21,6 +22,7 @@ const Seed24 = () => {
                     <MusicPlayer tracks={seed24AudioData} />
                 </CardContent>
             </Card>
+            <Comments pageKey={'seed24'} />
         </>
     );
 };

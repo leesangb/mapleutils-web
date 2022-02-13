@@ -7,6 +7,7 @@ import { QuestionAnswer, seed39Data } from '@data/seed/39';
 import { isHangulMatching } from '@tools/string';
 import { Seo, SeoProps } from '@components/seo';
 import { TitleCard } from '@components/card';
+import { Comments } from '@components/comments';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -83,6 +84,7 @@ const Seed39 = (props: Seed39Props) => {
                                           rowRenderer={rowRenderer} />
                 </CardContent>
             </Card>
+            <Comments pageKey={'seed39'} />
         </>
     );
 };
