@@ -36,3 +36,5 @@ export interface Comment extends CommentBase {
 export interface ChildComment extends CommentBase {
     repliedTo?: string;
 }
+
+export { default as Comments } from './Comments';
