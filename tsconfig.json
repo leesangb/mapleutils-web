@@ -35,6 +35,9 @@
       ],
       "@data/*": [
         "data/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
       ]
     },
     "incremental": true
