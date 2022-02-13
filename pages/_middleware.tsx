@@ -18,6 +18,18 @@ const oldUrls: RedirectUrl[] = [
         from: '/monster-life/combine',
         to: '/farm/combine',
     },
+    {
+        from: '/monster-life',
+        to: '/farm/combine',
+    },
+    {
+        from: '/farm',
+        to: '/farm/combine',
+    },
+    {
+        from: '/seed',
+        to: '/seed/39',
+    },
 ];
 
 export async function middleware(req: NextRequest) {
