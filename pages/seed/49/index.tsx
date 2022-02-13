@@ -1,14 +1,15 @@
 import { Seo, SeoProps } from '@components/seo';
 import { MonsterCard, TitleCard } from '@components/card';
 import { seed49Data, SeedLocation, SeedMobData } from '@data/seed/49';
-import { Alert, Button, Card, CardContent, Collapse, Divider, Grid, Paper, Snackbar, Tooltip } from '@mui/material';
+import { Button, Card, CardContent, Collapse, Divider, Grid, Tooltip } from '@mui/material';
 import { styled } from '@mui/system';
 import NextImage from 'next/image';
-import { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
 import { SearchBar } from '@components/input';
 import { isHangulMatching } from '@tools/string';
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
 import { Masonry } from '@mui/lab';
+import useCopy from '@hooks/useCopy';
 
 const seoProps: SeoProps = {
     title: '더 시드 49층',
@@ -39,30 +40,14 @@ const StyledImg = styled(NextImage)((props: StyledImgProps) => ({
 const Content = (props: ContentProps) => {
     const { mob } = props;
     const [silhouette, setSilhouette] = useState(true);
-
-    const [message, setMessage] = useState<string | null>(null);
-
-    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setMessage(null);
-    };
-
-    const onClip = useCallback(() => {
-        setMessage(null);
-        navigator.clipboard.writeText(mob.name)
-            .then(() => {
-                setMessage(`<${mob.name}>를(을) 복사했습니다!`);
-            });
-    }, [mob]);
+    const { copy, CopySnackbar } = useCopy();
 
     return (
         <>
             <Tooltip title={'클릭하여 복사하기'} arrow placement={'top'}>
                 <MonsterCard tags={[mob.location]}
                              name={mob.name}
-                             onClick={onClip}
+                             onClick={() => copy(mob.name)}
                              onMouseEnter={() => setSilhouette(false)}
                              onMouseLeave={() => setSilhouette(true)}>
                     <StyledImg width={mob.width}
@@ -72,16 +57,7 @@ const Content = (props: ContentProps) => {
                                alt={mob.name} />
                 </MonsterCard>
             </Tooltip>
-
-            <Snackbar
-                open={!!message}
-                autoHideDuration={3000}
-                onClose={handleClose}
-            >
-                <Paper elevation={8}>
-                    <Alert variant={'outlined'} severity={'success'}>{message}</Alert>
-                </Paper>
-            </Snackbar>
+            <CopySnackbar />
         </>
     );
 };
