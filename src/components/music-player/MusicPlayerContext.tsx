@@ -1,8 +1,8 @@
-import { PropsWithChildren, useEffect, useReducer, useState } from 'react';
+import { PropsWithChildren, useEffect, useReducer } from 'react';
 import { createGenericContext } from '../../hooks/contextHelper';
 import { useStore } from '@stores/StoreContext';
-import { Alert, Paper, Snackbar } from '@mui/material';
 import { TrackInfo } from '@components/music-player';
+import useCopy from '@hooks/useCopy';
 
 interface MusicPlayerContext {
     tracks: TrackInfo[];
@@ -54,14 +54,7 @@ interface MusicPlayerProviderProps {
 const MusicPlayerProvider = (props: PropsWithChildren<MusicPlayerProviderProps>) => {
     const { app } = useStore();
     const [playerState, dispatchPlayer] = useReducer(playerReducer, buildPlayerState());
-    const [message, setMessage] = useState<string | null>(null);
-
-    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setMessage(null);
-    };
+    const { copy, CopySnackbar } = useCopy();
 
     const setVolume = (volume: number) => dispatchPlayer({ key: 'volume', value: volume });
     const setTime = (time: number) => {
@@ -136,12 +129,7 @@ const MusicPlayerProvider = (props: PropsWithChildren<MusicPlayerProviderProps>)
 
     const onClip = (trackName?: string) => {
         if (!trackName) return;
-
-        setMessage(null);
-        navigator.clipboard.writeText(trackName)
-            .then(() => {
-                setMessage(`<${trackName}>를(을) 복사했습니다!`);
-            });
+        copy(trackName);
     };
 
 
@@ -158,15 +146,7 @@ const MusicPlayerProvider = (props: PropsWithChildren<MusicPlayerProviderProps>)
             <>
                 {props.children}
             </>
-            <Snackbar
-                open={!!message}
-                autoHideDuration={3000}
-                onClose={handleClose}
-            >
-                <Paper elevation={8}>
-                    <Alert variant={'outlined'} severity={'success'}>{message}</Alert>
-                </Paper>
-            </Snackbar>
+            <CopySnackbar />
         </MusicPlayerContextProvider>
     );
 };
