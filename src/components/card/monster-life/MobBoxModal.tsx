@@ -89,7 +89,11 @@ const MobBoxModal = ({ mob }: MobBoxModalProps) => {
             </Button>
 
             <Dialog open={open} onClose={handleClose} scroll='paper' maxWidth='lg'>
-                <DialogTitle>어떤 상자에서 나오나요?</DialogTitle>
+                <DialogTitle>
+                    <Typography variant={'h3'} component={'div'}>
+                        어떤 상자에서 나오나요?
+                    </Typography>
+                </DialogTitle>
                 <DialogContent>
                     <Grid container spacing={2} justifyContent='center'>
                         {boxes.map((b) => (

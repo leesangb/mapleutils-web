@@ -22,15 +22,14 @@ const images: Record<'와르' | '젬', ImageProps> = {
 
 const MonsterCostChip = ({ cost }: MonsterCostChipProps) => {
     return (
-        <Chip
-            size={'small'}
-            icon={<Box sx={{
-                display: 'flex',
-                alignItems: 'center',
-            }}>
-                <NextImage {...(cost > 499 ? images['와르'] : images['젬'])} />
-            </Box>}
-            label={formatNumberComma(cost)}
+        <Chip size={'small'}
+              icon={<Box sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+              }}>
+                  <NextImage {...(cost > 499 ? images['와르'] : images['젬'])} />
+              </Box>}
+              label={formatNumberComma(cost)}
         />
     );
 };

@@ -8,6 +8,8 @@ import CostChip from '@components/card/monster-life/CostChip';
 import NextImage from 'next/image';
 import MobBoxModal from '@components/card/monster-life/MobBoxModal';
 import MobTreeModal from '@components/card/monster-life/MobTreeModal';
+import { useState } from 'react';
+import FarmListDialog from '@components/card/monster-life/FarmListDialog';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
@@ -25,6 +27,8 @@ const StyledImg = styled(NextImage)(({ theme }) => ({
 const MobCard = (props: MobCardProps) => {
     const { mob, small, hideRecipe, selected } = props;
 
+    const [openFarmList, setOpenFarmList] = useState<boolean>(false);
+
     const family = monsterLifeFamilyMapping[mob.name];
     const isBox = mob.other === '상자' || mob.name === '쁘띠 루미너스(빛)';
     const extendCost = getExtendCost(mob);
@@ -34,7 +38,7 @@ const MobCard = (props: MobCardProps) => {
             width: '100%',
             position: 'relative',
         }}>
-            <CardActionArea>
+            <CardActionArea onClick={() => setOpenFarmList(true)}>
                 <Box sx={(theme) => ({
                     paddingTop: theme.spacing(1),
                     paddingLeft: theme.spacing(1),
@@ -65,7 +69,7 @@ const MobCard = (props: MobCardProps) => {
                                     }
                                 </Grid>
                                 <Box sx={(theme) => ({
-                                    height: small ? theme.spacing(6) : '100px',
+                                    height: small ? theme.spacing(6) : theme.spacing(12),
                                     width: small ? theme.spacing(18) : '100%',
                                     overflow: 'hidden',
                                     position: 'relative',
@@ -107,6 +111,7 @@ const MobCard = (props: MobCardProps) => {
                 {!hideRecipe && family && (<MobTreeModal mob={mob} />)}
                 {isBox && (<MobBoxModal mob={mob} />)}
             </CardActions>
+            <FarmListDialog name={mob.name} open={openFarmList} onClose={() => setOpenFarmList(false)} />
         </Card>
     );
 };

@@ -39,10 +39,9 @@ interface GradeChipProps {
 
 const GradeChip = ({ grade, category }: GradeChipProps) => {
     return (
-        <Chip
-            size={'small'}
-            avatar={<Avatar sx={styles[grade]}>{grade}</Avatar>}
-            label={category}
+        <Chip size={'small'}
+              avatar={<Avatar sx={styles[grade]}>{grade}</Avatar>}
+              label={category}
         />
     );
 };

@@ -69,7 +69,7 @@ const MobTreeModal = ({ mob }: MobTreeModalProps) => {
 
             <Dialog open={open} onClose={handleClose} scroll='paper' maxWidth='md'>
                 <DialogTitle>
-                    <Typography variant={'h3'}>{mob.name} - 전체 조합식</Typography>
+                    <Typography variant={'h3'} component={'div'}>{mob.name} - 전체 조합식</Typography>
                 </DialogTitle>
                 <DialogContent>
                     {families.map((f) => (
