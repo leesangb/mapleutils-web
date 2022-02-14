@@ -2,7 +2,7 @@ import { Button, IconButton, PaletteMode, styled, Toolbar } from '@mui/material'
 import { Box } from '@mui/system';
 import { Link } from '@components/link';
 import SettingsButton from './SettingsButton';
-import { Menu } from '@mui/icons-material';
+import { HomeRounded, Menu } from '@mui/icons-material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 
 interface HeaderProps {
@@ -30,7 +30,7 @@ const Header = (props: HeaderProps) => {
                             edge='start'>
                     <Menu />
                 </IconButton>
-                <Button component={Link} href={'/'} noLinkStyle>
+                <Button startIcon={<HomeRounded />} color={'inherit'} component={Link} href={'/'} noLinkStyle>
                     홈
                 </Button>
                 <Box sx={{ flexGrow: 1 }} />
