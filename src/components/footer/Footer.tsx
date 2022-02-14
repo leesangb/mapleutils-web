@@ -1,4 +1,4 @@
-import { Grid, IconButton, Typography } from '@mui/material';
+import { Grid, IconButton, Tooltip, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { KakaoTalkIcon } from '@components/icons';
 import { GitHub } from '@mui/icons-material';
@@ -20,20 +20,24 @@ const Footer = (props: FooterProps) => {
         <StyledFooter>
             <Grid container direction={props.open ? 'row' : 'column'} justifyContent={'center'}>
                 <Grid item sx={{ alignSelf: 'center' }}>
-                    <IconButton component={'a'}
-                                target={'_blank'}
-                                rel={'noreferrer noopener'}
-                                href={'https://open.kakao.com/o/sDbLVFoc'}>
-                        <KakaoTalkIcon />
-                    </IconButton>
+                    <Tooltip title={'카톡 문의'} placement={props.open ? 'top' : 'right'}>
+                        <IconButton component={'a'}
+                                    target={'_blank'}
+                                    rel={'noreferrer noopener'}
+                                    href={'https://open.kakao.com/o/sDbLVFoc'}>
+                            <KakaoTalkIcon />
+                        </IconButton>
+                    </Tooltip>
                 </Grid>
                 <Grid item sx={{ alignSelf: 'center' }}>
-                    <IconButton component={'a'}
-                                target={'_blank'}
-                                rel={'noreferrer noopener'}
-                                href={'https://github.com/leesangb/mapleutils-web'}>
-                        <GitHub />
-                    </IconButton>
+                    <Tooltip title={'GitHub'} placement={props.open ? 'top' : 'right'}>
+                        <IconButton component={'a'}
+                                    target={'_blank'}
+                                    rel={'noreferrer noopener'}
+                                    href={'https://github.com/leesangb/mapleutils-web'}>
+                            <GitHub />
+                        </IconButton>
+                    </Tooltip>
                 </Grid>
             </Grid>
             <Typography variant={'caption'}>

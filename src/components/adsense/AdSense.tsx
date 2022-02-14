@@ -19,6 +19,7 @@ interface AdSenseProps {
     style?: CSSProperties;
     width: number;
     height: number;
+    fixed: boolean;
 }
 
 
@@ -31,7 +32,7 @@ const Ins = styled('ins')((props: InsProps) => ({
     ...(props.dimensions || {}),
 }));
 
-const AdSense = ({ slot, format, responsive, containerStyle, width, height }: AdSenseProps) => {
+const AdSense = ({ slot, format, responsive, containerStyle, width, height, fixed }: AdSenseProps) => {
     const dimensions = isNaN(width) || isNaN(height) ? undefined : { width: `${width}px`, height: `${height}px` };
     const router = useRouter();
 
@@ -50,8 +51,12 @@ const AdSense = ({ slot, format, responsive, containerStyle, width, height }: Ad
             margin: theme.spacing(4),
             border: !isProduction ? 'solid 1px red' : undefined,
             overflow: 'hidden',
-            position: 'fixed',
-        })} style={{ ...dimensions, ...containerStyle }}>
+            display: 'block',
+            minWidth: '100px',
+            ...dimensions,
+            ...containerStyle,
+            ...(fixed ? { position: 'fixed' } : {}),
+        })}>
             <Ins className='adsbygoogle'
                  dimensions={dimensions}
                  data-ad-client={ADSENSE_ID}
@@ -68,6 +73,7 @@ AdSense.defaultProps = {
     format: 'auto',
     width: NaN,
     height: NaN,
+    fixed: false,
 };
 
 export default AdSense;

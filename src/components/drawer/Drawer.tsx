@@ -1,5 +1,16 @@
-import { Box } from '@mui/system';
-import { Avatar, CSSObject, Divider, List, ListItem, ListItemIcon, ListItemText, styled, Theme } from '@mui/material';
+import { Box, useTheme } from '@mui/system';
+import {
+    Avatar,
+    CSSObject,
+    Divider,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    styled,
+    Theme,
+    useMediaQuery,
+} from '@mui/material';
 import Link from '@components/link/Link';
 import MuiDrawer from '@mui/material/Drawer';
 import DrawerHeader from '@components/drawer/DrawerHeader';
@@ -36,8 +47,8 @@ const closedMixin = (theme: Theme): CSSObject => ({
 
 
 const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
-        width: DRAWER_WIDTH,
+    ({ theme, open, anchor }) => ({
+        width: anchor === 'top' ? 'auto' : DRAWER_WIDTH,
         flexShrink: 0,
         whiteSpace: 'nowrap',
         boxSizing: 'border-box',
@@ -179,8 +190,19 @@ const DrawerItemList = (props: DrawerItemListProps) => {
 
 const Drawer = (props: DrawerProps) => {
     const { open } = props;
+    const theme = useTheme();
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
-    return (
+    return mdDown ? (
+        <MuiDrawer anchor={'top'} open={open}>
+            <DrawerHeader />
+            <Box sx={theme => ({ padding: theme.spacing(1), flex: 'auto' })}>
+                <List>
+                    {drawerItems.map(item => <DrawerItemList open={open} key={item.category.name} item={item} />)}
+                </List>
+            </Box>
+        </MuiDrawer>
+    ) : (
         <StyledDrawer variant={'permanent'} open={open}>
             <DrawerHeader />
             <Box sx={theme => ({ padding: theme.spacing(1), flex: 'auto' })}>
