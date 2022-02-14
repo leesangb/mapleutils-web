@@ -14,9 +14,9 @@ import {
 import Link from '@components/link/Link';
 import MuiDrawer from '@mui/material/Drawer';
 import DrawerHeader from '@components/drawer/DrawerHeader';
-import Footer from '@components/footer/Footer';
-import { ReactNode } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { useRouter } from 'next/router';
+import Footer from '@components/footer/Footer';
 
 interface DrawerProps {
     open: boolean;
@@ -105,7 +105,7 @@ const LinkAvatar = (props: any) => {
     const location = useRouter();
 
     return <Avatar sx={theme => ({
-        bgcolor: props.link.includes(location.pathname)
+        bgcolor: location.pathname !== '/' && props.link.includes(location.pathname)
             ? theme.palette.primary.light
             : theme.palette.grey[400],
     })}>{props.text}</Avatar>;
@@ -193,23 +193,22 @@ const Drawer = (props: DrawerProps) => {
     const theme = useTheme();
     const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
+    const DrawerContents = useCallback(() => <>
+        <DrawerHeader />
+        <Box sx={theme => ({ padding: theme.spacing(1), flex: 'auto' })}>
+            <List>
+                {drawerItems.map(item => <DrawerItemList open={open} key={item.category.name} item={item} />)}
+            </List>
+        </Box>
+    </>, []);
+
     return mdDown ? (
         <MuiDrawer anchor={'top'} open={open}>
-            <DrawerHeader />
-            <Box sx={theme => ({ padding: theme.spacing(1), flex: 'auto' })}>
-                <List>
-                    {drawerItems.map(item => <DrawerItemList open={open} key={item.category.name} item={item} />)}
-                </List>
-            </Box>
+            <DrawerContents />
         </MuiDrawer>
     ) : (
         <StyledDrawer variant={'permanent'} open={open}>
-            <DrawerHeader />
-            <Box sx={theme => ({ padding: theme.spacing(1), flex: 'auto' })}>
-                <List>
-                    {drawerItems.map(item => <DrawerItemList open={open} key={item.category.name} item={item} />)}
-                </List>
-            </Box>
+            <DrawerContents />
             <Footer open={open} />
         </StyledDrawer>
     );
