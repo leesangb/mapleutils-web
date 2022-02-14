@@ -13,6 +13,11 @@ export default class MyDocument extends Document {
                 <Head>
                     <meta name='theme-color' content={defaultTheme.palette.primary.main} />
                     <link
+                        href='https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css'
+                        rel='stylesheet'
+                        type='text/css'
+                    />
+                    <link
                         rel='stylesheet'
                         href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
                     />

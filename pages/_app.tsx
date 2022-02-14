@@ -59,15 +59,6 @@ function MyApp(props: MyAppProps) {
                 <meta name='google' content='notranslate' />
                 <meta property='og:site_name' content='메이플 유틸' />
                 <link rel='icon' href='/favicon.ico' />
-                <link
-                    href='https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css'
-                    rel='stylesheet'
-                    type='text/css'
-                />
-                <link
-                    rel='stylesheet'
-                    href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
-                />
             </Head>
             <StoreProvider>
                 <App {...appProps} />
