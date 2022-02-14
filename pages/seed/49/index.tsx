@@ -54,7 +54,7 @@ const Content = (props: ContentProps) => {
                              onMouseLeave={() => setSilhouette(true)}>
                     <StyledImg width={mob.width}
                                height={mob.height}
-                               src={`/images/seed/49/${mob.name}.png`}
+                               src={mob.img}
                                silhouette={props.silhouette && silhouette}
                                alt={mob.name} />
                 </MonsterCard>

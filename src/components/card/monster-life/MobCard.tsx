@@ -79,7 +79,7 @@ const MobCard = (props: MobCardProps) => {
                                     },
                                 })}>
                                     <StyledImg layout={'fill'}
-                                               src={`/images/monster-life/${mob.name}.png`}
+                                               src={mob.img}
                                                alt={mob.name} />
                                 </Box>
                             </Card>
