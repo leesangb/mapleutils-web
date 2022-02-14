@@ -61,7 +61,7 @@ const buildPaletteOptions = (mode: PaletteMode): PaletteOptions => ({
     ...(mode === 'dark' ? darkPaletteOptions : lightPaletteOptions),
 });
 
-const borderRadius = '16px';
+const borderRadius = 16;
 
 const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
     typography: {

@@ -157,7 +157,7 @@ const Seed49 = (props: Seed49Props) => {
                     </Collapse>
                 </CardContent>
             </Card>
-            <Box sx={theme => ({ borderRadius: theme.shape.borderRadius })}
+            <Box sx={theme => ({ borderRadius: theme.spacing(2) })}
                  overflow={'scroll'}
                  maxHeight={height - 350}
                  height={height - 350}>
