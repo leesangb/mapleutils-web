@@ -30,7 +30,8 @@ interface ContentProps {
 }
 
 interface StyledImgProps {
-    silhouette: boolean;
+    // maybe fix with transient props with styled component
+    silhouette: number;
 }
 
 const StyledImg = styled(NextImage)((props: StyledImgProps) => ({
@@ -55,7 +56,7 @@ const Content = (props: ContentProps) => {
                     <StyledImg width={mob.width}
                                height={mob.height}
                                src={mob.img}
-                               silhouette={props.silhouette && silhouette}
+                               silhouette={props.silhouette && silhouette ? 1 : 0}
                                alt={mob.name} />
                 </MonsterCard>
             </Tooltip>
@@ -159,8 +160,8 @@ const Seed49 = (props: Seed49Props) => {
             </Card>
             <Box sx={theme => ({ borderRadius: theme.spacing(2) })}
                  overflow={'scroll'}
-                 maxHeight={height - 350}
-                 height={height - 350}>
+                 maxHeight={height - 380}
+                 height={height - 380}>
                 <Masonry spacing={1} columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
                     {
                         filtered.map(mob => <Content silhouette={silhouette} mob={mob} key={mob.name} />)

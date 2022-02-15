@@ -1,11 +1,12 @@
 import { Box, useTheme } from '@mui/system';
 import Drawer from '@components/drawer/Drawer';
 import DrawerHeader from '@components/drawer/DrawerHeader';
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import Header from '@components/header/Header';
 import { Hidden, PaletteMode, Stack, useMediaQuery } from '@mui/material';
 import AdSense, { AdSenseSlot } from '@components/adsense/AdSense';
 import Footer from '@components/footer/Footer';
+import { useRouter } from 'next/router';
 
 interface GlobalLayoutProps {
     children: ReactNode;
@@ -17,8 +18,13 @@ const GlobalLayout = (props: GlobalLayoutProps) => {
     const { children, themeType, toggleDarkMode } = props;
     const [open, setOpen] = useState<boolean>(false);
     const toggleOpen = useCallback(() => setOpen(!open), [open]);
+    const { pathname } = useRouter();
     const theme = useTheme();
     const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
+
+    useEffect(() => {
+        setOpen(false);
+    }, [pathname]);
 
     return (
         <Box display={'flex'}>
@@ -26,7 +32,7 @@ const GlobalLayout = (props: GlobalLayoutProps) => {
                     themeType={themeType}
                     toggleDarkMode={toggleDarkMode} />
             <Drawer open={open} />
-            <Box component={'main'} sx={{ flexGrow: 1, p: 3 }}>
+            <Box component={'main'} sx={{ flexGrow: 1, p: lgDown ? 1 : 3 }}>
                 <DrawerHeader />
                 {
                     lgDown

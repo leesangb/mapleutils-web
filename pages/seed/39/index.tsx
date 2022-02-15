@@ -74,7 +74,7 @@ const Seed39 = (props: Seed39Props) => {
             <TitleCard title={'시드 39층'} />
             <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>
-                    <VirtualizedFixedList height={height - 250}
+                    <VirtualizedFixedList height={height - 330}
                                           width={'100%'}
                                           items={props.data}
                                           rowSize={mdDown ? 280 : lgDown ? 100 : 70}

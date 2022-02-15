@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { CSSProperties, useEffect } from 'react';
 import { Box, styled } from '@mui/system';
 import { isProduction } from '@tools/helper';
+import useWindowDimensions from '@hooks/useWindowDimensions';
 
 export enum AdSenseSlot {
     NavigationBottom = '1801603735',
@@ -35,6 +36,7 @@ const Ins = styled('ins')((props: InsProps) => ({
 const AdSense = ({ slot, format, responsive, containerStyle, width, height, fixed }: AdSenseProps) => {
     const dimensions = isNaN(width) || isNaN(height) ? undefined : { width: `${width}px`, height: `${height}px` };
     const router = useRouter();
+    const { width: windowWidth } = useWindowDimensions();
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -48,11 +50,12 @@ const AdSense = ({ slot, format, responsive, containerStyle, width, height, fixe
 
     return (
         <Box key={router.pathname} sx={theme => ({
-            margin: theme.spacing(4),
+            margin: theme.breakpoints.down('lg') ? theme.spacing(1) : theme.spacing(4),
             border: !isProduction ? 'solid 1px red' : undefined,
             overflow: 'hidden',
             display: 'block',
-            minWidth: '100px',
+            //minWidth: '100px',
+            maxWidth: `${windowWidth - 32}px`,
             ...dimensions,
             ...containerStyle,
             ...(fixed ? { position: 'fixed' } : {}),

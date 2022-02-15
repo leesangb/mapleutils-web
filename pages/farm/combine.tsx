@@ -63,7 +63,7 @@ const FarmCombine = (props: FarmCombineProps) => {
             <Card variant={'outlined'}>
                 <CardContent>
                     <VirtualizedFixedList items={recipes}
-                                          height={height - 250}
+                                          height={height - 330}
                                           rowSize={256}
                                           placeholder={'몬스터 이름 검색 (예: 각성한 락 스피릿, ㄳㅎㄽㅍㄹ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱, 초성 검색 ✅'}
                                           searchFilter={searchFilter}

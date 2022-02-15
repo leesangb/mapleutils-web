@@ -58,7 +58,7 @@ const Home: NextPage = () => {
                     </Box>
                 </CardContent>
             </Card>
-            <Comments title={'피드백'} pageKey={'feedbacks'} />
+            <Comments title={'피드백'} pageKey={'feedbacks'} defaultOpen />
         </>
     );
 };
