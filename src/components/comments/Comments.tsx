@@ -1,14 +1,4 @@
-import {
-    Card,
-    CardContent,
-    Collapse,
-    Divider,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Typography,
-} from '@mui/material';
+import { Box, Card, Collapse, Divider, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import { useComment } from '@components/comments/useComment';
 import { Fragment, useState } from 'react';
 import { CommentRounded, ExpandLessRounded, ExpandMoreRounded } from '@mui/icons-material';
@@ -18,19 +8,20 @@ import CommentPostField from '@components/comments/CommentPostField';
 interface CommentsProps {
     title?: string;
     pageKey: string;
+    defaultOpen: boolean;
 }
 
-const Comments = ({ title = '댓글', pageKey }: CommentsProps) => {
+const Comments = ({ title = '댓글', pageKey, defaultOpen }: CommentsProps) => {
     const [comments, count, actions] = useComment(pageKey);
-    const [openComments, setOpenComments] = useState<boolean>(false);
+    const [openComments, setOpenComments] = useState<boolean>(defaultOpen);
 
     const toggleOpen = () => setOpenComments(!openComments);
 
     return (
         <Card variant={'outlined'} sx={theme => ({ marginTop: theme.spacing(1) })}>
-            <CardContent>
+            <Box padding={theme => theme.spacing(1)}>
                 <ListItem component='div' button onClick={toggleOpen}>
-                    <ListItemIcon>
+                    <ListItemIcon sx={theme => ({ minWidth: theme.spacing(6) })}>
                         <CommentRounded />
                     </ListItemIcon>
                     <ListItemText>
@@ -41,19 +32,25 @@ const Comments = ({ title = '댓글', pageKey }: CommentsProps) => {
                     {openComments ? <ExpandLessRounded /> : <ExpandMoreRounded />}
                 </ListItem>
                 <Collapse in={openComments} timeout='auto' unmountOnExit>
-                    <CommentPostField pageKey={pageKey} onPostComment={actions.post} />
-                    <Divider />
-                    <List disablePadding>
-                        {comments.map((c) => (
-                            <Fragment key={c.id}>
-                                <CommentItem pageKey={pageKey} comment={c} actions={actions} />
-                            </Fragment>
-                        ))}
-                    </List>
+                    <Box padding={theme => theme.spacing(1)}>
+                        <CommentPostField pageKey={pageKey} onPostComment={actions.post} />
+                        <Divider />
+                        <List disablePadding>
+                            {comments.map((c) => (
+                                <Fragment key={c.id}>
+                                    <CommentItem pageKey={pageKey} comment={c} actions={actions} />
+                                </Fragment>
+                            ))}
+                        </List>
+                    </Box>
                 </Collapse>
-            </CardContent>
+            </Box>
         </Card>
     );
+};
+
+Comments.defaultProps = {
+    defaultOpen: false,
 };
 
 export default Comments;
