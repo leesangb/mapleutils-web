@@ -4,6 +4,7 @@ import PlayerTrackInformation from '@components/music-player/PlayerTrackInformat
 import PlayerTimeSlider from '@components/music-player/PlayerTimeSlider';
 import PlayerButtons from '@components/music-player/PlayerButtons';
 import PlayerVolumeSlider from '@components/music-player/PlayerVolumeSlider';
+import { isMobile } from '@tools/helper';
 
 
 const NowPlaying = () => {
@@ -13,7 +14,7 @@ const NowPlaying = () => {
                 <PlayerTrackInformation />
                 <PlayerTimeSlider />
                 <PlayerButtons />
-                <PlayerVolumeSlider />
+                {!isMobile && <PlayerVolumeSlider />}
             </Stack>
         </Box>
     );
