@@ -59,6 +59,7 @@ function MyApp(props: MyAppProps) {
                 <meta name='google' content='notranslate' />
                 <meta property='og:site_name' content='메이플 유틸' />
                 <link rel='icon' href='/favicon.ico' />
+                <meta name='naver-site-verification' content='c1ee52e4a060d1327e8953770828d7769dfd599d' />
             </Head>
             <StoreProvider>
                 <App {...appProps} />
