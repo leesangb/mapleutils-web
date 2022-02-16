@@ -25,7 +25,7 @@ const tryFixAndReturn = async (response: Response, callback: (comments: Comment[
     if (response.ok) {
         const comments: Comment[] = await response.json();
         try {
-            callback(fixDate(comments));
+            callback(fixDate(comments).sort((c1, c2) => c2.creationDate.getTime() - c1.creationDate.getTime()));
             return true;
         } catch (error) {
             return false;
