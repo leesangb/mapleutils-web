@@ -121,7 +121,7 @@ const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
                 ctx.clearRect(0, 0, 260, 156);
             }
         }
-    }, [canvasRef, isCapturing]);
+    }, [canvasRef, isCapturing, x, y, ratio, showJump]);
 
     useEffect(() => {
         dispatch({ canvasStream: canvasRef.current!.captureStream(60) });
