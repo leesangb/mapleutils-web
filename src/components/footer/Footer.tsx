@@ -1,7 +1,8 @@
 import { Grid, IconButton, Tooltip, Typography } from '@mui/material';
 import { styled } from '@mui/system';
-import { KakaoTalkIcon } from '@components/icons';
+import { DiscordIcon, KakaoTalkIcon } from '@components/icons';
 import { GitHub } from '@mui/icons-material';
+import { discordLink, githubLink, kakaotalkLink } from '@tools/socialLinks';
 
 const currentYear = new Date().getFullYear();
 
@@ -24,8 +25,18 @@ const Footer = (props: FooterProps) => {
                         <IconButton component={'a'}
                                     target={'_blank'}
                                     rel={'noreferrer noopener'}
-                                    href={'https://open.kakao.com/o/sDbLVFoc'}>
+                                    href={kakaotalkLink}>
                             <KakaoTalkIcon />
+                        </IconButton>
+                    </Tooltip>
+                </Grid>
+                <Grid item sx={{ alignSelf: 'center' }}>
+                    <Tooltip title={'Discord'} placement={props.open ? 'top' : 'right'}>
+                        <IconButton component={'a'}
+                                    target={'_blank'}
+                                    rel={'noreferrer noopener'}
+                                    href={discordLink}>
+                            <DiscordIcon />
                         </IconButton>
                     </Tooltip>
                 </Grid>
@@ -34,7 +45,7 @@ const Footer = (props: FooterProps) => {
                         <IconButton component={'a'}
                                     target={'_blank'}
                                     rel={'noreferrer noopener'}
-                                    href={'https://github.com/leesangb/mapleutils-web'}>
+                                    href={githubLink}>
                             <GitHub />
                         </IconButton>
                     </Tooltip>

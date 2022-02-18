@@ -2,9 +2,10 @@ import type { NextPage } from 'next';
 import { CharacterCard, TitleCard } from '@components/card';
 import { Button, Card, CardContent, Grid, Typography } from '@mui/material';
 import { Link } from '@components/link';
-import { KakaoTalkIcon } from '@components/icons';
+import { DiscordIcon, KakaoTalkIcon } from '@components/icons';
 import { Comments } from '@components/comments';
 import { GitHub } from '@mui/icons-material';
+import { discordLink, githubLink, githubReleaseLink, kakaotalkLink } from '@tools/socialLinks';
 
 const Home: NextPage = () => {
     return (
@@ -26,11 +27,24 @@ const Home: NextPage = () => {
                                             sx={theme => ({ margin: theme.spacing(1) })}
                                             color={'inherit'}
                                             rel={'noreferrer noopener'}
-                                            href={'https://open.kakao.com/o/sDbLVFoc'}
+                                            href={kakaotalkLink}
                                             component={Link}
                                             target={'_blank'}
                                             size={'medium'}>
                                         크로아 상빈
+                                    </Button>
+                                </Grid>
+                                <Grid item>
+                                    <Button startIcon={<DiscordIcon />}
+                                            noLinkStyle
+                                            sx={theme => ({ margin: theme.spacing(1) })}
+                                            color={'inherit'}
+                                            rel={'noreferrer noopener'}
+                                            href={discordLink}
+                                            component={Link}
+                                            target={'_blank'}
+                                            size={'medium'}>
+                                        디스코드
                                     </Button>
                                 </Grid>
                                 <Grid item>
@@ -45,7 +59,7 @@ const Home: NextPage = () => {
                                             sx={theme => ({ margin: theme.spacing(1) })}
                                             color={'inherit'}
                                             rel={'noreferrer noopener'}
-                                            href={'https://github.com/leesangb/mapleutils-web'}
+                                            href={githubLink}
                                             component={Link}
                                             target={'_blank'}
                                             size={'medium'}>
@@ -61,7 +75,7 @@ const Home: NextPage = () => {
                                                    sx={theme => ({ margin: theme.spacing(1) })}
                                                    color={'inherit'}
                                                    rel={'noreferrer noopener'}
-                                                   href={'https://github.com/leesangb/mapleutils-web/releases'}
+                                                   href={githubReleaseLink}
                                                    component={Link}
                                                    target={'_blank'}
                                                    size={'medium'}>
