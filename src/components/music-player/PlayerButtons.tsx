@@ -104,7 +104,13 @@ const PlayerButtons = () => {
 
     useEffect(() => {
         const togglePlay = (e: KeyboardEvent) => {
-            if (e.key === ' ') {
+            // This is a 'hack' to prevent ignoring space when typing in inputs
+            // @ts-ignore
+            const isTextArea = e.target.nodeName === 'TEXTAREA';
+            // @ts-ignore
+            const isInput = e.target.nodeName === 'INPUT';
+
+            if (e.key === ' ' && !isTextArea && !isInput) {
                 e.preventDefault();
                 handlePlayPause();
             }

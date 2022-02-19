@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect, useReducer } from 'react';
-import { createGenericContext } from '../../hooks/contextHelper';
+import { createGenericContext } from '@hooks/contextHelper';
 import { useStore } from '@stores/StoreContext';
 import { TrackInfo } from '@components/music-player';
 import useCopy from '@hooks/useCopy';
@@ -51,7 +51,7 @@ interface MusicPlayerProviderProps {
 }
 
 
-const MusicPlayerProvider = (props: PropsWithChildren<MusicPlayerProviderProps>) => {
+const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayerProviderProps>) => {
     const { app } = useStore();
     const [playerState, dispatchPlayer] = useReducer(playerReducer, buildPlayerState());
     const { copy, CopySnackbar } = useCopy();
@@ -136,7 +136,7 @@ const MusicPlayerProvider = (props: PropsWithChildren<MusicPlayerProviderProps>)
     return (
         <MusicPlayerContextProvider value={{
             ...playerState,
-            tracks: props.tracks,
+            tracks,
             setVolume,
             setTime,
             setState,
@@ -144,7 +144,7 @@ const MusicPlayerProvider = (props: PropsWithChildren<MusicPlayerProviderProps>)
             onClip,
         }}>
             <>
-                {props.children}
+                {children}
             </>
             <CopySnackbar />
         </MusicPlayerContextProvider>
