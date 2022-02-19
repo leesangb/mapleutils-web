@@ -3,6 +3,7 @@ import { Slider, Typography } from '@mui/material';
 import { toMinuteSecond } from '@tools/time';
 import { Box } from '@mui/system';
 import { useEffect } from 'react';
+import { isKeyboardTargetInput } from '@tools/keyboardEventHelper';
 
 const PlayerTimeSlider = () => {
     const { time, setTime, duration } = useMusicPlayerContext();
@@ -17,10 +18,11 @@ const PlayerTimeSlider = () => {
 
     useEffect(() => {
         const timeUpDown = (e: KeyboardEvent) => {
-            if (e.key === 'ArrowLeft') {
+            const isInput = isKeyboardTargetInput(e);
+            if (e.key === 'ArrowLeft' && !isInput) {
                 e.preventDefault();
                 changeTime(time - 5);
-            } else if (e.key === 'ArrowRight') {
+            } else if (e.key === 'ArrowRight' && !isInput) {
                 e.preventDefault();
                 changeTime(time + 5);
             }

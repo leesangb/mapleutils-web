@@ -21,6 +21,7 @@ import {
 } from '@mui/icons-material';
 import { MouseEvent, useEffect, useState } from 'react';
 import { useStore } from '@stores/StoreContext';
+import { isKeyboardTargetInput } from '@tools/keyboardEventHelper';
 
 const PlayerSettings = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -104,13 +105,7 @@ const PlayerButtons = () => {
 
     useEffect(() => {
         const togglePlay = (e: KeyboardEvent) => {
-            // This is a 'hack' to prevent ignoring space when typing in inputs
-            // @ts-ignore
-            const isTextArea = e.target.nodeName === 'TEXTAREA';
-            // @ts-ignore
-            const isInput = e.target.nodeName === 'INPUT';
-
-            if (e.key === ' ' && !isTextArea && !isInput) {
+            if (e.key === ' ' && !isKeyboardTargetInput(e)) {
                 e.preventDefault();
                 handlePlayPause();
             }

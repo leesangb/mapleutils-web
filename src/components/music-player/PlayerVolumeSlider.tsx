@@ -3,6 +3,7 @@ import { Grid, IconButton, Slider, Tooltip } from '@mui/material';
 import { VolumeDownRounded, VolumeUpRounded } from '@mui/icons-material';
 import { useStore } from '@stores/StoreContext';
 import { useEffect } from 'react';
+import { isKeyboardTargetInput } from '@tools/keyboardEventHelper';
 
 
 const PlayerVolumeSlider = () => {
@@ -23,10 +24,11 @@ const PlayerVolumeSlider = () => {
 
     useEffect(() => {
         const volumeUpDown = (e: KeyboardEvent) => {
-            if (e.key === 'ArrowUp') {
+            const isInput = isKeyboardTargetInput(e);
+            if (e.key === 'ArrowUp' && !isInput) {
                 e.preventDefault();
                 changeVolume(volume + 5);
-            } else if (e.key === 'ArrowDown') {
+            } else if (e.key === 'ArrowDown' && !isInput) {
                 e.preventDefault();
                 changeVolume(volume - 5);
             }
