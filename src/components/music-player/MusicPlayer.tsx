@@ -2,15 +2,17 @@ import { Grid } from '@mui/material';
 import { MusicPlayerProvider } from '@components/music-player/MusicPlayerContext';
 import NowPlaying from '@components/music-player/NowPlaying';
 import MusicPlayerTrackList from '@components/music-player/MusicPlayerTrackList';
+import { TrackInfo } from '@components/music-player/TrackInfo';
 
 interface MusicPlayerProps {
-    tracks: any[];
+    tracks: TrackInfo[];
 }
 
-const MusicPlayer = (props: MusicPlayerProps) => {
+const MusicPlayer = ({ tracks }: MusicPlayerProps) => {
     return (
-        <MusicPlayerProvider tracks={props.tracks}>
-            <Grid container direction={'row'} alignItems={'center'} spacing={3}>
+        <MusicPlayerProvider tracks={tracks}>
+            <Grid
+                container direction={'row'} alignItems={'center'} spacing={3}>
                 <Grid item xs={12} lg={5}>
                     <NowPlaying />
                 </Grid>
