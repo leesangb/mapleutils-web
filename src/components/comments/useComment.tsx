@@ -2,17 +2,19 @@ import { useEffect, useMemo, useState } from 'react';
 import { API_URL } from '@tools/config';
 import { Comment, CommentDelete, CommentEdit, CommentPost } from '@components/comments/index';
 
-const fixDate = (comments: Comment[]): Comment[] => {
-    return comments.map((c) => ({
-        ...c,
-        creationDate: new Date(c.creationDate),
-        modificationDate: new Date(c.modificationDate),
-        children: c.children.map((ch) => ({
-            ...ch,
-            creationDate: new Date(ch.creationDate),
-            modificationDate: new Date(ch.modificationDate),
-        })),
-    }));
+const fixDateAndSort = (comments: Comment[]): Comment[] => {
+    return comments
+        .map((c) => ({
+            ...c,
+            creationDate: new Date(c.creationDate),
+            modificationDate: new Date(c.modificationDate),
+            children: c.children.map((ch) => ({
+                ...ch,
+                creationDate: new Date(ch.creationDate),
+                modificationDate: new Date(ch.modificationDate),
+            })),
+        }))
+        .sort((c1, c2) => c2.creationDate.getTime() - c1.creationDate.getTime());
 };
 
 export interface CommentActions {
@@ -25,9 +27,10 @@ const tryFixAndReturn = async (response: Response, callback: (comments: Comment[
     if (response.ok) {
         const comments: Comment[] = await response.json();
         try {
-            callback(fixDate(comments).sort((c1, c2) => c2.creationDate.getTime() - c1.creationDate.getTime()));
+            callback(fixDateAndSort(comments));
             return true;
         } catch (error) {
+            console.error(error);
             return false;
         }
     }
@@ -42,11 +45,11 @@ export const useComment = (page: string): [Comment[], number, CommentActions] =>
         fetch(`${API_URL}/Comments/${page}`)
             .then((response) => response.json())
             .catch((err) => {
+                console.error(err);
             })
-            .then((c: Comment[]) => setComments(
-                fixDate(c)
-                    .sort((c1, c2) => c2.creationDate.getTime() - c1.creationDate.getTime())))
+            .then((c: Comment[]) => setComments(fixDateAndSort(c)))
             .catch((err) => {
+                console.error(err);
             });
     }, [page]);
 
