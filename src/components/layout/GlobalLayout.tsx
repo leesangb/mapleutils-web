@@ -20,7 +20,7 @@ const GlobalLayout = (props: GlobalLayoutProps) => {
     const toggleOpen = useCallback(() => setOpen(!open), [open]);
     const { pathname } = useRouter();
     const theme = useTheme();
-    const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
+    const mdUp = useMediaQuery(theme.breakpoints.up('md'));
 
     useEffect(() => {
         setOpen(false);
@@ -32,30 +32,27 @@ const GlobalLayout = (props: GlobalLayoutProps) => {
                     themeType={themeType}
                     toggleDarkMode={toggleDarkMode} />
             <Drawer open={open} />
-            <Box component={'main'} sx={{ flexGrow: 1, p: lgDown ? 1 : 3 }}>
+            <Box component={'main'} sx={{ flexGrow: 1, p: mdUp ? 3 : 1 }}>
                 <DrawerHeader />
                 {
-                    lgDown
-                        ? (
-                            <>
-                                <AdSense slot={AdSenseSlot.TopContent} responsive fixed={false} />
-                                {children}
-                                <Hidden mdUp>
-                                    <Footer open />
-                                </Hidden>
-                            </>
-                        ) : (
-                            <Box sx={{ display: 'flex' }}>
-                                <Box sx={{ display: 'unset', flexGrow: 1 }}>
-                                    {children}
-                                </Box>
-                                <Stack alignItems={'center'}
-                                       sx={theme => ({ marginLeft: theme.spacing(1), minWidth: '260px' })}>
-                                    <AdSense slot={AdSenseSlot.RightContent} responsive width={250} height={600}
-                                             fixed={true} />
-                                </Stack>
-                            </Box>
-                        )
+                    <Box sx={{ display: mdUp ? 'flex' : 'block' }}>
+                        <Hidden mdUp>
+                            <AdSense slot={AdSenseSlot.TopContent} responsive fixed={false} />
+                        </Hidden>
+                        <Box sx={{ display: 'unset', flexGrow: 1 }}>
+                            {children}
+                            <Hidden mdUp>
+                                <Footer open />
+                            </Hidden>
+                        </Box>
+                        <Hidden mdDown>
+                            <Stack alignItems={'center'}
+                                   sx={theme => ({ marginLeft: theme.spacing(1), minWidth: '260px' })}>
+                                <AdSense slot={AdSenseSlot.RightContent} responsive width={250} height={600}
+                                         fixed={true} />
+                            </Stack>
+                        </Hidden>
+                    </Box>
                 }
             </Box>
         </Box>
