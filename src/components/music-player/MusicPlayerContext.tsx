@@ -136,7 +136,7 @@ const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayer
     return (
         <MusicPlayerContextProvider value={{
             ...playerState,
-            tracks,
+            tracks: tracks.sort((t1, t2) => t1.name.localeCompare(t2.name)),
             setVolume,
             setTime,
             setState,
