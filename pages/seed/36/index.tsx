@@ -28,9 +28,19 @@ const Content = (props: ContentProps) => {
     const { steps } = props;
     return (
         <Grid container>
+            <Hidden smUp>
+                <Grid item xs={12}>
+                    <Button sx={(theme) => ({ marginBottom: theme.spacing(1), float: 'right' })}
+                            variant={'contained'} disableElevation
+                            onClick={props.resetSteps}
+                            startIcon={<ReplayRounded />}>
+                        초기화
+                    </Button>
+                </Grid>
+            </Hidden>
             {steps.map((s, i) => (
                 <Grid item xs={12} key={`step-${i}`}>
-                    <Grid container spacing={2} alignItems='center'>
+                    <Grid container spacing={1} alignItems='center'>
                         <Hidden smDown>
                             <Grid item sm={2}>
                                 <Typography align={'center'} variant={'h3'}>{i + 1} 단계</Typography>
