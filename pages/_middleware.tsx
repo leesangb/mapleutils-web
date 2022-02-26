@@ -36,7 +36,9 @@ export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
     const redirectUrl = oldUrls.find(o => o.from === pathname);
     if (redirectUrl) {
-        return NextResponse.redirect(redirectUrl.to);
+        const url = req.nextUrl.clone();
+        url.pathname = redirectUrl.to;
+        return NextResponse.redirect(url);
     }
     return NextResponse.next();
 }
