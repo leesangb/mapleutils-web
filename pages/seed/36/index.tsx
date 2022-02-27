@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { seed36Data } from '@data/seed/36';
 import { ReplayRounded } from '@mui/icons-material';
 import { Comments } from '@components/comments';
+import NextImage from 'next/image';
+import { styled } from '@mui/system';
 
 const seoProps: SeoProps = {
     title: '더 시드 36층',
@@ -23,6 +25,10 @@ interface ContentProps {
     resetSteps: () => void;
     onChangeStep: (step: Step, index: number) => void;
 }
+
+const StyledImage = styled(NextImage)({
+    pointerEvents: 'none',
+});
 
 const Content = (props: ContentProps) => {
     const { steps } = props;
@@ -53,14 +59,17 @@ const Content = (props: ContentProps) => {
                                         borderRadius: theme.shape.borderRadius,
                                         marginBottom: theme.spacing(2),
                                         height: theme.spacing(9),
-                                        bgcolor: steps[i] === choice
+                                        backgroundColor: steps[i] === choice
                                             ? theme.palette.primary.light
                                             : theme.palette.background.default,
                                         transition: '0.3s',
                                     })}
                                                     onClick={() => props.onChangeStep(choice as Step, i)}>
                                         <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                                            <img src={mob.icon} alt={mob.name} />
+                                            <StyledImage src={mob.icon}
+                                                         alt={mob.name}
+                                                         width={mob.width}
+                                                         height={mob.height} />
                                         </Box>
                                     </CardActionArea>
                                 </Grid>
