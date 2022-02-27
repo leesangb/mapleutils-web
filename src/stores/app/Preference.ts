@@ -28,6 +28,18 @@ class Preference {
         this.version = version;
         this.seed = seed;
     }
+
+    fix(obj: any) {
+        this.theme = obj?.theme || this.theme;
+        this.version = obj?.version || this.version;
+        this.seed = {
+            ['24']: {
+                volume: obj?.seed['24']?.volume || this.seed['24'].volume,
+                autoClip: obj?.seed['24']?.autoClip || this.seed['24'].autoClip,
+                order: obj?.seed['24']?.order || this.seed['24'].order,
+            }
+        }
+    }
 }
 
 export { Preference };
