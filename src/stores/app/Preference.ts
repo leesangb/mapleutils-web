@@ -4,13 +4,15 @@ interface SeedPreference {
     24: {
         volume: number,
         autoClip: boolean,
+        order: 'default' | 'nameAsc' | 'nameDesc',
     };
 }
 
-const defaultSeedPreference = () => ({
+const defaultSeedPreference = (): SeedPreference => ({
     24: {
         volume: 50,
         autoClip: true,
+        order: 'default',
     },
 });
 

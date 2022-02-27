@@ -13,6 +13,7 @@ export class AppStore {
             changeTheme: action,
             changeSeed24Volume: action,
             changeSeed24AutoClip: action,
+            changeSeed24Order: action,
         });
     }
 
@@ -28,6 +29,11 @@ export class AppStore {
 
     changeSeed24AutoClip(autoClip: boolean) {
         this.preference.seed['24'].autoClip = autoClip;
+        LocalStorageHelper.save(LocalStorageKey.PREFERENCE, this.preference);
+    }
+
+    changeSeed24Order(order: 'default' | 'nameAsc' | 'nameDesc') {
+        this.preference.seed['24'].order = order;
         LocalStorageHelper.save(LocalStorageKey.PREFERENCE, this.preference);
     }
 }
