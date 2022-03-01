@@ -32,12 +32,18 @@ const playerReducer = (state: PlayerState, action: { key: keyof PlayerState, val
 export const usePlayerState = () => {
     const [playerState, dispatchPlayer] = useReducer(playerReducer, buildPlayerState());
 
-    const setVolume = (volume: number) => dispatchPlayer({ key: 'volume', value: volume });
+    const setVolume = (volume: number) => {
+        if (volume < 0 || volume > 100) {
+            return;
+        }
+        dispatchPlayer({ key: 'volume', value: volume });
+    };
+
     const setTime = (time: number) => {
         if (playerState.audio) {
             playerState.audio.currentTime = time;
-            dispatchPlayer({ key: 'time', value: time });
         }
+        dispatchPlayer({ key: 'time', value: time });
     };
 
     const setState = (state: 'playing' | 'paused' | 'stopped') => {

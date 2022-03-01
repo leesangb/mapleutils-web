@@ -72,35 +72,36 @@ const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayer
     }, [playerState.state]);
 
     useEffect(() => {
-        if (playerState.track) {
-            if (playerState.audio) {
-                playerState.audio.currentTime = 0;
-                playerState.audio.pause();
-            }
-
-            const audio = new Audio(playerState.track.src);
-            audio.volume = playerState.volume / 100;
-            audio.loop = true;
-            const onLoadedData = () => setDuration(audio.duration);
-            const onTimeUpdate = () => setTime(audio.currentTime);
-            const onPlay = () => setState('playing');
-            const onPause = () => setState('paused');
-            audio.addEventListener('loadeddata', onLoadedData);
-            audio.addEventListener('timeupdate', onTimeUpdate);
-            audio.addEventListener('play', onPlay);
-            audio.addEventListener('pause', onPause);
-            setAudio(audio);
-            audio.play();
-
-            return () => {
-                audio.pause();
-                audio.removeEventListener('loadeddata', onLoadedData);
-                audio.removeEventListener('timeupdate', onTimeUpdate);
-                audio.removeEventListener('play', onPlay);
-                audio.removeEventListener('pause', onPause);
-            };
-
+        if (!playerState.track) {
+            return;
         }
+
+        if (playerState.audio) {
+            playerState.audio.currentTime = 0;
+            playerState.audio.pause();
+        }
+
+        const audio = new Audio(playerState.track.src);
+        audio.volume = playerState.volume / 100;
+        audio.loop = true;
+        const onLoadedData = () => setDuration(audio.duration);
+        const onTimeUpdate = () => setTime(audio.currentTime);
+        const onPlay = () => setState('playing');
+        const onPause = () => setState('paused');
+        audio.addEventListener('loadeddata', onLoadedData);
+        audio.addEventListener('timeupdate', onTimeUpdate);
+        audio.addEventListener('play', onPlay);
+        audio.addEventListener('pause', onPause);
+        setAudio(audio);
+        audio.play();
+
+        return () => {
+            audio.pause();
+            audio.removeEventListener('loadeddata', onLoadedData);
+            audio.removeEventListener('timeupdate', onTimeUpdate);
+            audio.removeEventListener('play', onPlay);
+            audio.removeEventListener('pause', onPause);
+        };
     }, [playerState.track]);
 
     useEffect(() => {
