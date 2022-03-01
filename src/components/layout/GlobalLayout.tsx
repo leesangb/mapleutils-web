@@ -36,22 +36,22 @@ const GlobalLayout = (props: GlobalLayoutProps) => {
                 <DrawerHeader />
                 {
                     <Box sx={{ display: mdUp ? 'flex' : 'block' }}>
-                        <Hidden mdUp>
-                            <AdSense slot={AdSenseSlot.TopContent} responsive fixed={false} />
-                        </Hidden>
+                        {!mdUp && <AdSense slot={AdSenseSlot.TopContent} responsive fixed={false} />}
                         <Box sx={{ display: 'unset', flexGrow: 1 }}>
                             {children}
                             <Hidden mdUp>
                                 <Footer open />
                             </Hidden>
                         </Box>
-                        <Hidden mdDown>
-                            <Stack alignItems={'center'}
-                                   sx={theme => ({ marginLeft: theme.spacing(1), minWidth: '260px' })}>
-                                <AdSense slot={AdSenseSlot.RightContent} responsive width={250} height={600}
-                                         fixed={true} />
-                            </Stack>
-                        </Hidden>
+                        {
+                            mdUp && (
+                                <Stack alignItems={'center'}
+                                       sx={theme => ({ marginLeft: theme.spacing(1), minWidth: '260px' })}>
+                                    <AdSense slot={AdSenseSlot.RightContent} responsive width={250} height={600}
+                                             fixed={true} />
+                                </Stack>
+                            )
+                        }
                     </Box>
                 }
             </Box>
