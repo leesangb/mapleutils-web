@@ -11,12 +11,15 @@ const parsePreference = (): Preference => {
     }
 
     const json = localStorage.getItem(LocalStorageKey.PREFERENCE);
-    const preference: Preference = new Preference();
+    let preference: Preference = new Preference();
     if (json) {
         const value = JSON.parse(json) as any;
         preference.fix(value);
     }
     localStorage.clear();
+    if (preference?.version !== '0.2') {
+        preference = new Preference();
+    }
     LocalStorageHelper.save(LocalStorageKey.PREFERENCE, preference);
     return preference;
 };

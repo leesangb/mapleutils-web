@@ -22,7 +22,7 @@ class Preference {
     seed: SeedPreference;
 
     constructor(theme: PaletteMode = 'light',
-                version: string = '0.1',
+                version: string = '0.2',
                 seed: SeedPreference = defaultSeedPreference()) {
         this.theme = theme;
         this.version = version;
@@ -37,8 +37,8 @@ class Preference {
                 volume: obj?.seed['24']?.volume || this.seed['24'].volume,
                 autoClip: obj?.seed['24']?.autoClip || this.seed['24'].autoClip,
                 order: obj?.seed['24']?.order || this.seed['24'].order,
-            }
-        }
+            },
+        };
     }
 }
 
