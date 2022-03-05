@@ -36,4 +36,9 @@ export class AppStore {
         this.preference.seed['24'].order = order;
         LocalStorageHelper.save(LocalStorageKey.PREFERENCE, this.preference);
     }
+
+    changeSeed24Check(check: boolean) {
+        this.preference.seed['24'].check = check;
+        LocalStorageHelper.save(LocalStorageKey.PREFERENCE, this.preference);
+    }
 }

@@ -16,10 +16,10 @@ const parsePreference = (): Preference => {
         const value = JSON.parse(json) as any;
         preference.fix(value);
     }
-    localStorage.clear();
-    if (preference?.version !== '0.2') {
+    if (preference?.version !== '0.3') {
         preference = new Preference();
     }
+    localStorage.clear();
     LocalStorageHelper.save(LocalStorageKey.PREFERENCE, preference);
     return preference;
 };

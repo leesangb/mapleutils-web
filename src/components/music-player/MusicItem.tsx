@@ -1,8 +1,8 @@
-import { Avatar, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { Avatar, Badge, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import { useMusicPlayerContext } from '@components/music-player/MusicPlayerContext';
 import { useStore } from '@stores/StoreContext';
-import { useMemo, useRef } from 'react';
-import { PauseRounded, PlayArrowRounded } from '@mui/icons-material';
+import { useMemo, useRef, useState } from 'react';
+import { CheckRounded, PauseRounded, PlayArrowRounded } from '@mui/icons-material';
 
 interface MusicItemProps {
     src: string;
@@ -18,8 +18,12 @@ const MusicItem = (props: MusicItemProps) => {
     const buttonRef = useRef<HTMLDivElement>(null);
     const isSelected = useMemo(() => track?.name === label, [track, label]);
     const isPlaying = useMemo(() => state === 'playing', [state]);
+    const check = app.preference.seed['24'].check;
+
+    const [isPlayed, setIsPlayed] = useState<boolean>(false);
 
     const togglePlay = () => {
+        setIsPlayed(true);
         if (buttonRef.current) {
             buttonRef.current.blur();
         }
@@ -36,7 +40,21 @@ const MusicItem = (props: MusicItemProps) => {
     return useMemo(() => (
         <ListItemButton ref={buttonRef} onClick={togglePlay}>
             <ListItemIcon>
-                <Avatar sx={{ pointerEvents: 'none' }} src={icon} variant='rounded' />
+                <Badge anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                       badgeContent={(
+                           <Avatar sx={theme => ({
+                               width: theme.spacing(2.5),
+                               height: theme.spacing(2.5),
+                               backgroundColor: theme.palette.success.light,
+                           })}>
+                               <CheckRounded fontSize={'small'} />
+                           </Avatar>
+                       )}
+                       invisible={!check || !isPlayed}>
+                    <Avatar sx={{ pointerEvents: 'none' }}
+                            src={icon}
+                            variant='rounded' />
+                </Badge>
             </ListItemIcon>
             <ListItemText>
                 <Typography variant='h6' component='div'>
@@ -45,7 +63,7 @@ const MusicItem = (props: MusicItemProps) => {
             </ListItemText>
             {isSelected && isPlaying ? <PauseRounded color={'action'} /> : <PlayArrowRounded color={'action'} />}
         </ListItemButton>
-    ), [isPlaying, isSelected]);
+    ), [isPlaying, isSelected, check, isPlayed]);
 };
 
 export default MusicItem;

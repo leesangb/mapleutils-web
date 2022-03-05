@@ -12,6 +12,7 @@ import {
     Typography,
 } from '@mui/material';
 import {
+    CheckRounded,
     FileCopyRounded,
     MoreVertRounded,
     PauseRounded,
@@ -27,7 +28,8 @@ const PlayerSettings = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const { app } = useStore();
-    const [autoClip, setAutoClip] = useState(app.preference.seed['24'].autoClip);
+    const [autoClip, setAutoClip] = useState<boolean>(!!app.preference.seed['24'].autoClip);
+    const [check, setCheck] = useState<boolean>(!!app.preference.seed['24'].check);
 
     const id = open ? 'player-more-settings' : undefined;
 
@@ -40,6 +42,11 @@ const PlayerSettings = () => {
     const toggleAutoClip = () => {
         setAutoClip(!autoClip);
         app.changeSeed24AutoClip(!autoClip);
+    };
+
+    const toggleCheck = () => {
+        setCheck(!check);
+        app.changeSeed24Check(!check);
     };
 
     return (
@@ -74,6 +81,20 @@ const PlayerSettings = () => {
                             edge='end'
                             onChange={toggleAutoClip}
                             checked={autoClip}
+                            inputProps={{
+                                'aria-labelledby': 'switch-auto-clip-on-play',
+                            }}
+                        />
+                    </ListItem>
+                    <ListItem>
+                        <ListItemIcon>
+                            <CheckRounded />
+                        </ListItemIcon>
+                        <ListItemText>한번 재생된 음악 체크 표시</ListItemText>
+                        <Switch
+                            edge='end'
+                            onChange={toggleCheck}
+                            checked={check}
                             inputProps={{
                                 'aria-labelledby': 'switch-auto-clip-on-play',
                             }}
