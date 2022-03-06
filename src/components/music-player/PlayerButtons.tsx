@@ -21,15 +21,12 @@ import {
     TipsAndUpdatesRounded,
 } from '@mui/icons-material';
 import { MouseEvent, useEffect, useState } from 'react';
-import { useStore } from '@stores/StoreContext';
 import { isKeyboardTargetInput } from '@tools/keyboardEventHelper';
 
 const PlayerSettings = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const { preference: { autoClip, check, onChangeAutoClip, onChangeCheck } } = useMusicPlayerContext();
     const open = Boolean(anchorEl);
-    const { app } = useStore();
-    const [autoClip, setAutoClip] = useState<boolean>(!!app.preference.seed['24'].autoClip);
-    const [check, setCheck] = useState<boolean>(!!app.preference.seed['24'].check);
 
     const id = open ? 'player-more-settings' : undefined;
 
@@ -40,13 +37,11 @@ const PlayerSettings = () => {
         setAnchorEl(null);
     };
     const toggleAutoClip = () => {
-        setAutoClip(!autoClip);
-        app.changeSeed24AutoClip(!autoClip);
+        onChangeAutoClip(!autoClip);
     };
 
     const toggleCheck = () => {
-        setCheck(!check);
-        app.changeSeed24Check(!check);
+        onChangeCheck(!check);
     };
 
     return (

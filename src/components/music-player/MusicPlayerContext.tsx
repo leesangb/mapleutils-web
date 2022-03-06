@@ -1,25 +1,27 @@
-import { PropsWithChildren, useEffect, useMemo, useState } from 'react';
+import { PropsWithChildren, useEffect, useMemo } from 'react';
 import { createGenericContext } from '@hooks/contextHelper';
-import { useStore } from '@stores/StoreContext';
 import { TrackInfo } from '@components/music-player';
 import useCopy from '@hooks/useCopy';
 import { usePlayerState } from '@components/music-player/usePlayerState';
+import {
+    MusicPlayerPreference,
+    MusicPlayerPreferenceAction,
+    useMusicPlayerPreference,
+} from '@components/music-player/MusicPlayerPreference';
+
 
 interface MusicPlayerContext {
     tracks: TrackInfo[];
     track: TrackInfo | null;
     audio: HTMLAudioElement | null;
     state: 'playing' | 'paused' | 'stopped';
-    volume: number;
     time: number;
     setTime: (time: number) => void;
-    setVolume: (volume: number) => void;
     setTrack: (track: TrackInfo) => void;
     setState: (state: 'playing' | 'paused' | 'stopped') => void;
     duration: number;
     onClip: (trackName?: string) => void;
-    trackOrder: OrderType;
-    onChangeOrder: (order: OrderType) => void;
+    preference: MusicPlayerPreference & MusicPlayerPreferenceAction;
 }
 
 const [useMusicPlayerContext, MusicPlayerContextProvider] = createGenericContext<MusicPlayerContext>();
@@ -37,25 +39,13 @@ const orderFunctions: Record<OrderType, (tracks: TrackInfo[]) => TrackInfo[]> = 
 };
 
 const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayerProviderProps>) => {
-    const { app } = useStore();
-    const { playerState, setVolume, setTime, setState, setTrack, setDuration, setAudio } = usePlayerState();
+    const { playerState, setTime, setState, setTrack, setDuration, setAudio } = usePlayerState();
+    const preference = useMusicPlayerPreference();
     const { copy, CopySnackbar } = useCopy();
 
-    const [order, setOrder] = useState<OrderType>('default');
     const trackList = useMemo(() => {
-        return orderFunctions[order]([...tracks]);
-    }, [order, tracks]);
-
-    const onChangeOrder = (order: OrderType) => {
-        app.changeSeed24Order(order);
-        setOrder(order);
-    };
-
-    useEffect(() => {
-        // need to refresh the value client side; localstorage is not accessible in server
-        setOrder(app.preference.seed['24'].order);
-        setVolume(app.preference.seed['24'].volume);
-    }, []);
+        return orderFunctions[preference.order]([...tracks]);
+    }, [preference.order, tracks]);
 
     useEffect(() => {
         if (playerState.audio) {
@@ -82,7 +72,7 @@ const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayer
         }
 
         const audio = new Audio(playerState.track.src);
-        audio.volume = playerState.volume / 100;
+        audio.volume = preference.volume / 100;
         audio.loop = true;
         const onLoadedData = () => setDuration(audio.duration);
         const onTimeUpdate = () => setTime(audio.currentTime);
@@ -106,27 +96,24 @@ const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayer
 
     useEffect(() => {
         if (playerState.audio) {
-            playerState.audio.volume = playerState.volume / 100;
+            playerState.audio.volume = preference.volume / 100;
         }
-    }, [playerState.volume]);
+    }, [preference.volume]);
 
     const onClip = (trackName?: string) => {
         if (!trackName) return;
         copy(trackName);
     };
 
-
     return (
         <MusicPlayerContextProvider value={{
             ...playerState,
             tracks: trackList,
-            setVolume,
             setTime,
             setState,
             setTrack,
             onClip,
-            trackOrder: order,
-            onChangeOrder,
+            preference,
         }}>
             <>
                 {children}

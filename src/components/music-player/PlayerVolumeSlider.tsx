@@ -1,20 +1,17 @@
 import { useMusicPlayerContext } from '@components/music-player/MusicPlayerContext';
 import { Box, IconButton, Slider, Tooltip } from '@mui/material';
 import { VolumeDownRounded, VolumeUpRounded } from '@mui/icons-material';
-import { useStore } from '@stores/StoreContext';
 import { useEffect } from 'react';
 import { isKeyboardTargetInput } from '@tools/keyboardEventHelper';
 
 
 const PlayerVolumeSlider = () => {
-    const { volume, setVolume } = useMusicPlayerContext();
-    const { app } = useStore();
+    const { preference: { volume, onChangeVolume } } = useMusicPlayerContext();
 
     const changeVolume = (value: number) => {
         if (value < 0) value = 0;
         if (value > 100) value = 100;
-        setVolume(value);
-        app.changeSeed24Volume(value);
+        onChangeVolume(value);
     };
 
     const handleChangeVolume = (_: any, newValue: number | number[]) => {
@@ -44,7 +41,7 @@ const PlayerVolumeSlider = () => {
             <Tooltip title={'음소거'}>
                 <IconButton
                     sx={theme => ({ marginRight: theme.spacing(2) })}
-                    onClick={() => setVolume(0)}>
+                    onClick={() => onChangeVolume(0)}>
                     <VolumeDownRounded fontSize={'small'} />
                 </IconButton>
             </Tooltip>
@@ -71,7 +68,7 @@ const PlayerVolumeSlider = () => {
             <Tooltip title={'음량 최대'}>
                 <IconButton
                     sx={theme => ({ marginLeft: theme.spacing(2) })}
-                    onClick={() => setVolume(100)}>
+                    onClick={() => onChangeVolume(100)}>
                     <VolumeUpRounded fontSize={'small'} />
                 </IconButton>
             </Tooltip>
