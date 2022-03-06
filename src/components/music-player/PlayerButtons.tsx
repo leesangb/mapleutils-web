@@ -85,7 +85,7 @@ const PlayerSettings = () => {
                         <ListItemIcon>
                             <CheckRounded />
                         </ListItemIcon>
-                        <ListItemText>한번 재생된 음악 체크 표시</ListItemText>
+                        <ListItemText>음악 체크 표시</ListItemText>
                         <Switch
                             edge='end'
                             onChange={toggleCheck}
