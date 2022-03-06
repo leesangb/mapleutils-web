@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { memo } from 'react';
+import NextImage from 'next/image';
 
 const guideMessages = [
     '메이플스토리 클라이언트를 창모드로 해주세요',
@@ -19,7 +20,7 @@ const CaptureHelp = () => {
                     {i + 1}. {m}
                 </Typography>
             ))}
-            <img src={'/images/48_example.png'} alt='예제' />
+            <NextImage src={'/images/48_example.png'} alt='예제' width={257} height={158} />
         </Box>
     );
 };
