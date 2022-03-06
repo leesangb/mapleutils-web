@@ -62,8 +62,10 @@ const parseMusicPlayer = (): MusicPlayerPreference => {
     const old = localStorage.getItem(LocalStorageKey.PREFERENCE);
     if (old) {
         const oldObj = JSON.parse(old) as any;
-        const preference = fixMusicPlayerPreference(oldObj.seed['24'], defaultPreference);
-        LocalStorageHelper.save(LocalStorageKey.MUSIC_PLAYER, preference);
+        if (oldObj && oldObj.seed && oldObj.seed['24']) {
+            const preference = fixMusicPlayerPreference(oldObj.seed['24'], defaultPreference);
+            LocalStorageHelper.save(LocalStorageKey.MUSIC_PLAYER, preference);
+        }
     }
 
     return defaultPreference;
