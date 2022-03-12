@@ -153,11 +153,6 @@
         "height": 36
       },
       {
-        "name": "아이스 스톤볼",
-        "width": 36,
-        "height": 36
-      },
-      {
         "name": "주니어 그류핀",
         "width": 35,
         "height": 43
@@ -178,19 +173,9 @@
         "height": 43
       },
       {
-        "name": "주니어 스톤볼",
-        "width": 21,
-        "height": 22
-      },
-      {
         "name": "주니어 불독",
         "width": 38,
         "height": 37
-      },
-      {
-        "name": "파이어 스톤볼",
-        "width": 36,
-        "height": 36
       }
     ]
   },
