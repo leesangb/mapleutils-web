@@ -1128,19 +1128,9 @@
     "location": "플로리나 비치",
     "mobs": [
       {
-        "name": "로랑",
-        "width": 72,
-        "height": 56
-      },
-      {
         "name": "엄티",
         "width": 65,
         "height": 37
-      },
-      {
-        "name": "클랑",
-        "width": 72,
-        "height": 56
       }
     ]
   },
