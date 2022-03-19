@@ -30,9 +30,9 @@ const TitleCard = (props: TitleCardProps) => {
                 </Typography>
                 {props.showAnalytics && data &&
                     <Typography alignSelf={'center'} marginLeft={'auto'} align={'right'} variant={'caption'}>
-                        조회수 : {formatNumberComma(data.views)}
+                        조회 : {formatNumberComma(data.views)}
                         <br />
-                        방문수 : {formatNumberComma(data.users)}</Typography>}
+                        방문 : {formatNumberComma(data.users)}</Typography>}
             </CardContent>
         </Card>
     ), [props, data]);
