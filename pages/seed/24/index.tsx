@@ -16,7 +16,7 @@ const Seed24 = () => {
     return (
         <>
             <Seo {...seoProps} />
-            <TitleCard title={'시드 24층'} />
+            <TitleCard title={'시드 24층'} showAnalytics />
             <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>
                     <MusicPlayer tracks={seed24AudioData} />

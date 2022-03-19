@@ -107,7 +107,7 @@ const Seed36 = () => {
     return (
         <>
             <Seo {...seoProps} />
-            <TitleCard title={'시드 36층'} />
+            <TitleCard title={'시드 36층'} showAnalytics />
             <Card variant={'outlined'}>
                 <CardContent>
                     <Content steps={steps} onChangeStep={onChangeStep} resetSteps={resetSteps} />
