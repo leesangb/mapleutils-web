@@ -3,6 +3,8 @@ import { styled } from '@mui/system';
 import { DiscordIcon, KakaoTalkIcon } from '@components/icons';
 import { GitHub } from '@mui/icons-material';
 import { discordLink, githubLink, kakaotalkLink } from '@tools/socialLinks';
+import useFetch from '@hooks/useFetch';
+import { AnalyticsRealTimeData } from '@api/analytics';
 
 const currentYear = new Date().getFullYear();
 
@@ -17,9 +19,15 @@ interface FooterProps {
 }
 
 const Footer = (props: FooterProps) => {
+    const { data } = useFetch<AnalyticsRealTimeData>(`/api/realtime-users`);
     return (
         <StyledFooter>
             <Grid container direction={props.open ? 'row' : 'column'} justifyContent={'center'}>
+                {data && (<Grid item sx={{ alignSelf: 'center' }}>
+                    <Typography variant={'caption'}>
+                        온라인 : {data.users}
+                    </Typography>
+                </Grid>)}
                 <Grid item sx={{ alignSelf: 'center' }}>
                     <Tooltip title={'카톡 문의'} placement={props.open ? 'top' : 'right'}>
                         <IconButton component={'a'}
