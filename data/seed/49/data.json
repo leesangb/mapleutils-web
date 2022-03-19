@@ -156,11 +156,6 @@
         "name": "주니어 샐리온",
         "width": 35,
         "height": 43
-      },
-      {
-        "name": "[★] 주니어 불독",
-        "width": 38,
-        "height": 37
       }
     ]
   },
@@ -353,11 +348,6 @@
         "height": 63
       },
       {
-        "name": "팬더테니",
-        "width": 51,
-        "height": 50
-      },
-      {
         "name": "플래툰 크로노스",
         "width": 74,
         "height": 77
@@ -377,11 +367,6 @@
   {
     "location": "엘린숲",
     "mobs": [
-      {
-        "name": "난폭한 원시멧돼지",
-        "width": 149,
-        "height": 95
-      },
       {
         "name": "스톤버그",
         "width": 110,
@@ -412,26 +397,6 @@
   {
     "location": "지구방위본부",
     "mobs": [
-      {
-        "name": "뉴그레이 블랙",
-        "width": 105,
-        "height": 148
-      },
-      {
-        "name": "뉴그레이 화이트",
-        "width": 105,
-        "height": 148
-      },
-      {
-        "name": "드론 블랙",
-        "width": 190,
-        "height": 129
-      },
-      {
-        "name": "드론 화이트",
-        "width": 190,
-        "height": 129
-      },
       {
         "name": "마티안",
         "width": 76,
@@ -818,11 +783,6 @@
         "height": 49
       },
       {
-        "name": "분노한 뿔버섯",
-        "width": 56,
-        "height": 52
-      },
-      {
         "name": "빨간 달팽이",
         "width": 35,
         "height": 34
@@ -838,16 +798,6 @@
         "height": 36
       },
       {
-        "name": "시니컬한 주황버섯",
-        "width": 63,
-        "height": 58
-      },
-      {
-        "name": "우는 파란버섯",
-        "width": 63,
-        "height": 58
-      },
-      {
         "name": "이상한 돼지",
         "width": 59,
         "height": 55
@@ -856,11 +806,6 @@
         "name": "좀비버섯",
         "width": 63,
         "height": 58
-      },
-      {
-        "name": "좌절한 초록버섯",
-        "width": 56,
-        "height": 52
       },
       {
         "name": "주황버섯",
@@ -886,11 +831,6 @@
         "name": "파란 리본돼지",
         "width": 68,
         "height": 52
-      },
-      {
-        "name": "파란버섯",
-        "width": 63,
-        "height": 58
       }
     ]
   },
