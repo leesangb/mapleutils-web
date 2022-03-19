@@ -36,7 +36,7 @@ const FarmInfo = () => {
     return (
         <>
             <Seo {...seoProps} />
-            <TitleCard title={'몬스터 라이프 몬스터 정리'} />
+            <TitleCard title={'몬스터 라이프 몬스터 정리'} showAnalytics />
             <Card variant={'outlined'}>
                 <CardContent>
                     {mobsByEffect.map(m => <Chip key={m.name}

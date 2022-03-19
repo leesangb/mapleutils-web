@@ -59,7 +59,7 @@ const FarmCombine = (props: FarmCombineProps) => {
     return (
         <>
             <Seo {...seoProps} />
-            <TitleCard title={'몬스터 라이프 스페셜 조합'} />
+            <TitleCard title={'몬스터 라이프 스페셜 조합'} showAnalytics />
             <Card variant={'outlined'}>
                 <CardContent>
                     <VirtualizedFixedList items={recipes}

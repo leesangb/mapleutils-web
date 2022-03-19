@@ -91,7 +91,7 @@ const Seed49 = (props: Seed49Props) => {
     return (
         <>
             <Seo {...seoProps} />
-            <TitleCard title={'시드 49층'} marginRight={1} />
+            <TitleCard title={'시드 49층'} marginRight={1} showAnalytics />
             <Card variant={'outlined'}
                   sx={theme => ({
                       marginRight: theme.spacing(1),

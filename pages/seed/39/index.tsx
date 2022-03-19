@@ -71,7 +71,7 @@ const Seed39 = (props: Seed39Props) => {
     return (
         <>
             <Seo {...seoProps} />
-            <TitleCard title={'시드 39층'} />
+            <TitleCard title={'시드 39층'} showAnalytics />
             <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>
                     <VirtualizedFixedList height={height - 330}
