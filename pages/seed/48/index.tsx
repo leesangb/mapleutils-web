@@ -6,7 +6,7 @@ import { Comments } from '@components/comments';
 const Seed48 = () => {
     return (
         <>
-            <TitleCard title={'시드 48층'} showAnalytics />
+            <TitleCard title={'시드 48층'} />
             <Card variant={'outlined'}>
                 <CardContent>
                     <VideoCapture />
