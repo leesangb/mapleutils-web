@@ -1,6 +1,6 @@
 import { Card, CardContent, Typography } from '@mui/material';
 import { useMemo } from 'react';
-import { formatNumberComma } from '@tools/string';
+import { formatNumberK } from '@tools/string';
 import { useRouter } from 'next/router';
 import useFetch from '@hooks/useFetch';
 import { AnalyticsData } from '@api/analytics';
@@ -30,9 +30,9 @@ const TitleCard = (props: TitleCardProps) => {
                 </Typography>
                 {props.showAnalytics && data &&
                     <Typography alignSelf={'center'} marginLeft={'auto'} align={'right'} variant={'caption'}>
-                        조회 : {formatNumberComma(data.views)}
+                        조회 : {formatNumberK(data.views)}
                         <br />
-                        방문 : {formatNumberComma(data.users)}</Typography>}
+                        방문 : {formatNumberK(data.users)}</Typography>}
             </CardContent>
         </Card>
     ), [props, data]);
