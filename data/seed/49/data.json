@@ -238,11 +238,6 @@
     "location": "루디브리엄",
     "mobs": [
       {
-        "name": "그린 트릭스터",
-        "width": 67,
-        "height": 81
-      },
-      {
         "name": "더키 패밀리",
         "width": 99,
         "height": 45
@@ -303,11 +298,6 @@
         "height": 125
       },
       {
-        "name": "처프",
-        "width": 55,
-        "height": 42
-      },
-      {
         "name": "치크세이버",
         "width": 55,
         "height": 46
@@ -326,16 +316,6 @@
         "name": "킹 블록퍼스",
         "width": 47,
         "height": 74
-      },
-      {
-        "name": "트릭스터",
-        "width": 67,
-        "height": 81
-      },
-      {
-        "name": "트위터",
-        "width": 55,
-        "height": 42
       },
       {
         "name": "티키",
