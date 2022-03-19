@@ -38,6 +38,9 @@
       ],
       "@hooks/*": [
         "src/hooks/*"
+      ],
+      "@api/*": [
+        "src/api/*"
       ]
     },
     "incremental": true
