@@ -1,7 +1,7 @@
 import { Seo, SeoProps } from '@components/seo';
 import { MonsterCard, TitleCard } from '@components/card';
 import { seed49Data, SeedLocation, SeedMobData } from '@data/seed/49';
-import { Button, Card, CardContent, Collapse, Divider, Grid, Tooltip } from '@mui/material';
+import { Button, Card, CardContent, Collapse, Divider, Grid, Theme, Tooltip, useTheme } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import NextImage from 'next/image';
 import { ChangeEvent, useMemo, useState } from 'react';
@@ -32,17 +32,28 @@ interface ContentProps {
 interface StyledImgProps {
     // maybe fix with transient props with styled component
     silhouette: number;
+    filter: string;
 }
 
 const StyledImg = styled(NextImage)((props: StyledImgProps) => ({
-    filter: props.silhouette ? 'brightness(0%)' : 'none',
+    filter: props.silhouette ? props.filter : 'none',
     transition: '0.2s',
     pointerEvents: 'none',
 }));
 
+const getFilter = (theme: Theme): string => {
+    if (theme.palette.mode === 'light') {
+        return 'brightness(0%)';
+    } else {
+        return 'brightness(0%) drop-shadow(0 0 2px white)';
+    }
+};
+
 const Content = (props: ContentProps) => {
     const { mob } = props;
+    const theme = useTheme();
     const [silhouette, setSilhouette] = useState(true);
+    const filter = useMemo(() => getFilter(theme), [theme]);
     const { copy, CopySnackbar } = useCopy();
 
     return (
@@ -57,6 +68,7 @@ const Content = (props: ContentProps) => {
                                height={mob.height}
                                src={mob.img}
                                silhouette={props.silhouette && silhouette ? 1 : 0}
+                               filter={filter}
                                alt={mob.name} />
                 </MonsterCard>
             </Tooltip>
