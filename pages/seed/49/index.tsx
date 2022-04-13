@@ -45,7 +45,7 @@ const getFilter = (theme: Theme): string => {
     if (theme.palette.mode === 'light') {
         return 'brightness(0%)';
     } else {
-        return 'brightness(0%) drop-shadow(0 0 2px white)';
+        return 'brightness(0%) drop-shadow(0 0 1px white)';
     }
 };
 
