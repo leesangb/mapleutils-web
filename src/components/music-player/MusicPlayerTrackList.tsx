@@ -29,6 +29,7 @@ const MusicPlayerTrackList = () => {
                         src={audio.src}
                         label={audio.name}
                         icon={audio.coverImg}
+                        hint={audio.hint}
                     />
                 </Grid>
             ))}

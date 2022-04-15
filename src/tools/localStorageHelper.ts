@@ -5,7 +5,8 @@ import { MusicPlayerPreference } from '@components/music-player/MusicPlayerPrefe
 
 export enum LocalStorageKey {
     PREFERENCE = 'PREFERENCE',
-    MUSIC_PLAYER = 'MUSIC_PLAYER'
+    MUSIC_PLAYER = 'MUSIC_PLAYER',
+    SEED_24_TAB = 'SEED_24_TAB',
 }
 
 const parsePreference = (): Preference => {
@@ -71,9 +72,24 @@ const parseMusicPlayer = (): MusicPlayerPreference => {
     return defaultPreference;
 };
 
+const parseTab = (): string => {
+    const defaultTab = 'bgm';
+    if (isServerSide) {
+        return defaultTab;
+    }
+
+    const tab = localStorage.getItem(LocalStorageKey.SEED_24_TAB);
+    if (tab && ['bgm', 'hint'].includes(tab)) {
+        return tab;
+    }
+    localStorage.setItem(LocalStorageKey.SEED_24_TAB, defaultTab);
+    return defaultTab;
+};
+
 const parsers: Partial<Record<LocalStorageKey, any>> = {
     [LocalStorageKey.PREFERENCE]: parsePreference,
     [LocalStorageKey.MUSIC_PLAYER]: parseMusicPlayer,
+    [LocalStorageKey.SEED_24_TAB]: parseTab,
 };
 
 export class LocalStorageHelper {
