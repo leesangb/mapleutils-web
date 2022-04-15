@@ -71,7 +71,7 @@ const Seed24 = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={8} md={9}>
-                            <Typography variant={'subtitle2'} component={'div'}>
+                            <Typography variant={'body1'} component={'div'}>
                                 {item.hint}
                             </Typography>
                         </Grid>
