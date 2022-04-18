@@ -1,7 +1,7 @@
 import { Seo, SeoProps } from '@components/seo';
 import { MonsterCard, TitleCard } from '@components/card';
 import { seed49Data, SeedLocation, SeedMobData } from '@data/seed/49';
-import { Button, Card, CardContent, Collapse, Divider, Grid, Theme, Tooltip, useTheme } from '@mui/material';
+import { Badge, Button, Card, CardContent, Collapse, Divider, Grid, Theme, Tooltip, useTheme } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import NextImage from 'next/image';
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
@@ -144,12 +144,15 @@ const Seed49 = ({ data }: Seed49Props) => {
                             </Button>
                         </Grid>
                         <Grid item>
-                            <Button onClick={() => setCollapse(!collapse)}
-                                    endIcon={collapse
-                                        ? <KeyboardArrowDownRounded />
-                                        : <KeyboardArrowUpRounded />}>
-                                필터
-                            </Button>
+                            <Badge badgeContent={locations.length} color={'primary'}
+                                   invisible={locations.length === allLocations.length}>
+                                <Button onClick={() => setCollapse(!collapse)}
+                                        endIcon={collapse
+                                            ? <KeyboardArrowDownRounded />
+                                            : <KeyboardArrowUpRounded />}>
+                                    필터
+                                </Button>
+                            </Badge>
                         </Grid>
                     </Grid>
                     <Collapse in={!collapse} timeout={'auto'} unmountOnExit>
