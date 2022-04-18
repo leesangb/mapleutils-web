@@ -8,6 +8,7 @@ export enum LocalStorageKey {
     MUSIC_PLAYER = 'MUSIC_PLAYER',
     SEED_24_TAB = 'SEED_24_TAB',
     SEED_49_LOCATIONS = 'SEED_49_LOCATIONS',
+    VIDEO_CAPTURE_SETTINGS = 'VIDEO_CAPTURE_SETTINGS',
 }
 
 const parsePreference = (): Preference => {
@@ -104,11 +105,40 @@ const parseLocations = (): string[] | null => {
     return defaultLocations;
 };
 
+const parseSeed48Settings = (): Partial<{ x: number, y: number, ratio: number, showJump: boolean }> | null => {
+    const defaultSettings = null;
+    if (isServerSide) {
+        return defaultSettings;
+    }
+
+    const settings = localStorage.getItem(LocalStorageKey.VIDEO_CAPTURE_SETTINGS);
+    if (settings) {
+        let settingObj = JSON.parse(settings) as any;
+        const obj: Partial<{ x: number, y: number, ratio: number, showJump: boolean }> = {};
+        if (settingObj.x && typeof settingObj.x === 'number') {
+            obj.x = settingObj.x;
+        }
+        if (settingObj.y && typeof settingObj.y === 'number') {
+            obj.y = settingObj.y;
+        }
+        if (settingObj.ratio && typeof settingObj.ratio === 'number') {
+            obj.ratio = settingObj.ratio;
+        }
+        if (settingObj.showJump && typeof settingObj.showJump === 'boolean') {
+            obj.showJump = settingObj.showJump;
+        }
+        return obj;
+    }
+
+    return defaultSettings;
+};
+
 const parsers: Partial<Record<LocalStorageKey, any>> = {
     [LocalStorageKey.PREFERENCE]: parsePreference,
     [LocalStorageKey.MUSIC_PLAYER]: parseMusicPlayer,
     [LocalStorageKey.SEED_24_TAB]: parseTab,
     [LocalStorageKey.SEED_49_LOCATIONS]: parseLocations,
+    [LocalStorageKey.VIDEO_CAPTURE_SETTINGS]: parseSeed48Settings,
 };
 
 export class LocalStorageHelper {

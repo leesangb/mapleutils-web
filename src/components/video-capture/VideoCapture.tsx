@@ -5,6 +5,7 @@ import Canvas from '@components/video-capture/Canvas';
 import CaptureButtons from '@components/video-capture/CaptureButtons';
 import CaptureViewer from '@components/video-capture/CaptureViewer';
 import CaptureHelp from '@components/video-capture/CaptureHelp';
+import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
 
 const FPS_60 = 1000 / 60;
 
@@ -20,7 +21,12 @@ interface VideoState {
 
 
 const videoStateReducer = (state: VideoState, payload: Partial<VideoState>): VideoState => {
-    return { ...state, ...payload };
+    const newState = { ...state, ...payload };
+    LocalStorageHelper.save(
+        LocalStorageKey.VIDEO_CAPTURE_SETTINGS,
+        { x: newState.x, y: newState.y, ratio: newState.ratio, showJump: newState.showJump },
+    );
+    return newState;
 };
 
 
@@ -43,6 +49,13 @@ const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
         ratio: 100,
         showJump: true,
     });
+
+    useEffect(() => {
+        const settings = LocalStorageHelper.load<Partial<{ x: number, y: number, ratio: number, showJump: boolean }> | null>(LocalStorageKey.VIDEO_CAPTURE_SETTINGS);
+        if (settings) {
+            dispatch(settings);
+        }
+    }, []);
 
     const handleStop = () => {
         // @ts-ignore
