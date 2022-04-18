@@ -7,6 +7,7 @@ export enum LocalStorageKey {
     PREFERENCE = 'PREFERENCE',
     MUSIC_PLAYER = 'MUSIC_PLAYER',
     SEED_24_TAB = 'SEED_24_TAB',
+    SEED_49_LOCATIONS = 'SEED_49_LOCATIONS',
 }
 
 const parsePreference = (): Preference => {
@@ -86,10 +87,28 @@ const parseTab = (): string => {
     return defaultTab;
 };
 
+const parseLocations = (): string[] | null => {
+    const defaultLocations: string[] | null = null;
+    if (isServerSide) {
+        return defaultLocations;
+    }
+
+    const locations = localStorage.getItem(LocalStorageKey.SEED_49_LOCATIONS);
+    if (locations) {
+        let jsonObj = JSON.parse(locations) as any;
+        if (jsonObj instanceof Array && jsonObj.every(item => typeof item === 'string')) {
+            return jsonObj as string[];
+        }
+    }
+
+    return defaultLocations;
+};
+
 const parsers: Partial<Record<LocalStorageKey, any>> = {
     [LocalStorageKey.PREFERENCE]: parsePreference,
     [LocalStorageKey.MUSIC_PLAYER]: parseMusicPlayer,
     [LocalStorageKey.SEED_24_TAB]: parseTab,
+    [LocalStorageKey.SEED_49_LOCATIONS]: parseLocations,
 };
 
 export class LocalStorageHelper {

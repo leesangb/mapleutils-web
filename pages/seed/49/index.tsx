@@ -4,7 +4,7 @@ import { seed49Data, SeedLocation, SeedMobData } from '@data/seed/49';
 import { Button, Card, CardContent, Collapse, Divider, Grid, Theme, Tooltip, useTheme } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import NextImage from 'next/image';
-import { ChangeEvent, useMemo, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { SearchBar } from '@components/input';
 import { isHangulMatching } from '@tools/string';
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
@@ -12,6 +12,7 @@ import { Masonry } from '@mui/lab';
 import useCopy from '@hooks/useCopy';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { Comments } from '@components/comments';
+import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
 
 const seoProps: SeoProps = {
     title: '더 시드 49층',
@@ -77,12 +78,32 @@ const Content = (props: ContentProps) => {
     );
 };
 
-const Seed49 = (props: Seed49Props) => {
-    const { data } = props;
-    const [silhouette, setSilhouette] = useState(true);
+const useSeed49Location = (data: SeedLocation[]) => {
     const allLocations = useMemo(() => data.map(l => l.location).sort((a, b) => a.localeCompare(b)), [data]);
     const [locations, setLocations] = useState(allLocations);
+
+    const onChangeLocations = useCallback((locations: string[]) => {
+        setLocations(locations);
+        LocalStorageHelper.save(LocalStorageKey.SEED_49_LOCATIONS, locations);
+    }, []);
+
+    useEffect(() => {
+        const locations = LocalStorageHelper.load<string[] | null>(LocalStorageKey.SEED_49_LOCATIONS);
+        onChangeLocations(locations ? locations.filter(location => allLocations.includes(location)) : allLocations);
+    }, []);
+
+    return {
+        locations, onChangeLocations,
+
+        allLocations,
+    };
+};
+
+
+const Seed49 = ({ data }: Seed49Props) => {
+    const [silhouette, setSilhouette] = useState(true);
     const [collapse, setCollapse] = useState(true);
+    const { locations, onChangeLocations, allLocations } = useSeed49Location(data);
     const { height } = useWindowDimensions();
 
     const [search, setSearch] = useState<string>('');
@@ -141,13 +162,13 @@ const Seed49 = (props: Seed49Props) => {
                                 <Button
                                     variant={'contained'}
                                     disableElevation
-                                    onClick={() => setLocations(allLocations)}>전체 선택</Button>
+                                    onClick={() => onChangeLocations(allLocations)}>전체 선택</Button>
                             </Grid>
                             <Grid item>
                                 <Button
                                     variant={'contained'}
                                     disableElevation
-                                    onClick={() => setLocations(allLocations.filter(l => !locations.includes(l)))}>반전</Button>
+                                    onClick={() => onChangeLocations(allLocations.filter(l => !locations.includes(l)))}>반전</Button>
                             </Grid>
                             <Grid item xs={12}>
                                 <Divider />
@@ -160,8 +181,8 @@ const Seed49 = (props: Seed49Props) => {
                                         disableElevation
                                         variant={locations.includes(location) ? 'contained' : 'outlined'}
                                         onClick={() => locations.includes(location)
-                                            ? setLocations(locations.filter(l => l !== location))
-                                            : setLocations([...locations, location])
+                                            ? onChangeLocations(locations.filter(l => l !== location))
+                                            : onChangeLocations([...locations, location])
                                         }>
                                         {location}</Button>
                                 </Grid>)
