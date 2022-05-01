@@ -82,7 +82,8 @@ const Content = (props: ContentProps) => {
 };
 
 const useSeed49Location = (data: SeedLocation[]) => {
-    const allLocations = useMemo(() => data.map(l => l.location).sort((a, b) => a.localeCompare(b)), [data]);
+    const { t } = useTranslation(['seed49']);
+    const allLocations = useMemo(() => data.map(l => l.location).sort((a, b) => t(a).localeCompare(t(b))), [data]);
     const [locations, setLocations] = useState(allLocations);
 
     const onChangeLocations = useCallback((locations: string[]) => {
@@ -121,8 +122,11 @@ const Seed49 = ({ data }: Seed49Props) => {
                 .flatMap(l => l.mobs.map(m => ({
                     ...m,
                     location: l.location,
-                }))).filter(m => i18n.resolvedLanguage === 'kr' ? isHangulMatching(search, m.location, m.name) : isMatching(search, t(m.location), t(m.name)))
-                .sort((a, b) => t(a.name).localeCompare(t(b.name)))
+                })))
+                .filter(m => i18n.resolvedLanguage === 'kr'
+                    ? isHangulMatching(search, m.location, m.name)
+                    : isMatching(search, t(m.location, { ns: 'seed49' }), t(m.name, { ns: 'seed49' })))
+                .sort((a, b) => t(a.name, { ns: 'seed49' }).localeCompare(t(b.name, { ns: 'seed49' })))
         , [search, locations, t, i18n.resolvedLanguage]);
 
     return (
