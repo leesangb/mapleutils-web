@@ -6,13 +6,15 @@ import { Box, styled } from '@mui/system';
 import NextImage from 'next/image';
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { SearchBar } from '@components/input';
-import { isHangulMatching } from '@tools/string';
+import { isHangulMatching, isMatching } from '@tools/string';
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
 import { Masonry } from '@mui/lab';
 import useCopy from '@hooks/useCopy';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { Comments } from '@components/comments';
 import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const seoProps: SeoProps = {
     title: '더 시드 49층',
@@ -51,6 +53,7 @@ const getFilter = (theme: Theme): string => {
 };
 
 const Content = (props: ContentProps) => {
+    const { t } = useTranslation(['common', 'seed49']);
     const { mob } = props;
     const theme = useTheme();
     const [silhouette, setSilhouette] = useState(true);
@@ -59,10 +62,10 @@ const Content = (props: ContentProps) => {
 
     return (
         <>
-            <Tooltip title={'클릭하여 복사하기'} arrow placement={'top'}>
-                <MonsterCard tags={[mob.location]}
-                             name={mob.name}
-                             onClick={() => copy(mob.name)}
+            <Tooltip title={t('clickToCopy')} arrow placement={'top'}>
+                <MonsterCard tags={[t(mob.location, { ns: 'seed49' })]}
+                             name={t(mob.name, { ns: 'seed49' })}
+                             onClick={() => copy(t(mob.name, { ns: 'seed49' }))}
                              onMouseEnter={() => setSilhouette(false)}
                              onMouseLeave={() => setSilhouette(true)}>
                     <StyledImg width={mob.width}
@@ -70,7 +73,7 @@ const Content = (props: ContentProps) => {
                                src={mob.img}
                                silhouette={props.silhouette && silhouette ? 1 : 0}
                                filter={filter}
-                               alt={mob.name} />
+                               alt={t(mob.name, { ns: 'seed49' })} />
                 </MonsterCard>
             </Tooltip>
             <CopySnackbar />
@@ -101,6 +104,7 @@ const useSeed49Location = (data: SeedLocation[]) => {
 
 
 const Seed49 = ({ data }: Seed49Props) => {
+    const { t, i18n } = useTranslation(['common', 'seed49']);
     const [silhouette, setSilhouette] = useState(true);
     const [collapse, setCollapse] = useState(true);
     const { locations, onChangeLocations, allLocations } = useSeed49Location(data);
@@ -117,21 +121,21 @@ const Seed49 = ({ data }: Seed49Props) => {
                 .flatMap(l => l.mobs.map(m => ({
                     ...m,
                     location: l.location,
-                }))).filter(m => isHangulMatching(search, m.location, m.name))
-                .sort((a, b) => a.name.localeCompare(b.name))
-        , [search, locations]);
+                }))).filter(m => i18n.resolvedLanguage === 'kr' ? isHangulMatching(search, m.location, m.name) : isMatching(search, t(m.location), t(m.name)))
+                .sort((a, b) => t(a.name).localeCompare(t(b.name)))
+        , [search, locations, t, i18n.resolvedLanguage]);
 
     return (
         <>
             <Seo {...seoProps} />
-            <TitleCard title={'시드 49층'} marginRight={1} />
+            <TitleCard title={t('title', { ns: 'seed49' })} marginRight={1} />
             <Card variant={'outlined'}
                   sx={theme => ({
                       marginRight: theme.spacing(1),
                       marginBottom: theme.spacing(1),
                   })}>
                 <CardContent>
-                    <SearchBar placeholder={'몬스터 또는 마을 검색 (예: 주황버섯, ㅎㄴㅅㄴ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱, 초성 검색 ✅'}
+                    <SearchBar placeholder={t('searchPlaceholder', { ns: 'seed49' })}
                                value={search} onChange={handleSearch} onClear={handleClear} />
                     <Grid justifyContent={'space-between'} sx={theme => ({ marginTop: theme.spacing(1) })} container
                           spacing={1}>
@@ -140,7 +144,7 @@ const Seed49 = ({ data }: Seed49Props) => {
                                 disableElevation
                                 variant={'contained'}
                                 onClick={() => setSilhouette(s => !s)}>
-                                {silhouette ? '실루엣 OFF' : '실루엣 ON'}
+                                {silhouette ? `${t('silhouette')} OFF` : `${t('silhouette')} ON`}
                             </Button>
                         </Grid>
                         <Grid item>
@@ -150,14 +154,13 @@ const Seed49 = ({ data }: Seed49Props) => {
                                         endIcon={collapse
                                             ? <KeyboardArrowDownRounded />
                                             : <KeyboardArrowUpRounded />}>
-                                    필터
+                                    {t('filters')}
                                 </Button>
                             </Badge>
                         </Grid>
                     </Grid>
                     <Collapse in={!collapse} timeout={'auto'} unmountOnExit>
                         <Grid container sx={theme => ({ marginTop: theme.spacing(1) })} spacing={1}>
-
                             <Grid item xs={12}>
                                 <Divider />
                             </Grid>
@@ -165,13 +168,13 @@ const Seed49 = ({ data }: Seed49Props) => {
                                 <Button
                                     variant={'contained'}
                                     disableElevation
-                                    onClick={() => onChangeLocations(allLocations)}>전체 선택</Button>
+                                    onClick={() => onChangeLocations(allLocations)}>{t('selectAll')}</Button>
                             </Grid>
                             <Grid item>
                                 <Button
                                     variant={'contained'}
                                     disableElevation
-                                    onClick={() => onChangeLocations(allLocations.filter(l => !locations.includes(l)))}>반전</Button>
+                                    onClick={() => onChangeLocations(allLocations.filter(l => !locations.includes(l)))}>{t('invert')}</Button>
                             </Grid>
                             <Grid item xs={12}>
                                 <Divider />
@@ -187,7 +190,7 @@ const Seed49 = ({ data }: Seed49Props) => {
                                             ? onChangeLocations(locations.filter(l => l !== location))
                                             : onChangeLocations([...locations, location])
                                         }>
-                                        {location}</Button>
+                                        {t(location, { ns: 'seed49' })}</Button>
                                 </Grid>)
                             }
                         </Grid>
@@ -204,14 +207,15 @@ const Seed49 = ({ data }: Seed49Props) => {
                     }
                 </Masonry>
             </Box>
-            <Comments pageKey={'seed49'} />
+            {i18n.resolvedLanguage === 'kr' && <Comments title={t('comments')} pageKey={'seed49'} />}
         </>
     );
 };
 
-export const getStaticProps = () => {
+export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
+            ...(await serverSideTranslations(locale, ['common', 'seed49'])),
             data: seed49Data,
         },
     };
