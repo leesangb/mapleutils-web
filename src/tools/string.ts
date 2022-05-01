@@ -23,8 +23,8 @@ export const isHangulMatching = (pattern: string, ...words: string[]): boolean =
 };
 
 export const isMatching = (pattern: string, ...words: string[]): boolean => {
-    const searched = removeSpecialCharsWithoutSpaces(pattern);
-    const escapedWords = words.map(word => removeSpecialCharsWithoutSpaces(word)).join('|');
+    const searched = removeSpecialCharsWithoutSpaces(pattern).toLowerCase();
+    const escapedWords = words.map(word => removeSpecialCharsWithoutSpaces(word).toLowerCase()).join('|');
     return escapedWords.includes(searched);
 };
 
