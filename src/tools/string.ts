@@ -1,6 +1,7 @@
 import * as Hangul from 'hangul-js';
 
 export const removeSpecialChars = (s: string): string => s.replace(/(\s|\?|-|\.|…|!|~|,)/g, '');
+export const removeSpecialCharsWithoutSpaces = (s: string): string => s.replace(/([-.…!~,?])/g, '');
 
 const getChosung = (str: string): string => {
     return Hangul.d(str, true) // 1글자 내에 초성 추출 ('ㄳㅎ' => [['ㄱ', 'ㅅ'], ['ㅎ']])
@@ -19,6 +20,12 @@ export const isHangulMatching = (pattern: string, ...words: string[]): boolean =
         .map((w) => w[0])
         .join('')
         .includes(getChosung(searched));
+};
+
+export const isMatching = (pattern: string, ...words: string[]): boolean => {
+    const searched = removeSpecialCharsWithoutSpaces(pattern);
+    const escapedWords = words.map(word => removeSpecialCharsWithoutSpaces(word)).join('|');
+    return escapedWords.includes(searched);
 };
 
 export const includesOneOf = (str: string, words: string[]): boolean => words.some((w) => str.includes(w));
