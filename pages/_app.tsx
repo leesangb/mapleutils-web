@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { isProduction } from '@tools/helper';
 import * as gtag from '@components/adsense/lib/gtag';
 import { useRouter } from 'next/router';
+import { appWithTranslation } from 'next-i18next';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -68,4 +69,4 @@ function MyApp(props: MyAppProps) {
     );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
