@@ -1,7 +1,19 @@
 import { Seo, SeoProps } from '@components/seo';
 import { MonsterCard, TitleCard } from '@components/card';
 import { seed49Data, SeedLocation, SeedMobData } from '@data/seed/49';
-import { Badge, Button, Card, CardContent, Collapse, Divider, Grid, Theme, Tooltip, useTheme } from '@mui/material';
+import {
+    Badge,
+    Button,
+    Card,
+    CardContent,
+    Collapse,
+    Divider,
+    Grid,
+    Theme,
+    Tooltip,
+    Typography,
+    useTheme,
+} from '@mui/material';
 import { Box, styled } from '@mui/system';
 import NextImage from 'next/image';
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
@@ -211,7 +223,15 @@ const Seed49 = ({ data }: Seed49Props) => {
                     }
                 </Masonry>
             </Box>
-            {i18n.resolvedLanguage === 'kr' && <Comments title={t('comments')} pageKey={'seed49'} />}
+            {
+                i18n.resolvedLanguage === 'kr'
+                    ? <Comments title={t('comments')} pageKey={'seed49'} />
+                    : (
+                        <Typography variant={'caption'}>
+                            Special thanks to <i>Billy | 2DBF</i> (GMS) for English translations
+                        </Typography>
+                    )
+            }
         </>
     );
 };
