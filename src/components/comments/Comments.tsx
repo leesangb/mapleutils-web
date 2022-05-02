@@ -4,6 +4,7 @@ import { Fragment, useState } from 'react';
 import { CommentRounded, ExpandLessRounded, ExpandMoreRounded } from '@mui/icons-material';
 import CommentItem from '@components/comments/CommentItem';
 import CommentPostField from '@components/comments/CommentPostField';
+import { useTranslation } from 'next-i18next';
 
 interface CommentsProps {
     title?: string;
@@ -12,12 +13,13 @@ interface CommentsProps {
 }
 
 const Comments = ({ title = '댓글', pageKey, defaultOpen }: CommentsProps) => {
+    const { i18n } = useTranslation();
     const [comments, count, actions] = useComment(pageKey);
     const [openComments, setOpenComments] = useState<boolean>(defaultOpen);
 
     const toggleOpen = () => setOpenComments(!openComments);
 
-    return (
+    return i18n.resolvedLanguage === 'kr' && (
         <Card variant={'outlined'} sx={theme => ({ marginTop: theme.spacing(1) })}>
             <Box padding={theme => theme.spacing(1)}>
                 <ListItem component='div' button onClick={toggleOpen}>
