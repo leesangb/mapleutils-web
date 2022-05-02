@@ -8,6 +8,7 @@ import { isHangulMatching } from '@tools/string';
 import { Seo, SeoProps } from '@components/seo';
 import { TitleCard } from '@components/card';
 import { Comments } from '@components/comments';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -89,10 +90,12 @@ const Seed39 = (props: Seed39Props) => {
     );
 };
 
-export const getStaticProps = () => {
+
+export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
             data: seed39Data.sort((a, b) => a.question.localeCompare(b.question)),
+            ...(await serverSideTranslations(locale, ['common', 'seed39'])),
         },
     };
 };

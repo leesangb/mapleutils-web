@@ -24,6 +24,7 @@ import { useTheme } from '@mui/system';
 import { TabContext, TabPanel } from '@mui/lab';
 import useCopy from '@hooks/useCopy';
 import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const seoProps: SeoProps = {
     title: '더 시드 24층',
@@ -137,6 +138,14 @@ const Seed24 = () => {
             <Comments pageKey={'seed24'} />
         </>
     );
+};
+
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common', 'seed24'])),
+        },
+    };
 };
 
 export default Seed24;

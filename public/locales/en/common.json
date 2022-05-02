@@ -4,5 +4,11 @@
   "filters": "Filters",
   "comments": "Comments",
   "selectAll": "Select All",
-  "invert": "Invert"
+  "invert": "Invert",
+  "home": "Home",
+  "darkMode": "Dark mode",
+  "lightMode": "Light mode",
+  "online": "Online",
+  "settings": "Settings",
+  "pageNotFound": "Page not found 😥"
 }

@@ -7,6 +7,7 @@ import { ReplayRounded } from '@mui/icons-material';
 import { Comments } from '@components/comments';
 import NextImage from 'next/image';
 import { styled } from '@mui/system';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const seoProps: SeoProps = {
     title: '더 시드 36층',
@@ -116,6 +117,15 @@ const Seed36 = () => {
             <Comments pageKey={'seed36'} />
         </>
     );
+};
+
+
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common', 'seed36'])),
+        },
+    };
 };
 
 export default Seed36;

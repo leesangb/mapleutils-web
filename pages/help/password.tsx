@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { useTheme } from '@mui/system';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const code = `
 # 비밀번호 저장
@@ -122,6 +123,14 @@ const PasswordHelp = () => {
             </Card>
         </>
     );
+};
+
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    };
 };
 
 export default PasswordHelp;

@@ -6,6 +6,7 @@ import { OptionName } from '@data/farm';
 import { mobsByEffect } from '@data/farm/mobsByEffect';
 import { MobCard } from '@components/card/monster-life';
 import { Comments } from '@components/comments';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const seoProps: SeoProps = {
     title: '몬스터 라이프 - 몬스터 정리',
@@ -83,6 +84,14 @@ const FarmInfo = () => {
             <Comments pageKey={'monster-life_information'} />
         </>
     );
+};
+
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    };
 };
 
 export default FarmInfo;

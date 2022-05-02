@@ -8,6 +8,7 @@ import { isHangulMatching } from '@tools/string';
 import { Seo, SeoProps } from '@components/seo';
 import { MobCard } from '@components/card/monster-life';
 import { Comments } from '@components/comments';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const seoProps: SeoProps = {
     title: '몬스터 라이프 - 조합식',
@@ -75,9 +76,10 @@ const FarmCombine = (props: FarmCombineProps) => {
     );
 };
 
-export const getStaticProps = () => {
+export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
+            ...(await serverSideTranslations(locale, ['common'])),
             recipes: monsterLifeRecipes,
         },
     };

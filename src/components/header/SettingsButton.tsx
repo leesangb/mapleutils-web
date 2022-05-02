@@ -7,7 +7,6 @@ import {
     ListItemText,
     PaletteMode,
     Popover,
-    Theme,
     Tooltip,
 } from '@mui/material';
 import { ReactNode, useState } from 'react';
@@ -15,8 +14,8 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import DarkModeIcon from '@mui/icons-material/Brightness4Rounded';
 import LightModeIcon from '@mui/icons-material/Brightness7Rounded';
 import { useStore } from '@stores/StoreContext';
-import { SxProps } from '@mui/system';
 import { observer } from 'mobx-react';
+import { useTranslation } from 'next-i18next';
 
 interface SettingsButtonProps {
     toggleDarkMode: () => void;
@@ -24,23 +23,18 @@ interface SettingsButtonProps {
 
 const themeIconAndLabel: Record<PaletteMode, { label: string; icon: ReactNode }> = {
     dark: {
-        label: '다크 모드',
+        label: 'darkMode',
         icon: <DarkModeIcon />,
     },
     light: {
-        label: '라이트 모드',
+        label: 'lightMode',
         icon: <LightModeIcon />,
-    },
-};
-
-const styles: Record<string, SxProps<Theme>> = {
-    listButton: {
-        borderRadius: '22px',
     },
 };
 
 const SettingsButton = observer((props: SettingsButtonProps) => {
     const { app } = useStore();
+    const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -58,7 +52,7 @@ const SettingsButton = observer((props: SettingsButtonProps) => {
 
     return (
         <>
-            <Tooltip title='설정'>
+            <Tooltip title={t('settings')}>
                 <IconButton aria-describedby={id} onClick={handleClick}>
                     <SettingsRoundedIcon />
                 </IconButton>
@@ -82,7 +76,7 @@ const SettingsButton = observer((props: SettingsButtonProps) => {
                     <List>
                         <ListItem button onClick={props.toggleDarkMode}>
                             <ListItemIcon>{theme.icon}</ListItemIcon>
-                            <ListItemText>{theme.label}</ListItemText>
+                            <ListItemText>{t(theme.label)}</ListItemText>
                         </ListItem>
                     </List>
                 </CardContent>

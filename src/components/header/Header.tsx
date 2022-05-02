@@ -4,6 +4,7 @@ import { Link } from '@components/link';
 import SettingsButton from './SettingsButton';
 import { HomeRounded, Menu } from '@mui/icons-material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import { useTranslation } from 'next-i18next';
 
 interface HeaderProps {
     themeType: PaletteMode;
@@ -22,6 +23,7 @@ const AppBar = styled(MuiAppBar)<MuiAppBarProps>(({ theme }) => ({
 
 
 const Header = (props: HeaderProps) => {
+    const { t } = useTranslation();
     return (
         <AppBar position={'fixed'} variant={'outlined'} color={'inherit'} elevation={0}>
             <Toolbar>
@@ -31,7 +33,7 @@ const Header = (props: HeaderProps) => {
                     <Menu />
                 </IconButton>
                 <Button startIcon={<HomeRounded />} color={'inherit'} component={Link} href={'/'} noLinkStyle>
-                    홈
+                    {t('home')}
                 </Button>
                 <Box sx={{ flexGrow: 1 }} />
                 <SettingsButton toggleDarkMode={props.toggleDarkMode} />

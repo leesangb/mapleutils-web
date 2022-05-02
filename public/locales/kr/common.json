@@ -4,5 +4,11 @@
   "filters": "필터",
   "comments": "댓글",
   "selectAll": "전체 선택",
-  "invert": "반전"
+  "invert": "반전",
+  "home": "홈",
+  "darkMode": "다크 모드",
+  "lightMode": "라이트 모드",
+  "online": "온라인",
+  "settings": "설정",
+  "pageNotFound": "페이지를 찾을 수 없습니다 😥"
 }

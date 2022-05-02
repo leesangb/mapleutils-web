@@ -6,6 +6,7 @@ import { DiscordIcon, KakaoTalkIcon } from '@components/icons';
 import { Comments } from '@components/comments';
 import { GitHub } from '@mui/icons-material';
 import { discordLink, githubLink, githubReleaseLink, kakaotalkLink } from '@tools/socialLinks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Home: NextPage = () => {
     return (
@@ -112,6 +113,14 @@ const Home: NextPage = () => {
             <Comments title={'피드백'} pageKey={'feedbacks'} defaultOpen />
         </>
     );
+};
+
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    };
 };
 
 export default Home;
