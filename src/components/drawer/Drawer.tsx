@@ -17,6 +17,7 @@ import DrawerHeader from '@components/drawer/DrawerHeader';
 import { ReactNode, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Footer from '@components/footer/Footer';
+import { TFunction, useTranslation } from 'next-i18next';
 
 interface DrawerProps {
     open: boolean;
@@ -97,7 +98,7 @@ type DrawerItem = {
         title: string,
         subtitle?: string,
         link: string,
-        icon: ReactNode
+        icon: (t: TFunction) => ReactNode
     }[]
 }
 
@@ -114,35 +115,35 @@ const LinkAvatar = (props: any) => {
 const drawerItems: DrawerItem[] = [
     {
         category: {
-            name: '더 시드',
-            short: '시드',
+            name: 'drawer.seed.longName',
+            short: 'drawer.seed.shortName',
         },
         children:
             seeds.map(seed => ({
                 key: `seed-${seed.floor}`,
-                title: `시드 ${seed.floor}층`,
-                subtitle: seed.shortDescription,
+                title: `drawer.seed.${seed.floor}.title`,
+                subtitle: `drawer.seed.${seed.floor}.shortDescription`,
                 link: `/seed/${seed.floor}`,
-                icon: <LinkAvatar link={`/seed/${seed.floor}`} text={seed.floor} />,
+                icon: () => <LinkAvatar link={`/seed/${seed.floor}`} text={seed.floor} />,
             })),
     },
     {
         category: {
-            name: '몬스터 라이프',
-            short: '몬라',
+            name: 'drawer.farm.longName',
+            short: 'drawer.farm.shortName',
         },
         children: [
             {
                 key: 'farm-combine',
-                title: '스페셜 조합식',
+                title: 'drawer.farm.combine.longName',
                 link: '/farm/combine',
-                icon: <LinkAvatar link={'/farm/combine'} text={'조합'} />,
+                icon: (t: TFunction) => <LinkAvatar link={'/farm/combine'} text={t('drawer.farm.combine.shortName')} />,
             },
             {
                 key: 'farm-info',
-                title: '몬스터 정리',
+                title: 'drawer.farm.info.longName',
                 link: '/farm/info',
-                icon: <LinkAvatar link={'/farm/info'} text={'몹'} />,
+                icon: (t: TFunction) => <LinkAvatar link={'/farm/info'} text={t('drawer.farm.info.shortName')} />,
             },
         ],
     },
@@ -150,12 +151,13 @@ const drawerItems: DrawerItem[] = [
 
 interface DrawerChildItemProps {
     link: string;
-    icon: ReactNode;
+    icon: (t: TFunction) => ReactNode;
     title: string;
     subtitle?: string;
 }
 
 const DrawerChildItem = (props: DrawerChildItemProps) => {
+    const { t } = useTranslation();
     return (
         <ListItem component={Link}
                   href={props.link}
@@ -163,7 +165,7 @@ const DrawerChildItem = (props: DrawerChildItemProps) => {
                   button
                   dense>
             <ListItemIcon>
-                {props.icon}
+                {props.icon(t)}
             </ListItemIcon>
             <ListItemText primary={props.title} secondary={props.subtitle} />
         </ListItem>
@@ -176,13 +178,15 @@ interface DrawerItemListProps {
 }
 
 const DrawerItemList = (props: DrawerItemListProps) => {
+    const { t } = useTranslation();
     const { open, item } = props;
     return (
         <>
             <ListItem>
-                <ListItemText primary={open ? item.category.name : item.category.short} />
+                <ListItemText primary={t(open ? item.category.name : item.category.short)} />
             </ListItem>
-            {item.children.map(({ key, ...rest }) => <DrawerChildItem key={key} {...rest} />)}
+            {item.children.map(({ key, title, subtitle, ...rest }) => <DrawerChildItem key={key} title={t(title)}
+                                                                                       subtitle={subtitle ? t(subtitle) : undefined} {...rest} />)}
             <Divider sx={theme => ({ margin: theme.spacing(1) })} />
         </>
     );
@@ -200,7 +204,7 @@ const Drawer = (props: DrawerProps) => {
                 {drawerItems.map(item => <DrawerItemList open={open} key={item.category.name} item={item} />)}
             </List>
         </Box>
-    </>, []);
+    </>, [open]);
 
     return mdDown ? (
         <MuiDrawer anchor={'top'} open={open}>

@@ -5,6 +5,7 @@ import { GitHub } from '@mui/icons-material';
 import { discordLink, githubLink, kakaotalkLink } from '@tools/socialLinks';
 import useFetch from '@hooks/useFetch';
 import { AnalyticsRealTimeData } from '@api/analytics';
+import { useTranslation } from 'next-i18next';
 
 const currentYear = new Date().getFullYear();
 
@@ -19,13 +20,14 @@ interface FooterProps {
 }
 
 const Footer = (props: FooterProps) => {
+    const { t } = useTranslation();
     const { data } = useFetch<AnalyticsRealTimeData>(`/api/realtime-users`);
     return (
         <StyledFooter>
             <Grid container direction={props.open ? 'row' : 'column'} justifyContent={'center'}>
                 {data && (<Grid item sx={{ alignSelf: 'center' }}>
                     <Typography variant={'caption'}>
-                        온라인 : {data.users}
+                        {t('online')} : {data.users}
                     </Typography>
                 </Grid>)}
                 <Grid item sx={{ alignSelf: 'center' }}>

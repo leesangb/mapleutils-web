@@ -10,5 +10,43 @@
   "lightMode": "라이트 모드",
   "online": "온라인",
   "settings": "설정",
-  "pageNotFound": "페이지를 찾을 수 없습니다 😥"
+  "pageNotFound": "페이지를 찾을 수 없습니다 😥",
+  "drawer": {
+    "seed": {
+      "longName": "더 시드",
+      "shortName": "시드",
+      "24": {
+        "title": "시드 24층",
+        "shortDescription": "마을 BGM"
+      },
+      "36": {
+        "title": "시드 36층",
+        "shortDescription": "기록지"
+      },
+      "39": {
+        "title": "시드 39층",
+        "shortDescription": "문제 족보"
+      },
+      "48": {
+        "title": "시드 48층",
+        "shortDescription": "오버레이 미니맵"
+      },
+      "49": {
+        "title": "시드 49층",
+        "shortDescription": "문제 족보"
+      }
+    },
+    "farm": {
+      "longName": "몬스터 라이프",
+      "shortName": "몬라",
+      "combine": {
+        "longName": "스페셜 조합식",
+        "shortName": "조합"
+      },
+      "info": {
+        "longName": "몬스터 정리",
+        "shortName": "몹"
+      }
+    }
+  }
 }

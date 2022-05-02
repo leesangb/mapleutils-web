@@ -10,5 +10,43 @@
   "lightMode": "Light mode",
   "online": "Online",
   "settings": "Settings",
-  "pageNotFound": "Page not found 😥"
+  "pageNotFound": "Page not found 😥",
+  "drawer": {
+    "seed": {
+      "longName": "Tower of Oz",
+      "shortName": "Oz",
+      "24": {
+        "title": "Tower of Oz F24",
+        "shortDescription": "Soundtracks"
+      },
+      "36": {
+        "title": "Tower of Oz F36",
+        "shortDescription": "Note"
+      },
+      "39": {
+        "title": "Tower of Oz F39",
+        "shortDescription": "Questions & Answers"
+      },
+      "48": {
+        "title": "Tower of Oz F48",
+        "shortDescription": "Minimap overlay"
+      },
+      "49": {
+        "title": "Tower of Oz F49",
+        "shortDescription": "Mob guide"
+      }
+    },
+    "farm": {
+      "longName": "Monster Life",
+      "shortName": "Farm",
+      "combine": {
+        "longName": "Combine formula",
+        "shortName": "CF"
+      },
+      "info": {
+        "longName": "Mob list",
+        "shortName": "ML"
+      }
+    }
+  }
 }
