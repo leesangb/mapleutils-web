@@ -25,15 +25,15 @@ import useCopy from '@hooks/useCopy';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { Comments } from '@components/comments';
 import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
-import { useTranslation } from 'next-i18next';
+import { TFunction, useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const seoProps: SeoProps = {
-    title: '더 시드 49층',
-    keywords: ['49층', '족보', '몬스터', '실루엣', '도로시 챌린저', '도챌', '1급', '도로시'],
-    description: '더 시드 49층 족보',
+const seoProps = (t: TFunction, ns: string): SeoProps => ({
+    title: t('seo.title', { ns }),
+    keywords: t('seo.keywords', { ns }).split(', '),
+    description: t('seo.description', { ns }),
     image: '/images/49.png',
-};
+});
 
 interface Seed49Props {
     data: SeedLocation[];
@@ -143,7 +143,7 @@ const Seed49 = ({ data }: Seed49Props) => {
 
     return (
         <>
-            <Seo {...seoProps} />
+            <Seo {...seoProps(t, 'seed49')} />
             <TitleCard title={t('title', { ns: 'seed49' })} marginRight={1} />
             <Card variant={'outlined'}
                   sx={theme => ({
