@@ -48,5 +48,22 @@
         "shortName": "몹"
       }
     }
-  }
+  },
+  "default": "기본",
+  "nameAsc": "가나다",
+  "nameDesc": "가나다 (역순)",
+  "sort": "정렬",
+  "copyMessage": "<{{text}}>를(을) 복사했습니다!",
+  "more": "더보기",
+  "autoClipOnPlay": "음악 선택 시 자동 복사",
+  "showCheck": "음악 체크 표시",
+  "copy": "복사하기",
+  "play": "재생",
+  "pause": "일시정지",
+  "stop": "정지",
+  "spaceToPausePlay": "스페이스바로 재생/일시정지",
+  "upDownVolume": "↑/↓로 볼륨 조절",
+  "seek": "←/→로 위치 조절",
+  "maxVolume": "음량 최대",
+  "minVolume": "음소거"
 }

@@ -22,8 +22,10 @@ import {
 } from '@mui/icons-material';
 import { MouseEvent, useEffect, useState } from 'react';
 import { isKeyboardTargetInput } from '@tools/keyboardEventHelper';
+import { useTranslation } from 'next-i18next';
 
 const PlayerSettings = () => {
+    const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const { preference: { autoClip, check, onChangeAutoClip, onChangeCheck } } = useMusicPlayerContext();
     const open = Boolean(anchorEl);
@@ -46,7 +48,7 @@ const PlayerSettings = () => {
 
     return (
         <>
-            <Tooltip title={'더보기'}>
+            <Tooltip title={t('more')}>
                 <IconButton onClick={handleClick}>
                     <MoreVertRounded />
                 </IconButton>
@@ -71,7 +73,7 @@ const PlayerSettings = () => {
                         <ListItemIcon>
                             <FileCopyRounded />
                         </ListItemIcon>
-                        <ListItemText>음악 선택 시 자동 복사</ListItemText>
+                        <ListItemText>{t('autoClipOnPlay')}</ListItemText>
                         <Switch
                             edge='end'
                             onChange={toggleAutoClip}
@@ -85,7 +87,7 @@ const PlayerSettings = () => {
                         <ListItemIcon>
                             <CheckRounded />
                         </ListItemIcon>
-                        <ListItemText>음악 체크 표시</ListItemText>
+                        <ListItemText>{t('showCheck')}</ListItemText>
                         <Switch
                             edge='end'
                             onChange={toggleCheck}
@@ -103,6 +105,7 @@ const PlayerSettings = () => {
 
 
 const PlayerButtons = () => {
+    const { t } = useTranslation();
     const { track, state, setState, onClip } = useMusicPlayerContext();
 
     const handlePlayPause = () => {
@@ -137,16 +140,16 @@ const PlayerButtons = () => {
             <Grid item>
                 <Tooltip title={
                     <>
-                        <Typography variant={'subtitle2'}>스페이스바로 재생/일시정지</Typography>
-                        <Typography variant={'subtitle2'}>↑/↓로 볼륨 조절</Typography>
-                        <Typography variant={'subtitle2'}>←/→로 위치 조절</Typography>
+                        <Typography variant={'subtitle2'}>{t('spaceToPausePlay')}</Typography>
+                        <Typography variant={'subtitle2'}>{t('upDownVolume')}</Typography>
+                        <Typography variant={'subtitle2'}>{t('seek')}</Typography>
                     </>
                 }>
                     <TipsAndUpdatesRounded sx={theme => ({ color: theme.palette.action.active })} />
                 </Tooltip>
             </Grid>
             <Grid item>
-                <Tooltip title={'정지'}>
+                <Tooltip title={t('stop')}>
                     <IconButton disabled={!track} onClick={handleStop}>
                         <StopRounded sx={theme => ({
                             width: theme.spacing(3),
@@ -160,14 +163,14 @@ const PlayerButtons = () => {
                     {
                         state === 'playing'
                             ? (
-                                <Tooltip title={'일시정지'}>
+                                <Tooltip title={t('pause')}>
                                     <PauseRounded sx={theme => ({
                                         width: theme.spacing(7),
                                         height: theme.spacing(7),
                                     })} />
                                 </Tooltip>
                             ) : (
-                                <Tooltip title={'재생'}>
+                                <Tooltip title={t('play')}>
                                     <PlayArrowRounded sx={theme => ({
                                         width: theme.spacing(7),
                                         height: theme.spacing(7),
@@ -176,7 +179,7 @@ const PlayerButtons = () => {
                             )
                     }
                 </IconButton>
-                <Tooltip title={'복사하기'}>
+                <Tooltip title={t('copy')}>
                     <IconButton disabled={!track} onClick={handleClip}>
                         <FileCopyRounded sx={theme => ({
                             width: theme.spacing(3),

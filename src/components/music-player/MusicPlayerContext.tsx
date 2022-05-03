@@ -8,6 +8,7 @@ import {
     MusicPlayerPreferenceAction,
     useMusicPlayerPreference,
 } from '@components/music-player/MusicPlayerPreference';
+import { TFunction, useTranslation } from 'next-i18next';
 
 
 interface MusicPlayerContext {
@@ -32,19 +33,20 @@ interface MusicPlayerProviderProps {
 
 type OrderType = 'default' | 'nameAsc' | 'nameDesc';
 
-const orderFunctions: Record<OrderType, (tracks: TrackInfo[]) => TrackInfo[]> = {
+const orderFunctions: Record<OrderType, (tracks: TrackInfo[], t: TFunction) => TrackInfo[]> = {
     ['default']: tracks => tracks,
-    ['nameAsc']: tracks => tracks.sort((t1, t2) => t1.name.localeCompare(t2.name)),
-    ['nameDesc']: tracks => tracks.sort((t1, t2) => t2.name.localeCompare((t1.name))),
+    ['nameAsc']: (tracks, t) => tracks.sort((t1, t2) => t(t1.name, { ns: 'seed24' }).localeCompare(t(t2.name, { ns: 'seed24' }))),
+    ['nameDesc']: (tracks, t) => tracks.sort((t1, t2) => t(t2.name, { ns: 'seed24' }).localeCompare(t(t1.name, { ns: 'seed24' }))),
 };
 
 const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayerProviderProps>) => {
+    const { t } = useTranslation();
     const { playerState, setTime, setState, setTrack, setDuration, setAudio } = usePlayerState();
     const preference = useMusicPlayerPreference();
     const { copy, CopySnackbar } = useCopy();
 
     const trackList = useMemo(() => {
-        return orderFunctions[preference.order]([...tracks]);
+        return orderFunctions[preference.order]([...tracks], t);
     }, [preference.order, tracks]);
 
     useEffect(() => {
@@ -102,7 +104,7 @@ const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayer
 
     const onClip = (trackName?: string) => {
         if (!trackName) return;
-        copy(trackName);
+        copy(t(trackName, { ns: 'seed24' }));
     };
 
     return (

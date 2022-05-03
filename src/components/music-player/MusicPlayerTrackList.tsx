@@ -2,8 +2,10 @@ import { Grid, MenuItem, TextField } from '@mui/material';
 import MusicItem from '@components/music-player/MusicItem';
 import { useMusicPlayerContext } from '@components/music-player/MusicPlayerContext';
 import { ChangeEvent } from 'react';
+import { useTranslation } from 'next-i18next';
 
 const MusicPlayerTrackList = () => {
+    const { t } = useTranslation();
     const { tracks, preference: { order, onChangeOrder } } = useMusicPlayerContext();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -16,11 +18,11 @@ const MusicPlayerTrackList = () => {
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
-                <TextField sx={{ float: 'right' }} select label={'정렬'} size={'small'} value={order}
+                <TextField sx={{ float: 'right' }} select label={t('sort')} size={'small'} value={order}
                            onChange={handleChange}>
-                    <MenuItem value={'default'}>기본</MenuItem>
-                    <MenuItem value={'nameAsc'}>가나다</MenuItem>
-                    <MenuItem value={'nameDesc'}>가나다 (역순)</MenuItem>
+                    <MenuItem value={'default'}>{t('default')}</MenuItem>
+                    <MenuItem value={'nameAsc'}>{t('nameAsc')}</MenuItem>
+                    <MenuItem value={'nameDesc'}>{t('nameDesc')}</MenuItem>
                 </TextField>
             </Grid>
             {tracks.map((audio) => (

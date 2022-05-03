@@ -1,7 +1,10 @@
 import { useCallback, useState } from 'react';
 import { Alert, Paper, Snackbar } from '@mui/material';
+import { useTranslation } from 'next-i18next';
 
-const useCopy = (formatter: (text: string) => string = (text) => `<${text}>를(을) 복사했습니다!`) => {
+const useCopy = () => {
+    const { t } = useTranslation();
+    const formatter = (text: string) => t('copyMessage', { text });
     const [message, setMessage] = useState<string | null>(null);
 
     const copy = useCallback((text: string) => {

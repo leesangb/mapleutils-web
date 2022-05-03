@@ -48,5 +48,22 @@
         "shortName": "ML"
       }
     }
-  }
+  },
+  "default": "Default",
+  "nameAsc": "Alphabetically",
+  "nameDesc": "Alphabetically (Desc)",
+  "sort": "Order",
+  "copyMessage": "<{{text}}> copied to clipboard!",
+  "more": "More",
+  "autoClipOnPlay": "Automatically copy on play",
+  "showCheck": "Show checkbox",
+  "copy": "Copy",
+  "play": "Play",
+  "pause": "Pause",
+  "stop": "Stop",
+  "spaceToPausePlay": "Spacebar to pause/play",
+  "upDownVolume": "↑/↓ Increase/Decrease volume",
+  "seek": "←/→ Seek backward/forward",
+  "maxVolume": "Max volume",
+  "minVolume": "Min volume"
 }

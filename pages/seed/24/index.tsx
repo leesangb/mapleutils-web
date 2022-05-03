@@ -12,11 +12,8 @@ import {
     useMediaQuery,
 } from '@mui/material';
 import { MusicPlayer, TrackInfo } from '@components/music-player';
-import { seed24AudioData } from '@data/seed/24';
 import { Seo, SeoProps } from '@components/seo';
 import { TitleCard } from '@components/card';
-import { Comments } from '@components/comments';
-import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { useCallback, useEffect, useState } from 'react';
 import { isHangulMatching } from '@tools/string';
@@ -24,6 +21,11 @@ import { useTheme } from '@mui/system';
 import { TabContext, TabPanel } from '@mui/lab';
 import useCopy from '@hooks/useCopy';
 import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
+import { useTranslation } from 'next-i18next';
+import { TOptions } from 'i18next';
+import { seed24AudioData } from '@data/seed/24';
+import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
+import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const seoProps: SeoProps = {
@@ -54,8 +56,12 @@ const useSeed24Tabs = () => {
 };
 
 
+const seed24Translation: TOptions = { ns: 'seed24' };
+
 const Seed24 = () => {
     const { height } = useWindowDimensions();
+    const { t, i18n } = useTranslation();
+    const isKMS = i18n.resolvedLanguage === 'kr';
     const { copy, CopySnackbar } = useCopy();
 
     const rowRenderer = useCallback(
@@ -100,13 +106,13 @@ const Seed24 = () => {
     return (
         <>
             <Seo {...seoProps} />
-            <TitleCard title={'시드 24층'} />
+            <TitleCard title={t('title', seed24Translation)} />
 
             <TabContext value={tab}>
                 <Paper variant={'outlined'}>
                     <Tabs value={tab} onChange={handleChangeTab} centered>
-                        <Tab value={'bgm'} label={'브금'} />
-                        <Tab value={'hint'} label={'힌트'} />
+                        <Tab value={'bgm'} label={t('bgm', { ns: 'seed24' })} />
+                        <Tab disabled={!isKMS} value={'hint'} label={t('hint', { ns: 'seed24' })} />
                     </Tabs>
                 </Paper>
 
@@ -131,7 +137,6 @@ const Seed24 = () => {
                         </CardContent>
                     </Card>
                 </TabPanel>
-
                 <CopySnackbar />
             </TabContext>
 

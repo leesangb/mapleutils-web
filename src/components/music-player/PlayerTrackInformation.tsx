@@ -2,8 +2,10 @@ import { useMusicPlayerContext } from '@components/music-player/MusicPlayerConte
 import { Avatar, Stack, Typography } from '@mui/material';
 import { MusicNoteRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
+import { useTranslation } from 'next-i18next';
 
 const PlayerTrackInformation = () => {
+    const { t } = useTranslation();
     const { track, state } = useMusicPlayerContext();
 
     const isPlaying = state === 'playing';
@@ -31,13 +33,13 @@ const PlayerTrackInformation = () => {
                         ? (
                             <>
                                 <Typography variant={'h6'} gutterBottom component={'span'}>
-                                    현재 플레이중:
+                                    {t('nowPlaying', { ns: 'seed24' })}:
                                 </Typography>
-                                <Typography variant={'h2'}>{track?.name}</Typography>
+                                <Typography variant={'h2'}>{t(track?.name, { ns: 'seed24' })}</Typography>
                             </>
                         ) : (
                             <Typography variant='h6'>
-                                재생 할 곡을 선택 해 주세요!
+                                {t('selectBGMToPlay', { ns: 'seed24' })}
                             </Typography>
                         )
                 }
