@@ -3,8 +3,8 @@ import { useTheme } from '@mui/system';
 import { useCallback } from 'react';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
-import { QuestionAnswer, seed39Data } from '@data/seed/39';
-import { isHangulMatching } from '@tools/string';
+import { QuestionAnswer, seed39Data, seed39DataGMS } from '@data/seed/39';
+import { isHangulMatching, isMatching } from '@tools/string';
 import { Seo, SeoProps } from '@components/seo';
 import { TitleCard } from '@components/card';
 import { Comments } from '@components/comments';
@@ -57,7 +57,7 @@ const seoProps = (t: TFunction): SeoProps => ({
 });
 
 const Seed39 = (props: Seed39Props) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const { height } = useWindowDimensions();
     const theme = useTheme();
     const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
@@ -69,8 +69,10 @@ const Seed39 = (props: Seed39Props) => {
     );
 
     const searchFilter = useCallback((item: QuestionAnswer, pattern: string) => {
-        return isHangulMatching(pattern, item.question, ...item.choices);
-    }, []);
+        return i18n.resolvedLanguage === 'kr'
+            ? isHangulMatching(pattern, item.question, ...item.choices)
+            : isMatching(pattern, item.question, ...item.choices);
+    }, [i18n.resolvedLanguage]);
 
     return (
         <>
@@ -97,7 +99,9 @@ const Seed39 = (props: Seed39Props) => {
 export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
-            data: seed39Data.sort((a, b) => a.question.localeCompare(b.question)),
+            data: locale === 'kr'
+                ? seed39Data.sort((a, b) => a.question.localeCompare(b.question))
+                : seed39DataGMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)),
             ...(await serverSideTranslations(locale, ['common', 'seed39'])),
         },
     };

@@ -1,0 +1,2602 @@
+[
+  {
+    "question": "Which of these bosses has NEVER appeared in MapleStory?",
+    "choices": [
+      "Nibelung",
+      "Beelzebub",
+      "Eckhart",
+      "Dragonoir"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these bosses has NEVER appeared in MapleStory?",
+    "choices": [
+      "Aufheben",
+      "Rex",
+      "Irena",
+      "Bear Grills"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these bosses has NEVER appeared in MapleStory?",
+    "choices": [
+      "Spirit of Rock",
+      "Diablow",
+      "Vellum",
+      "Shinsoo"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these bosses has NEVER appeared in MapleStory?",
+    "choices": [
+      "Bergamot",
+      "Cocatris",
+      "Von Leon",
+      "Hilla"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these bosses has NEVER appeared in MapleStory?",
+    "choices": [
+      "Ephenia",
+      "Shammos",
+      "Arkarium",
+      "Navy Captain"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these chairs does NOT exist in MapleStory?",
+    "choices": [
+      "Rainy Fox Chair",
+      "Swing on the Persimmon Tree",
+      "Teddy Bear Bed",
+      "Rappy's Persimmon Chair"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these chairs does NOT exist in MapleStory?",
+    "choices": [
+      "Under the Maple Tree",
+      "Tropical Cooler Chair",
+      "Dragon Egg",
+      "First Love Chair"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these chairs does NOT exist in MapleStory?",
+    "choices": [
+      "Come Back Chair",
+      "Mochi Ice Cream Chair",
+      "Dream Interpreter Chair",
+      "Guild Chair"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these chairs does NOT exist in MapleStory?",
+    "choices": [
+      "Wooden Tub",
+      "Red Designer Chair",
+      "Wheelchair",
+      "Chair on the Range"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these chairs does NOT exist in MapleStory?",
+    "choices": [
+      "Noblesse Chair",
+      "Strong Wooden Chair",
+      "Bunny Chair",
+      "Money Cushion"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these cities does NOT exist in Maplestory?",
+    "choices": [
+      "Six Path Crossway",
+      "El Nath",
+      "Ludibrium",
+      "Margaret"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these cities does NOT exist in Maplestory?",
+    "choices": [
+      "Edinburgh",
+      "Edelstein",
+      "Henesys",
+      "Lith Harbor"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these cities does NOT exist in Maplestory?",
+    "choices": [
+      "Sleeping Forest",
+      "Rien",
+      "Edelstein",
+      "Ariant"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these cities does NOT exist in Maplestory?",
+    "choices": [
+      "Orbis",
+      "Aquarium",
+      "Cunning City",
+      "Ellinia"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these cities does NOT exist in MapleStory?",
+    "choices": [
+      "Ereve",
+      "Sleepywood",
+      "Fenesys",
+      "Kerning City"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a crafting item in MapleStory?",
+    "choices": [
+      "Patchouli Flower",
+      "Wisdom Crystal Ore",
+      "Basic Potion Coagulant",
+      "Hyacinth Juice"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a crafting item in MapleStory?",
+    "choices": [
+      "Herb Oil Bottle",
+      "Pulsatilla Seed",
+      "Leather",
+      "Murumuru's Furball"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a crafting item in MapleStory?",
+    "choices": [
+      "Zakum Phlegm",
+      "Amethyst Ore",
+      "Opal",
+      "Magic Potion 1"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a crafting item in MapleStory?",
+    "choices": [
+      "Loving Chocolate",
+      "Faded Silver Ore",
+      "Silver",
+      "Marjoram Flower Oil"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a crafting item in MapleStory?",
+    "choices": [
+      "Chamomile Flower",
+      "Lidium Ore",
+      "Strength Potion 1",
+      "Nickel"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a crafting item in MapleStory?",
+    "choices": [
+      "Jasmine Seed",
+      "Kryptonite Ore",
+      "Steel Plate",
+      "Charm of the Undead"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a one-handed weapon?",
+    "choices": [
+      "Beatstick",
+      "Courage Wings",
+      "Legendary Fraute",
+      "Viking Sword"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a one-handed weapon?",
+    "choices": [
+      "Kage",
+      "Wooden Mallet",
+      "Glowing Whip",
+      "Plain Alpha"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a one-handed weapon?",
+    "choices": [
+      "Chaos Hawkhead",
+      "Revolution Sword",
+      "Forked Spear",
+      "Vallentier"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a one-handed weapon?",
+    "choices": [
+      "Double Axe",
+      "Opulent White Sword",
+      "Pioneer's Dual Wings",
+      "Dim Memory"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a one-handed weapon?",
+    "choices": [
+      "Khan",
+      "Red Katana",
+      "Eloon",
+      "Doombringer"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a one-handed weapon?",
+    "choices": [
+      "Maple 1500 Anniv. FLag",
+      "Crescent Blade",
+      "Twin Zephyrs",
+      "Abyss Grim Seeker"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these bosses has NEVER appeared in MapleStory?",
+    "choices": [
+      "Xerxes",
+      "Ravana",
+      "Von Venom",
+      "Empress Cygnus"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these bosses has NEVER appeared in MapleStory?",
+    "choices": [
+      "Big Brother",
+      "Dragonoir",
+      "Charged Poison Golem",
+      "Crimson Queen"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these bosses has NEVER appeared in MapleStory?",
+    "choices": [
+      "Big Carl",
+      "Lord Balrog",
+      "Von Bon",
+      "Oz"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these bosses has NEVER appeared in MapleStory?",
+    "choices": [
+      "Botichelli",
+      "Von Bon",
+      "Guard Ani",
+      "Magnus"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these bosses has NEVER appeared in MapleStory?",
+    "choices": [
+      "Dunas",
+      "Dragon Rider",
+      "Emuloch",
+      "Pierre"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these chairs does NOT exist in MapleStory?",
+    "choices": [
+      "Pink Seal Cushion",
+      "Last Year Sergeant Chair",
+      "Lord Pirate Chair",
+      "Ten Week Stay Chair"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these chairs does NOT exist in MapleStory?",
+    "choices": [
+      "Bamboo Chair",
+      "Red-Hat Moon Bunny Cushion",
+      "Soul Teddy Chair",
+      "Diamond Bath"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these chairs does NOT exist in MapleStory?",
+    "choices": [
+      "The Relaxer",
+      "Mammoth Chair",
+      "Hilla's Style Maker",
+      "Campfire Chair"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these chairs does NOT exist in MapleStory?",
+    "choices": [
+      "March Bunny Chair",
+      "Moon and Star Cushion",
+      "Pendulum Chair",
+      "Love Chair"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these chairs does NOT exist in MapleStory?",
+    "choices": [
+      "Red Round Chair",
+      "Pink Beach Parasol Chair",
+      "Valentine's Cursed Chair",
+      "Artistic Vision Chair"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these cities does NOT exist in Maplestory?",
+    "choices": [
+      "Perion",
+      "Mu Lung",
+      "Frankenstein",
+      "Elluel"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these cities does NOT exist in Maplestory?",
+    "choices": [
+      "Henesys",
+      "El Segundo",
+      "Kerning City",
+      "Herb Town"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these cities does NOT exist in MapleStory?",
+    "choices": [
+      "Lith Harbor",
+      "Orbis",
+      "Herb Town",
+      "Aqua Aqua"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these cities does NOT exist in MapleStory?",
+    "choices": [
+      "Kerning City",
+      "Swan Town",
+      "Perion",
+      "Leafre"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these cities does NOT exist in MapleStory?",
+    "choices": [
+      "Sacramento",
+      "Magatia",
+      "Nautilus",
+      "Ariant"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a crafting item in MapleStory?",
+    "choices": [
+      "Juniper Berry Flower",
+      "Diamond Ore",
+      "Used Fabric",
+      "Health Potion (1000)"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a crafting item in MapleStory?",
+    "choices": [
+      "Clary Sage",
+      "Magnus Sweat",
+      "Basic Abrasive",
+      "Orihalcon Plate"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a crafting item in MapleStory?",
+    "choices": [
+      "Hyssop Flower",
+      "Intermediate Mold",
+      "Fairy Sand",
+      "Black Magic Powder"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a crafting item in MapleStory?",
+    "choices": [
+      "Tea Tree Seed",
+      "Mithril Ore",
+      "Sapphire",
+      "Penicillin"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a one-handed weapon?",
+    "choices": [
+      "Facebuster",
+      "Mihile",
+      "Chaos Fraute",
+      "Plain"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a one-handed weapon?",
+    "choices": [
+      "Fafnir Damascus",
+      "Legendary Maple Lightbringer",
+      "Sword",
+      "Lion's Fang"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a one-handed weapon?",
+    "choices": [
+      "Maple Umbrella",
+      "Sparta",
+      "Lunar Glory",
+      "Raven Horn Baselard"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a one-handed weapon?",
+    "choices": [
+      "Fireman's Axe",
+      "Valiant Wings",
+      "Witch's Broomstick",
+      "Gold Shine Beta"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a Paladin skill?",
+    "choices": [
+      "Ordinance",
+      "Guardian",
+      "Lightning Charge",
+      "Advanced Charge"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a Paladin skill?",
+    "choices": [
+      "Weapon Booster",
+      "Divine Shield",
+      "Parashock Guard",
+      "Divine Sword"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a Paladin skill?",
+    "choices": [
+      "Weapon Mastery",
+      "Blizzard Charge",
+      "Mendable Claw",
+      "Blast"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a Paladin skill?",
+    "choices": [
+      "Iron Body",
+      "Chase",
+      "Combat Orders",
+      "High Paladin"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a Paladin skill?",
+    "choices": [
+      "Slash Blast",
+      "Blaze Defense",
+      "Rush",
+      "Maple Warrior"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a Paladin skill?",
+    "choices": [
+      "Physical Training",
+      "Shield Mastery",
+      "Regal Stretch",
+      "Hero's Will"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a Paladin skill?",
+    "choices": [
+      "Final Attack",
+      "Close Combat",
+      "Haste",
+      "Heaven's Hammer"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a Paladin skill?",
+    "choices": [
+      "Faint Prayer",
+      "Warrior Mastery",
+      "HP Recovery",
+      "Power Stance"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a Paladin skill?",
+    "choices": [
+      "Elemental Charge",
+      "Achilles",
+      "Threaten",
+      "Blessing"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a Shade skill?",
+    "choices": [
+      "Weaken",
+      "Spirit Bond 4",
+      "Cosmic Balance",
+      "Sleeper Hold"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a Shade skill?",
+    "choices": [
+      "Strength Training",
+      "Bomb Punch",
+      "Dead Or Alive",
+      "Spirit Bond"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a Shade skill?",
+    "choices": [
+      "Vulpes Leap",
+      "Heavy Hammer",
+      "Soul Splitter",
+      "Spirit Claw"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a Shade skill?",
+    "choices": [
+      "Spirit Frenzy",
+      "Critical Insight",
+      "Vulpes Leap",
+      "Chase Cut"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a Shade skill?",
+    "choices": [
+      "Shockwave Punch",
+      "Fox Fire Spirit Mastery",
+      "Stumping A Mudhole",
+      "Pink Punch"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a Shade skill?",
+    "choices": [
+      "Knuckle Mastery",
+      "Spirit Redemption",
+      "Hyper Buting",
+      "Heroic Memories"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a Shade skill?",
+    "choices": [
+      "Fox Spirits",
+      "Spirit Trap",
+      "Scuffle",
+      "Spirit Incarnation"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a Shade skill?",
+    "choices": [
+      "Ground Pound",
+      "Pink Punch",
+      "Maple Warrior",
+      "Spirit Ward"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a Shade skill?",
+    "choices": [
+      "Really Angry Fist",
+      "Flash Fist",
+      "Death Mark",
+      "Knuckle Mastery"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a Shade skill?",
+    "choices": [
+      "Super Mega Awesome Punch",
+      "Swift Strike",
+      "Spirit Claw",
+      "Back Step"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a skill of a Battle Mage?",
+    "choices": [
+      "High Wisdom",
+      "Quad Blow",
+      "Blood Drain",
+      "Draw Mana"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a skill of a Cannoneer?",
+    "choices": [
+      "Scatter Shot",
+      "Cannon Mastery",
+      "Monkey Magic",
+      "Fast Reload"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a skill of a Mechanic?",
+    "choices": [
+      "Homing Beacon",
+      "Perfect Armor",
+      "Gatling Gun",
+      "Claymore"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a skill of a Wind Archer?",
+    "choices": [
+      "Double Shot Witcher",
+      "Gust Shot",
+      "Bow Mastery",
+      "Sylvan Aid"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a skill of Mihile?",
+    "choices": [
+      "Soul Plunger",
+      "Soul Shield",
+      "Soul Devotion",
+      "Soul Blade"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a skill of Phantom?",
+    "choices": [
+      "Bad Luck Ward",
+      "Perfect Sense",
+      "Piercing Vision",
+      "Mist Mask"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a skill of the Swordsman?",
+    "choices": [
+      "Iron Body",
+      "Imagination Boost",
+      "Leap Attack",
+      "Slash Blast"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a skill of the Demon Slayer?",
+    "choices": [
+      "Mind Flayer",
+      "Leech Aura",
+      "Maple Warrior",
+      "Binding Darkness"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a skill of a Marksman?",
+    "choices": [
+      "Marksmanship",
+      "Piercing Arrow",
+      "Exploding Arrows",
+      "Illusion Step"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a Paladin skill?",
+    "choices": [
+      "War Leap",
+      "Flame Charge",
+      "Lightning Action",
+      "Divine Charge"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a skill of the Night Walker?",
+    "choices": [
+      "Collateral Flash",
+      "Darkness",
+      "Haste",
+      "Magic Theft"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a Zero skill?",
+    "choices": [
+      "Mega Power Bomb",
+      "Critical Bind",
+      "Flash Cut",
+      "Air Raid"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a Zero skill?",
+    "choices": [
+      "Falling Star",
+      "Deadly Action",
+      "Spin Driver",
+      "Long Sword Mastery"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a Zero skill?",
+    "choices": [
+      "Groundbreaker",
+      "Crimson Cutter",
+      "Rolling Cross",
+      "Rising Slash"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a Zero skill?",
+    "choices": [
+      "Throwing Weapon",
+      "Giga Crash",
+      "Groundbreaker",
+      "File Driver"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a Zero skill?",
+    "choices": [
+      "Fighting Stumble",
+      "Wind Striker",
+      "Reinforced Body",
+      "Heavy Sword Mastery"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT a Zero skill?",
+    "choices": [
+      "Grand Rolling Cross",
+      "Cross Line",
+      "Armor Split",
+      "Shadow Strike"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT a Zero skill?",
+    "choices": [
+      "Solid Body",
+      "Storm Break",
+      "Double Stretch",
+      "Moon Strike"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a Zero skill?",
+    "choices": [
+      "Blade Ring",
+      "Divine Leer",
+      "Psychic Tracer",
+      "Throwing Weapon"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT a Zero skill?",
+    "choices": [
+      "Time Generator",
+      "Wind Cutter",
+      "Immune Barrier",
+      "Moon Assault"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT a Zero skill?",
+    "choices": [
+      "Flash Assault",
+      "Low Blow",
+      "Wheel Wind",
+      "Long Sword Mastery"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "??",
+      "Healthy Hospital",
+      "Basement Training Ground",
+      "Zakum"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Cave House",
+      "Octo Pot Seafood",
+      "Elluel House",
+      "Melody Manor"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Sturdy Straw House",
+      "Pink Angel Place",
+      "Maple Water Park",
+      "Icy Treat Retreat"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Very Berry Vineyard",
+      "Rien Hot Springs",
+      "Organic Mud House",
+      "Ereve Fountain Garden"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Pantheon Temple",
+      "Refreshing Oasis",
+      "Pink Angel Place",
+      "Nautilus Harbor"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Wholesome Milk Farm",
+      "Floatland Manor",
+      "Sushi House",
+      "Orbis Flying Garden"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Aqua Roadhouse",
+      "Psychic Audition Hall",
+      "Ariant Fabrics",
+      "Shinsoo's Nest"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Henesys Bowman Guild",
+      "Monster Manor",
+      "Big Bowl Noodles",
+      "Empress Prayer House"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Icy Treat Retreat",
+      "BigWigs",
+      "Elluel House",
+      "Ludibrium Toy House"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Hideout",
+      "Gingerbread Gables",
+      "Red Mushroom Manor",
+      "Big Bowl Noodles"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Black House",
+      "Big Apple Fruit Shop",
+      "Nova Safehouse",
+      "Happy Homestead"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Red Brick Adobe",
+      "Mushking Empire Outpost",
+      "Big Top Tenement",
+      "Fruit Farm"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Henesys Homestead",
+      "Fish Farm",
+      "Tip-Top Toy Shop",
+      "Tick Tock Townhouse"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Green Mushroom Hut",
+      "Black Bunny Farm",
+      "Beatdown Shop",
+      "Santa's Special Shop"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Yeti Super Satge",
+      "Mu Lung Barber Shop",
+      "Aqua Aquarium",
+      "Aqua Road Castle"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Heaven's Hammer",
+      "Yellow Submarine",
+      "The Secret Garden",
+      "Yeti Super Stage"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Mushroomy Mine",
+      "Blue Mushroom Mansion",
+      "Windmill",
+      "Lumiere"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Fantasy Park Viking",
+      "Tip-Top Balloon Shop",
+      "Tip-Top Toy Shop",
+      "Shammos' Storage Room"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Orange Mushroom House",
+      "Blossom House",
+      "Puriel House",
+      "Mu Lung Dojo"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these is NOT in Monster Life?",
+    "choices": [
+      "Chopper Chalet",
+      "Ariant Fabrics",
+      "Edelstein Air Field",
+      "Maple Aquatic House"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Dimension Master",
+      "Alchemist's Handmade Gloves",
+      "Black Basile Boots",
+      "Zakum Helmet"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Donkey's Chef Hat",
+      "Blue Pageant",
+      "Horntail Necklace",
+      "Gas Mask"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Red Giles Cape",
+      "Angelic Blessing",
+      "Sugar's Tiny Cane",
+      "Purple Cast Linen"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Tenacious Green Gilded Belt",
+      "Shark Tooth Supernova",
+      "Red Seraph Cape",
+      "Single's Curse Promise Ring"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Phoenix Dandruff",
+      "Dimension Gloves",
+      "Broken Glasses",
+      "Loveless Blooms"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Chaos Pink Bean Hat",
+      "Ultimate Harp Helm",
+      "Concerto",
+      "Scuba Mask"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Tempest Epaulette",
+      "Pinnacle Ring",
+      "Blessed Sunglasses",
+      "Brown Double Boots"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Jade Hatchling",
+      "Minotaurus Nose Ring",
+      "The Immortal Pharaoh Belt",
+      "Rose Earrings"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Colonia Primo",
+      "Top Value Potion",
+      "Advanced Health Potion",
+      "Fancy Cheese"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Half Earrings",
+      "Elite Heliseum Thief Cape",
+      "Chaos Potion",
+      "Frantic Hair Pin"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these items does NOT exist in MapleStory?",
+    "choices": [
+      "Red Viper",
+      "Bombard Center Fire Bomb",
+      "White Pioneer",
+      "Venom Buccaneer"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these items is NOT a consumable item?",
+    "choices": [
+      "Pain Reliever",
+      "Red Pill",
+      "Year of Horse Resistance Potion",
+      "Giant Potion"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these items is NOT a consumable item?",
+    "choices": [
+      "Crimson Bull",
+      "Orange Potion",
+      "EXP Accumulation Potion",
+      "Egg"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these items is NOT a consumable item?",
+    "choices": [
+      "White Potion",
+      "Fairy Dew",
+      "Invincibility Potion",
+      "Concentration Potion"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these items is NOT a consumable item?",
+    "choices": [
+      "5th Anniversary Cake Elixir",
+      "Crusader Refresher",
+      "Year of Horse Cleansing Potion",
+      "Small EXP Accumulation Potion"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these items is NOT a consumable item?",
+    "choices": [
+      "Spicy Rice Cake Skewers",
+      "Mana Elixir Pill",
+      "Smoked Salmon",
+      "Blue Star Potion"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these items is NOT a consumable item?",
+    "choices": [
+      "Blue Potion",
+      "Lukewarm Juice",
+      "Cleansing Potion",
+      "Legendary Fortitude Potion"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these items is NOT a consumable item?",
+    "choices": [
+      "Wizard's Toenail",
+      "Red Potion",
+      "Wealth Acquisition Potion",
+      "Sunrise Dew"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these items is NOT a consumable item?",
+    "choices": [
+      "Melting Cheese",
+      "Luck Pill 1",
+      "Excavated Blessing Potion",
+      "Purple Potion"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these items is NOT a consumable item?",
+    "choices": [
+      "Speed Pill",
+      "Elixir",
+      "Zakum's Breath",
+      "Resistance Potion"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these items is NOT a hand cannon?",
+    "choices": [
+      "Opulent White Cannon",
+      "Bling Bling Iron Cannon",
+      "Meister Crash",
+      "Scarlet Crash"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these items is NOT a hand cannon?",
+    "choices": [
+      "Crimson Bull",
+      "Dreadnought",
+      "Heavy Artillery",
+      "Cora Von Leon Siege Gun"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these items is NOT a hand cannon?",
+    "choices": [
+      "Grand Cannon",
+      "Balrog's Deck Sweeper",
+      "Used Toy Cannon",
+      "Shark Tooth Supernova"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these items is NOT a hand cannon?",
+    "choices": [
+      "Infernalizer",
+      "Balrog's Deck Sweeper",
+      "Cursed Black Cannon",
+      "Chaos The Bigshot"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these items is NOT a hand cannon?",
+    "choices": [
+      "Dragon Breaker",
+      "Maple Beryl Cannon",
+      "Dragonic Deck Sweeper",
+      "Gilded Giant"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these items is NOT a hand cannon?",
+    "choices": [
+      "Fafnir Lost Cannon",
+      "Frost Fairy Deck Sweeper",
+      "Tempest Crash",
+      "Blurry Cannon"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these items is NOT a hand cannon?",
+    "choices": [
+      "Sovereign Oblivion",
+      "Pinnacle Crash",
+      "Broad Infernalizer",
+      "Handcrafted Ignite Crash"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these items is NOT a hand cannon?",
+    "choices": [
+      "Infernalizer",
+      "Chaos The Bigshot",
+      "Art Lulu",
+      "Gilded Giant"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these items is NOT a hand cannon?",
+    "choices": [
+      "Click Click Boom",
+      "Necro Oblivion",
+      "Red Cannon",
+      "Fearless Eradicator"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these items is NOT a hand cannon?",
+    "choices": [
+      "Novice Cannon",
+      "Necro Beryl Cannon",
+      "Ironside",
+      "Steel Beast"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these jobs does NOT exist in MapleStory?",
+    "choices": [
+      "Bishop",
+      "Night Lord",
+      "Shadower",
+      "Blue Mage"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these jobs does NOT exist in MapleStory?",
+    "choices": [
+      "Arch Mage (Ice/Lightining)",
+      "Mercedes",
+      "Art Designer",
+      "Kain"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these jobs does NOT exist in MapleStory?",
+    "choices": [
+      "Demon Slayer",
+      "Marksman",
+      "Eric",
+      "Night Lord"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these jobs does NOT exist in MapleStory?",
+    "choices": [
+      "Beast Lord",
+      "Mechanic",
+      "Phantom",
+      "Cannoneer"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these jobs does NOT exist in MapleStory?",
+    "choices": [
+      "Arch Mage (Fire/Poison)",
+      "WildHunter",
+      "Corsair",
+      "Necromancer"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these jobs does NOT exist in MapleStory?",
+    "choices": [
+      "Hero",
+      "Blaze Wizard",
+      "Water Dancer",
+      "Dawn Warrior"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these jobs does NOT exist in MapleStory?",
+    "choices": [
+      "Demon Hunter",
+      "Bow Master",
+      "Adele",
+      "Thunder Breaker"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these jobs does NOT exist in MapleStory?",
+    "choices": [
+      "Dark Knight",
+      "Battle Mage",
+      "Cannon Puncher",
+      "Aran"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these jobs does NOT exist in MapleStory?",
+    "choices": [
+      "Paladin",
+      "Evan",
+      "Night Walker",
+      "Wind Runner"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these jobs does NOT exist in MapleStory?",
+    "choices": [
+      "Mihile",
+      "Wind Archer",
+      "Buccaneer",
+      "Bard"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these jobs is a part of the Resistance?",
+    "choices": [
+      "Kaiser",
+      "Angelic Buster",
+      "Bishop",
+      "Demon Avenger"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these jobs is a part of the Resistance?",
+    "choices": [
+      "Hero",
+      "Night Lord",
+      "Night Walker",
+      "Xenon"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these jobs is a part of the Nova race?",
+    "choices": [
+      "Kaiser",
+      "Dawn Warrior",
+      "Mihile",
+      "Mercedes"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these jobs is a part of the Nova race?",
+    "choices": [
+      "Angelic Buster",
+      "Paladin",
+      "Marksman",
+      "Shadower"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these jobs is a part of the Legendary Heroes?",
+    "choices": [
+      "Arch Mage (Fire, Poison)",
+      "Night Lord",
+      "Mercedes",
+      "Bow Master"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these jobs is a part of the Legendary Heroes?",
+    "choices": [
+      "Battle Mage",
+      "Dark Knight",
+      "Luminous",
+      "Arch Mage ( Ice,Lit.)"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these jobs is a part of the Explorers?",
+    "choices": [
+      "Dawn Warrior",
+      "Evan",
+      "Xenon",
+      "Marksman"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these jobs is a part of the Explorers?",
+    "choices": [
+      "Wild Hunter",
+      "Bishop",
+      "Phantom",
+      "Demon Avenger"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these jobs is a part of the Cygnus Knights?",
+    "choices": [
+      "Battle Mage",
+      "Blaze Wizard",
+      "Phantom",
+      "Luminous"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these jobs is a part of the Cygnus Knights?",
+    "choices": [
+      "Angelic Buster",
+      "Night Walker",
+      "Aran",
+      "Demon Slayer"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these monsters does NOT exist in Maplestory?",
+    "choices": [
+      "Rocky Mask",
+      "Red Wyvern",
+      "Bertus",
+      "Cellion"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these monsters does NOT exist in Maplestory?",
+    "choices": [
+      "Stone Golem",
+      "Memory Monk Trainee",
+      "Red Peppers",
+      "Jr. Newtie"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these monsters does NOT exist in Maplestory?",
+    "choices": [
+      "Wild Boar",
+      "Bergamot",
+      "Jr. Seal",
+      "Mountable Golem"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these monsters does NOT exist in MapleStory?",
+    "choices": [
+      "Blue Mushroom",
+      "Flower Fish",
+      "Cube Slime",
+      "Sledgehammer"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these monsters does NOT exist in MapleStory?",
+    "choices": [
+      "Fenelle",
+      "Pink Teddy",
+      "Pepe",
+      "Bloctopus"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these monsters does NOT exist in MapleStory?",
+    "choices": [
+      "Surgeon Eye",
+      "Downey",
+      "Royal Cactus",
+      "Bubble Fish"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these monsters does NOT exist in MapleStory?",
+    "choices": [
+      "Octopus",
+      "Phantom Watch",
+      "Corbie",
+      "Seacle"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these monsters does NOT exist in MapleStory?",
+    "choices": [
+      "Snail",
+      "Dark Cactus",
+      "Robo",
+      "Deadly Dressing Table"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these monsters does NOT exist in MapleStory?",
+    "choices": [
+      "Skeledog",
+      "Dark Cornian",
+      "Bellamoa",
+      "Sharplan"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these monsters does NOT exist in MapleStory?",
+    "choices": [
+      "Jr. Wraith",
+      "Solarion",
+      "Red Drake",
+      "Hogul"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these monsters is NOT a canine?",
+    "choices": [
+      "Birk",
+      "Hector",
+      "Lycanthrope",
+      "Bain"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these monsters is NOT a Mammal?",
+    "choices": [
+      "Guerilla Specter",
+      "Spore",
+      "Balloon Mouse",
+      "Golden Pig"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these monsters is NOT a plant?",
+    "choices": [
+      "Potted Morning Glory",
+      "OctoPirate",
+      "Nependeath",
+      "Deo"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these monsters is NOT a reptile?",
+    "choices": [
+      "Blue Flower Serpent",
+      "Ligator",
+      "Powerful Cold Eye",
+      "Jr. Wraith"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these monsters is NOT enchanted?",
+    "choices": [
+      "Oniony",
+      "Ariel",
+      "Seashell Octopus Slime",
+      "Antoinette"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these monsters is NOT enchanted?",
+    "choices": [
+      "Munin",
+      "Safety FIrst",
+      "Goby",
+      "Sky Guardian Spirit"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these monsters is NOT from the Nihal Desert?",
+    "choices": [
+      "Water Thief Monster",
+      "Kiyo",
+      "Cube Slime",
+      "Scarf Plead"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these monsters is NOT in the Tower of Oz?",
+    "choices": [
+      "Black Flower Golem",
+      "Lorang",
+      "Ancient Mushroom Bat",
+      "Ancient Blue Turtle"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these monsters is NOT in the Tower of Oz?",
+    "choices": [
+      "Ancient Orange Turtle",
+      "Black Thorny Bear",
+      "White Fang",
+      "Bellamoa"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these monsters is NOT in the Tower of Oz?",
+    "choices": [
+      "Ancient Red Turtle",
+      "Croko",
+      "Eliza",
+      "Blue Insectivore Slime"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these monsters is NOT in the Tower of Oz?",
+    "choices": [
+      "Green Flower Cow",
+      "Grupin",
+      "Bellamoa",
+      "Roolang"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these monsters is NOT in the Tower of Oz?",
+    "choices": [
+      "White Thorny Bear",
+      "Lioner",
+      "Plead",
+      "Crocodile"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these monsters is NOT in the Tower of Oz?",
+    "choices": [
+      "Murupa",
+      "Brown Thorny Bear",
+      "Cellion",
+      "Silver Plate"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these monsters is NOT in the Tower of Oz?",
+    "choices": [
+      "Ancient Blue Turtle",
+      "Yellow Flower Cow",
+      "Hector",
+      "Yellow Insectivore Slime"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these monsters is NOT in the Tower of Oz?",
+    "choices": [
+      "Flower Golem",
+      "Clang",
+      "Blue Mushroom Bat",
+      "White Thorny Bear"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these monsters is NOT in the Tower of Oz?",
+    "choices": [
+      "Wild Kargo",
+      "Ligator",
+      "Ancient Insectivore Slimes",
+      "Plead"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these monsters is NOT in the Tower of Oz?",
+    "choices": [
+      "Blue Flower Cow",
+      "Yellow Mushroom Bat",
+      "Blue Ancient Beetle",
+      "Ancient Orange Turtle"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these monsters is NOT live in the sea?",
+    "choices": [
+      "Sparker",
+      "Captain Latancia",
+      "Cico",
+      "Pianus"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these monsters is NOT undead?",
+    "choices": [
+      "Green Phantom",
+      "Ghost",
+      "Snipe of Competence",
+      "Faust"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these monsters is NOT undead?",
+    "choices": [
+      "Zombie Mushmom",
+      "Paper Lantern Ghost",
+      "Faust",
+      "Pink Bean"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these people is NOT a resident in Maplestory?",
+    "choices": [
+      "Harcourt",
+      "Cassandra",
+      "Shane",
+      "Lea"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these people is NOT a resident in Maplestory?",
+    "choices": [
+      "Selene",
+      "Jacklyn",
+      "Mr. Park",
+      "Mr. Pickall"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these people is NOT a resident in Maplestory?",
+    "choices": [
+      "Doofus",
+      "Neville",
+      "Giant Joe",
+      "Scrooge"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these people is NOT a resident in Maplestory?",
+    "choices": [
+      "Beldar",
+      "Pia",
+      "DJ Koo",
+      "Dolphin"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these people is NOT a resident in Maplestory?",
+    "choices": [
+      "Chief Stan",
+      "Clara",
+      "Kaiso",
+      "Lea"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of these people is NOT a resident in MapleStory?",
+    "choices": [
+      "Fenelle",
+      "Sybil",
+      "Kylan",
+      "Nella"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these people is NOT a resident in MapleStory?",
+    "choices": [
+      "Cartalion",
+      "Jimmy-Jack",
+      "Duey",
+      "Stitch"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of these people is NOT a resident in MapleStory?",
+    "choices": [
+      "Do Gong",
+      "Carno",
+      "Kibbles",
+      "Gold Richie"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of these people is NOT a resident in MapleStory?",
+    "choices": [
+      "Agamemnon",
+      "Hersha",
+      "Icarus",
+      "Scrooge"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of these people is NOT a resident in MapleStory?",
+    "choices": [
+      "Joe Bob",
+      "Lea",
+      "Betty",
+      "Matthias"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Who in Kerning City can repair items?",
+    "choices": [
+      "Jeppi",
+      "JM From tha Streetz",
+      "Smith",
+      "Christopher"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Who is the item creator in front of the Sleepywood Hotel?",
+    "choices": [
+      "Chrishrama",
+      "Cartalion",
+      "Mr. Pickall",
+      "Dolphin"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Who is the merchant in the Golden Temple?",
+    "choices": [
+      "Swanson",
+      "Kimu",
+      "Ms. Tang",
+      "Danika"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Who is the merchant in Gold Beach Resort?",
+    "choices": [
+      "Scrooge",
+      "Natalie",
+      "Mason",
+      "Betty"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Who is the warrior job instructor in the Warriors' Sanctuary?",
+    "choices": [
+      "Dong Hwang",
+      "Dances with Balrog",
+      "Grendel the Really Old",
+      "Sophia"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Who is the weapon seller in Perion?",
+    "choices": [
+      "Mike",
+      "River",
+      "Camila",
+      "Utah"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "What's the name of public service worker in Kerning City Subway?",
+    "choices": [
+      "Alex",
+      "Jake",
+      "Ayan",
+      "Louis"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "What is the name of the weapon seller on the Nautilus?",
+    "choices": [
+      "Reed",
+      "Francis",
+      "Tess",
+      "Morgan"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "What is the name of the weapon merchant in Ariant?",
+    "choices": [
+      "Zaid",
+      "Jasmin",
+      "Lea",
+      "General Mau"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "What is the name of the warp helper in Herb Town?",
+    "choices": [
+      "Crane",
+      "Egret",
+      "Rumi",
+      "Chicken"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "What is the name of the upcoming merchant in Pantheon?",
+    "choices": [
+      "Calico",
+      "Putzki",
+      "Woonie the Fairy",
+      "Karin"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "What is the name of the town mascot of Edelstein?",
+    "choices": [
+      "Chun Ji",
+      "Kiru",
+      "Checky",
+      "Vieren"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the name of the streetsweeper in Edelstein?",
+    "choices": [
+      "Rael",
+      "Kiridu",
+      "Brighton",
+      "Ethos"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the name of the storage keeper on the Nautilus?",
+    "choices": [
+      "Shuritz",
+      "Dargoth",
+      "Rondo",
+      "Dondlass"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "What is the name of the storage keeper in Rien?",
+    "choices": [
+      "Pusla",
+      "Inkwell",
+      "Shumi",
+      "Rina"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "What is the name of the storage keeper in Ludibrium?",
+    "choices": [
+      "Rodos",
+      "Puro",
+      "Lotus",
+      "Seppy"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "What is the name of the skin care expert in Ariant?",
+    "choices": [
+      "Lila",
+      "Neville",
+      "Gold Richie",
+      "Doofus"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "What is the name of the plastic surgeon in Ariant?",
+    "choices": [
+      "Shumi",
+      "Aldin",
+      "Scrooge",
+      "Athena Pierce"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "What is the name of the pet master in Ellinia?",
+    "choices": [
+      "Mar the Fairy",
+      "Chief Stan",
+      "Flora the Fairy",
+      "Eels"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "What is the name of the merchant on the Nautilus?",
+    "choices": [
+      "Jack",
+      "Marguerite",
+      "Mir",
+      "Gali"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "What is the name of the kid monk in front of the Golden Temple entrance?",
+    "choices": [
+      "Tofu",
+      "Dunamis",
+      "Noi",
+      "Deet"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the name of the Humanoid residing in Magatia?",
+    "choices": [
+      "Vel",
+      "Humanoid A",
+      "Humanoid B",
+      "Humanoid C"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "What is the name of the helmsman of Riena Strait Glacial Observatory?",
+    "choices": [
+      "Tangyoon",
+      "Puka",
+      "Phiny the Fairy",
+      "Helmsman Tanya"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "What is the name of the grandma guarding the Great Temple in Pantheon?",
+    "choices": [
+      "Selene",
+      "Olivia",
+      "Nella",
+      "Chef"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "What is the name of the former council president in Edelstein?",
+    "choices": [
+      "Gwin",
+      "Kyrin",
+      "Albert",
+      "Lania"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the name of the current council president in Edelstein?",
+    "choices": [
+      "Shumi",
+      "Abel",
+      "Anthony",
+      "Estelle"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the name of the dog sitting next to the Dimensional Mirror in Orbis?",
+    "choices": [
+      "Moonie",
+      "Moppie",
+      "Bull Dog",
+      "Doberman"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "What is the name of the buddy list admin in Ludibrium?",
+    "choices": [
+      "Gold Richie",
+      "Della",
+      "Robert Holly",
+      "Crusoe"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the name of the buddy list admin in Lith Harbor?",
+    "choices": [
+      "Murat",
+      "Jaah",
+      "Frostwitch Barbara",
+      "Mr. Goldstein"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "What is the name of the broker residing in Magatia?",
+    "choices": [
+      "Jung the Broker",
+      "Han the Broker",
+      "Hong the Broker",
+      "Tory"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "I'm collecting herbs...",
+    "choices": [
+      "Sabitrama",
+      "Inkwell",
+      "Kiridu",
+      "Rodos"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Work is important, but eating is crucial!",
+    "choices": [
+      "General Mau",
+      "Bavan",
+      "Francis",
+      "Estelle"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Won't somebody bring me some food? I'm starving?",
+    "choices": [
+      "Danika",
+      "Timber",
+      "Patience",
+      "Lumps"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Where are all my research notes? And my fairy comics?",
+    "choices": [
+      "Estelle",
+      "Jeppi",
+      "Swanson",
+      "Cootie the Really Small"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "We must work together.",
+    "choices": [
+      "Rina",
+      "Lakelis",
+      "Dargoth",
+      "Betty"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "This room is not open to the public.",
+    "choices": [
+      "Tory",
+      "Olson the Toy Soldier",
+      "Jack",
+      "Gwin"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "The seas have grown fat as an orca, eh?",
+    "choices": [
+      "Doberman",
+      "Shumi",
+      "Putan",
+      "Chun Ji"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "That smell in the air sure does make the fur stand up, don't it?",
+    "choices": [
+      "Utah",
+      "Vel",
+      "Alviola",
+      "Frostwitch Barbara"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "So much homework... And so much studying to do... Man, I'm swamped.",
+    "choices": [
+      "Wing the Fairy",
+      "Arwen the Fairy",
+      "Jack the Fairy",
+      "Rowen the Fairy"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Pirates are the best! You want a piece of me?",
+    "choices": [
+      "Betty",
+      "Dong Hwang",
+      "Rael",
+      "Valerie"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Outsiders can never be trusted.",
+    "choices": [
+      "Lania",
+      "Alex",
+      "Tofu",
+      "Faculty Head Kalayan"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Nothing like a good set of Pirate digs, mates!",
+    "choices": [
+      "Louis",
+      "Mike",
+      "Rodos",
+      "Mir"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Nice weather, isn't it? It's a greay day to enjoy a walk with my pet, Muffins.",
+    "choices": [
+      "Doofus",
+      "Bastille",
+      "Marguerite",
+      "Alex"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "My hands aren't what they used to be. I really need to get me an apprentice...",
+    "choices": [
+      "Potter",
+      "Podder",
+      "Mr. Kim",
+      "Mr. Ku"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "My friend Arwen is still pretty uncomfortable around humans.",
+    "choices": [
+      "Rowen the Fairy",
+      "Ruenna the Fairy",
+      "Wing the Fairy",
+      "Puring the Fairy"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Life is transitory. As time passes, the world will change.",
+    "choices": [
+      "Do Gong",
+      "Potter",
+      "Mr. Ku",
+      "No Gong"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Just look at me! So strong. Don't be jealous.",
+    "choices": [
+      "Christopher",
+      "Moonie",
+      "Olaf",
+      "Tess"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "I'm worried that monsters these days are much more ferocious...",
+    "choices": [
+      "Doofus",
+      "Lisa",
+      "Putzki",
+      "Christopher"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "I will never let go of thieves who try to steal from me.",
+    "choices": [
+      "Eels",
+      "Harry",
+      "Jaah",
+      "Louis"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "I serve the ancient Nova deities.",
+    "choices": [
+      "Sophia",
+      "Jung the Broker",
+      "Fenelle",
+      "Rondo"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "I need to send these herbs to Tae Sang fast...",
+    "choices": [
+      "Mr. Ku",
+      "Mr. Kim",
+      "Mr. Park",
+      "Mr. Cho"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "I need more firewood for the furnace.",
+    "choices": [
+      "Ethos",
+      "Shumi",
+      "Rodos",
+      "Timber"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "I gotta say, I look pretty good in an apron.",
+    "choices": [
+      "Athena Pierce",
+      "Elex",
+      "Crusoe",
+      "Fredrick"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "I found him, so I'll take care of him!",
+    "choices": [
+      "Vieren",
+      "Fredrick",
+      "Gold Richie",
+      "Moonbeam"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "I can't wait for these kits to grow up!",
+    "choices": [
+      "Deet",
+      "Moonbean",
+      "Calico",
+      "Patience"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "I can only do this by myself for so long...",
+    "choices": [
+      "Chef",
+      "Anne",
+      "Puro",
+      "Utah"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "If you have the Scroll of Secrets, give it to me!",
+    "choices": [
+      "Humanoid C",
+      "Geanie",
+      "Reed",
+      "Shumi"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Grendel the Really Old is not a bad person, but his students...",
+    "choices": [
+      "Arwen the Fairy",
+      "Murat",
+      "Della",
+      "Soo the Fairy"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Do you want to learn how to achieve spiritual enlightenment?",
+    "choices": [
+      "No Gong",
+      "Do Gong",
+      "Potter",
+      "Mr. Ku"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Are you asking me if I can see in front of me? Of course I can!",
+    "choices": [
+      "Pason",
+      "Puno",
+      "Puka",
+      "Sophia"
+    ],
+    "answer": 1
+  }
+]
