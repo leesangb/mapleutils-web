@@ -16,6 +16,9 @@ import LightModeIcon from '@mui/icons-material/Brightness7Rounded';
 import { useStore } from '@stores/StoreContext';
 import { observer } from 'mobx-react';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { TranslateRounded } from '@mui/icons-material';
+import Link from '../link/Link';
 
 interface SettingsButtonProps {
     toggleDarkMode: () => void;
@@ -34,6 +37,7 @@ const themeIconAndLabel: Record<PaletteMode, { label: string; icon: ReactNode }>
 
 const SettingsButton = observer((props: SettingsButtonProps) => {
     const { app } = useStore();
+    const router = useRouter();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -78,6 +82,20 @@ const SettingsButton = observer((props: SettingsButtonProps) => {
                             <ListItemIcon>{theme.icon}</ListItemIcon>
                             <ListItemText>{t(theme.label)}</ListItemText>
                         </ListItem>
+                        {
+                            router.locale === 'kr'
+                                ? (
+                                    <ListItem component={Link} href={router.route} locale={'en'} button>
+                                        <ListItemIcon><TranslateRounded /></ListItemIcon>
+                                        <ListItemText>English / GMS</ListItemText>
+                                    </ListItem>
+                                ) : (
+                                    <ListItem component={Link} href={router.route} locale={'kr'} button>
+                                        <ListItemIcon><TranslateRounded /></ListItemIcon>
+                                        <ListItemText>한국어 / KMS</ListItemText>
+                                    </ListItem>
+                                )
+                        }
                     </List>
                 </CardContent>
             </Popover>
