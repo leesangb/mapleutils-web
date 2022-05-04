@@ -9,6 +9,8 @@ import { Seo, SeoProps } from '@components/seo';
 import { TitleCard } from '@components/card';
 import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+import { TFunction } from 'i18next';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -47,14 +49,15 @@ const QuestionAnswerItem = (props: QuestionAnswerItemProps) => {
     );
 };
 
-const seoProps: SeoProps = {
-    title: '더 시드 39층',
-    keywords: ['39층', '족보', '문제 풀이', '문제', '정답', '퀴즈', '2급', '리레', '웨펖', '웨폰', '시린이'],
-    description: '더 시드 39층 문제 풀이, 족보',
+const seoProps = (t: TFunction): SeoProps => ({
+    title: t('seo.title', { ns: 'seed39' }),
+    keywords: t('seo.keywords', { ns: 'seed39' }),
+    description: t('seo.description', { ns: 'seed39' }),
     image: '/images/39.png',
-};
+});
 
 const Seed39 = (props: Seed39Props) => {
+    const { t } = useTranslation();
     const { height } = useWindowDimensions();
     const theme = useTheme();
     const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
@@ -71,8 +74,8 @@ const Seed39 = (props: Seed39Props) => {
 
     return (
         <>
-            <Seo {...seoProps} />
-            <TitleCard title={'시드 39층'} />
+            <Seo {...seoProps(t)} />
+            <TitleCard title={t('title', { ns: 'seed39' })} />
             <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>
                     <VirtualizedFixedList height={height - 330}
@@ -81,7 +84,7 @@ const Seed39 = (props: Seed39Props) => {
                                           rowSize={mdDown ? 280 : lgDown ? 100 : 70}
                                           divider
                                           searchFilter={searchFilter}
-                                          placeholder={'문제 또는 답 검색 (예: 골드비치, ㄱㄷㅂㅊ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱, 초성 검색 ✅'}
+                                          placeholder={t('searchPlaceholder', { ns: 'seed39' })}
                                           rowRenderer={rowRenderer} />
                 </CardContent>
             </Card>
