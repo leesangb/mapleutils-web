@@ -21,19 +21,19 @@ import { useTheme } from '@mui/system';
 import { TabContext, TabPanel } from '@mui/lab';
 import useCopy from '@hooks/useCopy';
 import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
-import { useTranslation } from 'next-i18next';
+import { TFunction, useTranslation } from 'next-i18next';
 import { TOptions } from 'i18next';
 import { seed24AudioData } from '@data/seed/24';
 import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
 import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const seoProps: SeoProps = {
-    title: '더 시드 24층',
-    keywords: ['24층', 'bgm', '브금', '족보'],
-    description: '더 시드 24층 브금 모음',
+const seoProps = (t: TFunction): SeoProps => ({
+    title: t('seo.title', { ns: 'seed24' }),
+    keywords: t('seo.keywords', { ns: 'seed24' }).split(', '),
+    description: t('seo.description', { ns: 'seed24' }),
     image: '/images/24.png',
-};
+});
 
 
 const useSeed24Tabs = () => {
@@ -103,16 +103,22 @@ const Seed24 = () => {
         onChangeTab(value);
     };
 
+    useEffect(() => {
+        if (i18n.resolvedLanguage !== 'kr') {
+            onChangeTab('bgm');
+        }
+    }, [i18n.resolvedLanguage, onChangeTab]);
+
     return (
         <>
-            <Seo {...seoProps} />
+            <Seo {...seoProps(t)} />
             <TitleCard title={t('title', seed24Translation)} />
 
             <TabContext value={tab}>
                 <Paper variant={'outlined'}>
                     <Tabs value={tab} onChange={handleChangeTab} centered>
-                        <Tab value={'bgm'} label={t('bgm', { ns: 'seed24' })} />
-                        <Tab disabled={!isKMS} value={'hint'} label={t('hint', { ns: 'seed24' })} />
+                        <Tab value={'bgm'} label={t('bgm', seed24Translation)} />
+                        <Tab disabled={!isKMS} value={'hint'} label={t('hint', seed24Translation)} />
                     </Tabs>
                 </Paper>
 
