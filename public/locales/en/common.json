@@ -14,6 +14,7 @@
   "online": "Online",
   "settings": "Settings",
   "pageNotFound": "Page not found 😥",
+  "noResultsFound": "No results found... 😥",
   "drawer": {
     "seed": {
       "longName": "Tower of Oz",

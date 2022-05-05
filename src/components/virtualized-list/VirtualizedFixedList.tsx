@@ -3,6 +3,7 @@ import { ChangeEvent, memo, ReactNode, useMemo, useState } from 'react';
 import { ListItem, Typography } from '@mui/material';
 import { SearchBar } from '@components/input';
 import { Box } from '@mui/system';
+import { useTranslation } from 'next-i18next';
 
 interface VirtualizedFixedListItemProps<T> extends ListChildComponentProps<{ items: T[] }> {
     rowRenderer: (item: T, index: number) => ReactNode;
@@ -32,6 +33,7 @@ interface VirtualizedFixedListProps<T> {
 }
 
 const VirtualizedFixedList = <T, >(props: VirtualizedFixedListProps<T>) => {
+    const { t } = useTranslation();
     const { width, height, items, rowSize, rowRenderer, divider, placeholder, searchFilter } = props;
     const [search, setSearch] = useState<string>('');
     const itemData: { items: T[] } = useMemo(
@@ -65,7 +67,7 @@ const VirtualizedFixedList = <T, >(props: VirtualizedFixedListProps<T>) => {
                                         align={'center'}
                                         variant={'h4'}
                                         component={'p'}>
-                                검색된 결과가 없습니다... 😢
+                                {t('noResultsFound')}
                             </Typography>
                         </Box>
                     ) : (

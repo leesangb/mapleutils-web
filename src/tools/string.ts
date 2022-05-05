@@ -1,7 +1,7 @@
 import * as Hangul from 'hangul-js';
 
 export const removeSpecialChars = (s: string): string => s.replace(/(\s|\?|-|\.|…|!|~|,)/g, '');
-export const removeSpecialCharsWithoutSpaces = (s: string): string => s.replace(/([-.…!~,?])/g, '');
+export const removeSpecialCharsWithoutSpaces = (s: string): string => s.replace(/([-.…!~,])/g, '');
 
 const getChosung = (str: string): string => {
     return Hangul.d(str, true) // 1글자 내에 초성 추출 ('ㄳㅎ' => [['ㄱ', 'ㅅ'], ['ㅎ']])
