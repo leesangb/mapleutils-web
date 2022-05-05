@@ -8,13 +8,14 @@ import { Comments } from '@components/comments';
 import NextImage from 'next/image';
 import { styled } from '@mui/system';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { TFunction, useTranslation } from 'next-i18next';
 
-const seoProps: SeoProps = {
-    title: '더 시드 36층',
-    keywords: ['36층', '메모', '기록'],
-    description: '더 시드 36층 메모지',
+const seoProps = (t: TFunction): SeoProps => ({
+    title: t('seo.title', { ns: 'seed36' }),
+    keywords: t('seo.keywords', { ns: 'seed36' }).split(', '),
+    description: t('seo.description', { ns: 'seed36' }),
     image: '/images/36.png',
-};
+});
 
 type Step = 0 | 1 | 2 | 3 | undefined;
 type Steps = [Step, Step, Step, Step, Step, Step, Step, Step]
@@ -32,6 +33,7 @@ const StyledImage = styled(NextImage)({
 });
 
 const Content = (props: ContentProps) => {
+    const { t } = useTranslation();
     const { steps } = props;
     return (
         <Grid container>
@@ -41,7 +43,7 @@ const Content = (props: ContentProps) => {
                             variant={'contained'} disableElevation
                             onClick={props.resetSteps}
                             startIcon={<ReplayRounded />}>
-                        초기화
+                        {t('reset')}
                     </Button>
                 </Grid>
             </Hidden>
@@ -50,7 +52,10 @@ const Content = (props: ContentProps) => {
                     <Grid container spacing={1} alignItems='center'>
                         <Hidden smDown>
                             <Grid item sm={2}>
-                                <Typography align={'center'} variant={'h3'}>{i + 1} 단계</Typography>
+                                <Typography align={'center'} variant={'h3'}>{t('step', {
+                                    ns: 'seed36',
+                                    step: i + 1,
+                                })}</Typography>
                             </Grid>
                         </Hidden>
                         {
@@ -83,7 +88,7 @@ const Content = (props: ContentProps) => {
                                         <Box display={'flex'} justifyContent={'right'}>
                                             <Button variant={'contained'} disableElevation onClick={props.resetSteps}
                                                     startIcon={<ReplayRounded />}>
-                                                초기화
+                                                {t('reset')}
                                             </Button>
                                         </Box>
                                     </Grid>
@@ -98,6 +103,7 @@ const Content = (props: ContentProps) => {
 };
 
 const Seed36 = () => {
+    const { t } = useTranslation();
     const [steps, setSteps] = useState<Steps>(buildDefaultSteps());
 
     const resetSteps = () => setSteps(buildDefaultSteps());
@@ -107,8 +113,8 @@ const Seed36 = () => {
 
     return (
         <>
-            <Seo {...seoProps} />
-            <TitleCard title={'시드 36층'} />
+            <Seo {...seoProps(t)} />
+            <TitleCard title={t('title', { ns: 'seed36' })} />
             <Card variant={'outlined'}>
                 <CardContent>
                     <Content steps={steps} onChangeStep={onChangeStep} resetSteps={resetSteps} />
