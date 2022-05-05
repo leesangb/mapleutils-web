@@ -20,8 +20,9 @@ interface FooterProps {
 }
 
 const Footer = (props: FooterProps) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const { data } = useFetch<AnalyticsRealTimeData>(`/api/realtime-users`);
+    const isKorean = i18n.resolvedLanguage === 'kr';
     return (
         <StyledFooter>
             <Grid container direction={props.open ? 'row' : 'column'} justifyContent={'center'}>
@@ -30,16 +31,20 @@ const Footer = (props: FooterProps) => {
                         {t('online')} : {data.users}
                     </Typography>
                 </Grid>)}
-                <Grid item sx={{ alignSelf: 'center' }}>
-                    <Tooltip title={'카톡 문의'} placement={props.open ? 'top' : 'right'}>
-                        <IconButton component={'a'}
-                                    target={'_blank'}
-                                    rel={'noreferrer noopener'}
-                                    href={kakaotalkLink}>
-                            <KakaoTalkIcon />
-                        </IconButton>
-                    </Tooltip>
-                </Grid>
+                {
+                    isKorean && (
+                        <Grid item sx={{ alignSelf: 'center' }}>
+                            <Tooltip title={'카톡 문의'} placement={props.open ? 'top' : 'right'}>
+                                <IconButton component={'a'}
+                                            target={'_blank'}
+                                            rel={'noreferrer noopener'}
+                                            href={kakaotalkLink}>
+                                    <KakaoTalkIcon />
+                                </IconButton>
+                            </Tooltip>
+                        </Grid>
+                    )
+                }
                 <Grid item sx={{ alignSelf: 'center' }}>
                     <Tooltip title={'Discord'} placement={props.open ? 'top' : 'right'}>
                         <IconButton component={'a'}
