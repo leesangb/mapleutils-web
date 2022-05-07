@@ -1307,7 +1307,7 @@
       "Meister Crash",
       "Scarlet Crash"
     ],
-    "answer": 0
+    "answer": 1
   },
   {
     "question": "Which of these items is NOT a hand cannon?",
@@ -1867,7 +1867,7 @@
       "Blue Ancient Beetle",
       "Ancient Orange Turtle"
     ],
-    "answer": 1
+    "answer": 2
   },
   {
     "question": "Which of these monsters is NOT live in the sea?",
