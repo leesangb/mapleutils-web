@@ -6,6 +6,7 @@ import CaptureButtons from '@components/video-capture/CaptureButtons';
 import CaptureViewer from '@components/video-capture/CaptureViewer';
 import CaptureHelp from '@components/video-capture/CaptureHelp';
 import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
+import { useTranslation } from 'next-i18next';
 
 const FPS_60 = 1000 / 60;
 
@@ -34,6 +35,7 @@ interface VideoCaptureProps {
 }
 
 const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
+    const { i18n } = useTranslation('seed48');
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const computedRef = useRef<HTMLVideoElement | null>(null);

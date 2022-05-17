@@ -6,6 +6,7 @@ import {
     PictureInPictureRounded,
     StopRounded,
 } from '@mui/icons-material';
+import { useTranslation } from 'next-i18next';
 
 interface CaptureButtonsProps {
     isCapturing: boolean;
@@ -16,6 +17,7 @@ interface CaptureButtonsProps {
 }
 
 const CaptureButtons = (props: CaptureButtonsProps) => {
+    const { t } = useTranslation('seed48');
     const { isCapturing, showJump, onClickCapture, onClickPiP, onToggleShowJump } = props;
     return (
         <Grid container spacing={1}>
@@ -23,7 +25,7 @@ const CaptureButtons = (props: CaptureButtonsProps) => {
                 <Chip
                     icon={isCapturing ? <StopRounded /> : <FiberManualRecordRounded />}
                     onClick={onClickCapture}
-                    label={isCapturing ? '캡쳐 중지' : '캡쳐 시작'}
+                    label={isCapturing ? t('capture.stop') : t('capture.start')}
                 />
             </Grid>
             {isCapturing && (
@@ -32,7 +34,7 @@ const CaptureButtons = (props: CaptureButtonsProps) => {
                         <Chip
                             icon={<PictureInPictureRounded />}
                             onClick={onClickPiP}
-                            label={'팝업으로 보기 (PIP)'}
+                            label={t('capture.pip')}
                         />
                     </Grid>
                     <Grid item>
@@ -45,7 +47,7 @@ const CaptureButtons = (props: CaptureButtonsProps) => {
                                 )
                             }
                             onClick={onToggleShowJump}
-                            label={'점프 구간 보기'}
+                            label={t('capture.showJump')}
                         />
                     </Grid>
                 </>

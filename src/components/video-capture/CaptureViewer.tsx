@@ -1,5 +1,6 @@
 import { Chip, Grid, Slider, Typography } from '@mui/material';
 import { ReplayRounded } from '@mui/icons-material';
+import { useTranslation } from 'next-i18next';
 
 interface CaptureViewerProps {
     x: number;
@@ -12,17 +13,18 @@ interface CaptureViewerProps {
 }
 
 const CaptureViewer = (props: CaptureViewerProps) => {
+    const { t } = useTranslation('seed48');
     const { x, y, ratio, onChangeX, onChangeY, onChangeRatio, onReset } = props;
 
     return (
         <>
-            <Typography align={'center'}>위치 세부 조정</Typography>
+            <Typography align={'center'}>{t('advanced.title')}</Typography>
 
             <Grid container spacing={2}>
                 <Grid item xs={6}>
                     <Grid container spacing={1} alignItems={'center'}>
                         <Grid item xs={1}>
-                            <Typography>X 축</Typography>
+                            <Typography>{t('advanced.x')}</Typography>
                         </Grid>
                         <Grid item xs>
                             <Slider
@@ -41,7 +43,7 @@ const CaptureViewer = (props: CaptureViewerProps) => {
                 <Grid item xs={6}>
                     <Grid container spacing={1} alignItems={'center'}>
                         <Grid item xs={1}>
-                            <Typography>Y 축</Typography>
+                            <Typography>{t('advanced.y')}</Typography>
                         </Grid>
                         <Grid item xs>
                             <Slider
@@ -60,7 +62,7 @@ const CaptureViewer = (props: CaptureViewerProps) => {
                 <Grid item xs={6}>
                     <Grid container spacing={1} alignItems={'center'}>
                         <Grid item xs={1}>
-                            <Typography>배율</Typography>
+                            <Typography>{t('ratio')}</Typography>
                         </Grid>
                         <Grid item xs>
                             <Slider
@@ -76,7 +78,7 @@ const CaptureViewer = (props: CaptureViewerProps) => {
                     </Grid>
                 </Grid>
                 <Grid item xs={6}>
-                    <Chip icon={<ReplayRounded />} onClick={onReset} label={'설정 초기화'} />
+                    <Chip icon={<ReplayRounded />} onClick={onReset} label={t('advanced.reset')} />
                 </Grid>
             </Grid>
         </>

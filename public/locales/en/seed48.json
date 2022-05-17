@@ -1,0 +1,27 @@
+{
+  "seo": {
+    "title": "Tower of Oz 48F",
+    "keywords": "48F, overlay, helper, minimap, Dorothy",
+    "description": "Tower of Oz 48F Minimap overlay"
+  },
+  "title": "Tower of Oz Floor 48",
+  "help": {
+    "title": "※ Captured screen is neither recorded or sent to the server. It is only used to show the content on the browser ※",
+    "1": "Set MapleStory client to windowed mode",
+    "2": "Click 'Capture screen' - Select MapleStory in 'Application Window' then click 'Share'",
+    "3": "Adjust position and ratio like this if needed"
+  },
+  "capture": {
+    "start": "Capture screen",
+    "stop": "Stop",
+    "pip": "Picture in Picture",
+    "showJump": "Show jump"
+  },
+  "advanced": {
+    "title": "Advanced settings",
+    "x": "X axis",
+    "y": "Y axis",
+    "ratio": "Ratio",
+    "reset": "Reset settings"
+  }
+}
