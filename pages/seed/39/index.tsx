@@ -5,12 +5,12 @@ import useWindowDimensions from '@hooks/useWindowDimensions';
 import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
 import { QuestionAnswer, seed39Data, seed39DataGMS } from '@data/seed/39';
 import { isHangulMatching, isMatching } from '@tools/string';
-import { Seo, SeoProps } from '@components/seo';
+import { Seo } from '@components/seo';
 import { TitleCard } from '@components/card';
 import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { TFunction } from 'i18next';
+import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -49,15 +49,9 @@ const QuestionAnswerItem = (props: QuestionAnswerItemProps) => {
     );
 };
 
-const seoProps = (t: TFunction): SeoProps => ({
-    title: t('seo.title', { ns: 'seed39' }),
-    keywords: t('seo.keywords', { ns: 'seed39' }),
-    description: t('seo.description', { ns: 'seed39' }),
-    image: '/images/39.png',
-});
-
 const Seed39 = (props: Seed39Props) => {
     const { t, i18n } = useTranslation();
+    const seoProps = useI18nSeoProps('seed39');
     const { height } = useWindowDimensions();
     const theme = useTheme();
     const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
@@ -76,7 +70,7 @@ const Seed39 = (props: Seed39Props) => {
 
     return (
         <>
-            <Seo {...seoProps(t)} />
+            <Seo {...seoProps} image={'/images/39.png'} />
             <TitleCard title={t('title', { ns: 'seed39' })} />
             <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>

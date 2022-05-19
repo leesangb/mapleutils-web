@@ -1,4 +1,4 @@
-import { Seo, SeoProps } from '@components/seo';
+import { Seo } from '@components/seo';
 import { MonsterCard, TitleCard } from '@components/card';
 import { seed49Data, SeedLocation, SeedMobData } from '@data/seed/49';
 import {
@@ -25,15 +25,10 @@ import useCopy from '@hooks/useCopy';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { Comments } from '@components/comments';
 import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
-import { TFunction, useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 
-const seoProps = (t: TFunction, ns: string): SeoProps => ({
-    title: t('seo.title', { ns }),
-    keywords: t('seo.keywords', { ns }).split(', '),
-    description: t('seo.description', { ns }),
-    image: '/images/49.png',
-});
 
 interface Seed49Props {
     data: SeedLocation[];
@@ -117,6 +112,7 @@ const useSeed49Location = (data: SeedLocation[]) => {
 
 
 const Seed49 = ({ data }: Seed49Props) => {
+    const seoProps = useI18nSeoProps('seed49');
     const { t, i18n } = useTranslation(['common', 'seed49']);
     const [silhouette, setSilhouette] = useState(true);
     const [collapse, setCollapse] = useState(true);
@@ -143,7 +139,7 @@ const Seed49 = ({ data }: Seed49Props) => {
 
     return (
         <>
-            <Seo {...seoProps(t, 'seed49')} />
+            <Seo {...seoProps} image={'/images/49.png'} />
             <TitleCard title={t('title', { ns: 'seed49' })} marginRight={1} />
             <Card variant={'outlined'}
                   sx={theme => ({

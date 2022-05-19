@@ -4,22 +4,16 @@ import { VideoCapture } from '@components/video-capture';
 import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { TFunction } from 'i18next';
-import { Seo, SeoProps } from '@components/seo';
+import { Seo } from '@components/seo';
+import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 
-
-const seoProps = (t: TFunction): SeoProps => ({
-    title: t('seo.title', { ns: 'seed48' }),
-    keywords: t('seo.keywords', { ns: 'seed48' }),
-    description: t('seo.description', { ns: 'seed48' }),
-    image: '/images/48.png',
-});
 
 const Seed48 = () => {
     const { t } = useTranslation();
+    const seoProps = useI18nSeoProps('seed48');
     return (
         <>
-            <Seo {...seoProps(t)} />
+            <Seo {...seoProps} image={'/images/48.png'} />
             <TitleCard title={t('title', { ns: 'seed48' })} />
             <Card variant={'outlined'}>
                 <CardContent>

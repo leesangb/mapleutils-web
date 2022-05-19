@@ -12,7 +12,7 @@ import {
     useMediaQuery,
 } from '@mui/material';
 import { MusicPlayer, TrackInfo } from '@components/music-player';
-import { Seo, SeoProps } from '@components/seo';
+import { Seo } from '@components/seo';
 import { TitleCard } from '@components/card';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { useCallback, useEffect, useState } from 'react';
@@ -21,19 +21,13 @@ import { useTheme } from '@mui/system';
 import { TabContext, TabPanel } from '@mui/lab';
 import useCopy from '@hooks/useCopy';
 import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
-import { TFunction, useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next';
 import { TOptions } from 'i18next';
 import { seed24AudioData } from '@data/seed/24';
 import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
 import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
-const seoProps = (t: TFunction): SeoProps => ({
-    title: t('seo.title', { ns: 'seed24' }),
-    keywords: t('seo.keywords', { ns: 'seed24' }).split(', '),
-    description: t('seo.description', { ns: 'seed24' }),
-    image: '/images/24.png',
-});
+import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 
 
 const useSeed24Tabs = () => {
@@ -60,6 +54,7 @@ const seed24Translation: TOptions = { ns: 'seed24' };
 
 const Seed24 = () => {
     const { height } = useWindowDimensions();
+    const seoProps = useI18nSeoProps('seed24');
     const { t, i18n } = useTranslation();
     const isKMS = i18n.resolvedLanguage === 'kr';
     const { copy, CopySnackbar } = useCopy();
@@ -111,7 +106,7 @@ const Seed24 = () => {
 
     return (
         <>
-            <Seo {...seoProps(t)} />
+            <Seo {...seoProps} image={'/images/24.png'} />
             <TitleCard title={t('title', seed24Translation)} />
 
             <TabContext value={tab}>

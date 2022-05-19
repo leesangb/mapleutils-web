@@ -1,4 +1,4 @@
-import { Seo, SeoProps } from '@components/seo';
+import { Seo } from '@components/seo';
 import { Box, Button, Card, CardActionArea, CardContent, Grid, Hidden, Typography } from '@mui/material';
 import { TitleCard } from '@components/card';
 import { useState } from 'react';
@@ -8,14 +8,8 @@ import { Comments } from '@components/comments';
 import NextImage from 'next/image';
 import { styled } from '@mui/system';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { TFunction, useTranslation } from 'next-i18next';
-
-const seoProps = (t: TFunction): SeoProps => ({
-    title: t('seo.title', { ns: 'seed36' }),
-    keywords: t('seo.keywords', { ns: 'seed36' }).split(', '),
-    description: t('seo.description', { ns: 'seed36' }),
-    image: '/images/36.png',
-});
+import { useTranslation } from 'next-i18next';
+import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 
 type Step = 0 | 1 | 2 | 3 | undefined;
 type Steps = [Step, Step, Step, Step, Step, Step, Step, Step]
@@ -104,6 +98,7 @@ const Content = (props: ContentProps) => {
 
 const Seed36 = () => {
     const { t } = useTranslation();
+    const seoProps = useI18nSeoProps('seed36');
     const [steps, setSteps] = useState<Steps>(buildDefaultSteps());
 
     const resetSteps = () => setSteps(buildDefaultSteps());
@@ -113,7 +108,7 @@ const Seed36 = () => {
 
     return (
         <>
-            <Seo {...seoProps(t)} />
+            <Seo {...seoProps} image={'/images/36.png'} />
             <TitleCard title={t('title', { ns: 'seed36' })} />
             <Card variant={'outlined'}>
                 <CardContent>
