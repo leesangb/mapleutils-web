@@ -23,5 +23,6 @@
     "y": "Y axis",
     "ratio": "Ratio",
     "reset": "Reset settings"
-  }
+  },
+  "mapGuide": "Map extraction"
 }
