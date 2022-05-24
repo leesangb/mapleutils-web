@@ -65,27 +65,13 @@ const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
 );
 
 
-const seeds = [
-    {
-        floor: 24,
-        shortDescription: '마을 BGM',
-    },
-    {
-        floor: 36,
-        shortDescription: '기록지',
-    },
-    {
-        floor: 39,
-        shortDescription: '문제 족보',
-    },
-    {
-        floor: 48,
-        shortDescription: '오버레이 미니맵',
-    },
-    {
-        floor: 49,
-        shortDescription: '문제 족보',
-    },
+const seedFloors = [
+    23,
+    24,
+    36,
+    39,
+    48,
+    49,
 ];
 
 type DrawerItem = {
@@ -119,12 +105,12 @@ const drawerItems: DrawerItem[] = [
             short: 'drawer.seed.shortName',
         },
         children:
-            seeds.map(seed => ({
-                key: `seed-${seed.floor}`,
-                title: `drawer.seed.${seed.floor}.title`,
-                subtitle: `drawer.seed.${seed.floor}.shortDescription`,
-                link: `/seed/${seed.floor}`,
-                icon: () => <LinkAvatar link={`/seed/${seed.floor}`} text={seed.floor} />,
+            seedFloors.map(floor => ({
+                key: `seed-${floor}`,
+                title: `drawer.seed.${floor}.title`,
+                subtitle: `drawer.seed.${floor}.shortDescription`,
+                link: `/seed/${floor}`,
+                icon: () => <LinkAvatar link={`/seed/${floor}`} text={floor} />,
             })),
     },
     {

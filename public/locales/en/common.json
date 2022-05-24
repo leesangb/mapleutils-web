@@ -19,6 +19,10 @@
     "seed": {
       "longName": "Tower of Oz",
       "shortName": "Oz",
+      "23": {
+        "title": "Tower of Oz F23",
+        "shortDescription": "Invisible platforms"
+      },
       "24": {
         "title": "Tower of Oz F24",
         "shortDescription": "Soundtracks"

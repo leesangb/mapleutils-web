@@ -19,6 +19,10 @@
     "seed": {
       "longName": "더 시드",
       "shortName": "시드",
+      "23": {
+        "title": "시드 23층",
+        "shortDescription": "맵 투명 발판"
+      },
       "24": {
         "title": "시드 24층",
         "shortDescription": "마을 BGM"
