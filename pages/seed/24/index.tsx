@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { MusicPlayer, TrackInfo } from '@components/music-player';
 import { Seo } from '@components/seo';
-import { TitleCard } from '@components/card';
+import { I18nTitleCard } from '@components/card';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { useCallback, useEffect, useState } from 'react';
 import { isHangulMatching } from '@tools/string';
@@ -107,7 +107,7 @@ const Seed24 = () => {
     return (
         <>
             <Seo {...seoProps} image={'/images/24.png'} />
-            <TitleCard title={t('title', seed24Translation)} />
+            <I18nTitleCard ns={'seed24'} />
 
             <TabContext value={tab}>
                 <Paper variant={'outlined'}>

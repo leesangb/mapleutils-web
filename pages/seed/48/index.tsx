@@ -1,4 +1,4 @@
-import { TitleCard } from '@components/card';
+import { I18nTitleCard } from '@components/card';
 import { Card, CardContent, Typography } from '@mui/material';
 import { VideoCapture } from '@components/video-capture';
 import { Comments } from '@components/comments';
@@ -15,7 +15,7 @@ const Seed48 = () => {
     return (
         <>
             <Seo {...seoProps} image={'/images/48.png'} />
-            <TitleCard title={t('title', { ns: 'seed48' })} />
+            <I18nTitleCard ns={'seed48'} />
             <Card variant={'outlined'} sx={theme => ({ marginBottom: theme.spacing(1) })}>
                 <CardContent>
                     <VideoCapture />

@@ -6,7 +6,7 @@ import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedL
 import { QuestionAnswer, seed39Data, seed39DataGMS } from '@data/seed/39';
 import { isHangulMatching, isMatching } from '@tools/string';
 import { Seo } from '@components/seo';
-import { TitleCard } from '@components/card';
+import { I18nTitleCard } from '@components/card';
 import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
@@ -71,7 +71,7 @@ const Seed39 = (props: Seed39Props) => {
     return (
         <>
             <Seo {...seoProps} image={'/images/39.png'} />
-            <TitleCard title={t('title', { ns: 'seed39' })} />
+            <I18nTitleCard ns={'seed39'} />
             <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>
                     <VirtualizedFixedList height={height - 330}

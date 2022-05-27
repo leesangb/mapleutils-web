@@ -1,6 +1,6 @@
 import { Seo } from '@components/seo';
 import { Box, Button, Card, CardActionArea, CardContent, Grid, Hidden, Typography } from '@mui/material';
-import { TitleCard } from '@components/card';
+import { I18nTitleCard } from '@components/card';
 import { useState } from 'react';
 import { seed36Data } from '@data/seed/36';
 import { ReplayRounded } from '@mui/icons-material';
@@ -109,7 +109,7 @@ const Seed36 = () => {
     return (
         <>
             <Seo {...seoProps} image={'/images/36.png'} />
-            <TitleCard title={t('title', { ns: 'seed36' })} />
+            <I18nTitleCard ns={'seed36'} />
             <Card variant={'outlined'}>
                 <CardContent>
                     <Content steps={steps} onChangeStep={onChangeStep} resetSteps={resetSteps} />
