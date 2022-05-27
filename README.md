@@ -37,9 +37,21 @@ GOOGLE_CLIENT_ID="<GOOGLE-API-SERVICE-ACCOUNT-ID>"
 GOOGLE_PRIVATE_KEY="<GOOGLE-API-SERVICE-ACCOUNT-PRIVATE-KEY>"
 ```
 
+## i18n
+
+모든 페이지를 한글/영어 버전으로 볼 수 있습니다.
+`public/locales`폴더에 페이지 마다 번역 된 json파일이 있습니다.
+
+한글 페이지 `https://mapleutils.com/[slug]`
+그 외 언어 `https://mapleutils.com/[lang]/[slug]` (예: `https://mapleutils.com/en/seed/39`)
+
 ---
 
 ## 더 시드
+
+### 23층 `/seed/23`
+
+더 시드 23층 발판을 볼 수 있습니다.
 
 ### 24층 `/seed/24`
 
@@ -60,6 +72,10 @@ GOOGLE_PRIVATE_KEY="<GOOGLE-API-SERVICE-ACCOUNT-PRIVATE-KEY>"
 - [x] 문제 또는 보기 검색 (초성도 ✅)
 - [x] 특수문자 무시하고 검색
 - [x] `CTRL` + `F` 또는 `F3`키로 바로 검색
+
+### 47층 `/seed/47`
+
+더 시드 47층 발판을 볼 수 있습니다.
 
 ### 48층 `/seed/48`
 
