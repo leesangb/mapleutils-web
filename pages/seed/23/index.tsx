@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { Seo } from '@components/seo';
-import { TitleCard } from '@components/card';
+import { I18nTitleCard } from '@components/card';
 import { Card, CardContent, Typography } from '@mui/material';
 import NextImage from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -14,7 +14,7 @@ const Seed23 = () => {
     return (
         <>
             <Seo {...seoProps} image={'/images/23.png'} />
-            <TitleCard title={t('title', { ns: 'seed23' })} />
+            <I18nTitleCard ns={'seed23'} />
             <Card variant={'outlined'}>
                 <CardContent>
                     <Typography variant={'h3'}>{t('mapFull', { ns: 'seed23' })}</Typography>

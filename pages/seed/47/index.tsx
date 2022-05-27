@@ -3,7 +3,7 @@ import { Comments } from '@components/comments';
 import NextImage from 'next/image';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { Seo } from '@components/seo';
-import { TitleCard } from '@components/card';
+import { I18nTitleCard } from '@components/card';
 import { useTranslation } from 'next-i18next';
 import { Box, Card, CardContent, Typography } from '@mui/material';
 
@@ -13,7 +13,7 @@ const Seed47 = () => {
     return (
         <>
             <Seo {...seoProps} image={'/images/47.png'} />
-            <TitleCard title={t('title', { ns: 'seed47' })} />
+            <I18nTitleCard ns={'seed47'} />
 
             <Card variant={'outlined'}>
                 <CardContent>

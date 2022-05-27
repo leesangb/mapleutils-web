@@ -1,5 +1,4 @@
 import { Seo } from '@components/seo';
-import { TitleCard } from '@components/card';
 import { seed49Data, SeedLocation } from '@data/seed/49';
 import { Card, CardContent, Typography } from '@mui/material';
 import { Box } from '@mui/system';
@@ -13,6 +12,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { Seed49MobCard, Seed49Search, useSeed49Location } from '@components/seed/49';
 import Display from '@components/display/Display';
+import { I18nTitleCard } from '@components/card';
 
 
 interface Seed49Props {
@@ -45,7 +45,7 @@ const Seed49 = ({ data }: Seed49Props) => {
     return (
         <>
             <Seo {...seoProps} image={'/images/49.png'} />
-            <TitleCard title={t('title', { ns: 'seed49' })} />
+            <I18nTitleCard ns={'seed49'} />
 
             <Card variant={'outlined'}
                   sx={theme => ({ marginBottom: theme.spacing(1) })}>
