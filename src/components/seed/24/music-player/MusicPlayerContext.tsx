@@ -1,13 +1,13 @@
 import { PropsWithChildren, useEffect, useMemo } from 'react';
 import { createGenericContext } from '@hooks/contextHelper';
-import { TrackInfo } from '@components/music-player';
+import { TrackInfo } from '@components/seed/24/music-player/index';
 import useCopy from '@hooks/useCopy';
-import { usePlayerState } from '@components/music-player/usePlayerState';
+import { usePlayerState } from '@components/seed/24/music-player/usePlayerState';
 import {
     MusicPlayerPreference,
     MusicPlayerPreferenceAction,
     useMusicPlayerPreference,
-} from '@components/music-player/MusicPlayerPreference';
+} from '@components/seed/24/music-player/MusicPlayerPreference';
 import { TFunction, useTranslation } from 'next-i18next';
 
 

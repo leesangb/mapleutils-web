@@ -1,4 +1,4 @@
-import { useMusicPlayerContext } from '@components/music-player/MusicPlayerContext';
+import { useMusicPlayerContext } from '@components/seed/24/music-player/MusicPlayerContext';
 import { Slider, Typography } from '@mui/material';
 import { toMinuteSecond } from '@tools/time';
 import { Box } from '@mui/system';

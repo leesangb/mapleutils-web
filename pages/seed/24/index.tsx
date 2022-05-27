@@ -11,7 +11,7 @@ import {
     Typography,
     useMediaQuery,
 } from '@mui/material';
-import { MusicPlayer, TrackInfo } from '@components/music-player';
+import { MusicPlayer, TrackInfo } from '@components/seed/24/music-player';
 import { Seo } from '@components/seo';
 import { I18nTitleCard } from '@components/card';
 import useWindowDimensions from '@hooks/useWindowDimensions';
