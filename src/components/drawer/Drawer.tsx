@@ -1,4 +1,4 @@
-import { Box, useTheme } from '@mui/system';
+import { Box, css, useTheme } from '@mui/system';
 import {
     Avatar,
     CSSObject,
@@ -40,7 +40,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
         duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: `calc(${theme.spacing(7)} + 1px)`,
+    width: `calc(${theme.spacing(7)} + 3px)`,
     [theme.breakpoints.up('sm')]: {
         width: `calc(${theme.spacing(9)} + 1px)`,
     },
@@ -62,6 +62,24 @@ const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
             '& .MuiDrawer-paper': closedMixin(theme),
         }),
     }),
+    css`
+      .MuiDrawer-paper::-webkit-scrollbar {
+        width: 1px;
+        background: transparent;
+      }
+
+      .MuiDrawer-paper::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .MuiDrawer-paper::-webkit-scrollbar-thumb {
+        background: #888;
+      }
+
+      .MuiDrawer-paper::-webkit-scrollbar-thumb:hover {
+        background: #666;
+      }
+    `,
 );
 
 

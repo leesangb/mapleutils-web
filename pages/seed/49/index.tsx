@@ -209,8 +209,7 @@ const Seed49 = ({ data }: Seed49Props) => {
                     </Collapse>
                 </CardContent>
             </Card>
-            <Box sx={theme => ({ borderRadius: theme.spacing(2) })}
-                 overflow={'scroll'}
+            <Box sx={theme => ({ borderRadius: theme.spacing(2), overflowY: 'scroll' })}
                  maxHeight={height - 380}
                  height={height - 380}>
                 <Masonry spacing={1} columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
