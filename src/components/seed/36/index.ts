@@ -1,0 +1,1 @@
+export { default as Seed36Steps } from './Seed36Steps';
