@@ -15,12 +15,11 @@ import { MusicPlayer, TrackInfo } from '@components/music-player';
 import { Seo } from '@components/seo';
 import { I18nTitleCard } from '@components/card';
 import useWindowDimensions from '@hooks/useWindowDimensions';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { isHangulMatching } from '@tools/string';
 import { useTheme } from '@mui/system';
 import { TabContext, TabPanel } from '@mui/lab';
 import useCopy from '@hooks/useCopy';
-import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
 import { useTranslation } from 'next-i18next';
 import { TOptions } from 'i18next';
 import { seed24AudioData } from '@data/seed/24';
@@ -28,26 +27,7 @@ import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedL
 import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
-
-
-const useSeed24Tabs = () => {
-    const [tab, setTab] = useState<string>('bgm');
-
-    useEffect(() => {
-        const tab = LocalStorageHelper.load<string>(LocalStorageKey.SEED_24_TAB);
-        setTab(tab);
-    }, []);
-
-    const onChangeTab = (tab: string) => {
-        localStorage.setItem(LocalStorageKey.SEED_24_TAB, tab);
-        setTab(tab);
-    };
-
-    return {
-        tab,
-        onChangeTab,
-    };
-};
+import { useSeed24Tabs } from '@components/seed/24';
 
 
 const seed24Translation: TOptions = { ns: 'seed24' };
@@ -58,6 +38,9 @@ const Seed24 = () => {
     const { t, i18n } = useTranslation();
     const isKMS = i18n.resolvedLanguage === 'kr';
     const { copy, CopySnackbar } = useCopy();
+    const theme = useTheme();
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+    const { tab, onChangeTab } = useSeed24Tabs();
 
     const rowRenderer = useCallback(
         (item: TrackInfo) => (
@@ -84,15 +67,8 @@ const Seed24 = () => {
         [],
     );
 
-    const searchFilter = useCallback((item: TrackInfo, pattern: string) => {
-        return isHangulMatching(pattern, item.name, item.hint);
-    }, []);
+    const searchFilter = useCallback((item: TrackInfo, pattern: string) => isHangulMatching(pattern, item.name, item.hint), []);
 
-
-    const theme = useTheme();
-    const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-
-    const { tab, onChangeTab } = useSeed24Tabs();
 
     const handleChangeTab = (_: any, value: string) => {
         onChangeTab(value);
@@ -124,6 +100,7 @@ const Seed24 = () => {
                         </CardContent>
                     </Card>
                 </TabPanel>
+
                 <TabPanel sx={{ padding: `${theme.spacing(1)} 0` }} value={'hint'}>
                     <Card elevation={0} variant={'outlined'} component={'section'}>
                         <CardContent>

@@ -1,0 +1,1 @@
+export { default as useSeed24Tabs } from './useSeed24Tabs';
