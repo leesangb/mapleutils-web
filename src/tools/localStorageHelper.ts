@@ -1,6 +1,6 @@
 import { Preference } from '@stores/app/Preference';
 import { isServerSide } from './helper';
-import { MusicPlayerPreference } from '@components/music-player/MusicPlayerPreference';
+import { MusicPlayerPreference } from '@components/seed/24/music-player/MusicPlayerPreference';
 
 
 export enum LocalStorageKey {

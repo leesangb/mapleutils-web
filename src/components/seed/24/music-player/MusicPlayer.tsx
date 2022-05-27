@@ -1,8 +1,8 @@
 import { Grid } from '@mui/material';
-import { MusicPlayerProvider } from '@components/music-player/MusicPlayerContext';
-import NowPlaying from '@components/music-player/NowPlaying';
-import MusicPlayerTrackList from '@components/music-player/MusicPlayerTrackList';
-import { TrackInfo } from '@components/music-player/TrackInfo';
+import { MusicPlayerProvider } from '@components/seed/24/music-player/MusicPlayerContext';
+import NowPlaying from '@components/seed/24/music-player/NowPlaying';
+import MusicPlayerTrackList from '@components/seed/24/music-player/MusicPlayerTrackList';
+import { TrackInfo } from '@components/seed/24/music-player/TrackInfo';
 
 interface MusicPlayerProps {
     tracks: TrackInfo[];

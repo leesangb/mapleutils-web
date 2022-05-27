@@ -1,4 +1,4 @@
-import { useMusicPlayerContext } from '@components/music-player/MusicPlayerContext';
+import { useMusicPlayerContext } from '@components/seed/24/music-player/MusicPlayerContext';
 import { Box, IconButton, Slider, Tooltip } from '@mui/material';
 import { VolumeDownRounded, VolumeUpRounded } from '@mui/icons-material';
 import { useEffect } from 'react';

@@ -1,6 +1,6 @@
 import { Grid, MenuItem, TextField } from '@mui/material';
-import MusicItem from '@components/music-player/MusicItem';
-import { useMusicPlayerContext } from '@components/music-player/MusicPlayerContext';
+import MusicItem from '@components/seed/24/music-player/MusicItem';
+import { useMusicPlayerContext } from '@components/seed/24/music-player/MusicPlayerContext';
 import { ChangeEvent } from 'react';
 import { useTranslation } from 'next-i18next';
 

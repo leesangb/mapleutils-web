@@ -1,4 +1,4 @@
-import { useMusicPlayerContext } from '@components/music-player/MusicPlayerContext';
+import { useMusicPlayerContext } from '@components/seed/24/music-player/MusicPlayerContext';
 import { Avatar, Stack, Typography } from '@mui/material';
 import { MusicNoteRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';

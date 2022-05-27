@@ -1,5 +1,5 @@
 import { Avatar, Checkbox, ListItemButton, ListItemIcon, ListItemText, Tooltip, Typography } from '@mui/material';
-import { useMusicPlayerContext } from '@components/music-player/MusicPlayerContext';
+import { useMusicPlayerContext } from '@components/seed/24/music-player/MusicPlayerContext';
 import { useMemo, useRef, useState } from 'react';
 import { PauseRounded, PlayArrowRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';

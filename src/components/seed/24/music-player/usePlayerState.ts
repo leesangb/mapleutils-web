@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { TrackInfo } from '@components/music-player/TrackInfo';
+import { TrackInfo } from '@components/seed/24/music-player/TrackInfo';
 
 
 interface PlayerState {
