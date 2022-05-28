@@ -1,4 +1,4 @@
-import { Button, IconButton, PaletteMode, styled, Toolbar } from '@mui/material';
+import { Button, IconButton, styled, Toolbar } from '@mui/material';
 import { Box } from '@mui/system';
 import { Link } from '@components/link';
 import SettingsButton from './SettingsButton';
@@ -7,7 +7,6 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { useTranslation } from 'next-i18next';
 
 interface HeaderProps {
-    themeType: PaletteMode;
     toggleDarkMode: () => void;
     toggleOpen?: () => void;
 }

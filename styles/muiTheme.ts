@@ -1,9 +1,9 @@
-import { useStore } from '@stores/StoreContext';
 import { createTheme, PaletteOptions } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import { PaletteMode, Theme, ThemeOptions } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createBreakpoints } from '@mui/system';
+import { LocalStorageHelper, LocalStorageKey, Preference } from '@tools/localStorageHelper';
 
 const breakpoints = createBreakpoints({});
 
@@ -14,7 +14,7 @@ const darkPaletteOptions: PaletteOptions = {
         disabled: 'rgba(255,255,255,0.5)',
     },
     background: {
-        default: '#1d1d1d',
+        default: '#1d1d1d !important', // FIXME, do not use !important... to investigate why it is ignored sometimes
         paper: '#262626',
     },
     action: {
@@ -166,21 +166,27 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
 export const defaultTheme = createTheme(buildThemeOptions('light'));
 
 export const useDarkMode = () => {
-    const { app } = useStore();
 
-    const [themeOptions, setThemeOptions] = useState<ThemeOptions>(buildThemeOptions(app.preference.theme));
+    const [themeOptions, setThemeOptions] = useState<ThemeOptions>(buildThemeOptions('light'));
     const [theme, setTheme] = useState<Theme>(defaultTheme);
+
+    useEffect(() => {
+        const preference = LocalStorageHelper.load<Preference>(LocalStorageKey.PREFERENCE);
+        setThemeOptions(buildThemeOptions(preference.theme));
+    }, []);
 
     useEffect(() => {
         setTheme(createTheme(themeOptions));
     }, [themeOptions]);
 
-    const toggleDarkMode = () => {
-        const mode = themeOptions?.palette?.mode === 'light' ? 'dark' : 'light';
+    const toggleDarkMode = useCallback(() => {
+        const mode = themeOptions.palette?.mode === 'light' ? 'dark' : 'light';
         const newTheme = buildThemeOptions(mode);
-        app.changeTheme(mode);
         setThemeOptions(newTheme);
-    };
+        const preference = LocalStorageHelper.load<Preference>(LocalStorageKey.PREFERENCE);
+        preference.theme = mode;
+        LocalStorageHelper.save(LocalStorageKey.PREFERENCE, preference);
+    }, [themeOptions]);
 
     return {
         theme,

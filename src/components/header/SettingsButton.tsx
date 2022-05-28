@@ -8,12 +8,12 @@ import {
     PaletteMode,
     Popover,
     Tooltip,
+    useTheme,
 } from '@mui/material';
 import { ReactNode, useState } from 'react';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import DarkModeIcon from '@mui/icons-material/Brightness4Rounded';
 import LightModeIcon from '@mui/icons-material/Brightness7Rounded';
-import { useStore } from '@stores/StoreContext';
 import { observer } from 'mobx-react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
@@ -36,10 +36,10 @@ const themeIconAndLabel: Record<PaletteMode, { label: string; icon: ReactNode }>
 };
 
 const SettingsButton = observer((props: SettingsButtonProps) => {
-    const { app } = useStore();
     const router = useRouter();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    const { palette: { mode } } = useTheme();
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -52,7 +52,7 @@ const SettingsButton = observer((props: SettingsButtonProps) => {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
-    const theme = themeIconAndLabel[app.preference.theme];
+    const theme = themeIconAndLabel[mode];
 
     return (
         <>

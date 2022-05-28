@@ -5,8 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import createEmotionCache from '@tools/createEmotionCache';
 import Seo from '@components/seo/Seo';
-import { observer } from 'mobx-react';
-import { StoreProvider } from 'src/stores/StoreContext';
 import { useDarkMode } from '@styles/muiTheme';
 import GlobalLayout from '@components/layout/GlobalLayout';
 import { useEffect } from 'react';
@@ -22,19 +20,19 @@ interface MyAppProps extends AppProps {
     emotionCache?: EmotionCache;
 }
 
-const App = observer((props: AppProps) => {
+const App = (props: AppProps) => {
     const { Component, pageProps } = props;
     const { theme, toggleDarkMode } = useDarkMode();
 
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <GlobalLayout themeType={theme.palette.mode} toggleDarkMode={toggleDarkMode}>
+            <GlobalLayout toggleDarkMode={toggleDarkMode}>
                 <Component {...pageProps} />
             </GlobalLayout>
         </ThemeProvider>
     );
-});
+};
 
 function MyApp(props: MyAppProps) {
     const { emotionCache = clientSideEmotionCache, ...appProps } = props;
@@ -62,9 +60,7 @@ function MyApp(props: MyAppProps) {
                 <link rel='icon' href='/favicon.ico' />
                 <meta name='naver-site-verification' content='c1ee52e4a060d1327e8953770828d7769dfd599d' />
             </Head>
-            <StoreProvider>
-                <App {...appProps} />
-            </StoreProvider>
+            <App {...appProps} />
         </CacheProvider>
     );
 }

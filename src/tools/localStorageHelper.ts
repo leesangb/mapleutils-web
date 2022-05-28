@@ -1,7 +1,27 @@
-import { Preference } from '@stores/app/Preference';
 import { isServerSide } from './helper';
 import { MusicPlayerPreference } from '@components/seed/24/music-player/MusicPlayerPreference';
+import { PaletteMode } from '@mui/material';
 
+const defaultPreference: { theme: PaletteMode, version: string } = {
+    theme: 'light',
+    version: '0.3',
+};
+
+export class Preference {
+    theme: PaletteMode;
+    version: string;
+
+    constructor(theme: PaletteMode = defaultPreference.theme,
+                version: string = defaultPreference.version) {
+        this.theme = theme;
+        this.version = version;
+    }
+
+    fix(obj: any) {
+        this.theme = obj?.theme || this.theme || defaultPreference.theme;
+        this.version = obj?.version || this.version || defaultPreference.version;
+    }
+}
 
 export enum LocalStorageKey {
     PREFERENCE = 'PREFERENCE',
