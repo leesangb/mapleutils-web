@@ -14,7 +14,6 @@ import { ReactNode, useState } from 'react';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import DarkModeIcon from '@mui/icons-material/Brightness4Rounded';
 import LightModeIcon from '@mui/icons-material/Brightness7Rounded';
-import { observer } from 'mobx-react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { TranslateRounded } from '@mui/icons-material';
@@ -35,7 +34,7 @@ const themeIconAndLabel: Record<PaletteMode, { label: string; icon: ReactNode }>
     },
 };
 
-const SettingsButton = observer((props: SettingsButtonProps) => {
+const SettingsButton = (props: SettingsButtonProps) => {
     const router = useRouter();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -101,6 +100,6 @@ const SettingsButton = observer((props: SettingsButtonProps) => {
             </Popover>
         </>
     );
-});
+};
 
 export default SettingsButton;
