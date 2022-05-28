@@ -3,19 +3,18 @@ import Drawer from '@components/drawer/Drawer';
 import DrawerHeader from '@components/drawer/DrawerHeader';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 import Header from '@components/header/Header';
-import { Hidden, PaletteMode, Stack, useMediaQuery } from '@mui/material';
+import { Hidden, Stack, useMediaQuery } from '@mui/material';
 import AdSense, { AdSenseSlot } from '@components/adsense/AdSense';
 import Footer from '@components/footer/Footer';
 import { useRouter } from 'next/router';
 
 interface GlobalLayoutProps {
     children: ReactNode;
-    themeType: PaletteMode;
     toggleDarkMode: () => void;
 }
 
 const GlobalLayout = (props: GlobalLayoutProps) => {
-    const { children, themeType, toggleDarkMode } = props;
+    const { children, toggleDarkMode } = props;
     const [open, setOpen] = useState<boolean>(false);
     const toggleOpen = useCallback(() => setOpen(!open), [open]);
     const { pathname } = useRouter();
@@ -29,7 +28,6 @@ const GlobalLayout = (props: GlobalLayoutProps) => {
     return (
         <Box display={'flex'}>
             <Header toggleOpen={toggleOpen}
-                    themeType={themeType}
                     toggleDarkMode={toggleDarkMode} />
             <Drawer open={open} />
             <Box component={'main'} sx={{ flexGrow: 1, p: mdUp ? 3 : 1 }}>
