@@ -6,9 +6,14 @@ import CaptureButtons from '@components/video-capture/CaptureButtons';
 import CaptureViewer from '@components/video-capture/CaptureViewer';
 import CaptureHelp from '@components/video-capture/CaptureHelp';
 import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
-import { useTranslation } from 'next-i18next';
 
 const FPS_60 = 1000 / 60;
+const DEFAULT_X = 2;
+const DEFAULT_Y = 25;
+const DEFAULT_RATIO = 100;
+const CAPTURE_FRAMERATE = 30;
+const CANVAS_WIDTH = 260;
+const CANVAS_HEIGHT = 156;
 
 interface VideoState {
     stream: MediaProvider | null;
@@ -35,7 +40,6 @@ interface VideoCaptureProps {
 }
 
 const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
-    const { i18n } = useTranslation('seed48');
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const computedRef = useRef<HTMLVideoElement | null>(null);
@@ -46,9 +50,9 @@ const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
         stream: null,
         canvasStream: null,
         isCapturing: false,
-        x: 2,
-        y: 25,
-        ratio: 100,
+        x: DEFAULT_X,
+        y: DEFAULT_Y,
+        ratio: DEFAULT_RATIO,
         showJump: true,
     });
 
@@ -76,7 +80,7 @@ const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
         const mediaDevices = navigator.mediaDevices;
         const stream: MediaProvider = await mediaDevices.getDisplayMedia({
             video: {
-                frameRate: 30,
+                frameRate: CAPTURE_FRAMERATE,
                 aspectRatio: 1,
             },
             audio: false,
@@ -113,28 +117,29 @@ const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
 
     const handleReset = () => {
         dispatch({
-            x: 2,
-            y: 25,
-            ratio: 100,
+            x: DEFAULT_X,
+            y: DEFAULT_Y,
+            ratio: DEFAULT_RATIO,
         });
     };
 
 
     useEffect(() => {
-        if (canvasRef.current) {
-            if (isCapturing) {
-                const interval = setInterval(() => {
-                    const ctx = canvasRef.current!.getContext('2d')!;
-                    ctx.drawImage(videoRef.current!, x, y, (260 * ratio) / 100, (156 * ratio) / 100, 0, 0, 260, 156);
-                    ctx.drawImage(platform48!.current!, 0, 0);
+        if (!canvasRef.current)
+            return;
 
-                    if (showJump) ctx.drawImage(jump48!.current!, 0, 0);
-                }, FPS_60);
-                return () => clearInterval(interval);
-            } else {
+        if (isCapturing) {
+            const interval = setInterval(() => {
                 const ctx = canvasRef.current!.getContext('2d')!;
-                ctx.clearRect(0, 0, 260, 156);
-            }
+                ctx.drawImage(videoRef.current!, x, y, (CANVAS_WIDTH * ratio) / 100, (CANVAS_HEIGHT * ratio) / 100, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+                ctx.drawImage(platform48!.current!, 0, 0);
+
+                if (showJump) ctx.drawImage(jump48!.current!, 0, 0);
+            }, FPS_60);
+            return () => clearInterval(interval);
+        } else {
+            const ctx = canvasRef.current!.getContext('2d')!;
+            ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         }
     }, [canvasRef, isCapturing, x, y, ratio, showJump]);
 
@@ -184,8 +189,8 @@ const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
             <Canvas
                 isVisible={isCapturing}
                 ref={canvasRef}
-                width={260}
-                height={156}
+                width={CANVAS_WIDTH}
+                height={CANVAS_HEIGHT}
             />
             {
                 isCapturing && (
