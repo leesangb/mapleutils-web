@@ -104,13 +104,14 @@ const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
     };
 
     const handleClickPip = () => {
-        if (computedRef.current) {
-            // @ts-ignore
-            computedRef.current.requestPictureInPicture();
-            // @ts-ignore
-            computedRef.current.onleavepictureinpicture = () => computedRef.current.pause();
-            computedRef.current.play();
-        }
+        if (!computedRef.current)
+            return;
+
+        // @ts-ignore
+        computedRef.current.requestPictureInPicture();
+        // @ts-ignore
+        computedRef.current.onleavepictureinpicture = () => computedRef.current.pause();
+        computedRef.current.play();
     };
 
     const handleToggleJump = () => dispatch({ showJump: !showJump });
@@ -148,26 +149,29 @@ const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
     }, [stream]);
 
     useEffect(() => {
-        if (computedRef.current) {
-            computedRef.current.srcObject = canvasStream;
-        }
+        if (!computedRef.current)
+            return;
+
+        computedRef.current.srcObject = canvasStream;
     }, [canvasStream]);
 
     useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.srcObject = stream;
-            if (stream) {
-                // @ts-ignore
-                const settings = stream.getVideoTracks()[0].getSettings();
-                const { width, height } = settings;
-                videoRef.current.width = width;
-                videoRef.current.height = height;
-            }
+        if (!videoRef.current)
+            return;
+
+        videoRef.current.srcObject = stream;
+        if (stream) {
+            // @ts-ignore
+            const settings = stream.getVideoTracks()[0].getSettings();
+            const { width, height } = settings;
+            videoRef.current.width = width;
+            videoRef.current.height = height;
         }
     }, [stream]);
 
 
     useEffect(() => {
+        // stop video capture when unmount
         return () => {
             handleStop();
         };
