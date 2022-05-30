@@ -9,7 +9,7 @@ import { isProduction } from '@tools/helper';
 export default class MyDocument extends Document {
     render() {
         return (
-            <Html lang='en'>
+            <Html lang={this.props.locale}>
                 <Head>
                     <meta name='theme-color' content={defaultTheme.palette.background.default} />
                     <link
