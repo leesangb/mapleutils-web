@@ -36,7 +36,7 @@ const Seed24 = () => {
     const { height } = useWindowDimensions();
     const seoProps = useI18nSeoProps('seed24');
     const { t, i18n } = useTranslation();
-    const isKMS = i18n.resolvedLanguage === 'kr';
+    const isKMS = i18n.resolvedLanguage === 'ko';
     const { copy, CopySnackbar } = useCopy();
     const theme = useTheme();
     const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -75,7 +75,7 @@ const Seed24 = () => {
     };
 
     useEffect(() => {
-        if (i18n.resolvedLanguage !== 'kr') {
+        if (i18n.resolvedLanguage !== 'ko') {
             onChangeTab('bgm');
         }
     }, [i18n.resolvedLanguage, onChangeTab]);

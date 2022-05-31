@@ -82,14 +82,14 @@ const SettingsButton = (props: SettingsButtonProps) => {
                             <ListItemText>{t(theme.label)}</ListItemText>
                         </ListItem>
                         {
-                            router.locale === 'kr'
+                            router.locale === 'ko'
                                 ? (
                                     <ListItem component={Link} href={router.route} locale={'en'} button>
                                         <ListItemIcon><TranslateRounded /></ListItemIcon>
                                         <ListItemText>English / GMS</ListItemText>
                                     </ListItem>
                                 ) : (
-                                    <ListItem component={Link} href={router.route} locale={'kr'} button>
+                                    <ListItem component={Link} href={router.route} locale={'ko'} button>
                                         <ListItemIcon><TranslateRounded /></ListItemIcon>
                                         <ListItemText>한국어 / KMS</ListItemText>
                                     </ListItem>

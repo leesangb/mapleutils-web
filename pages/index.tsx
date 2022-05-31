@@ -179,7 +179,7 @@ const Home: NextPage = () => {
             <Card variant={'outlined'}>
                 <CardContent>
                     <Grid container spacing={1}>
-                        {i18n.resolvedLanguage === 'kr' ? <Korean /> : <English />}
+                        {i18n.resolvedLanguage === 'ko' ? <Korean /> : <English />}
                     </Grid>
 
 

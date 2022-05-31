@@ -31,7 +31,7 @@ const Seed39 = (props: Seed39Props) => {
     );
 
     const searchFilter = useCallback((item: QuestionAnswer, pattern: string) => {
-        return i18n.resolvedLanguage === 'kr'
+        return i18n.resolvedLanguage === 'ko'
             ? isHangulMatching(pattern, item.question, ...item.choices)
             : isMatching(pattern, item.question, ...item.choices);
     }, [i18n.resolvedLanguage]);
@@ -61,7 +61,7 @@ const Seed39 = (props: Seed39Props) => {
 export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
-            data: locale === 'kr'
+            data: locale === 'ko'
                 ? seed39Data.sort((a, b) => a.question.localeCompare(b.question))
                 : seed39DataGMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)),
             ...(await serverSideTranslations(locale, ['common', 'seed39'])),

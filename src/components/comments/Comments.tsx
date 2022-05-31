@@ -19,7 +19,7 @@ const Comments = ({ title = '댓글', pageKey, defaultOpen }: CommentsProps) => 
 
     const toggleOpen = () => setOpenComments(!openComments);
 
-    return i18n.resolvedLanguage === 'kr' ? (
+    return i18n.resolvedLanguage === 'ko' ? (
         <Card variant={'outlined'} sx={theme => ({ marginTop: theme.spacing(1) })}>
             <Box padding={theme => theme.spacing(1)}>
                 <ListItem component='div' button onClick={toggleOpen}>

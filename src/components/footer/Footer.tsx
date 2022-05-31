@@ -22,7 +22,7 @@ interface FooterProps {
 const Footer = (props: FooterProps) => {
     const { t, i18n } = useTranslation();
     const { data } = useFetch<AnalyticsRealTimeData>(`/api/realtime-users`);
-    const isKorean = i18n.resolvedLanguage === 'kr';
+    const isKorean = i18n.resolvedLanguage === 'ko';
     return (
         <StyledFooter>
             <Grid container direction={props.open ? 'row' : 'column'} justifyContent={'center'}>
