@@ -58,6 +58,9 @@
       "info": {
         "longName": "몬스터 정리",
         "shortName": "몹"
+      },
+      "bookmark": {
+        "longName": "즐겨찾기"
       }
     }
   },
