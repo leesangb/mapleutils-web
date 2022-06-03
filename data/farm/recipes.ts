@@ -2,7 +2,7 @@ import recipes from '@data/farm/recipes.json';
 import { getMonsterLifeMob, MonsterLifeMob, monsterLifeMobs } from '@data/farm/mobs';
 
 export interface MonsterLifeRecipe {
-    parents: [MonsterLifeMob, MonsterLifeMob];
+    parents?: [MonsterLifeMob, MonsterLifeMob];
     mob: MonsterLifeMob;
 }
 
@@ -27,20 +27,14 @@ export interface MonsterLifeFamilyRoot extends MonsterLifeFamily {
 const MONSTER_LIFE_RECIPES_LITE: MonsterLifeRecipeLite[] = recipes as MonsterLifeRecipeLite[];
 
 
-export const monsterLifeRecipes: MonsterLifeRecipe[] = MONSTER_LIFE_RECIPES_LITE.map((r) => ({
+export const monsterLifeRecipes: Required<MonsterLifeRecipe>[] = MONSTER_LIFE_RECIPES_LITE.map((r) => ({
     parents: r.parents.map((p) => monsterLifeMobs.find((mob) => mob.name === p)!) as [MonsterLifeMob, MonsterLifeMob],
     mob: monsterLifeMobs.find((mob) => mob.name === r.name)!,
 }));
 
-
-export const MONSTER_LIFE_INGREDIENTS: MonsterLifeMob[] = monsterLifeRecipes.flatMap((r) => r.parents).filter(
-    (mob, index, arr) => index === arr.findIndex((m) => m.name === mob.name),
-);
-
-export const MONSTER_LIFE_RESULTS: MonsterLifeMob[] = monsterLifeMobs.filter(
-    (mob) => MONSTER_LIFE_INGREDIENTS.findIndex((m) => m.name === mob.name) === -1,
-);
-
+export const monsterLifeFullRecipes: MonsterLifeRecipe[] = (monsterLifeRecipes as MonsterLifeRecipe[])
+    .concat(monsterLifeMobs.filter(({ name }) => !MONSTER_LIFE_RECIPES_LITE.some(r => r.name === name)).map(mob => ({ mob })))
+    .sort((a, b) => a.mob.name.localeCompare(b.mob.name));
 
 const buildFamilyRec = (name: string, level: number): { family: MonsterLifeFamily; level: number } => {
     const recipe = monsterLifeRecipes.find((r) => r.mob.name === name);

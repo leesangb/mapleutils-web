@@ -1,12 +1,24 @@
 import { MonsterLifeMob } from '@data/farm/mobs';
 import { SearchRounded } from '@mui/icons-material';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, Grid, Typography } from '@mui/material';
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Divider,
+    Grid,
+    IconButton,
+    Tooltip,
+    Typography,
+} from '@mui/material';
 import { Fragment, useMemo, useState } from 'react';
 import { MonsterLifeFamily, monsterLifeFamilyMapping } from '@data/farm/recipes';
 import { MobCard } from '@components/card/monster-life/index';
 
 interface MobTreeModalProps {
     mob: MonsterLifeMob;
+    compact?: boolean;
 }
 
 interface MobTreeProps {
@@ -20,7 +32,7 @@ const MobTree = ({ family, level, stop, from }: MobTreeProps) => {
     return family ? (
         <Grid container alignItems='center' justifyContent='flex-end' spacing={1}>
             <Grid item xs={12}>
-                <MobCard selected={family.child.name === from} small hideRecipe mob={family.child} />
+                <MobCard selected={family.child.name === from} variant={'small'} hideRecipe mob={family.child} />
             </Grid>
             {!stop && (
                 <>
@@ -46,7 +58,7 @@ const MobTree = ({ family, level, stop, from }: MobTreeProps) => {
     ) : null;
 };
 
-const MobTreeModal = ({ mob }: MobTreeModalProps) => {
+const MobTreeModal = ({ mob, compact }: MobTreeModalProps) => {
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -60,12 +72,24 @@ const MobTreeModal = ({ mob }: MobTreeModalProps) => {
 
     return families ? (
         <>
-            <Button onClick={handleOpen} sx={theme => ({ color: theme.palette.text.primary })}
-                    startIcon={<SearchRounded />}>
-                <Typography noWrap variant={'body2'} component={'p'} fontWeight={'medium'}>
-                    전체 조합식
-                </Typography>
-            </Button>
+            {
+                compact
+                    ? (
+                        <Tooltip title={'전체 조합식'}>
+                            <IconButton size={'small'} onClick={handleOpen}
+                                        sx={theme => ({ color: theme.palette.text.primary })}>
+                                <SearchRounded fontSize={'small'} />
+                            </IconButton>
+                        </Tooltip>
+                    ) : (
+                        <Button onClick={handleOpen} sx={theme => ({ color: theme.palette.text.primary })}
+                                startIcon={<SearchRounded />}>
+                            <Typography noWrap variant={'body2'} component={'p'} fontWeight={'medium'}>
+                                전체 조합식
+                            </Typography>
+                        </Button>
+                    )
+            }
 
             <Dialog open={open} onClose={handleClose} scroll='paper' maxWidth='md'>
                 <DialogTitle>

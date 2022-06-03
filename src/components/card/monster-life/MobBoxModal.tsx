@@ -1,4 +1,15 @@
-import { Button, Card, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography } from '@mui/material';
+import {
+    Button,
+    Card,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Grid,
+    IconButton,
+    Tooltip,
+    Typography,
+} from '@mui/material';
 import { CardGiftcardRounded } from '@mui/icons-material';
 import { useMemo, useState } from 'react';
 import { getMonsterBox, MonsterLifeBox } from '@data/farm/monsterLifeBox';
@@ -9,6 +20,7 @@ import NextImage from 'next/image';
 
 interface MobBoxModalProps {
     mob: MonsterLifeMob;
+    compact?: boolean;
 }
 
 interface BoxCardProps {
@@ -67,7 +79,7 @@ const BoxCard = ({ box }: BoxCardProps) => {
 };
 
 
-const MobBoxModal = ({ mob }: MobBoxModalProps) => {
+const MobBoxModal = ({ mob, compact }: MobBoxModalProps) => {
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -81,12 +93,24 @@ const MobBoxModal = ({ mob }: MobBoxModalProps) => {
 
     return (
         <>
-            <Button onClick={handleOpen} sx={theme => ({ color: theme.palette.text.primary })}
-                    startIcon={<CardGiftcardRounded />}>
-                <Typography noWrap variant={'body2'} component={'p'} fontWeight={'medium'}>
-                    상자
-                </Typography>
-            </Button>
+            {
+                compact
+                    ? (
+                        <Tooltip title={'상자'}>
+                            <IconButton size={'small'} onClick={handleOpen}
+                                        sx={theme => ({ color: theme.palette.text.primary })}>
+                                <CardGiftcardRounded fontSize={'small'} />
+                            </IconButton>
+                        </Tooltip>
+                    ) : (
+                        <Button onClick={handleOpen} sx={theme => ({ color: theme.palette.text.primary })}
+                                startIcon={<CardGiftcardRounded />}>
+                            <Typography noWrap variant={'body2'} component={'p'} fontWeight={'medium'}>
+                                상자
+                            </Typography>
+                        </Button>
+                    )
+            }
 
             <Dialog open={open} onClose={handleClose} scroll='paper' maxWidth='lg'>
                 <DialogTitle>
