@@ -18,10 +18,10 @@ const seoProps: SeoProps = {
 };
 
 interface FarmCombineProps {
-    recipes: MonsterLifeRecipe[];
+    recipes: Required<MonsterLifeRecipe>[];
 }
 
-const RecipeItem = (props: MonsterLifeRecipe) => {
+const RecipeItem = (props: Required<MonsterLifeRecipe>) => {
     const { mob, parents } = props;
 
     return (
@@ -51,9 +51,9 @@ const FarmCombine = (props: FarmCombineProps) => {
     const { recipes } = props;
     const { height } = useWindowDimensions();
 
-    const rowRenderer = useCallback((item: MonsterLifeRecipe) => <RecipeItem {...item} />, []);
+    const rowRenderer = useCallback((item: Required<MonsterLifeRecipe>) => <RecipeItem {...item} />, []);
 
-    const searchFilter = useCallback((item: MonsterLifeRecipe, pattern: string) => {
+    const searchFilter = useCallback((item: Required<MonsterLifeRecipe>, pattern: string) => {
         return isHangulMatching(pattern, item.mob.name, ...item.parents.map(p => p.name));
     }, []);
 
