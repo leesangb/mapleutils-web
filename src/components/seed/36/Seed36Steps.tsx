@@ -88,7 +88,6 @@ const Seed36Steps = () => {
                     </Grid>
                 ))}
             </Grid>
-            );
         </>
     );
 };
