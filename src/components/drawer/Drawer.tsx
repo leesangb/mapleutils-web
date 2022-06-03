@@ -1,6 +1,7 @@
 import { Box, css, useTheme } from '@mui/system';
 import {
     Avatar,
+    AvatarProps,
     CSSObject,
     Divider,
     List,
@@ -18,6 +19,7 @@ import { ReactNode, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Footer from '@components/footer/Footer';
 import { TFunction, useTranslation } from 'next-i18next';
+import { StarRounded } from '@mui/icons-material';
 
 interface DrawerProps {
     open: boolean;
@@ -107,14 +109,14 @@ type DrawerItem = {
     }[]
 }
 
-const LinkAvatar = (props: any) => {
+const LinkAvatar = ({ link, ...props }: AvatarProps & { link: string }) => {
     const location = useRouter();
 
     return <Avatar sx={theme => ({
-        bgcolor: location.pathname !== '/' && props.link.includes(location.pathname)
+        bgcolor: location.pathname !== '/' && link.includes(location.pathname)
             ? theme.palette.primary.light
             : theme.palette.grey[400],
-    })}>{props.text}</Avatar>;
+    })} {...props} />;
 };
 
 const drawerItems: DrawerItem[] = [
@@ -129,7 +131,7 @@ const drawerItems: DrawerItem[] = [
                 title: `drawer.seed.${floor}.title`,
                 subtitle: `drawer.seed.${floor}.shortDescription`,
                 link: `/seed/${floor}`,
-                icon: () => <LinkAvatar link={`/seed/${floor}`} text={floor} />,
+                icon: () => <LinkAvatar link={`/seed/${floor}`}>{floor}</LinkAvatar>,
             })),
     },
     {
@@ -142,13 +144,21 @@ const drawerItems: DrawerItem[] = [
                 key: 'farm-combine',
                 title: 'drawer.farm.combine.longName',
                 link: '/farm/combine',
-                icon: (t: TFunction) => <LinkAvatar link={'/farm/combine'} text={t('drawer.farm.combine.shortName')} />,
+                icon: (t: TFunction) => <LinkAvatar
+                    link={'/farm/combine'}>{t('drawer.farm.combine.shortName').toString()}</LinkAvatar>,
             },
             {
                 key: 'farm-info',
                 title: 'drawer.farm.info.longName',
                 link: '/farm/info',
-                icon: (t: TFunction) => <LinkAvatar link={'/farm/info'} text={t('drawer.farm.info.shortName')} />,
+                icon: (t: TFunction) => <LinkAvatar
+                    link={'/farm/info'}>{t('drawer.farm.info.shortName').toString()}</LinkAvatar>,
+            },
+            {
+                key: 'farm-bookmarks',
+                title: 'drawer.farm.bookmark.longName',
+                link: '/farm/bookmark',
+                icon: () => <LinkAvatar link={'/farm/bookmark'}><StarRounded /></LinkAvatar>,
             },
         ],
     },
