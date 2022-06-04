@@ -119,7 +119,7 @@ const LinkAvatar = ({ link, ...props }: AvatarProps & { link: string }) => {
     })} {...props} />;
 };
 
-const drawerItems: DrawerItem[] = [
+const seedDrawerItem: DrawerItem =
     {
         category: {
             name: 'drawer.seed.longName',
@@ -133,7 +133,9 @@ const drawerItems: DrawerItem[] = [
                 link: `/seed/${floor}`,
                 icon: () => <LinkAvatar link={`/seed/${floor}`}>{floor}</LinkAvatar>,
             })),
-    },
+    };
+
+const farmDrawerItem: DrawerItem =
     {
         category: {
             name: 'drawer.farm.longName',
@@ -161,8 +163,7 @@ const drawerItems: DrawerItem[] = [
                 icon: () => <LinkAvatar link={'/farm/bookmark'}><StarRounded /></LinkAvatar>,
             },
         ],
-    },
-];
+    };
 
 interface DrawerChildItemProps {
     link: string;
@@ -211,15 +212,20 @@ const Drawer = (props: DrawerProps) => {
     const { open } = props;
     const theme = useTheme();
     const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+    const { i18n } = useTranslation();
 
     const DrawerContents = useCallback(() => <>
         <DrawerHeader />
         <Box sx={theme => ({ padding: theme.spacing(1), flex: 'auto' })}>
             <List>
-                {drawerItems.map(item => <DrawerItemList open={open} key={item.category.name} item={item} />)}
+                <DrawerItemList open={open} key={seedDrawerItem.category.name} item={seedDrawerItem} />
+                {
+                    i18n.resolvedLanguage === 'ko' &&
+                    <DrawerItemList open={open} key={farmDrawerItem.category.name} item={farmDrawerItem} />
+                }
             </List>
         </Box>
-    </>, [open]);
+    </>, [open, i18n.resolvedLanguage]);
 
     return mdDown ? (
         <MuiDrawer anchor={'top'} open={open}>
