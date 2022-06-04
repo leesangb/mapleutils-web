@@ -8,16 +8,26 @@ import { getMonsterBox } from '@data/farm/monsterLifeBox';
 import { useMemo } from 'react';
 import { Link } from '@components/link';
 import { Comments } from '@components/comments';
+import { Seo, SeoProps } from '@components/seo';
 
 interface BookmarkPageProps {
     recipes: MonsterLifeRecipe[];
 }
+
+const seoProps: SeoProps = {
+    title: '몬스터 라이프 - 즐겨찾기',
+    keywords: ['몬스터 라이프', '몬라', '와르', '젬', '조합', '레시피', '농장', '농린이', '몬스터', '라이프'],
+    description: '몬스터 라이프 즐겨찾기',
+    image: '/images/combine.png',
+};
+
 
 const RecipeItem = (props: MonsterLifeRecipe) => {
     const { mob, parents } = props;
 
     return (
         <>
+            <Seo {...seoProps} />
             <Grid item xs={12} container spacing={2} alignItems={'center'}>
                 <Grid item xs={4}>
                     <MobCard mob={mob} variant={'compact'} />
