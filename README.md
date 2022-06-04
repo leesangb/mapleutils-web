@@ -110,3 +110,7 @@ GOOGLE_PRIVATE_KEY="<GOOGLE-API-SERVICE-ACCOUNT-PRIVATE-KEY>"
 - [x] 몬스터 효과별 정리
 - [x] 전체 조합식 보기
 - [x] 상자 정보, 수명 연장 정보 보기
+
+### 즐겨찾기
+
+`스페셜 조합`, `몬스터 정리`페이지에서 즐겨찾기 해놓은 몬스터들을 볼 수 있습니다.
