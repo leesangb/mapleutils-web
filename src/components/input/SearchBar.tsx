@@ -21,6 +21,7 @@ const SearchBar = (props: SearchBarProps) => {
                 if (((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') || e.key === 'F3') {
                     e.preventDefault();
                     searchBarRef.current?.focus();
+                    searchBarRef.current?.select();
                 }
             };
             window.addEventListener('keydown', focusSearchBar);
@@ -49,6 +50,7 @@ const SearchBar = (props: SearchBarProps) => {
                     </InputAdornment>
                 ),
             }}
+            onFocus={(e) => e.target.select()}
             variant='outlined'
             fullWidth
             size='small'
