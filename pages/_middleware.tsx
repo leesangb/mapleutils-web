@@ -33,7 +33,12 @@ const oldUrls: RedirectUrl[] = [
 ];
 
 export async function middleware(req: NextRequest) {
-    const { pathname } = req.nextUrl;
+    const { pathname, locale } = req.nextUrl;
+    if (locale !== 'kr' && pathname.includes('farm')) {
+        const url = req.nextUrl.clone();
+        url.pathname = '';
+        return NextResponse.redirect(url);
+    }
     const redirectUrl = oldUrls.find(o => o.from === pathname);
     if (redirectUrl) {
         const url = req.nextUrl.clone();
