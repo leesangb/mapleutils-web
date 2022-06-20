@@ -2,6 +2,7 @@ import { Box, Card, CardActionArea, CardContent, Chip, Grid, Typography } from '
 import { Link } from '@components/link';
 import { styled } from '@mui/system';
 import NextImage from 'next/image';
+import { MAPLE_GG_URL } from '@tools/constants';
 
 
 const StyledImg = styled(NextImage)(() => ({
@@ -18,7 +19,7 @@ interface CharacterCardProps {
 
 const CharacterCard = ({ name, server, job }: CharacterCardProps) => {
     const imageSrc = `/images/characters/${name}.png`;
-    const maplegg = `https://maple.gg/u/${name}`;
+    const maplegg = `${MAPLE_GG_URL}/u/${name}`;
     return (
         <Card variant={'outlined'}>
             <CardActionArea component={Link} href={maplegg} target={'_blank'} rel={'noopener noreferrer'}>

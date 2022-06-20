@@ -21,6 +21,7 @@ import { Link } from '@components/link';
 import { CheckRounded, ContentCopyRounded } from '@mui/icons-material';
 import { API_URL } from '@tools/config';
 import useFetch from '@hooks/useFetch';
+import { WACHAN_URL } from '@tools/constants';
 
 interface WachanFarm {
     id: number;
@@ -153,15 +154,15 @@ const WachanFarmList = ({ name }: WachanFarmListProps) => {
         <Paper elevation={0}>
             <Typography gutterBottom variant='h6'>
                 해당 자료는{' '}
-                <Link rel='noopener noreferrer' target='_blank' href={'http://wachan.me/farm.php'}>
+                <Link rel='noopener noreferrer' target='_blank' href={WACHAN_URL}>
                     와쨩
                 </Link>
                 에서 제공된 정보입니다. 더욱 높은 정확도를 위해{' '}
-                <Link rel='noopener noreferrer' target='_blank' href={'http://wachan.me/farm.php'}>
+                <Link rel='noopener noreferrer' target='_blank' href={WACHAN_URL}>
                     와쨩
                 </Link>
                 에{' '}
-                <Link rel='noopener noreferrer' target='_blank' href='http://wachan.me/farmAdd.php '>
+                <Link rel='noopener noreferrer' target='_blank' href={WACHAN_URL}>
                     제보
                 </Link>
                 해주시면 감사하겠습니다 🥰

@@ -2,6 +2,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, Typ
 import { Link } from '@components/link';
 import WachanFarmList from '@components/card/monster-life/WachanFarmList';
 import { SearchRounded } from '@mui/icons-material';
+import { MESO_KR_URL } from '@tools/constants';
 
 interface FarmListDialogProps {
     name: string;
@@ -27,7 +28,7 @@ const FarmListDialog = (props: FarmListDialogProps) => {
                         component={Link}
                         rel='noopener noreferrer'
                         target='_blank'
-                        href={`https://meso.kr/monster.php?n=${mesokr}`}>
+                        href={`${MESO_KR_URL}?n=${mesokr}`}>
                     meso.kr에서 보기
                 </Button>
                 <Divider sx={theme => ({ margin: theme.spacing(1) })} />
