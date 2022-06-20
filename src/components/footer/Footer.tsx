@@ -6,6 +6,7 @@ import { discordLink, githubLink, kakaotalkLink } from '@tools/socialLinks';
 import useFetch from '@hooks/useFetch';
 import { AnalyticsRealTimeData } from '@api/analytics';
 import { useTranslation } from 'next-i18next';
+import { Locales } from '@tools/locales';
 
 const currentYear = new Date().getFullYear();
 
@@ -22,7 +23,7 @@ interface FooterProps {
 const Footer = (props: FooterProps) => {
     const { t, i18n } = useTranslation();
     const { data } = useFetch<AnalyticsRealTimeData>(`/api/realtime-users`);
-    const isKorean = i18n.resolvedLanguage === 'ko';
+    const isKorean = i18n.resolvedLanguage === Locales.Korean;
     return (
         <StyledFooter>
             <Grid container direction={props.open ? 'row' : 'column'} justifyContent={'center'}>

@@ -13,6 +13,7 @@ import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { Seed49MobCard, Seed49Search, useSeed49Location } from '@components/seed/49';
 import Display from '@components/display/Display';
 import { I18nTitleCard } from '@components/card';
+import { Locales } from '@tools/locales';
 
 
 interface Seed49Props {
@@ -36,7 +37,7 @@ const Seed49 = ({ data }: Seed49Props) => {
                     ...m,
                     location: l.location,
                 })))
-                .filter(m => i18n.resolvedLanguage === 'ko'
+                .filter(m => i18n.resolvedLanguage === Locales.Korean
                     ? isHangulMatching(search, m.location, m.name)
                     : isMatching(search, t(m.location, { ns: 'seed49' }), t(m.name, { ns: 'seed49' })))
                 .sort((a, b) => t(a.name, { ns: 'seed49' }).localeCompare(t(b.name, { ns: 'seed49' })))
@@ -72,7 +73,7 @@ const Seed49 = ({ data }: Seed49Props) => {
 
             <Comments title={t('comments')} pageKey={'seed49'} />
 
-            <Display when={i18n.resolvedLanguage === 'en'}>
+            <Display when={i18n.resolvedLanguage === Locales.English}>
                 <Typography variant={'caption'}>
                     Special thanks to <i>Billy | 2DBF</i> (GMS) for English translations
                 </Typography>

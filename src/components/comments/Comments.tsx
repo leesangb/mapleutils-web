@@ -5,6 +5,7 @@ import { CommentRounded, ExpandLessRounded, ExpandMoreRounded } from '@mui/icons
 import CommentItem from '@components/comments/CommentItem';
 import CommentPostField from '@components/comments/CommentPostField';
 import { useTranslation } from 'next-i18next';
+import { Locales } from '@tools/locales';
 
 interface CommentsProps {
     title?: string;
@@ -19,7 +20,7 @@ const Comments = ({ title = '댓글', pageKey, defaultOpen }: CommentsProps) => 
 
     const toggleOpen = () => setOpenComments(!openComments);
 
-    return i18n.resolvedLanguage === 'ko' ? (
+    return i18n.resolvedLanguage === Locales.Korean ? (
         <Card variant={'outlined'} sx={theme => ({ marginTop: theme.spacing(1) })}>
             <Box padding={theme => theme.spacing(1)}>
                 <ListItem component='div' button onClick={toggleOpen}>

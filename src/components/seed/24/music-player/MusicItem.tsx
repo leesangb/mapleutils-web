@@ -4,6 +4,7 @@ import { useMemo, useRef, useState } from 'react';
 import { PauseRounded, PlayArrowRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import { useTranslation } from 'next-i18next';
+import { Locales } from '@tools/locales';
 
 interface MusicItemProps {
     src: string;
@@ -44,8 +45,8 @@ const MusicItem = (props: MusicItemProps) => {
                 {
                     check && <Checkbox value={isPlayed} onClick={() => setIsPlayed(p => !p)} />
                 }
-                <Tooltip arrow={i18n.resolvedLanguage === 'ko'}
-                         title={i18n.resolvedLanguage === 'ko' ? <Typography>{hint}</Typography> : ''}
+                <Tooltip arrow={i18n.resolvedLanguage === Locales.Korean}
+                         title={i18n.resolvedLanguage === Locales.Korean ? <Typography>{hint}</Typography> : ''}
                          placement={'top'} disableInteractive>
                     <ListItemButton ref={buttonRef} onClick={togglePlay}>
                         <ListItemIcon>

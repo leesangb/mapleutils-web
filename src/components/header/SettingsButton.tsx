@@ -18,6 +18,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { TranslateRounded } from '@mui/icons-material';
 import Link from '../link/Link';
+import { Locales } from '@tools/locales';
 
 interface SettingsButtonProps {
     toggleDarkMode: () => void;
@@ -82,14 +83,14 @@ const SettingsButton = (props: SettingsButtonProps) => {
                             <ListItemText>{t(theme.label)}</ListItemText>
                         </ListItem>
                         {
-                            router.locale === 'ko'
+                            router.locale === Locales.Korean
                                 ? (
-                                    <ListItem component={Link} href={router.route} locale={'en'} button>
+                                    <ListItem component={Link} href={router.route} locale={Locales.English} button>
                                         <ListItemIcon><TranslateRounded /></ListItemIcon>
                                         <ListItemText>English / GMS</ListItemText>
                                     </ListItem>
                                 ) : (
-                                    <ListItem component={Link} href={router.route} locale={'ko'} button>
+                                    <ListItem component={Link} href={router.route} locale={Locales.Korean} button>
                                         <ListItemIcon><TranslateRounded /></ListItemIcon>
                                         <ListItemText>한국어 / KMS</ListItemText>
                                     </ListItem>

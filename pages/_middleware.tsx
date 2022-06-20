@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Locales } from '@tools/locales';
 
 interface RedirectUrl {
     from: string;
@@ -34,7 +35,7 @@ const oldUrls: RedirectUrl[] = [
 
 export async function middleware(req: NextRequest) {
     const { pathname, locale } = req.nextUrl;
-    if (locale !== 'kr' && pathname.includes('farm')) {
+    if (locale !== Locales.Korean && pathname.includes('farm')) {
         const url = req.nextUrl.clone();
         url.pathname = '';
         return NextResponse.redirect(url);

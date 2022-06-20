@@ -20,6 +20,7 @@ import { useRouter } from 'next/router';
 import Footer from '@components/footer/Footer';
 import { TFunction, useTranslation } from 'next-i18next';
 import { StarRounded } from '@mui/icons-material';
+import { Locales } from '@tools/locales';
 
 interface DrawerProps {
     open: boolean;
@@ -220,7 +221,7 @@ const Drawer = (props: DrawerProps) => {
             <List>
                 <DrawerItemList open={open} key={seedDrawerItem.category.name} item={seedDrawerItem} />
                 {
-                    i18n.resolvedLanguage === 'ko' &&
+                    i18n.resolvedLanguage === Locales.Korean &&
                     <DrawerItemList open={open} key={farmDrawerItem.category.name} item={farmDrawerItem} />
                 }
             </List>

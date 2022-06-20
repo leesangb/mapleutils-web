@@ -28,6 +28,7 @@ import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { useSeed24Tabs } from '@components/seed/24';
+import { Locales } from '@tools/locales';
 
 
 const seed24Translation: TOptions = { ns: 'seed24' };
@@ -36,7 +37,7 @@ const Seed24 = () => {
     const { height } = useWindowDimensions();
     const seoProps = useI18nSeoProps('seed24');
     const { t, i18n } = useTranslation();
-    const isKMS = i18n.resolvedLanguage === 'ko';
+    const isKMS = i18n.resolvedLanguage === Locales.Korean;
     const { copy, CopySnackbar } = useCopy();
     const theme = useTheme();
     const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -75,7 +76,7 @@ const Seed24 = () => {
     };
 
     useEffect(() => {
-        if (i18n.resolvedLanguage !== 'ko') {
+        if (i18n.resolvedLanguage !== Locales.Korean) {
             onChangeTab('bgm');
         }
     }, [i18n.resolvedLanguage, onChangeTab]);

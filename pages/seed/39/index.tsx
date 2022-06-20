@@ -12,6 +12,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { QuestionAnswerItem } from '@components/seed/39';
+import { Locales } from '@tools/locales';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -31,7 +32,7 @@ const Seed39 = (props: Seed39Props) => {
     );
 
     const searchFilter = useCallback((item: QuestionAnswer, pattern: string) => {
-        return i18n.resolvedLanguage === 'ko'
+        return i18n.resolvedLanguage === Locales.Korean
             ? isHangulMatching(pattern, item.question, ...item.choices)
             : isMatching(pattern, item.question, ...item.choices);
     }, [i18n.resolvedLanguage]);
@@ -61,7 +62,7 @@ const Seed39 = (props: Seed39Props) => {
 export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
-            data: locale === 'ko'
+            data: locale === Locales.Korean
                 ? seed39Data.sort((a, b) => a.question.localeCompare(b.question))
                 : seed39DataGMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)),
             ...(await serverSideTranslations(locale, ['common', 'seed39'])),

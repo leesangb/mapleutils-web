@@ -8,6 +8,7 @@ import { GitHub } from '@mui/icons-material';
 import { discordLink, githubLink, githubReleaseLink, kakaotalkLink } from '@tools/socialLinks';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import { Locales } from '@tools/locales';
 
 
 const English = () => {
@@ -179,7 +180,7 @@ const Home: NextPage = () => {
             <Card variant={'outlined'}>
                 <CardContent>
                     <Grid container spacing={1}>
-                        {i18n.resolvedLanguage === 'ko' ? <Korean /> : <English />}
+                        {i18n.resolvedLanguage === Locales.Korean ? <Korean /> : <English />}
                     </Grid>
 
 
