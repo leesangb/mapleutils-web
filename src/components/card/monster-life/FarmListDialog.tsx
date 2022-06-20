@@ -13,7 +13,7 @@ const FarmListDialog = (props: FarmListDialogProps) => {
     const { name, open, onClose } = props;
     const mesokr = name.replace(/[ ]/g, '+');
     return (
-        <Dialog open={open} onClose={onClose} scroll='paper' fullWidth maxWidth='md'>
+        <Dialog open={open} onClose={onClose} scroll='paper' fullWidth maxWidth='lg'>
             <DialogTitle>
                 <Typography variant={'h3'} component={'div'}>
                     {name} - 소유 농장

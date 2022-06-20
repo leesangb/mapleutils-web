@@ -1,6 +1,5 @@
-import useFetch from '@hooks/useFetch';
-import { API_URL } from '@tools/config';
 import {
+    Button,
     CircularProgress,
     Grid,
     Paper,
@@ -17,9 +16,11 @@ import {
 import useCopy from '@hooks/useCopy';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { useState } from 'react';
-import { CheckRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import { Link } from '@components/link';
+import { CheckRounded, ContentCopyRounded } from '@mui/icons-material';
+import { API_URL } from '@tools/config';
+import useFetch from '@hooks/useFetch';
 
 interface WachanFarm {
     id: number;
@@ -62,17 +63,22 @@ const WachanFarmListTable = ({ farms }: WachanFarmListTableProps) => {
                     <TableBody>
                         {farms?.map((f, i) => {
                             const escapedName = f.name.replace(/^([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]+).*$/, (a, b) => b);
+                            const isChecked = checkedList.includes(i);
                             return (
                                 <Tooltip key={f.id} title={<Typography>{escapedName} 복사하기</Typography>} followCursor>
                                     <TableRow sx={theme => ({
                                         cursor: 'pointer',
                                     })} hover onClick={handleClick(escapedName, i)}>
                                         <TableCell sx={theme => ({
-                                            width: theme.spacing(3),
-                                            maxWidth: theme.spacing(3),
-                                            minWidth: theme.spacing(3),
+                                            width: theme.spacing(20),
+                                            maxWidth: theme.spacing(20),
+                                            minWidth: theme.spacing(20),
                                         })}>
-                                            {checkedList.includes(i) && (<CheckRounded />)}
+                                            <Button variant={isChecked ? 'contained' : 'outlined'}
+                                                    color={'primary'}
+                                                    startIcon={isChecked ? <CheckRounded /> : <ContentCopyRounded />}>
+                                                {isChecked ? '다시복사' : '복사하기'}
+                                            </Button>
                                         </TableCell>
                                         <TableCell>
                                             <Typography variant={'h5'}>
