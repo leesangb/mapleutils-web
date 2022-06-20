@@ -8,5 +8,6 @@ module.exports = {
         '/api/*',
         '/en/404',
         '/404',
+        '/en/farm/*',
     ],
 };
