@@ -39,6 +39,8 @@ interface WachanFarmListTableProps {
     farms: WachanFarm[];
 }
 
+const TRAILING_NOT_VALID_LETTERS = /^([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]+).*$/;
+
 const WachanFarmListTable = ({ farms }: WachanFarmListTableProps) => {
     const { copy, CopySnackbar } = useCopy();
     const { height } = useWindowDimensions();
@@ -48,10 +50,11 @@ const WachanFarmListTable = ({ farms }: WachanFarmListTableProps) => {
         copy(name);
         setCheckedList(prev => [...prev, index]);
     };
+    const tableHeight = height - 500;
 
     return (
         <>
-            <TableContainer sx={{ height: height - 500, maxHeight: height - 500 }}>
+            <TableContainer sx={{ height: tableHeight, maxHeight: tableHeight }}>
                 <Table stickyHeader>
                     <TableHead>
                         <TableRow>
@@ -63,7 +66,7 @@ const WachanFarmListTable = ({ farms }: WachanFarmListTableProps) => {
                     </TableHead>
                     <TableBody>
                         {farms?.map((f, i) => {
-                            const escapedName = f.name.replace(/^([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]+).*$/, (a, b) => b);
+                            const escapedName = f.name.replace(TRAILING_NOT_VALID_LETTERS, (a, b) => b);
                             const isChecked = checkedList.includes(i);
                             return (
                                 <Tooltip key={f.id} title={<Typography>{escapedName} 복사하기</Typography>} followCursor>
@@ -147,7 +150,7 @@ const WachanFarmList = ({ name }: WachanFarmListProps) => {
     }
 
     if (farms?.length === 0) {
-        return <>empty</>;
+        return <>농장 정보를 찾을 수 없습니다</>;
     }
 
     return (
