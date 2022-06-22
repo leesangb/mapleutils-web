@@ -68,7 +68,8 @@ const WachanFarmListTable = ({ farms }: WachanFarmListTableProps) => {
                             const escapedName = f.name.replace(TRAILING_NOT_VALID_LETTERS, (a, b) => b);
                             const isChecked = checkedList.includes(i);
                             return (
-                                <TableRow sx={{ cursor: 'pointer' }} hover onClick={handleClick(escapedName, i)}>
+                                <TableRow key={f.id} sx={{ cursor: 'pointer' }} hover
+                                          onClick={handleClick(escapedName, i)}>
                                     <TableCell sx={theme => ({
                                         width: theme.spacing(20),
                                         maxWidth: theme.spacing(20),
