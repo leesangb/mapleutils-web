@@ -10,7 +10,6 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Tooltip,
     Typography,
 } from '@mui/material';
 import useCopy from '@hooks/useCopy';
@@ -69,51 +68,47 @@ const WachanFarmListTable = ({ farms }: WachanFarmListTableProps) => {
                             const escapedName = f.name.replace(TRAILING_NOT_VALID_LETTERS, (a, b) => b);
                             const isChecked = checkedList.includes(i);
                             return (
-                                <Tooltip key={f.id} title={<Typography>{escapedName} 복사하기</Typography>} followCursor>
-                                    <TableRow sx={theme => ({
-                                        cursor: 'pointer',
-                                    })} hover onClick={handleClick(escapedName, i)}>
-                                        <TableCell sx={theme => ({
-                                            width: theme.spacing(20),
-                                            maxWidth: theme.spacing(20),
-                                            minWidth: theme.spacing(20),
-                                        })}>
-                                            <Button variant={isChecked ? 'contained' : 'outlined'}
-                                                    color={'primary'}
-                                                    startIcon={isChecked ? <CheckRounded /> : <ContentCopyRounded />}>
-                                                {isChecked ? '다시복사' : '복사하기'}
-                                            </Button>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Typography variant={'h5'}>
-                                                {f.name}
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Typography display='block' align='center' component='span'>
-                                                {f.expiryDate?.toLocaleDateString('ko-KR', {
-                                                    year: '2-digit',
-                                                    month: 'long',
-                                                    day: '2-digit',
-                                                }) || '무한'}
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Grid container alignItems='center' spacing={1}>
-                                                <Grid item xs={6}>
-                                                    <Typography fontWeight={'bold'} align='right'>
-                                                        {f.upVote - f.downVote}
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={6}>
-                                                    <Box display='flex' alignItems='center'>
-                                                        ( 👍 {f.upVote} / 👎 {f.downVote} )
-                                                    </Box>
-                                                </Grid>
+                                <TableRow sx={{ cursor: 'pointer' }} hover onClick={handleClick(escapedName, i)}>
+                                    <TableCell sx={theme => ({
+                                        width: theme.spacing(20),
+                                        maxWidth: theme.spacing(20),
+                                        minWidth: theme.spacing(20),
+                                    })}>
+                                        <Button variant={isChecked ? 'contained' : 'outlined'}
+                                                color={'primary'}
+                                                startIcon={isChecked ? <CheckRounded /> : <ContentCopyRounded />}>
+                                            {isChecked ? '다시복사' : '복사하기'}
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography variant={'h5'}>
+                                            {escapedName}
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography display='block' align='center' component='span'>
+                                            {f.expiryDate?.toLocaleDateString('ko-KR', {
+                                                year: '2-digit',
+                                                month: 'long',
+                                                day: '2-digit',
+                                            }) || '무한'}
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Grid container alignItems='center' spacing={1}>
+                                            <Grid item xs={6}>
+                                                <Typography fontWeight={'bold'} align='right'>
+                                                    {f.upVote - f.downVote}
+                                                </Typography>
                                             </Grid>
-                                        </TableCell>
-                                    </TableRow>
-                                </Tooltip>
+                                            <Grid item xs={6}>
+                                                <Box display='flex' alignItems='center'>
+                                                    ( 👍 {f.upVote} / 👎 {f.downVote} )
+                                                </Box>
+                                            </Grid>
+                                        </Grid>
+                                    </TableCell>
+                                </TableRow>
                             );
                         })}
                     </TableBody>
