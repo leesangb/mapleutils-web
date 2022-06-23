@@ -58,7 +58,7 @@ export const mobsByEffect: MonsterLifeInformation[] = [
     },
     {
         name: '보스',
-        mobs: MONSTER_LIFE_SPECIAL_MOBS.filter((m) => includesOneOf(m.effect, ['보스', '방어율'])),
+        mobs: MONSTER_LIFE_SPECIAL_MOBS.filter((m) => includesOneOf(m.effect, ['보스', '방어율', '파이널'])),
         normals: [],
     },
     {
