@@ -14,7 +14,7 @@
 ## 설치 및 실행
 
 ```sh
-> npm install # install dependencies
+> npm install --legacy-peer-deps # install dependencies
 ```
 
 ```sh
