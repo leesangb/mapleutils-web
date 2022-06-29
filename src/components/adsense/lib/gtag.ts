@@ -15,13 +15,13 @@ export const pageview = (url: URL): void => {
 
 type GTagEvent = {
     action: string;
-    category: string;
+    category?: string;
     label: string;
-    value: string;
+    value?: number;
 };
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const event = ({ action, category, label, value }: GTagEvent): void => {
+export const event = ({ action, category = 'general', label, value = 1 }: GTagEvent): void => {
     window.gtag('event', action, {
         event_category: category,
         event_label: label,

@@ -5,6 +5,8 @@ import { PauseRounded, PlayArrowRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import { useTranslation } from 'next-i18next';
 import { Locales } from '@tools/locales';
+import * as gtag from '@components/adsense/lib/gtag';
+import { isProduction } from '@tools/helper';
 
 interface MusicItemProps {
     src: string;
@@ -33,6 +35,12 @@ const MusicItem = (props: MusicItemProps) => {
             setState(isPlaying ? 'paused' : 'playing');
         } else {
             setTrack({ name: label, src, coverImg: icon, hint });
+            if (isProduction) {
+                gtag.event({
+                    action: 'seed-24-play',
+                    label,
+                });
+            }
             if (preference.autoClip) {
                 onClip(label);
             }
