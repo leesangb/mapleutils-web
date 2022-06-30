@@ -45,7 +45,7 @@ const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayer
     const preference = useMusicPlayerPreference();
     const { copy, CopySnackbar } = useCopy();
 
-    const trackList = useMemo(() => {
+    const orderedTrackList = useMemo(() => {
         return orderFunctions[preference.order]([...tracks], t);
     }, [preference.order, tracks]);
 
@@ -110,7 +110,7 @@ const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayer
     return (
         <MusicPlayerContextProvider value={{
             ...playerState,
-            tracks: trackList,
+            tracks: orderedTrackList,
             setTime,
             setState,
             setTrack,
