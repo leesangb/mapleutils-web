@@ -18,7 +18,7 @@ const StyledImage = styled(NextImage)({
 
 const Seed36Steps = () => {
     const { t } = useTranslation();
-    const [steps, setSteps] = useState<Steps>(buildDefaultSteps());
+    const [steps, setSteps] = useState<Steps>(buildDefaultSteps);
 
     const resetSteps = () => setSteps(buildDefaultSteps());
     const onChangeStep = (step: Step, index: number) => {
