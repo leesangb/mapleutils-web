@@ -18,6 +18,11 @@ interface Seed39Props {
     data: QuestionAnswer[];
 }
 
+const SCREEN_HEIGHT_OFFSET = 330; // magic number ?
+const SMALL_SCREEN_ROW_SIZE = 280;
+const MEDIUM_SCREEN_ROW_SIZE = 100;
+const LARGE_SCREEN_ROW_SIZE = 70;
+
 const Seed39 = (props: Seed39Props) => {
     const { t, i18n } = useTranslation();
     const seoProps = useI18nSeoProps('seed39');
@@ -43,10 +48,16 @@ const Seed39 = (props: Seed39Props) => {
             <I18nTitleCard ns={'seed39'} />
             <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>
-                    <VirtualizedFixedList height={height - 330}
+                    <VirtualizedFixedList height={height - SCREEN_HEIGHT_OFFSET}
                                           width={'100%'}
                                           items={props.data}
-                                          rowSize={mdDown ? 280 : lgDown ? 100 : 70}
+                                          rowSize={
+                                              mdDown
+                                                  ? SMALL_SCREEN_ROW_SIZE
+                                                  : lgDown
+                                                      ? MEDIUM_SCREEN_ROW_SIZE
+                                                      : LARGE_SCREEN_ROW_SIZE
+                                          }
                                           divider
                                           searchFilter={searchFilter}
                                           placeholder={t('searchPlaceholder', { ns: 'seed39' })}

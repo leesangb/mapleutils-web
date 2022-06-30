@@ -21,8 +21,10 @@ interface FarmCombineProps {
     recipes: Required<MonsterLifeRecipe>[];
 }
 
+const SCREEN_HEIGHT_OFFSET = 330;
+
 const RecipeItem = (props: Required<MonsterLifeRecipe>) => {
-    const { mob, parents } = props;
+    const { mob, parents: [left, right] } = props;
 
     return (
         <>
@@ -33,13 +35,13 @@ const RecipeItem = (props: Required<MonsterLifeRecipe>) => {
                 <Grid item xs={4}>
                     <Stack direction={'row'} alignItems={'center'} spacing={2}>
                         <Typography variant={'h4'} component={'div'} align={'center'}>=</Typography>
-                        <MobCard mob={parents[0]} />
+                        <MobCard mob={left} />
                     </Stack>
                 </Grid>
                 <Grid item xs={4}>
                     <Stack direction={'row'} alignItems={'center'} spacing={2}>
                         <Typography variant={'h4'} component={'div'} align={'center'}>+</Typography>
-                        <MobCard mob={parents[1]} />
+                        <MobCard mob={right} />
                     </Stack>
                 </Grid>
             </Grid>
@@ -64,7 +66,7 @@ const FarmCombine = (props: FarmCombineProps) => {
             <Card variant={'outlined'}>
                 <CardContent>
                     <VirtualizedFixedList items={recipes}
-                                          height={height - 330}
+                                          height={height - SCREEN_HEIGHT_OFFSET}
                                           rowSize={256}
                                           placeholder={'몬스터 이름 검색 (예: 각성한 락 스피릿, ㄳㅎㄽㅍㄹ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱, 초성 검색 ✅'}
                                           searchFilter={searchFilter}

@@ -30,6 +30,9 @@ import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { useSeed24Tabs } from '@components/seed/24';
 import { Locales } from '@tools/locales';
 
+const SCREEN_HEIGHT_OFFSET = 400; // magic number ?
+const SMALL_SCREEN_ROW_SIZE = 110;
+const MEDIUM_SCREEN_ROW_SIZE = 60;
 
 const seed24Translation: TOptions = { ns: 'seed24' };
 
@@ -106,9 +109,9 @@ const Seed24 = () => {
                     <Card elevation={0} variant={'outlined'} component={'section'}>
                         <CardContent>
                             <VirtualizedFixedList items={seed24AudioData}
-                                                  height={height - 400}
+                                                  height={height - SCREEN_HEIGHT_OFFSET}
                                                   width={'100%'}
-                                                  rowSize={smDown ? 110 : 60}
+                                                  rowSize={smDown ? SMALL_SCREEN_ROW_SIZE : MEDIUM_SCREEN_ROW_SIZE}
                                                   divider
                                                   searchFilter={searchFilter}
                                                   placeholder={'힌트 검색 (예: 리스항구, 푸른빛, ㅍㄹㅂ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱, 초성 검색 ✅'}
