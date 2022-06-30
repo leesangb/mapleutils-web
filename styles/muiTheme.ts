@@ -163,16 +163,22 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
     },
 });
 
-export const defaultTheme = createTheme(buildThemeOptions('light'));
+const lightThemeOptions = buildThemeOptions('light');
+const darkThemeOptions = buildThemeOptions('dark');
+const THEME_OPTIONS: Record<'light' | 'dark', ThemeOptions> = {
+    light: lightThemeOptions,
+    dark: darkThemeOptions,
+};
+
+export const defaultTheme = createTheme(lightThemeOptions);
 
 export const useDarkMode = () => {
-
-    const [themeOptions, setThemeOptions] = useState<ThemeOptions>(buildThemeOptions('light'));
+    const [themeOptions, setThemeOptions] = useState<ThemeOptions>(lightThemeOptions);
     const [theme, setTheme] = useState<Theme>(defaultTheme);
 
     useEffect(() => {
         const preference = LocalStorageHelper.load<Preference>(LocalStorageKey.PREFERENCE);
-        setThemeOptions(buildThemeOptions(preference.theme));
+        setThemeOptions(THEME_OPTIONS[preference.theme]);
     }, []);
 
     useEffect(() => {
@@ -181,7 +187,7 @@ export const useDarkMode = () => {
 
     const toggleDarkMode = useCallback(() => {
         const mode = themeOptions.palette?.mode === 'light' ? 'dark' : 'light';
-        const newTheme = buildThemeOptions(mode);
+        const newTheme = THEME_OPTIONS[mode];
         setThemeOptions(newTheme);
         const preference = LocalStorageHelper.load<Preference>(LocalStorageKey.PREFERENCE);
         preference.theme = mode;
