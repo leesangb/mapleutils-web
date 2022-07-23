@@ -1,5 +1,5 @@
 import { Seo } from '@components/seo';
-import { seed49Data, SeedLocation } from '@data/seed/49';
+import { seed49Data, seed49KmsFilter, SeedLocation } from '@data/seed/49';
 import { Card, CardContent, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useMemo, useState } from 'react';
@@ -86,7 +86,15 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
             ...(await serverSideTranslations(locale, ['common', 'seed49'])),
-            data: seed49Data,
+            data: seed49Data.map(location => {
+                if (locale === Locales.Korean) {
+                    return {
+                        location: location.location,
+                        mobs: location.mobs.filter(mob => !seed49KmsFilter.has(mob.name)),
+                    };
+                }
+                return location;
+            }).filter(l => l.mobs.length),
         },
     };
 };
