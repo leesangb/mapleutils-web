@@ -3,7 +3,12 @@ import * as Hangul from 'hangul-js';
 export const removeSpecialChars = (s: string): string => s.replace(/(\s|\?|-|\.|…|!|~|,)/g, '');
 export const removeSpecialCharsWithoutSpaces = (s: string): string => s.replace(/([-.…!~,])/g, '');
 
-const getChosung = (str: string): string => {
+
+export const getCho = (str: string): string => {
+    return Hangul.d(str, true).map((w) => w[0]).join('');
+};
+
+export const getChosung = (str: string): string => {
     return Hangul.d(str, true) // 1글자 내에 초성 추출 ('ㄳㅎ' => [['ㄱ', 'ㅅ'], ['ㅎ']])
         .map(w => w.join('')) // 추출된 초성 합체 ([['ㄱ', 'ㅅ'], ['ㅎ']] => ['ㄱㅅ','ㅎ'])
         .join(''); // 합체된 초성들 다시 합체 (['ㄱㅅ','ㅎ'] => 'ㄱㅅㅎ')

@@ -125,7 +125,7 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
                             </div>
                         </>
                     ) : (
-                        <Grid container component={'form'} spacing={2} alignItems={'center'}>
+                        <Grid container spacing={2} alignItems={'center'}>
                             {/*<Grid item xs={12} sm={6}>*/}
                             {/*    <TextField type={'number'}*/}
                             {/*               label={'문제 수 (0 = 무한)'}*/}
