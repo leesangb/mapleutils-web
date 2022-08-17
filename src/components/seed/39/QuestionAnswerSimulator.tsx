@@ -175,7 +175,8 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={handleCloseRestart}>{t('cancel')}</Button>
-                                <Button onClick={handleRestart}>{t('restart')}</Button>
+                                <Button variant={'contained'} disableElevation
+                                        onClick={handleRestart}>{t('restart')}</Button>
                             </DialogActions>
                         </Dialog>
                     </>

@@ -2,6 +2,7 @@ import { Box, css, useTheme } from '@mui/system';
 import {
     Avatar,
     AvatarProps,
+    Badge,
     CSSObject,
     Divider,
     List,
@@ -120,21 +121,40 @@ const LinkAvatar = ({ link, ...props }: AvatarProps & { link: string }) => {
     })} {...props} />;
 };
 
-const seedDrawerItem: DrawerItem =
-    {
-        category: {
-            name: 'drawer.seed.longName',
-            short: 'drawer.seed.shortName',
+const seedDrawerItem: DrawerItem = {
+    category: {
+        name: 'drawer.seed.longName',
+        short: 'drawer.seed.shortName',
+    },
+    children:
+        seedFloors.map(floor => ({
+            key: `seed-${floor}`,
+            title: `drawer.seed.${floor}.title`,
+            subtitle: `drawer.seed.${floor}.shortDescription`,
+            link: `/seed/${floor}`,
+            icon: () => <LinkAvatar link={`/seed/${floor}`}>{floor}</LinkAvatar>,
+        })),
+};
+
+const seedSimulatorDrawerItem: DrawerItem = {
+    category: {
+        name: 'drawer.seedSimulator.longName',
+        short: 'drawer.seedSimulator.shortName',
+    },
+    children: [
+        {
+            key: `seed-39-simulator`,
+            title: `drawer.seedSimulator.39.title`,
+            subtitle: `drawer.seedSimulator.39.shortDescription`,
+            link: `/seed/39/simulator`,
+            icon: () => (
+                <Badge variant={'dot'} color={'error'}>
+                    <LinkAvatar link={`/seed/39/simulator`}>39</LinkAvatar>
+                </Badge>
+            ),
         },
-        children:
-            seedFloors.map(floor => ({
-                key: `seed-${floor}`,
-                title: `drawer.seed.${floor}.title`,
-                subtitle: `drawer.seed.${floor}.shortDescription`,
-                link: `/seed/${floor}`,
-                icon: () => <LinkAvatar link={`/seed/${floor}`}>{floor}</LinkAvatar>,
-            })),
-    };
+    ],
+};
 
 const farmDrawerItem: DrawerItem =
     {
@@ -224,6 +244,8 @@ const Drawer = (props: DrawerProps) => {
                     i18n.resolvedLanguage === Locales.Korean &&
                     <DrawerItemList open={open} key={farmDrawerItem.category.name} item={farmDrawerItem} />
                 }
+                <DrawerItemList open={open} key={seedSimulatorDrawerItem.category.name}
+                                item={seedSimulatorDrawerItem} />
             </List>
         </Box>
     </>, [open, i18n.resolvedLanguage]);

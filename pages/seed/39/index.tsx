@@ -1,4 +1,4 @@
-import { Card, CardContent, useMediaQuery } from '@mui/material';
+import { Badge, Button, Card, CardContent, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { useCallback } from 'react';
 import useWindowDimensions from '@hooks/useWindowDimensions';
@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { QuestionAnswerItem } from '@components/seed/39';
 import { Locales } from '@tools/locales';
+import NextLink from 'next/link';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -62,6 +63,17 @@ const Seed39 = (props: Seed39Props) => {
                                           searchFilter={searchFilter}
                                           placeholder={t('searchPlaceholder', { ns: 'seed39' })}
                                           rowRenderer={rowRenderer} />
+                </CardContent>
+            </Card>
+            <Card sx={{ marginTop: 1 }} elevation={0} variant={'outlined'} component={'section'}>
+                <CardContent>
+                    <NextLink href={'/seed/39/simulator'} passHref>
+                        <Badge variant={'dot'} color={'error'}>
+                            <Button component={'a'}>
+                                {t('goToSeed39Simulator')}
+                            </Button>
+                        </Badge>
+                    </NextLink>
                 </CardContent>
             </Card>
             <Comments pageKey={'seed39'} />
