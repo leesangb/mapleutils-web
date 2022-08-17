@@ -4,6 +4,7 @@ import { css } from '@mui/system';
 import { useMemo, useState } from 'react';
 import { CheckRounded, ClearRounded } from '@mui/icons-material';
 import { QuestionAnswer } from '@data/seed/39';
+import { useTranslation } from 'react-i18next';
 
 const Button = styled(MuiButton)<ButtonProps>(({ theme, color }) => css`
   padding: ${theme.spacing(1)} ${theme.spacing(2)};
@@ -64,9 +65,11 @@ const Button = styled(MuiButton)<ButtonProps>(({ theme, color }) => css`
 interface QuestionAnswerSimulatorContentProps {
     qa: QuestionAnswer;
     onPick?: (choice: number) => void;
+    onRight?: () => void;
 }
 
-const QuestionAnswerSimulatorContent = ({ qa, onPick }: QuestionAnswerSimulatorContentProps) => {
+const QuestionAnswerSimulatorContent = ({ qa, onPick, onRight }: QuestionAnswerSimulatorContentProps) => {
+    const { i18n } = useTranslation();
     const [pick, setPick] = useState<number>(NaN);
 
     const hasPicked = !isNaN(pick);
@@ -77,6 +80,9 @@ const QuestionAnswerSimulatorContent = ({ qa, onPick }: QuestionAnswerSimulatorC
             onPick(choice);
         }
         setPick(choice);
+        if (onRight && choice === qa.answer) {
+            onRight();
+        }
     };
 
 
@@ -119,7 +125,7 @@ const QuestionAnswerSimulatorContent = ({ qa, onPick }: QuestionAnswerSimulatorC
             }
 
         </>
-    ), [qa, pick]);
+    ), [qa, pick, i18n.resolvedLanguage]);
 };
 
 export default QuestionAnswerSimulatorContent;

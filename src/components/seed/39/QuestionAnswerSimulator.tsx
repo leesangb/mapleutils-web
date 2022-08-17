@@ -1,19 +1,42 @@
 import QuestionAnswerSimulatorContent from '@components/seed/39/QuestionAnswerSimulatorContent';
-import { Button, Card, CardActions, CardContent } from '@mui/material';
+import {
+    Box,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    Checkbox,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    FormControlLabel,
+    Grid,
+    LinearProgress,
+    TextField,
+    Typography,
+} from '@mui/material';
 import { QuestionAnswer } from '@data/seed/39';
-import { useEffect, useMemo, useState } from 'react';
-import { ChevronRightRounded } from '@mui/icons-material';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { ChevronRightRounded, PlayArrowRounded, RestartAltRounded } from '@mui/icons-material';
 import { isKeyboardTargetInput } from '@tools/keyboardEventHelper';
+import { useTranslation } from 'next-i18next';
 
 interface QuestionAnswerSimulatorProps {
     data: QuestionAnswer[];
 }
 
 const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
-    const questionAnswers = useMemo(() => data.sort(() => Math.random() - 0.5), []);
+    const { t } = useTranslation();
+    const [questionAnswers, setQuestionAnswers] = useState<QuestionAnswer[]>([]);
     const [num, setNum] = useState(0);
     const [hasPicked, setHasPicked] = useState<boolean>(false);
     const [focus, setFocus] = useState<number>(NaN);
+    const [length, setLength] = useState<number>(0);
+    const [includeDuplicates, setIncludeDuplicates] = useState<boolean>(false);
+    const [openRestartModal, setOpenRestartModal] = useState<boolean>(false);
+    const [correct, setCorrect] = useState<number>(0);
+    const [isPlaying, setIsPlaying] = useState(false);
 
     const handleNext = () => {
         setHasPicked(false);
@@ -22,7 +45,6 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
 
     const handlePick = () => {
         setHasPicked(true);
-
         for (let i = 0; i < 4; i++) {
             document.getElementById(`response-${i}`)?.blur();
         }
@@ -32,7 +54,6 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
     useEffect(() => {
         if (isNaN(focus))
             return;
-
         document.getElementById(`response-${focus}`)?.focus();
     }, [focus]);
 
@@ -41,11 +62,9 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
             if (isKeyboardTargetInput(e))
                 return;
             if (e.key === 'ArrowUp') {
-                setFocus(f => isNaN(f) ? 0 : (f - 1 + 5) % 5);
+                setFocus(f => isNaN(f) ? 0 : Math.max(0, f - 1));
             } else if (e.key === 'ArrowDown') {
-                setFocus(f => isNaN(f) ? 0 : (f + 1) % 5);
-            } else if (e.key === 'ArrowLeft') {
-                setFocus(f => f === 4 ? 3 : 0);
+                setFocus(f => isNaN(f) ? 0 : Math.min(5, f + 1));
             } else if (e.key === 'ArrowRight') {
                 setFocus(4);
             }
@@ -57,14 +76,110 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
         };
     }, [hasPicked]);
 
+    const handleRestart = () => {
+        handleCloseRestart();
+        setIsPlaying(false);
+    };
+
+    const handlePlay = () => {
+        setQuestionAnswers(data.sort(() => Math.random() - 0.5));
+        setCorrect(0);
+        setNum(0);
+        setIsPlaying(true);
+    };
+
+    const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
+        setIncludeDuplicates(e.target.checked);
+    };
+
+    const handleCloseRestart = () => setOpenRestartModal(false);
+
+    const handleOnRight = () => {
+        if (!hasPicked) {
+            setCorrect(correct => correct + 1);
+        }
+    };
+
+
     return (
-        <Card variant={'outlined'}>
+        <Card variant={'outlined'} sx={isPlaying ? ({ width: '700px' }) : undefined}>
             <CardContent sx={{ paddingBottom: 0 }}>
-                <QuestionAnswerSimulatorContent onPick={handlePick} qa={questionAnswers[num]} key={num} />
+                {
+                    isPlaying ? (
+                        <>
+                            <div>
+                                <LinearProgress sx={{ marginTop: 1 }} variant='determinate'
+                                                value={Math.floor(num / questionAnswers.length * 100)} />
+                                <Box display={'flex'} justifyContent={'space-between'} marginBottom={1}>
+                                    <Typography variant={'caption'} component={'p'}
+                                                gutterBottom>
+                                        (정답률: {(correct / (num + 1) * 100 || 0).toFixed(2)}%)
+                                    </Typography>
+                                    <Typography variant={'caption'} component={'p'}>
+                                        (진행: {num + 1} / {questionAnswers.length})
+                                    </Typography>
+                                </Box>
+                            </div>
+                            <QuestionAnswerSimulatorContent onPick={handlePick} onRight={handleOnRight}
+                                                            qa={questionAnswers[num]} key={num} />
+                        </>
+                    ) : (
+                        <Grid container component={'form'} spacing={2} alignItems={'center'}>
+                            <Grid item xs={12} sm={6}>
+                                <TextField type={'number'}
+                                           label={'문제 수 (0 = 무한)'}
+                                           value={length}
+                                           onChange={(e) => setLength(parseInt(e.target.value))}
+                                           fullWidth
+                                           size={'small'}
+                                           inputProps={{
+                                               step: 1,
+                                               min: 0,
+                                               type: 'number',
+                                               'aria-labelledby': 'x-axis-base-input',
+                                           }} />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <FormControlLabel
+                                    control={<Checkbox onChange={handleCheck} checked={includeDuplicates} />}
+                                    label='중복문제 허용' />
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <Button onClick={handlePlay}
+                                        variant={'contained'}
+                                        disableElevation
+                                        startIcon={<PlayArrowRounded />}
+                                        sx={{ width: '100%' }}>
+                                    {t('start')}
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    )
+                }
             </CardContent>
-            <CardActions sx={{ textAlign: 'right', justifyContent: 'right' }}>
-                <Button id={'response-4'} onClick={handleNext} endIcon={<ChevronRightRounded />}>다음</Button>
-            </CardActions>
+            {
+                isPlaying && (
+                    <>
+                        <CardActions sx={{ justifyContent: 'space-between' }}>
+                            <Button onClick={() => setOpenRestartModal(true)}
+                                    startIcon={<RestartAltRounded />}>{t('restart')}</Button>
+                            <Button id={'response-4'} onClick={handleNext}
+                                    endIcon={<ChevronRightRounded />}>{t('next')}</Button>
+                        </CardActions>
+                        <Dialog open={openRestartModal} onClose={handleCloseRestart}>
+                            <DialogTitle>{t('title', { ns: 'seed39simulator' })}</DialogTitle>
+                            <DialogContent>
+                                {t('restartConfirm', { ns: 'seed39simulator' })}
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleCloseRestart}>{t('cancel')}</Button>
+                                <Button onClick={handleRestart}>{t('restart')}</Button>
+                            </DialogActions>
+                        </Dialog>
+                    </>
+                )
+            }
         </Card>
     );
 };
