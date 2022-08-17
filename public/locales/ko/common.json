@@ -17,6 +17,7 @@
   "restart": "다시시작",
   "cancel": "취소",
   "start": "시작",
+  "correctAnswerRate": "정답률",
   "pageNotFound": "페이지를 찾을 수 없습니다 😥",
   "noResultsFound": "검색된 결과가 없습니다... 😥",
   "drawer": {

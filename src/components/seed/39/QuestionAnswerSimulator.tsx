@@ -30,17 +30,17 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
     // const [includeDuplicates, setIncludeDuplicates] = useState<boolean>(false);
     const [openRestartModal, setOpenRestartModal] = useState<boolean>(false);
     const [correct, setCorrect] = useState<number>(0);
-    const [length, setLength] = useState<number>(0);
+    const [length, setLength] = useState<number>(1);
     const [isPlaying, setIsPlaying] = useState(false);
 
     const handleNext = () => {
         setHasPicked(false);
+        setLength(l => l + 1);
         setNum(Math.floor(Math.random() * questionAnswers.length));
     };
 
     const handlePick = () => {
         setHasPicked(true);
-        setLength(l => l + 1);
         for (let i = 0; i < 4; i++) {
             document.getElementById(`response-${i}`)?.blur();
         }
@@ -120,7 +120,7 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
                                 <Typography variant={'caption'} component={'p'}
                                             align={'right'}
                                             gutterBottom>
-                                    (정답률: {(correct / (hasPicked ? length : length + 1) * 100 || 0).toFixed(2)}%)
+                                    ({t('correctAnswerRate')}: {(correct / (hasPicked ? length + 1 : length) * 100 || 0).toFixed(2)}%)
                                 </Typography>
                             </div>
                         </>
