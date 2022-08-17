@@ -99,7 +99,7 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
 
 
     return (
-        <Card variant={'outlined'} sx={isPlaying ? ({ width: '700px' }) : undefined}>
+        <Card variant={'outlined'} sx={isPlaying ? ({ width: { xs: '100%', md: '700px' } }) : undefined}>
             <CardContent sx={{ paddingBottom: 0 }}>
                 {
                     isPlaying ? (
