@@ -1,23 +1,18 @@
 import QuestionAnswerSimulatorContent from '@components/seed/39/QuestionAnswerSimulatorContent';
 import {
-    Box,
     Button,
     Card,
     CardActions,
     CardContent,
-    Checkbox,
     Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
-    FormControlLabel,
     Grid,
-    LinearProgress,
-    TextField,
     Typography,
 } from '@mui/material';
 import { QuestionAnswer } from '@data/seed/39';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronRightRounded, PlayArrowRounded, RestartAltRounded } from '@mui/icons-material';
 import { isKeyboardTargetInput } from '@tools/keyboardEventHelper';
 import { useTranslation } from 'next-i18next';
@@ -32,19 +27,20 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
     const [num, setNum] = useState(0);
     const [hasPicked, setHasPicked] = useState<boolean>(false);
     const [focus, setFocus] = useState<number>(NaN);
-    const [length, setLength] = useState<number>(0);
-    const [includeDuplicates, setIncludeDuplicates] = useState<boolean>(false);
+    // const [includeDuplicates, setIncludeDuplicates] = useState<boolean>(false);
     const [openRestartModal, setOpenRestartModal] = useState<boolean>(false);
     const [correct, setCorrect] = useState<number>(0);
+    const [length, setLength] = useState<number>(0);
     const [isPlaying, setIsPlaying] = useState(false);
 
     const handleNext = () => {
         setHasPicked(false);
-        setNum(num => (num + 1) % questionAnswers.length);
+        setNum(Math.floor(Math.random() * questionAnswers.length));
     };
 
     const handlePick = () => {
         setHasPicked(true);
+        setLength(l => l + 1);
         for (let i = 0; i < 4; i++) {
             document.getElementById(`response-${i}`)?.blur();
         }
@@ -84,13 +80,14 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
     const handlePlay = () => {
         setQuestionAnswers(data.sort(() => Math.random() - 0.5));
         setCorrect(0);
+        setLength(0);
         setNum(0);
         setIsPlaying(true);
     };
 
-    const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
-        setIncludeDuplicates(e.target.checked);
-    };
+    // const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    //     setIncludeDuplicates(e.target.checked);
+    // };
 
     const handleCloseRestart = () => setOpenRestartModal(false);
 
@@ -107,43 +104,47 @@ const QuestionAnswerSimulator = ({ data }: QuestionAnswerSimulatorProps) => {
                 {
                     isPlaying ? (
                         <>
-                            <div>
-                                <LinearProgress sx={{ marginTop: 1 }} variant='determinate'
-                                                value={Math.floor(num / questionAnswers.length * 100)} />
-                                <Box display={'flex'} justifyContent={'space-between'} marginBottom={1}>
-                                    <Typography variant={'caption'} component={'p'}
-                                                gutterBottom>
-                                        (정답률: {(correct / (num + 1) * 100 || 0).toFixed(2)}%)
-                                    </Typography>
-                                    <Typography variant={'caption'} component={'p'}>
-                                        (진행: {num + 1} / {questionAnswers.length})
-                                    </Typography>
-                                </Box>
-                            </div>
+                            {/*<div>*/}
+                            {/*<LinearProgress sx={{ marginTop: 1 }} variant='determinate'*/}
+                            {/*                value={Math.floor(num / questionAnswers.length * 100)} />*/}
+                            {/*<Box display={'flex'} justifyContent={'space-between'} marginBottom={1}>*/}
+
+                            {/*<Typography variant={'caption'} component={'p'}>*/}
+                            {/*    (진행: {num + 1} / {questionAnswers.length})*/}
+                            {/*</Typography>*/}
+                            {/*</Box>*/}
+                            {/*</div>*/}
                             <QuestionAnswerSimulatorContent onPick={handlePick} onRight={handleOnRight}
                                                             qa={questionAnswers[num]} key={num} />
+                            <div>
+                                <Typography variant={'caption'} component={'p'}
+                                            align={'right'}
+                                            gutterBottom>
+                                    (정답률: {(correct / (hasPicked ? length : length + 1) * 100 || 0).toFixed(2)}%)
+                                </Typography>
+                            </div>
                         </>
                     ) : (
                         <Grid container component={'form'} spacing={2} alignItems={'center'}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField type={'number'}
-                                           label={'문제 수 (0 = 무한)'}
-                                           value={length}
-                                           onChange={(e) => setLength(parseInt(e.target.value))}
-                                           fullWidth
-                                           size={'small'}
-                                           inputProps={{
-                                               step: 1,
-                                               min: 0,
-                                               type: 'number',
-                                               'aria-labelledby': 'x-axis-base-input',
-                                           }} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <FormControlLabel
-                                    control={<Checkbox onChange={handleCheck} checked={includeDuplicates} />}
-                                    label='중복문제 허용' />
-                            </Grid>
+                            {/*<Grid item xs={12} sm={6}>*/}
+                            {/*    <TextField type={'number'}*/}
+                            {/*               label={'문제 수 (0 = 무한)'}*/}
+                            {/*               value={length}*/}
+                            {/*               onChange={(e) => setLength(parseInt(e.target.value))}*/}
+                            {/*               fullWidth*/}
+                            {/*               size={'small'}*/}
+                            {/*               inputProps={{*/}
+                            {/*                   step: 1,*/}
+                            {/*                   min: 0,*/}
+                            {/*                   type: 'number',*/}
+                            {/*                   'aria-labelledby': 'x-axis-base-input',*/}
+                            {/*               }} />*/}
+                            {/*</Grid>*/}
+                            {/*<Grid item xs={12} sm={6}>*/}
+                            {/*    <FormControlLabel*/}
+                            {/*        control={<Checkbox onChange={handleCheck} checked={includeDuplicates} />}*/}
+                            {/*        label='중복문제 허용' />*/}
+                            {/*</Grid>*/}
 
                             <Grid item xs={12}>
                                 <Button onClick={handlePlay}
