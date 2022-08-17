@@ -44,7 +44,6 @@ export const seed49KmsFilter: Set<string> = new Set(
         '스쿠버 페페',
         '스텀프',
         '스톤버그',
-        '스톤볼',
         '스티지',
         '아이스 드레이크',
         '아이언보어',
