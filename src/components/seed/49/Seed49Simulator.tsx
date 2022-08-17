@@ -20,7 +20,7 @@ interface Seed49SimulatorProps {
 }
 
 const Seed49Simulator = ({ data }: Seed49SimulatorProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'seed49', 'seed49simulator']);
     const [mobs, setMobs] = useState<SeedMobData[]>([]);
     const [num, setNum] = useState(0);
     const [openRestartModal, setOpenRestartModal] = useState<boolean>(false);
@@ -78,9 +78,9 @@ const Seed49Simulator = ({ data }: Seed49SimulatorProps) => {
                                         endIcon={<ChevronRightRounded />}>{t('next')}</Button>
                             </CardActions>
                             <Dialog open={openRestartModal} onClose={handleCloseRestart}>
-                                <DialogTitle>{t('title', { ns: 'seed39simulator' })}</DialogTitle>
+                                <DialogTitle>{t('title', { ns: 'seed49simulator' })}</DialogTitle>
                                 <DialogContent>
-                                    {t('restartConfirm', { ns: 'seed39simulator' })}
+                                    {t('restartConfirm', { ns: 'seed49simulator' })}
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={handleCloseRestart}>{t('cancel')}</Button>
