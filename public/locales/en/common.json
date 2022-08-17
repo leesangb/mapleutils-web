@@ -17,12 +17,17 @@
   "pageNotFound": "Page not found 😥",
   "noResultsFound": "No results found... 😥",
   "goToSeed39Simulator": "Go to Tower of Oz F39 Simulator",
+  "goToSeed49Simulator": "Go to Tower of Oz F49 Simulator",
   "drawer": {
     "seedSimulator": {
       "longName": "Tower of Oz Simulator",
       "shortName": "Simul",
       "39": {
         "title": "Tower of Oz F39",
+        "shortDescription": "Simulator"
+      },
+      "49": {
+        "title": "Tower of Oz F49",
         "shortDescription": "Simulator"
       }
     },

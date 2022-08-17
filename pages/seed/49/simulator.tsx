@@ -13,17 +13,17 @@ interface Seed49SimulatorProps {
 }
 
 const Seed49SimulatorPage = ({ data }: Seed49SimulatorProps) => {
-    const seoProps = useI18nSeoProps('seed39simulator');
+    const seoProps = useI18nSeoProps('seed49simulator');
     return (
         <>
-            <Seo {...seoProps} image={'/images/39.png'} />
-            <I18nTitleCard ns={'seed39simulator'} />
+            <Seo {...seoProps} image={'/images/49.png'} />
+            <I18nTitleCard ns={'seed49simulator'} />
 
             <Box display={'flex'} justifyContent={'center'}>
                 <Seed49Simulator data={data} />
             </Box>
 
-            <Comments pageKey={'seed39simulator'} />
+            <Comments pageKey={'seed49simulator'} />
         </>
     );
 };
@@ -32,7 +32,7 @@ const Seed49SimulatorPage = ({ data }: Seed49SimulatorProps) => {
 export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ['common', 'seed49'])),
+            ...(await serverSideTranslations(locale, ['common', 'seed49', 'seed49simulator'])),
             data: seed49Data.map(location => {
                 if (locale === Locales.Korean) {
                     return {

@@ -7,6 +7,7 @@ import { css, styled } from '@mui/system';
 import NextImage from 'next/image';
 import { AssignmentTurnedInRounded, SendRounded, TipsAndUpdatesRounded } from '@mui/icons-material';
 import { getCho } from '@tools/string';
+import { Locales } from '@tools/locales';
 
 interface Seed49SimulatorContentProps {
     mob: SeedMobData;
@@ -90,7 +91,7 @@ const getFilterCss = (theme: Theme): string => {
 
 const Seed49SimulatorContent = ({ mob }: Seed49SimulatorContentProps) => {
     const [response, setResponse] = useState<string>('');
-    const { t } = useTranslation(['common', 'seed49']);
+    const { t, i18n } = useTranslation(['common', 'seed49', 'seed49simulator']);
     const theme = useTheme();
     const filterCss = useMemo(() => getFilterCss(theme), [theme]);
     const [error, setError] = useState<boolean>(false);
@@ -103,7 +104,7 @@ const Seed49SimulatorContent = ({ mob }: Seed49SimulatorContentProps) => {
     };
 
     const handleSubmit = () => {
-        if (response === mob.name) {
+        if (response === t(mob.name, seed49I18nOptions)) {
             setOk(true);
         } else {
             setError(true);
@@ -111,7 +112,13 @@ const Seed49SimulatorContent = ({ mob }: Seed49SimulatorContentProps) => {
     };
 
     const handleHint = () => {
-        setResponse(getCho(mob.name));
+        const hint = i18n.resolvedLanguage === Locales.Korean
+            ? getCho(mob.name)
+            : t(mob.name, seed49I18nOptions)
+                .split('')
+                .map((c, i) => (i % 2 === 0 || c === ' ') ? c : '_')
+                .join('');
+        setResponse(hint);
         const field = document.getElementById('mob-field') as HTMLInputElement;
         if (field) {
             field.focus();
@@ -119,7 +126,7 @@ const Seed49SimulatorContent = ({ mob }: Seed49SimulatorContentProps) => {
     };
 
     const handleAnswer = () => {
-        setResponse(mob.name);
+        setResponse(t(mob.name, seed49I18nOptions));
         const field = document.getElementById('mob-field') as HTMLInputElement;
         if (field) {
             field.focus();
@@ -140,8 +147,8 @@ const Seed49SimulatorContent = ({ mob }: Seed49SimulatorContentProps) => {
 
     return (
         <>
-            <Typography variant={'h5'} gutterBottom>
-                어때? 몬스터의 이름을 알 것 같아?
+            <Typography variant={'h5'} component={'h3'} gutterBottom>
+                {t('question', { ns: 'seed49simulator' })}
             </Typography>
             <StyledCard variant={'outlined'} error={error} ok={ok}>
                 <StyledImg width={mob.width}
@@ -152,10 +159,12 @@ const Seed49SimulatorContent = ({ mob }: Seed49SimulatorContentProps) => {
                            alt={t(mob.name, seed49I18nOptions)} />
             </StyledCard>
             <Box display={'flex'} justifyContent={'right'} marginTop={1} marginBottom={2}>
-                <Button startIcon={<TipsAndUpdatesRounded />} onClick={handleHint}>힌트</Button>
-                <Button startIcon={<AssignmentTurnedInRounded />} onClick={handleAnswer}>정답</Button>
+                <Button startIcon={<TipsAndUpdatesRounded />}
+                        onClick={handleHint}>{t('hint', { ns: 'seed49simulator' })}</Button>
+                <Button startIcon={<AssignmentTurnedInRounded />}
+                        onClick={handleAnswer}>{t('answer', { ns: 'seed49simulator' })}</Button>
             </Box>
-            <TextField label={'몬스터 이름'}
+            <TextField label={t('mobName', { ns: 'seed49simulator' })}
                        variant={'outlined'}
                        id={'mob-field'}
                        value={response}

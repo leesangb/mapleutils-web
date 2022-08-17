@@ -141,19 +141,19 @@ const seedSimulatorDrawerItem: DrawerItem = {
         name: 'drawer.seedSimulator.longName',
         short: 'drawer.seedSimulator.shortName',
     },
-    children: [
+    children: [39, 49].map((floor) => (
         {
-            key: `seed-39-simulator`,
-            title: `drawer.seedSimulator.39.title`,
-            subtitle: `drawer.seedSimulator.39.shortDescription`,
-            link: `/seed/39/simulator`,
+            key: `seed-${floor}-simulator`,
+            title: `drawer.seedSimulator.${floor}.title`,
+            subtitle: `drawer.seedSimulator.${floor}.shortDescription`,
+            link: `/seed/${floor}/simulator`,
             icon: () => (
                 <Badge variant={'dot'} color={'error'}>
-                    <LinkAvatar link={`/seed/39/simulator`}>39</LinkAvatar>
+                    <LinkAvatar link={`/seed/${floor}/simulator`}>{floor}</LinkAvatar>
                 </Badge>
             ),
-        },
-    ],
+        }
+    )),
 };
 
 const farmDrawerItem: DrawerItem =

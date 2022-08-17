@@ -1,6 +1,6 @@
 import { Seo } from '@components/seo';
 import { seed49Data, seed49KmsFilter, SeedLocation } from '@data/seed/49';
-import { Card, CardContent, Typography } from '@mui/material';
+import { Badge, Button, Card, CardContent, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useMemo, useState } from 'react';
 import { isHangulMatching, isMatching } from '@tools/string';
@@ -14,6 +14,7 @@ import { Seed49MobCard, Seed49Search, useSeed49Location } from '@components/seed
 import Display from '@components/display/Display';
 import { I18nTitleCard } from '@components/card';
 import { Locales } from '@tools/locales';
+import NextLink from 'next/link';
 
 
 interface Seed49Props {
@@ -70,6 +71,18 @@ const Seed49 = ({ data }: Seed49Props) => {
                     }
                 </Masonry>
             </Box>
+
+            <Card sx={{ marginTop: 1 }} elevation={0} variant={'outlined'} component={'section'}>
+                <CardContent>
+                    <NextLink href={'/seed/49/simulator'} passHref>
+                        <Badge variant={'dot'} color={'error'}>
+                            <Button component={'a'}>
+                                {t('goToSeed49Simulator')}
+                            </Button>
+                        </Badge>
+                    </NextLink>
+                </CardContent>
+            </Card>
 
             <Comments title={t('comments')} pageKey={'seed49'} />
 
