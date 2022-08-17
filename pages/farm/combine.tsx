@@ -56,7 +56,7 @@ const FarmCombine = (props: FarmCombineProps) => {
     const rowRenderer = useCallback((item: Required<MonsterLifeRecipe>) => <RecipeItem {...item} />, []);
 
     const searchFilter = useCallback((item: Required<MonsterLifeRecipe>, pattern: string) => {
-        return isHangulMatching(pattern, item.mob.name, ...item.parents.map(p => p.name));
+        return isHangulMatching(pattern, item.mob.name, item.mob.category , ...item.parents.map(p => p.name), ...item.parents.map(p => p.category));
     }, []);
 
     return (
@@ -68,7 +68,7 @@ const FarmCombine = (props: FarmCombineProps) => {
                     <VirtualizedFixedList items={recipes}
                                           height={height - SCREEN_HEIGHT_OFFSET}
                                           rowSize={256}
-                                          placeholder={'몬스터 이름 검색 (예: 각성한 락 스피릿, ㄳㅎㄽㅍㄹ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱, 초성 검색 ✅'}
+                                          placeholder={'몬스터 이름, 카테고리 검색 (예: 각성한 락 스피릿, ㄳㅎㄽㅍㄹ, 악마, ㅇㄹㄷㅅ...) [Ctrl] + [F] 또는 [F3]으로 포커싱, 초성 검색 ✅'}
                                           searchFilter={searchFilter}
                                           rowRenderer={rowRenderer} />
                 </CardContent>
