@@ -1,0 +1,13 @@
+{
+  "seo": {
+    "title": "Tower of Oz 24F",
+    "keywords": "24F, town, bgm, soundtracks, Dorothy",
+    "description": "Tower of Oz 24F BGMs"
+  },
+  "title": "Tower of Oz Floor 24 Simulator",
+  "restartConfirm": "Are you sure you want to restart?",
+  "bgm": "BGM",
+  "hint": "Hint",
+  "answer": "Answer",
+  "bgmName": "BGM name"
+}

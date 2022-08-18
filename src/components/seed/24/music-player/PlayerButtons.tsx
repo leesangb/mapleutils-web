@@ -103,8 +103,11 @@ const PlayerSettings = () => {
     );
 };
 
+interface PlayerButtonsProps {
+    isSimulator?: boolean;
+}
 
-const PlayerButtons = () => {
+const PlayerButtons = ({ isSimulator }: PlayerButtonsProps) => {
     const { t } = useTranslation();
     const { track, state, setState, onClip } = useMusicPlayerContext();
 
@@ -149,14 +152,17 @@ const PlayerButtons = () => {
                 </Tooltip>
             </Grid>
             <Grid item>
-                <Tooltip title={t('stop')}>
-                    <IconButton disabled={!track} onClick={handleStop}>
-                        <StopRounded sx={theme => ({
-                            width: theme.spacing(3),
-                            height: theme.spacing(3),
-                        })} />
-                    </IconButton>
-                </Tooltip>
+                {!isSimulator && (
+
+                    <Tooltip title={t('stop')}>
+                        <IconButton disabled={!track} onClick={handleStop}>
+                            <StopRounded sx={theme => ({
+                                width: theme.spacing(3),
+                                height: theme.spacing(3),
+                            })} />
+                        </IconButton>
+                    </Tooltip>
+                )}
                 <IconButton sx={theme => ({ margin: theme.spacing(2) })}
                             disabled={!track}
                             onClick={handlePlayPause}>
@@ -179,17 +185,21 @@ const PlayerButtons = () => {
                             )
                     }
                 </IconButton>
-                <Tooltip title={t('copy')}>
-                    <IconButton disabled={!track} onClick={handleClip}>
-                        <FileCopyRounded sx={theme => ({
-                            width: theme.spacing(3),
-                            height: theme.spacing(3),
-                        })} />
-                    </IconButton>
-                </Tooltip>
+                {!isSimulator && (
+                    <Tooltip title={t('copy')}>
+                        <IconButton disabled={!track} onClick={handleClip}>
+                            <FileCopyRounded sx={theme => ({
+                                width: theme.spacing(3),
+                                height: theme.spacing(3),
+                            })} />
+                        </IconButton>
+                    </Tooltip>
+                )}
             </Grid>
             <Grid item>
-                <PlayerSettings />
+                {!isSimulator && (
+                    <PlayerSettings />
+                )}
             </Grid>
         </Grid>
     );
