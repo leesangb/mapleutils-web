@@ -41,13 +41,13 @@ export const usePlayerState = () => {
         dispatchPlayer({ key: 'state', value: state });
     };
 
-    const setTrack = (track: TrackInfo) => dispatchPlayer({ key: 'track', value: track });
+    const setTrack = (track: TrackInfo | null) => dispatchPlayer({ key: 'track', value: track });
 
     const setDuration = (duration: number) => {
         dispatchPlayer({ key: 'duration', value: duration });
     };
 
-    const setAudio = (audio: HTMLAudioElement) => {
+    const setAudio = (audio: HTMLAudioElement | null) => {
         dispatchPlayer({ key: 'audio', value: audio });
     };
 

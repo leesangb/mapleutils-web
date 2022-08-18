@@ -25,10 +25,11 @@ const Seed24Simulator = ({}: Seed24SimulatorProps) => {
     const [num, setNum] = useState(0);
     const [openRestartModal, setOpenRestartModal] = useState<boolean>(false);
     const [isPlaying, setIsPlaying] = useState(false);
-    const { tracks: data } = useMusicPlayerContext();
+    const { tracks: data, setTrack } = useMusicPlayerContext();
 
     const handleNext = () => {
         setNum(Math.floor(Math.random() * musics.length));
+        setTrack(null);
     };
 
     const handlePlay = () => {

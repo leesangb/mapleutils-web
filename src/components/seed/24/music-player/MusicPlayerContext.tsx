@@ -18,7 +18,7 @@ interface MusicPlayerContext {
     state: 'playing' | 'paused' | 'stopped';
     time: number;
     setTime: (time: number) => void;
-    setTrack: (track: TrackInfo) => void;
+    setTrack: (track: TrackInfo | null) => void;
     setState: (state: 'playing' | 'paused' | 'stopped') => void;
     duration: number;
     onClip: (trackName?: string) => void;
@@ -88,6 +88,7 @@ const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayer
         audio.play();
 
         return () => {
+            setAudio(null);
             audio.pause();
             audio.removeEventListener('loadeddata', onLoadedData);
             audio.removeEventListener('timeupdate', onTimeUpdate);
