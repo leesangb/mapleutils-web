@@ -23,7 +23,7 @@ const Seed24SimulatorPage = ({ data }: Seed24SimulatorPageProps) => {
 
             <Box display={'flex'} justifyContent={'center'}>
                 <MusicPlayerProvider tracks={data}>
-                    <Seed24Simulator data={data} />
+                    <Seed24Simulator />
                 </MusicPlayerProvider>
             </Box>
 

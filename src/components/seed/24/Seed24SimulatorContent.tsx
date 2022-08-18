@@ -5,6 +5,7 @@ import { TOptions } from 'i18next';
 import { Locales } from '@tools/locales';
 import { getCho } from '@tools/string';
 import {
+    Avatar,
     Box,
     Button,
     Card,
@@ -28,7 +29,7 @@ interface Seed24SimulatorContentProps {
 
 const seed24I18nOptions: TOptions = { ns: 'seed24' };
 
-const MusicCard = styled(Card)<{ error: boolean }>(({ error, theme }) => css`
+const MusicCard = styled(Card)<{ error: boolean, ok: boolean }>(({ error, ok, theme }) => css`
   padding-left: ${theme.spacing(2)};
   padding-right: ${theme.spacing(2)};
   padding-bottom: ${theme.spacing(1)};
@@ -37,6 +38,10 @@ const MusicCard = styled(Card)<{ error: boolean }>(({ error, theme }) => css`
   ${theme.breakpoints.up('sm')} {
     width: 400px;
   }
+
+  ${ok && css`
+    border: solid 1px ${theme.palette.success.light};
+  `}
 
   ${error && css`
     animation: shake 0.325s;
@@ -156,7 +161,13 @@ const Seed24SimulatorContent = ({ music }: Seed24SimulatorContentProps) => {
                 )
             }
             <Box display={'flex'} justifyContent={'center'}>
-                <MusicCard variant={'outlined'} error={error}>
+                <MusicCard variant={'outlined'} error={error} ok={ok}>
+                    {ok && <Box marginTop={2} marginLeft={1} marginRight={1}>
+                        <Box display={'flex'} alignItems={'center'}>
+                            <Avatar variant={'rounded'} src={music.coverImg} alt={music.name} sx={{ marginRight: 2 }} />
+                            <Typography variant={'h4'}>{t(music.name, seed24I18nOptions)}</Typography>
+                        </Box>
+                    </Box>}
                     <PlayerButtons isSimulator />
                     {!isMobile && <PlayerVolumeSlider />}
                 </MusicCard>
