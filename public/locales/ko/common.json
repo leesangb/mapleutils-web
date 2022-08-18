@@ -20,12 +20,17 @@
   "correctAnswerRate": "정답률",
   "pageNotFound": "페이지를 찾을 수 없습니다 😥",
   "noResultsFound": "검색된 결과가 없습니다... 😥",
+  "goToSeed24Simulator": "더 시드 24층 시뮬레이터 바로가기",
   "goToSeed39Simulator": "더 시드 39층 시뮬레이터 바로가기",
   "goToSeed49Simulator": "더 시드 49층 시뮬레이터 바로가기",
   "drawer": {
     "seedSimulator": {
       "longName": "더 시드 시뮬레이터",
       "shortName": "시뮬",
+      "24": {
+        "title": "시드 24층",
+        "shortDescription": "시뮬레이터"
+      },
       "39": {
         "title": "시드 39층",
         "shortDescription": "시뮬레이터"

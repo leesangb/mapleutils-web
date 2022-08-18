@@ -1,5 +1,7 @@
 import {
     Avatar,
+    Badge,
+    Button,
     Card,
     CardContent,
     Grid,
@@ -29,6 +31,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { useSeed24Tabs } from '@components/seed/24';
 import { Locales } from '@tools/locales';
+import NextLink from 'next/link';
 
 const SCREEN_HEIGHT_OFFSET = 400; // magic number ?
 const SMALL_SCREEN_ROW_SIZE = 110;
@@ -121,6 +124,18 @@ const Seed24 = () => {
                 </TabPanel>
                 <CopySnackbar />
             </TabContext>
+
+            <Card sx={{ marginTop: 1 }} elevation={0} variant={'outlined'} component={'section'}>
+                <CardContent>
+                    <NextLink href={'/seed/24/simulator'} passHref>
+                        <Badge variant={'dot'} color={'error'}>
+                            <Button component={'a'}>
+                                {t('goToSeed24Simulator')}
+                            </Button>
+                        </Badge>
+                    </NextLink>
+                </CardContent>
+            </Card>
 
             <Comments pageKey={'seed24'} />
         </>

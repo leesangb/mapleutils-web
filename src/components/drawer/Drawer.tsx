@@ -115,7 +115,7 @@ const LinkAvatar = ({ link, ...props }: AvatarProps & { link: string }) => {
     const location = useRouter();
 
     return <Avatar sx={theme => ({
-        bgcolor: location.pathname !== '/' && link.includes(location.pathname)
+        bgcolor: location.pathname !== '/' && link === location.pathname
             ? theme.palette.primary.light
             : theme.palette.grey[400],
     })} {...props} />;
@@ -141,7 +141,7 @@ const seedSimulatorDrawerItem: DrawerItem = {
         name: 'drawer.seedSimulator.longName',
         short: 'drawer.seedSimulator.shortName',
     },
-    children: [39, 49].map((floor) => (
+    children: [24, 39, 49].map((floor) => (
         {
             key: `seed-${floor}-simulator`,
             title: `drawer.seedSimulator.${floor}.title`,
