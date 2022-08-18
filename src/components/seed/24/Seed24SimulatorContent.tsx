@@ -86,7 +86,7 @@ const MusicCard = styled(Card)<{ error: boolean, ok: boolean }>(({ error, ok, th
 
 const Seed24SimulatorContent = ({ music }: Seed24SimulatorContentProps) => {
     const [response, setResponse] = useState<string>('');
-    const { t, i18n } = useTranslation(['common', 'seed49', 'seed49simulator']);
+    const { t, i18n } = useTranslation(['common', 'seed24', 'seed24simulator']);
     const [error, setError] = useState<boolean>(false);
     const [ok, setOk] = useState<boolean>(false);
     const { setTrack } = useMusicPlayerContext();
