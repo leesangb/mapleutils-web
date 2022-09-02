@@ -3,6 +3,7 @@ import { CommentDelete } from '.';
 import { IconButton, InputAdornment, Snackbar, TextField, Tooltip } from '@mui/material';
 import { DeleteRounded, VisibilityOffRounded, VisibilityRounded } from '@mui/icons-material';
 import { Alert } from '@mui/lab';
+import { useTranslation } from 'next-i18next';
 
 interface CommentDeleteFieldProps {
     id: string;
@@ -11,6 +12,7 @@ interface CommentDeleteFieldProps {
 }
 
 const CommentDeleteField = (props: CommentDeleteFieldProps) => {
+    const { t } = useTranslation();
     const { id, onDeleteComment, nested } = props;
     const [password, setPassword] = useState<string>('');
     const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -46,13 +48,13 @@ const CommentDeleteField = (props: CommentDeleteFieldProps) => {
                 onChange={handleChangePassword}
                 size='small'
                 variant='outlined'
-                label='댓글 비밀번호'
+                label={`${t('comment.comment')} ${t('comment.password')}`}
                 required
                 error={passwordError}
                 inputProps={{
                     maxLength: 16,
                 }}
-                placeholder='6 - 16글자'
+                placeholder={`6 - 16${t('comment.letters')}`}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position='end'>
@@ -63,7 +65,7 @@ const CommentDeleteField = (props: CommentDeleteFieldProps) => {
                             >
                                 {showPassword ? <VisibilityRounded /> : <VisibilityOffRounded />}
                             </IconButton>
-                            <Tooltip title='댓글 삭제'>
+                            <Tooltip title={t('comment.deleteComment')}>
                                 <span>
                                     <IconButton
                                         disabled={!canDelete}
@@ -81,7 +83,7 @@ const CommentDeleteField = (props: CommentDeleteFieldProps) => {
             />
             <Snackbar open={openError} autoHideDuration={5000000} onClose={handleCloseError}>
                 <Alert variant='filled' onClose={handleCloseError} severity='error'>
-                    비밀번호가 일치하지 않습니다.
+                    {t('comment.passwordIncorrect')}
                 </Alert>
             </Snackbar>
         </>

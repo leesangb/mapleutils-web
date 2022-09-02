@@ -10,6 +10,7 @@ import CommentActionButtons from '@components/comments/CommentActionButtons';
 import ChildCommentItem from '@components/comments/ChildCommentItem';
 import CommentBody from '@components/comments/CommentBody';
 import { Box } from '@mui/system';
+import { useTranslation } from 'next-i18next';
 
 interface CommentItemProps {
     comment: Comment;
@@ -18,6 +19,7 @@ interface CommentItemProps {
 }
 
 const CommentItem = (props: CommentItemProps) => {
+    const { t } = useTranslation();
     const { comment, actions, pageKey } = props;
 
     const [openReply, setOpenReply] = useState<boolean>(false);
@@ -39,7 +41,7 @@ const CommentItem = (props: CommentItemProps) => {
         <>
             {comment.isDeleted ? (
                 <Typography color='textSecondary'>
-                    삭제된 댓글입니다.
+                    {t('deletedComment')}
                 </Typography>
             ) : (
                 <>

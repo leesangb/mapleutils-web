@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { DeleteRounded, EditRounded, ReplyRounded } from '@mui/icons-material';
+import { useTranslation } from 'next-i18next';
 
 interface CommentActionButtonsProps {
     reply: boolean;
@@ -13,6 +14,7 @@ interface CommentActionButtonsProps {
 }
 
 const CommentActionButtons = (props: CommentActionButtonsProps) => {
+    const { t } = useTranslation();
     const { reply, setReply, setDelete, edit, setEdit } = props;
 
     const toggleReply = () => {
@@ -32,21 +34,21 @@ const CommentActionButtons = (props: CommentActionButtonsProps) => {
                     sx={theme => ({ color: theme.palette.text.secondary })}
                     disabled={props.delete || edit}
                     onClick={props.delete || edit ? undefined : toggleReply}>
-                {reply ? '취소' : '답글'}
+                {reply ? t('cancel') : t('comment.reply')}
             </Button>
             <Button size={'small'}
                     startIcon={<EditRounded fontSize={'small'} />}
                     sx={theme => ({ color: theme.palette.text.secondary })}
                     disabled={props.delete || reply}
                     onClick={props.delete || reply ? undefined : toggleEdit}>
-                {edit ? '취소' : '수정'}
+                {edit ? t('cancel') : t('comment.edit')}
             </Button>
             <Button size={'small'}
                     startIcon={<DeleteRounded fontSize={'small'} />}
                     sx={theme => ({ color: theme.palette.text.secondary })}
                     disabled={props.reply || edit}
                     onClick={reply || edit ? undefined : toggleDelete}>
-                {props.delete ? '취소' : '삭제'}
+                {props.delete ? t('cancel') : t('comment.delete')}
             </Button>
         </Box>
     );

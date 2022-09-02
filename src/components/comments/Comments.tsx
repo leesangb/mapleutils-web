@@ -13,14 +13,15 @@ interface CommentsProps {
     defaultOpen: boolean;
 }
 
-const Comments = ({ title = '댓글', pageKey, defaultOpen }: CommentsProps) => {
-    const { i18n } = useTranslation();
+const Comments = ({ title = 'comment.title', pageKey: pk, defaultOpen }: CommentsProps) => {
+    const { t, i18n } = useTranslation();
+    const pageKey = i18n.resolvedLanguage === Locales.Korean ? pk : `en_${pk}`;
     const [comments, count, actions] = useComment(pageKey);
     const [openComments, setOpenComments] = useState<boolean>(defaultOpen);
 
     const toggleOpen = () => setOpenComments(!openComments);
 
-    return i18n.resolvedLanguage === Locales.Korean ? (
+    return (
         <Card variant={'outlined'} sx={theme => ({ marginTop: theme.spacing(1) })}>
             <Box padding={theme => theme.spacing(1)}>
                 <ListItem component='div' button onClick={toggleOpen}>
@@ -29,7 +30,7 @@ const Comments = ({ title = '댓글', pageKey, defaultOpen }: CommentsProps) => 
                     </ListItemIcon>
                     <ListItemText>
                         <Typography variant='h4' component={'h2'}>
-                            {title} ({count})
+                            {t(title)} ({count})
                         </Typography>
                     </ListItemText>
                     {openComments ? <ExpandLessRounded /> : <ExpandMoreRounded />}
@@ -49,7 +50,7 @@ const Comments = ({ title = '댓글', pageKey, defaultOpen }: CommentsProps) => 
                 </Collapse>
             </Box>
         </Card>
-    ) : null;
+    );
 };
 
 Comments.defaultProps = {

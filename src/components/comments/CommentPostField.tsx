@@ -14,6 +14,7 @@ import {
     Typography,
 } from '@mui/material';
 import { HelpRounded, SendRounded, VisibilityOffRounded, VisibilityRounded } from '@mui/icons-material';
+import { useTranslation } from 'next-i18next';
 
 const defaultCommentPost = (pageKey: string, parentId?: string, repliedTo?: string): CommentPost => ({
     text: '',
@@ -45,6 +46,7 @@ interface CommentPostFieldProps {
 }
 
 const CommentPostField = (props: CommentPostFieldProps) => {
+    const { t } = useTranslation();
     const { pageKey, onPostComment, parentId, repliedTo } = props;
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [comment, dispatchComment] = useReducer(commentPostReducer, defaultCommentPost(pageKey, parentId, repliedTo));
@@ -88,8 +90,8 @@ const CommentPostField = (props: CommentPostFieldProps) => {
                                 required
                                 variant='outlined'
                                 size='small'
-                                label='닉네임'
-                                placeholder='2 - 10글자'
+                                label={t('comment.nickname')}
+                                placeholder={`2 - 10${t('comment.letters')}`}
                                 inputProps={{
                                     maxLength: 10,
                                 }}
@@ -105,10 +107,10 @@ const CommentPostField = (props: CommentPostFieldProps) => {
                                     maxLength: 16,
                                 }}
                                 variant='outlined'
-                                placeholder='6 - 16글자'
+                                placeholder={`6 - 16${t('comment.letters')}`}
                                 type={showPassword ? 'text' : 'password'}
                                 size='small'
-                                label='비밀번호'
+                                label={t('comment.password')}
                                 value={password}
                                 error={passwordError}
                                 onChange={handleChangeComment('password')}
@@ -133,7 +135,7 @@ const CommentPostField = (props: CommentPostFieldProps) => {
                         </Grid>
                         <Hidden xsDown>
                             <Grid item>
-                                <Tooltip title='비밀번호 도움말'>
+                                <Tooltip title={t('comment.passwordHelp')}>
                                     <IconButton size='small' onClick={openHelp}>
                                         <HelpRounded fontSize='small' />
                                     </IconButton>
@@ -149,8 +151,8 @@ const CommentPostField = (props: CommentPostFieldProps) => {
                     <TextField
                         sx={theme => ({ marginTop: theme.spacing(1) })}
                         required
-                        label={repliedTo ? `${repliedTo}님에게` : '댓글'}
-                        placeholder='댓글 추가...'
+                        label={repliedTo ? t('comment.repliedTo', { name: repliedTo }) : t('comment.comment')}
+                        placeholder={t('comment.commentPlaceholder')}
                         variant='outlined'
                         value={text}
                         fullWidth

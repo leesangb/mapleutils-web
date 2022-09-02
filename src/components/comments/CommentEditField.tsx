@@ -3,6 +3,7 @@ import { CommentBase, CommentEdit } from '.';
 import { IconButton, InputAdornment, Snackbar, TextField, Typography } from '@mui/material';
 import { SendRounded, VisibilityOffRounded, VisibilityRounded } from '@mui/icons-material';
 import { Alert } from '@mui/lab';
+import { useTranslation } from 'next-i18next';
 
 interface CommentEditFieldProps {
     comment: CommentBase;
@@ -10,6 +11,7 @@ interface CommentEditFieldProps {
 }
 
 const CommentEditField = (props: CommentEditFieldProps) => {
+    const { t } = useTranslation();
     const { comment, onEditComment } = props;
 
     const [password, setPassword] = useState<string>('');
@@ -59,9 +61,9 @@ const CommentEditField = (props: CommentEditFieldProps) => {
                 type={showPassword ? 'text' : 'password'}
                 onChange={handleChangePassword}
                 variant='outlined'
-                placeholder='6 - 16글자'
+                placeholder={`6 - 16${t('comment.letters')}`}
                 size='small'
-                label='비밀번호'
+                label={t('comment.password')}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position='end'>
@@ -81,8 +83,8 @@ const CommentEditField = (props: CommentEditFieldProps) => {
                 sx={theme => ({ marginTop: theme.spacing(1) })}
                 value={text}
                 onChange={handleChangeText}
-                label={'댓글 수정'}
-                placeholder='댓글 추가...'
+                label={t('comment.editComment')}
+                placeholder={t('comment.commentPlaceholder')}
                 variant='outlined'
                 fullWidth
                 size='small'
@@ -106,7 +108,7 @@ const CommentEditField = (props: CommentEditFieldProps) => {
             />
             <Snackbar open={openError} autoHideDuration={5000} onClose={handleCloseError}>
                 <Alert variant='filled' onClose={handleCloseError} severity='error'>
-                    비밀번호가 일치하지 않습니다.
+                    {t('comment.passwordIncorrect')}
                 </Alert>
             </Snackbar>
         </>
