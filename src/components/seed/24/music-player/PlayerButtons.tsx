@@ -145,7 +145,9 @@ const PlayerButtons = ({ isSimulator }: PlayerButtonsProps) => {
                     <>
                         <Typography variant={'subtitle2'}>{t('spaceToPausePlay')}</Typography>
                         <Typography variant={'subtitle2'}>{t('upDownVolume')}</Typography>
-                        <Typography variant={'subtitle2'}>{t('seek')}</Typography>
+                        {
+                            !isSimulator && <Typography variant={'subtitle2'}>{t('seek')}</Typography>
+                        }
                     </>
                 }>
                     <TipsAndUpdatesRounded sx={theme => ({ color: theme.palette.action.active })} />

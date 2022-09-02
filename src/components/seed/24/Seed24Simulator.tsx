@@ -47,8 +47,7 @@ const Seed24Simulator = ({}: Seed24SimulatorProps) => {
     const handleCloseRestart = () => setOpenRestartModal(false);
 
     return (
-        <Card elevation={0} variant={'outlined'}
-              sx={isPlaying ? ({ width: { xs: '100%', md: '900px' } }) : undefined}>
+        <Card elevation={0} variant={'outlined'} sx={{ width: '100%' }}>
             <CardContent sx={{ paddingBottom: 0 }}>
                 {
                     isPlaying ? (

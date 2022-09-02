@@ -124,6 +124,7 @@ const Seed24SimulatorContent = ({ music }: Seed24SimulatorContentProps) => {
 
     const handleAnswer = () => {
         setResponse(t(music.name, seed24I18nOptions));
+        setOk(true);
         const field = document.getElementById('bgm-field') as HTMLInputElement;
         if (field) {
             field.focus();
@@ -148,18 +149,16 @@ const Seed24SimulatorContent = ({ music }: Seed24SimulatorContentProps) => {
 
     return (
         <>
-            {
-                i18n.resolvedLanguage === Locales.Korean && (
-                    <Typography variant={'h4'}
-                                component={'h3'}
-                                align={'center'}
-                                whiteSpace={smUp ? 'pre' : undefined}
-                                sx={{ margin: 2 }}
-                                gutterBottom>
-                        {music.hint.replaceAll(/(\.|!)/g, '$1\n')}
-                    </Typography>
-                )
-            }
+            <Typography variant={'h4'}
+                        component={'h3'}
+                        align={'center'}
+                        whiteSpace={smUp && i18n.resolvedLanguage === Locales.Korean ? 'pre' : undefined}
+                        sx={{ margin: 2 }}
+                        gutterBottom>
+                {i18n.resolvedLanguage === Locales.Korean
+                    ? music.hint.replaceAll(/(\.|!)/g, '$1\n')
+                    : music.hint}
+            </Typography>
             <Box display={'flex'} justifyContent={'center'}>
                 <MusicCard variant={'outlined'} error={error} ok={ok}>
                     {ok && <Box marginTop={2} marginLeft={1} marginRight={1}>
@@ -172,32 +171,37 @@ const Seed24SimulatorContent = ({ music }: Seed24SimulatorContentProps) => {
                     {!isMobile && <PlayerVolumeSlider />}
                 </MusicCard>
             </Box>
-            <Box display={'flex'} justifyContent={'right'} marginTop={1} marginBottom={2}>
-                <Button startIcon={<TipsAndUpdatesRounded />}
-                        onClick={handleHint}>{t('hint', { ns: 'seed24simulator' })}</Button>
-                <Button startIcon={<AssignmentTurnedInRounded />}
-                        onClick={handleAnswer}>{t('answer', { ns: 'seed24simulator' })}</Button>
+
+
+            <Box marginLeft={'auto'} marginRight={'auto'} width={smUp ? '900px' : '100%'}>
+                <Box display={'flex'} justifyContent={'right'} marginTop={1} marginBottom={2}>
+                    <Button startIcon={<TipsAndUpdatesRounded />}
+                            onClick={handleHint}>{t('hint', { ns: 'seed24simulator' })}</Button>
+                    <Button startIcon={<AssignmentTurnedInRounded />}
+                            onClick={handleAnswer}>{t('answer', { ns: 'seed24simulator' })}</Button>
+                </Box>
+                <TextField label={t('bgmName', { ns: 'seed24simulator' })}
+                           variant={'outlined'}
+                           sx={{ marginBottom: 1 }}
+                           id={'bgm-field'}
+                           value={response}
+                           onChange={handleChange}
+                           error={!ok && error}
+                           autoFocus
+                           InputProps={{
+                               endAdornment: (
+                                   <InputAdornment position='end'>
+                                       <IconButton disabled={!response.length} size='small' aria-label='submit'
+                                                   onClick={handleSubmit}>
+                                           <SendRounded />
+                                       </IconButton>
+                                   </InputAdornment>
+                               ),
+                           }}
+                           fullWidth
+                           size={'small'} />
+
             </Box>
-            <TextField label={t('bgmName', { ns: 'seed24simulator' })}
-                       variant={'outlined'}
-                       sx={{ marginBottom: 1 }}
-                       id={'bgm-field'}
-                       value={response}
-                       onChange={handleChange}
-                       error={!ok && error}
-                       autoFocus
-                       InputProps={{
-                           endAdornment: (
-                               <InputAdornment position='end'>
-                                   <IconButton disabled={!response.length} size='small' aria-label='submit'
-                                               onClick={handleSubmit}>
-                                       <SendRounded />
-                                   </IconButton>
-                               </InputAdornment>
-                           ),
-                       }}
-                       fullWidth
-                       size={'small'} />
         </>
     );
 };

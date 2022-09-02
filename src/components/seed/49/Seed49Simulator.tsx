@@ -46,7 +46,7 @@ const Seed49Simulator = ({ data }: Seed49SimulatorProps) => {
     return (
         <>
             <Card elevation={0} variant={'outlined'}
-                  sx={isPlaying ? ({ width: { xs: '100%', md: '700px' } }) : undefined}>
+                  sx={{ width: '100%' }}>
                 <CardContent sx={{ paddingBottom: 0 }}>
                     {
                         isPlaying ? (

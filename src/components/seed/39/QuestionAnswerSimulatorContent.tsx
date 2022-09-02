@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Button as MuiButton, ButtonProps, darken, Typography } from '@mui/material';
+import { Box, Button as MuiButton, ButtonProps, darken, Typography } from '@mui/material';
 import { css } from '@mui/system';
 import { useMemo, useState } from 'react';
 import { CheckRounded, ClearRounded } from '@mui/icons-material';
@@ -87,7 +87,7 @@ const QuestionAnswerSimulatorContent = ({ qa, onPick, onRight }: QuestionAnswerS
 
 
     return useMemo(() => (
-        <>
+        <Box sx={{ width: { xs: '100%', md: '800px' }, margin: 'auto' }}>
             <Typography variant={'h5'} gutterBottom>
                 {qa.question}
             </Typography>
@@ -124,7 +124,7 @@ const QuestionAnswerSimulatorContent = ({ qa, onPick, onRight }: QuestionAnswerS
                 )
             }
 
-        </>
+        </Box>
     ), [qa, pick, i18n.resolvedLanguage]);
 };
 

@@ -4,7 +4,6 @@ import { useMemo, useRef, useState } from 'react';
 import { PauseRounded, PlayArrowRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import { useTranslation } from 'next-i18next';
-import { Locales } from '@tools/locales';
 import * as gtag from '@components/adsense/lib/gtag';
 import { isProduction } from '@tools/helper';
 
@@ -17,7 +16,7 @@ interface MusicItemProps {
 
 
 const MusicItem = (props: MusicItemProps) => {
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const { label, src, icon, hint } = props;
     const { setTrack, onClip, track, state, setState, preference } = useMusicPlayerContext();
     const buttonRef = useRef<HTMLDivElement>(null);
@@ -53,8 +52,8 @@ const MusicItem = (props: MusicItemProps) => {
                 {
                     check && <Checkbox value={isPlayed} onClick={() => setIsPlayed(p => !p)} />
                 }
-                <Tooltip arrow={i18n.resolvedLanguage === Locales.Korean}
-                         title={i18n.resolvedLanguage === Locales.Korean ? <Typography>{hint}</Typography> : ''}
+                <Tooltip arrow
+                         title={<Typography>{hint}</Typography>}
                          placement={'top'} disableInteractive>
                     <ListItemButton ref={buttonRef} onClick={togglePlay}>
                         <ListItemIcon>
@@ -64,7 +63,7 @@ const MusicItem = (props: MusicItemProps) => {
                         </ListItemIcon>
                         <ListItemText>
                             <Typography variant='h6' component='div'>
-                                {t(label, { ns: 'seed24' })}
+                                {label}
                             </Typography>
                         </ListItemText>
                         {isSelected && isPlaying ? <PauseRounded color={'action'} /> :

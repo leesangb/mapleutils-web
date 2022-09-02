@@ -35,7 +35,7 @@ const PlayerTrackInformation = () => {
                                 <Typography variant={'h6'} gutterBottom component={'span'}>
                                     {t('nowPlaying', { ns: 'seed24' })}:
                                 </Typography>
-                                <Typography variant={'h2'}>{t(track?.name, { ns: 'seed24' })}</Typography>
+                                <Typography variant={'h2'}>{track?.name}</Typography>
                             </>
                         ) : (
                             <Typography variant='h6'>

@@ -127,6 +127,7 @@ const Seed49SimulatorContent = ({ mob }: Seed49SimulatorContentProps) => {
 
     const handleAnswer = () => {
         setResponse(t(mob.name, seed49I18nOptions));
+        setOk(true);
         const field = document.getElementById('mob-field') as HTMLInputElement;
         if (field) {
             field.focus();
@@ -146,7 +147,7 @@ const Seed49SimulatorContent = ({ mob }: Seed49SimulatorContentProps) => {
     }, [response]);
 
     return (
-        <>
+        <Box width={'700px'} margin={'auto'}>
             <Typography variant={'h5'} component={'h3'} gutterBottom>
                 {t('question', { ns: 'seed49simulator' })}
             </Typography>
@@ -183,7 +184,7 @@ const Seed49SimulatorContent = ({ mob }: Seed49SimulatorContentProps) => {
                        }}
                        fullWidth
                        size={'small'} />
-        </>
+        </Box>
     );
 };
 

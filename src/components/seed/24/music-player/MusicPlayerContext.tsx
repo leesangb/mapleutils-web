@@ -105,7 +105,7 @@ const MusicPlayerProvider = ({ tracks, children }: PropsWithChildren<MusicPlayer
 
     const onClip = (trackName?: string) => {
         if (!trackName) return;
-        copy(t(trackName, { ns: 'seed24' }));
+        copy(trackName);
     };
 
     return (
