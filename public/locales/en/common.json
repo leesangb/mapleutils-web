@@ -3,6 +3,7 @@
   "discord": "Discord",
   "reset": "Reset",
   "clickToCopy": "Click to copy",
+  "copyItem": "Copy <{{text}}>",
   "silhouette": "Silhouette",
   "filters": "Filters",
   "comments": "Comments",

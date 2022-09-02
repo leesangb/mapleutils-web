@@ -3,6 +3,7 @@
   "discord": "디스코드",
   "reset": "초기화",
   "clickToCopy": "클릭하여 복사하기",
+  "copyItem": "<{{text}}> 복사하기",
   "silhouette": "실루엣",
   "filters": "필터",
   "comments": "댓글",
