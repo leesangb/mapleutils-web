@@ -26,7 +26,6 @@ export const seed49GmsFilter: Set<string> = new Set(
         '마스터 로보',
         '머신 MT-09',
         '비급',
-        '스켈독',
         '원로 그레이',
         '월묘',
         '장난감 목마',
@@ -39,7 +38,6 @@ export const seed49KmsFilter: Set<string> = new Set(
     [
         '게비알',
         '로얄 카투스',
-        '스켈레톤 사병',
         '스쿠버 페페',
         '아이언보어',
         '이상한 돼지',
