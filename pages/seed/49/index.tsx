@@ -1,5 +1,5 @@
 import { Seo } from '@components/seo';
-import { seed49Data, seed49KmsFilter, SeedLocation } from '@data/seed/49';
+import { seed49Data, seed49GmsFilter, seed49KmsFilter, SeedLocation } from '@data/seed/49';
 import { Badge, Button, Card, CardContent, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useMemo, useState } from 'react';
@@ -104,6 +104,12 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
                     return {
                         location: location.location,
                         mobs: location.mobs.filter(mob => !seed49KmsFilter.has(mob.name)),
+                    };
+                }
+                if (locale === Locales.English) {
+                    return {
+                        location: location.location,
+                        mobs: location.mobs.filter(mob => !seed49GmsFilter.has(mob.name)),
                     };
                 }
                 return location;

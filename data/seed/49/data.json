@@ -103,11 +103,6 @@
     "location": "오르비스",
     "mobs": [
       {
-        "name": "그류핀",
-        "width": 55,
-        "height": 57
-      },
-      {
         "name": "네펜데스",
         "width": 60,
         "height": 49
@@ -118,44 +113,9 @@
         "height": 49
       },
       {
-        "name": "라이오너",
-        "width": 55,
-        "height": 57
-      },
-      {
-        "name": "루이넬",
-        "width": 59,
-        "height": 73
-      },
-      {
-        "name": "샐리온",
-        "width": 55,
-        "height": 57
-      },
-      {
         "name": "스톤볼",
         "width": 36,
         "height": 36
-      },
-      {
-        "name": "주니어 그류핀",
-        "width": 35,
-        "height": 43
-      },
-      {
-        "name": "주니어 라이오너",
-        "width": 35,
-        "height": 43
-      },
-      {
-        "name": "주니어 루이넬",
-        "width": 38,
-        "height": 54
-      },
-      {
-        "name": "주니어 샐리온",
-        "width": 35,
-        "height": 43
       }
     ]
   },
@@ -209,11 +169,6 @@
       },
       {
         "name": "포이즌 푸퍼",
-        "width": 59,
-        "height": 44
-      },
-      {
-        "name": "푸퍼",
         "width": 59,
         "height": 44
       },
@@ -345,36 +300,6 @@
     ]
   },
   {
-    "location": "엘린숲",
-    "mobs": [
-      {
-        "name": "스톤버그",
-        "width": 110,
-        "height": 74
-      },
-      {
-        "name": "원시멧돼지",
-        "width": 149,
-        "height": 95
-      },
-      {
-        "name": "이끼 달팽이",
-        "width": 100,
-        "height": 90
-      },
-      {
-        "name": "이끼버섯",
-        "width": 102,
-        "height": 107
-      },
-      {
-        "name": "트리로드",
-        "width": 82,
-        "height": 121
-      }
-    ]
-  },
-  {
     "location": "지구방위본부",
     "mobs": [
       {
@@ -418,74 +343,9 @@
     "location": "아랫마을",
     "mobs": [
       {
-        "name": "깨비",
-        "width": 59,
-        "height": 62
-      },
-      {
-        "name": "도깨비불",
-        "width": 40,
-        "height": 49
-      },
-      {
-        "name": "삼미호",
-        "width": 89,
-        "height": 70
-      },
-      {
         "name": "월묘",
         "width": 47,
         "height": 66
-      },
-      {
-        "name": "호걸",
-        "width": 91,
-        "height": 89
-      },
-      {
-        "name": "호돌이",
-        "width": 98,
-        "height": 51
-      }
-    ]
-  },
-  {
-    "location": "백초마을",
-    "mobs": [
-      {
-        "name": "게비알",
-        "width": 111,
-        "height": 123
-      },
-      {
-        "name": "늙은 도라지",
-        "width": 58,
-        "height": 87
-      },
-      {
-        "name": "단지",
-        "width": 54,
-        "height": 59
-      },
-      {
-        "name": "도라지",
-        "width": 61,
-        "height": 88
-      },
-      {
-        "name": "삼단지",
-        "width": 85,
-        "height": 78
-      },
-      {
-        "name": "캡틴",
-        "width": 122,
-        "height": 99
-      },
-      {
-        "name": "크루",
-        "width": 113,
-        "height": 84
       }
     ]
   },
@@ -493,70 +353,15 @@
     "location": "무릉",
     "mobs": [
       {
-        "name": "달곰",
-        "width": 78,
-        "height": 85
-      },
-      {
-        "name": "묘선",
-        "width": 65,
-        "height": 98
-      },
-      {
-        "name": "별다람쥐",
-        "width": 65,
-        "height": 76
-      },
-      {
         "name": "비급",
         "width": 84,
         "height": 90
-      },
-      {
-        "name": "원공",
-        "width": 73,
-        "height": 64
-      },
-      {
-        "name": "천록",
-        "width": 64,
-        "height": 117
-      },
-      {
-        "name": "청화사",
-        "width": 52,
-        "height": 63
-      },
-      {
-        "name": "판다곰",
-        "width": 78,
-        "height": 85
-      },
-      {
-        "name": "호저",
-        "width": 60,
-        "height": 63
-      },
-      {
-        "name": "홍화사",
-        "width": 47,
-        "height": 57
-      },
-      {
-        "name": "흑저",
-        "width": 60,
-        "height": 63
       }
     ]
   },
   {
     "location": "아리안트",
     "mobs": [
-      {
-        "name": "갈색 모래토끼",
-        "width": 57,
-        "height": 51
-      },
       {
         "name": "귀마개 프릴드",
         "width": 69,
@@ -571,11 +376,6 @@
         "name": "모래 두더지",
         "width": 103,
         "height": 47
-      },
-      {
-        "name": "모래거인",
-        "width": 108,
-        "height": 111
       },
       {
         "name": "모래난쟁이",
@@ -653,24 +453,9 @@
     "location": "마가티아",
     "mobs": [
       {
-        "name": "강화된 미스릴 뮤테",
-        "width": 65,
-        "height": 52
-      },
-      {
         "name": "강화된 아이언 뮤테",
         "width": 70,
         "height": 59
-      },
-      {
-        "name": "네오 휴로이드",
-        "width": 58,
-        "height": 69
-      },
-      {
-        "name": "로이드",
-        "width": 37,
-        "height": 61
       },
       {
         "name": "루모",
@@ -678,80 +463,20 @@
         "height": 58
       },
       {
-        "name": "미스릴 뮤테",
-        "width": 65,
-        "height": 56
-      },
-      {
-        "name": "사이티",
-        "width": 60,
-        "height": 101
-      },
-      {
         "name": "아이언 뮤테",
         "width": 52,
         "height": 37
       },
       {
-        "name": "큐브슬라임",
-        "width": 54,
-        "height": 43
-      },
-      {
         "name": "트리플 루모",
         "width": 74,
         "height": 74
-      },
-      {
-        "name": "호문",
-        "width": 53,
-        "height": 55
-      },
-      {
-        "name": "호문쿨루",
-        "width": 80,
-        "height": 104
-      }
-    ]
-  },
-  {
-    "location": "슬리피우드",
-    "mobs": [
-      {
-        "name": "다크 드레이크",
-        "width": 129,
-        "height": 87
-      },
-      {
-        "name": "드레이크",
-        "width": 129,
-        "height": 83
-      },
-      {
-        "name": "레드 드레이크",
-        "width": 129,
-        "height": 83
-      },
-      {
-        "name": "아이스 드레이크",
-        "width": 129,
-        "height": 83
-      },
-      {
-        "name": "카파 드레이크",
-        "width": 129,
-        "height": 83
       }
     ]
   },
   {
     "location": "헤네시스",
     "mobs": [
-      {
-        "name": "달팽이",
-        "width": 37,
-        "height": 26
-      },
       {
         "name": "돼지",
         "width": 68,
@@ -761,11 +486,6 @@
         "name": "리본 돼지",
         "width": 68,
         "height": 49
-      },
-      {
-        "name": "빨간 달팽이",
-        "width": 35,
-        "height": 34
       },
       {
         "name": "뿔버섯",
@@ -783,29 +503,9 @@
         "height": 55
       },
       {
-        "name": "좀비버섯",
-        "width": 63,
-        "height": 58
-      },
-      {
-        "name": "주황버섯",
-        "width": 63,
-        "height": 58
-      },
-      {
         "name": "짜증내는 좀비버섯",
         "width": 63,
         "height": 58
-      },
-      {
-        "name": "초록버섯",
-        "width": 56,
-        "height": 52
-      },
-      {
-        "name": "파란 달팽이",
-        "width": 35,
-        "height": 34
       },
       {
         "name": "파란 리본돼지",
@@ -823,44 +523,14 @@
         "height": 54
       },
       {
-        "name": "루팡",
-        "width": 49,
-        "height": 54
-      },
-      {
-        "name": "멜러디",
-        "width": 106,
-        "height": 65
-      },
-      {
         "name": "버블링",
         "width": 69,
         "height": 49
       },
       {
-        "name": "서전아이",
-        "width": 97,
-        "height": 50
-      },
-      {
         "name": "슬라임",
         "width": 64,
         "height": 49
-      },
-      {
-        "name": "좀비루팡",
-        "width": 49,
-        "height": 65
-      },
-      {
-        "name": "커즈아이",
-        "width": 97,
-        "height": 50
-      },
-      {
-        "name": "콜드아이",
-        "width": 97,
-        "height": 51
       },
       {
         "name": "페어리",
@@ -883,16 +553,6 @@
         "height": 78
       },
       {
-        "name": "다크 스텀프",
-        "width": 62,
-        "height": 51
-      },
-      {
-        "name": "다크 엑스텀프",
-        "width": 62,
-        "height": 74
-      },
-      {
         "name": "머미독",
         "width": 65,
         "height": 58
@@ -908,21 +568,6 @@
         "height": 86
       },
       {
-        "name": "스켈레톤 장교",
-        "width": 82,
-        "height": 93
-      },
-      {
-        "name": "스켈레톤 지휘관",
-        "width": 119,
-        "height": 134
-      },
-      {
-        "name": "스텀프",
-        "width": 62,
-        "height": 51
-      },
-      {
         "name": "스톤 마스크",
         "width": 75,
         "height": 75
@@ -936,11 +581,6 @@
         "name": "아이언호그",
         "width": 68,
         "height": 46
-      },
-      {
-        "name": "엑스텀프",
-        "width": 62,
-        "height": 74
       },
       {
         "name": "와일드보어",
@@ -983,19 +623,9 @@
         "height": 58
       },
       {
-        "name": "리게이터",
-        "width": 86,
-        "height": 29
-      },
-      {
         "name": "새싹진흙괴물",
         "width": 71,
         "height": 66
-      },
-      {
-        "name": "스티지",
-        "width": 46,
-        "height": 30
       },
       {
         "name": "옥토퍼스",
@@ -1011,76 +641,6 @@
         "name": "주니어 레이스",
         "width": 41,
         "height": 36
-      },
-      {
-        "name": "크로코",
-        "width": 86,
-        "height": 29
-      }
-    ]
-  },
-  {
-    "location": "노틸러스 해안가",
-    "mobs": [
-      {
-        "name": "노란 불가사리",
-        "width": 37,
-        "height": 36
-      },
-      {
-        "name": "젤리피쉬",
-        "width": 52,
-        "height": 66
-      },
-      {
-        "name": "쿨 젤리피쉬",
-        "width": 52,
-        "height": 66
-      },
-      {
-        "name": "화난 불가사리",
-        "width": 37,
-        "height": 36
-      }
-    ]
-  },
-  {
-    "location": "플로리나 비치",
-    "mobs": [
-      {
-        "name": "엄티",
-        "width": 65,
-        "height": 37
-      }
-    ]
-  },
-  {
-    "location": "버섯왕국",
-    "mobs": [
-      {
-        "name": "독버섯",
-        "width": 78,
-        "height": 67
-      },
-      {
-        "name": "변절자 스포아",
-        "width": 43,
-        "height": 43
-      },
-      {
-        "name": "중독된 돼지",
-        "width": 80,
-        "height": 60
-      },
-      {
-        "name": "친위대 페페",
-        "width": 107,
-        "height": 64
-      },
-      {
-        "name": "투구 페페",
-        "width": 77,
-        "height": 72
       }
     ]
   }
