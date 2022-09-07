@@ -9,6 +9,7 @@ import { useMemo } from 'react';
 import { Link } from '@components/link';
 import { Comments } from '@components/comments';
 import { Seo, SeoProps } from '@components/seo';
+import { LocalStorageKey } from '@tools/localStorageHelper';
 
 interface BookmarkPageProps {
     recipes: MonsterLifeRecipe[];
@@ -66,7 +67,7 @@ const RecipeItem = (props: MonsterLifeRecipe) => {
 };
 
 const BookmarkPage = ({ recipes }: BookmarkPageProps) => {
-    const bookmarks = useBookmarkStore(state => state.bookmarks);
+    const bookmarks = useBookmarkStore[LocalStorageKey.BOOKMARKS](state => state.bookmarks);
     const mobs = useMemo(() => recipes.filter(({ mob }) => bookmarks.has(mob.name)), [bookmarks]);
 
     return (

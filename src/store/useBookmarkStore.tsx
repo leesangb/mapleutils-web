@@ -9,7 +9,7 @@ interface BookmarkState {
 
 const defaultBookmarks = (key: LocalStorageKey) => LocalStorageHelper.load<Set<string>>(key);
 
-const useBookmarkStore = (key: LocalStorageKey) => create<BookmarkState>((set, get) => ({
+const BookmarkStore = (key: LocalStorageKey) => create<BookmarkState>((set, get) => ({
     bookmarks: defaultBookmarks(key),
     toggleBookmark: (name: string) => set(state => {
         const bookmarks = new Set(state.bookmarks);
@@ -25,5 +25,12 @@ const useBookmarkStore = (key: LocalStorageKey) => create<BookmarkState>((set, g
     }),
     isBookmarked: (name: string) => Boolean(get().bookmarks.has(name)),
 }));
+
+type BookmarkKeys = LocalStorageKey.BOOKMARKS | LocalStorageKey.SEED_49_BOOKMARKS;
+
+const useBookmarkStore: Record<BookmarkKeys, ReturnType<typeof BookmarkStore>> = {
+    [LocalStorageKey.SEED_49_BOOKMARKS]: BookmarkStore(LocalStorageKey.SEED_49_BOOKMARKS),
+    [LocalStorageKey.BOOKMARKS]: BookmarkStore(LocalStorageKey.BOOKMARKS),
+};
 
 export default useBookmarkStore;
