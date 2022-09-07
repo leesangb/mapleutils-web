@@ -10,7 +10,8 @@ import MobBoxModal from '@components/card/monster-life/MobBoxModal';
 import MobTreeModal from '@components/card/monster-life/MobTreeModal';
 import { useState } from 'react';
 import FarmListDialog from '@components/card/monster-life/FarmListDialog';
-import FavoriteButton from '@components/card/monster-life/FavoriteButton';
+import { LocalStorageKey } from '@tools/localStorageHelper';
+import FavoriteButton from '@components/buttons/FavoriteButton';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
@@ -43,7 +44,7 @@ const MobCard = (props: MobCardProps) => {
             position: 'relative',
         }}>
             <CardActions sx={{ position: 'absolute', top: 0, right: 0, zIndex: 1 }}>
-                <FavoriteButton compact={compact} name={mob.name} />
+                <FavoriteButton bookmarkKey={LocalStorageKey.BOOKMARKS} compact={compact} name={mob.name} />
             </CardActions>
             <CardActionArea sx={(theme) => ({
                 paddingTop: theme.spacing(1),

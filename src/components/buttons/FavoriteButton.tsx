@@ -2,15 +2,17 @@ import { IconButton, useTheme } from '@mui/material';
 import { StarOutlineRounded, StarRounded } from '@mui/icons-material';
 import { yellow } from '@mui/material/colors';
 import useBookmarkStore from '@store/useBookmarkStore';
+import { LocalStorageKey } from '@tools/localStorageHelper';
 
 interface FavoriteButtonProps {
+    bookmarkKey: LocalStorageKey;
     name: string;
     compact?: boolean;
 }
 
-const FavoriteButton = ({ name, compact }: FavoriteButtonProps) => {
-    const isBookmarked = useBookmarkStore(state => state.bookmarks.has(name));
-    const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
+const FavoriteButton = ({ bookmarkKey, name, compact }: FavoriteButtonProps) => {
+    const isBookmarked = useBookmarkStore(bookmarkKey)(state => state.bookmarks.has(name));
+    const toggleBookmark = useBookmarkStore(bookmarkKey)(state => state.toggleBookmark);
     const { palette: { mode } } = useTheme();
     const isLight = mode === 'light';
 

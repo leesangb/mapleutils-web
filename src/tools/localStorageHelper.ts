@@ -30,6 +30,7 @@ export enum LocalStorageKey {
     SEED_49_LOCATIONS = 'SEED_49_LOCATIONS',
     VIDEO_CAPTURE_SETTINGS = 'VIDEO_CAPTURE_SETTINGS',
     BOOKMARKS = 'BOOKMARKS',
+    SEED_49_BOOKMARKS = 'SEED_49_BOOKMARKS',
 }
 
 const parsePreference = (): Preference => {
@@ -154,11 +155,11 @@ const parseSeed48Settings = (): Partial<{ x: number, y: number, ratio: number, s
     return defaultSettings;
 };
 
-const parseBookmarks = (): Set<string> => {
+const parseBookmarks = (key: LocalStorageKey) => (): Set<string> => {
     if (isServerSide) {
         return new Set<string>();
     }
-    const bookmarks = localStorage.getItem(LocalStorageKey.BOOKMARKS);
+    const bookmarks = localStorage.getItem(key);
     if (!bookmarks) {
         return new Set<string>();
     }
@@ -175,7 +176,8 @@ const parsers: Partial<Record<LocalStorageKey, any>> = {
     [LocalStorageKey.SEED_24_TAB]: parseTab,
     [LocalStorageKey.SEED_49_LOCATIONS]: parseLocations,
     [LocalStorageKey.VIDEO_CAPTURE_SETTINGS]: parseSeed48Settings,
-    [LocalStorageKey.BOOKMARKS]: parseBookmarks,
+    [LocalStorageKey.BOOKMARKS]: parseBookmarks(LocalStorageKey.BOOKMARKS),
+    [LocalStorageKey.SEED_49_BOOKMARKS]: parseBookmarks(LocalStorageKey.SEED_49_BOOKMARKS),
 };
 
 export class LocalStorageHelper {
