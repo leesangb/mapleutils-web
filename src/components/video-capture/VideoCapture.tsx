@@ -190,11 +190,10 @@ const VideoCapture = (props: PropsWithChildren<VideoCaptureProps>) => {
             <NotVisibleImage src={'/images/48_jump.png'} ref={jump48} />
             <NotVisibleVideo ref={videoRef} autoPlay />
             <NotVisibleVideo ref={computedRef} />
-            <Canvas
-                isVisible={isCapturing}
-                ref={canvasRef}
-                width={CANVAS_WIDTH}
-                height={CANVAS_HEIGHT}
+            <Canvas visible={isCapturing ? 1 : 0}
+                    ref={canvasRef}
+                    width={CANVAS_WIDTH}
+                    height={CANVAS_HEIGHT}
             />
             {
                 isCapturing && (
