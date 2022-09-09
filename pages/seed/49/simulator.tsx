@@ -7,13 +7,15 @@ import { I18nTitleCard } from '@components/card';
 import { Comments } from '@components/comments';
 import { Box } from '@mui/material';
 import Seed49Simulator from '@components/seed/49/Seed49Simulator';
+import { useMemo } from 'react';
 
 interface Seed49SimulatorProps {
     data: SeedMobData[];
 }
 
 const Seed49SimulatorPage = ({ data }: Seed49SimulatorProps) => {
-    const seoProps = useI18nSeoProps('seed49simulator');
+    const keywords = useMemo(() => data.map(m => m.name), [data]);
+    const seoProps = useI18nSeoProps('seed49simulator', keywords);
     return (
         <>
             <Seo {...seoProps} image={'/images/49.png'} />
