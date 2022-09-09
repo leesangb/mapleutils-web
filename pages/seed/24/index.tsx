@@ -89,7 +89,15 @@ const Seed24 = ({ data }: Seed24Props) => {
     return (
         <>
             <Seo {...seoProps} image={'/images/24.png'} />
-            <I18nTitleCard ns={'seed24'} />
+            <I18nTitleCard ns={'seed24'}>
+                <NextLink href={'/seed/24/simulator'} passHref>
+                    <Badge variant={'dot'} color={'error'}>
+                        <Button component={'a'}>
+                            {t('goToSeed24Simulator')}
+                        </Button>
+                    </Badge>
+                </NextLink>
+            </I18nTitleCard>
 
             <TabContext value={tab}>
                 <Paper variant={'outlined'}>
@@ -123,18 +131,6 @@ const Seed24 = ({ data }: Seed24Props) => {
                 </TabPanel>
                 <CopySnackbar />
             </TabContext>
-
-            <Card sx={{ marginTop: 1 }} elevation={0} variant={'outlined'} component={'section'}>
-                <CardContent>
-                    <NextLink href={'/seed/24/simulator'} passHref>
-                        <Badge variant={'dot'} color={'error'}>
-                            <Button component={'a'}>
-                                {t('goToSeed24Simulator')}
-                            </Button>
-                        </Badge>
-                    </NextLink>
-                </CardContent>
-            </Card>
 
             <Comments pageKey={'seed24'} />
         </>

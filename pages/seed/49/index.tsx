@@ -14,10 +14,10 @@ import { Seed49MobCard, Seed49Search, useSeed49Location } from '@components/seed
 import Display from '@components/display/Display';
 import { I18nTitleCard } from '@components/card';
 import { Locales } from '@tools/locales';
-import NextLink from 'next/link';
 import useSeed49Favorite from '@components/seed/49/useSeed49Favorite';
 import useBookmarkStore from '@store/useBookmarkStore';
 import { LocalStorageKey } from '@tools/localStorageHelper';
+import NextLink from 'next/link';
 
 
 interface Seed49Props {
@@ -54,7 +54,15 @@ const Seed49 = ({ data }: Seed49Props) => {
     return (
         <>
             <Seo {...seoProps} image={'/images/49.png'} />
-            <I18nTitleCard ns={'seed49'} />
+            <I18nTitleCard ns={'seed49'}>
+                <NextLink href={'/seed/49/simulator'} passHref>
+                    <Badge variant={'dot'} color={'error'}>
+                        <Button component={'a'}>
+                            {t('goToSeed49Simulator')}
+                        </Button>
+                    </Badge>
+                </NextLink>
+            </I18nTitleCard>
 
             <Card variant={'outlined'}
                   sx={theme => ({ marginBottom: theme.spacing(1) })}>
@@ -84,18 +92,6 @@ const Seed49 = ({ data }: Seed49Props) => {
                     </Masonry>
                 </NoSsr>
             </Box>
-
-            <Card sx={{ marginTop: 1 }} elevation={0} variant={'outlined'} component={'section'}>
-                <CardContent>
-                    <NextLink href={'/seed/49/simulator'} passHref>
-                        <Badge variant={'dot'} color={'error'}>
-                            <Button component={'a'}>
-                                {t('goToSeed49Simulator')}
-                            </Button>
-                        </Badge>
-                    </NextLink>
-                </CardContent>
-            </Card>
 
             <Comments title={t('comments')} pageKey={'seed49'} />
 

@@ -46,7 +46,16 @@ const Seed39 = (props: Seed39Props) => {
     return (
         <>
             <Seo {...seoProps} image={'/images/39.png'} />
-            <I18nTitleCard ns={'seed39'} />
+            <I18nTitleCard ns={'seed39'}>
+                <NextLink href={'/seed/39/simulator'} passHref>
+                    <Badge variant={'dot'} color={'error'}>
+                        <Button component={'a'}>
+                            {t('goToSeed39Simulator')}
+                        </Button>
+                    </Badge>
+                </NextLink>
+            </I18nTitleCard>
+
             <Card elevation={0} variant={'outlined'} component={'section'}>
                 <CardContent>
                     <VirtualizedFixedList height={height - SCREEN_HEIGHT_OFFSET}
@@ -63,17 +72,6 @@ const Seed39 = (props: Seed39Props) => {
                                           searchFilter={searchFilter}
                                           placeholder={t('searchPlaceholder', { ns: 'seed39' })}
                                           rowRenderer={rowRenderer} />
-                </CardContent>
-            </Card>
-            <Card sx={{ marginTop: 1 }} elevation={0} variant={'outlined'} component={'section'}>
-                <CardContent>
-                    <NextLink href={'/seed/39/simulator'} passHref>
-                        <Badge variant={'dot'} color={'error'}>
-                            <Button component={'a'}>
-                                {t('goToSeed39Simulator')}
-                            </Button>
-                        </Badge>
-                    </NextLink>
                 </CardContent>
             </Card>
             <Comments pageKey={'seed39'} />
