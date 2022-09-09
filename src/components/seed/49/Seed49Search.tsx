@@ -1,6 +1,6 @@
 import { SearchBar } from '@components/input';
 import { Badge, Button, Collapse, Divider, Grid } from '@mui/material';
-import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
+import { KeyboardArrowDownRounded, KeyboardArrowUpRounded, StarRounded } from '@mui/icons-material';
 import { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 
@@ -12,6 +12,8 @@ interface Seed49SearchProps {
     locations: string[];
     allLocations: string[];
     onChangeLocations: (locations: string[]) => void;
+    showOnlyFavorite: boolean;
+    onChangeShowOnlyFavorite: (show: boolean) => void;
 }
 
 const Seed49Search = ({
@@ -22,6 +24,8 @@ const Seed49Search = ({
                           locations,
                           onChangeLocations,
                           allLocations,
+                          showOnlyFavorite,
+                          onChangeShowOnlyFavorite,
                       }: Seed49SearchProps) => {
     const { t } = useTranslation(['common', 'seed49']);
     const [collapse, setCollapse] = useState(true);
@@ -45,6 +49,13 @@ const Seed49Search = ({
                         variant={'contained'}
                         onClick={() => onChangeSilhouette(!silhouette)}>
                         {silhouette ? `${t('silhouette')} OFF` : `${t('silhouette')} ON`}
+                    </Button>
+                    <Button sx={{ marginLeft: 1 }}
+                            variant={showOnlyFavorite ? 'contained' : 'outlined'}
+                            disableElevation
+                            startIcon={<StarRounded />}
+                            onClick={() => onChangeShowOnlyFavorite(!showOnlyFavorite)}>
+                        {t('showOnlyFavorite', { ns: 'seed49' })}
                     </Button>
                 </Grid>
                 <Grid item>

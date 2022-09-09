@@ -2,6 +2,7 @@ import { ForwardedRef, forwardRef, MouseEventHandler, PropsWithChildren } from '
 import { Box, Card, CardActionArea, CardActions, CardContent, Chip, Grid, Typography } from '@mui/material';
 import FavoriteButton from '@components/buttons/FavoriteButton';
 import { LocalStorageKey } from '@tools/localStorageHelper';
+import { useTranslation } from 'next-i18next';
 
 interface MonsterCardContentProps {
     tags: string[];
@@ -56,7 +57,9 @@ const Content = (props: PropsWithChildren<MonsterCardContentProps>) => {
 };
 
 const MonsterCard = (props: PropsWithChildren<MonsterCardProps>, ref: ForwardedRef<HTMLDivElement>) => {
-    const { onMouseEnter, onMouseLeave, onClick, name, tags, children, ...otherProps } = props;
+    const { onMouseEnter, onMouseLeave, onClick, name: nameKey, tags, children, ...otherProps } = props;
+    const { t } = useTranslation('seed49');
+    const name = t(nameKey);
 
     return (
         <Card ref={ref}

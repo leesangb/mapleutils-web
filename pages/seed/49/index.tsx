@@ -15,6 +15,9 @@ import Display from '@components/display/Display';
 import { I18nTitleCard } from '@components/card';
 import { Locales } from '@tools/locales';
 import NextLink from 'next/link';
+import useSeed49Favorite from '@components/seed/49/useSeed49Favorite';
+import useBookmarkStore from '@store/useBookmarkStore';
+import { LocalStorageKey } from '@tools/localStorageHelper';
 
 
 interface Seed49Props {
@@ -29,6 +32,8 @@ const Seed49 = ({ data }: Seed49Props) => {
     const { t, i18n } = useTranslation(['common', 'seed49']);
     const [silhouette, setSilhouette] = useState(true);
     const { locations, onChangeLocations, allLocations } = useSeed49Location(data);
+    const { showOnlyFavorite, onChangeShowOnlyFavorite } = useSeed49Favorite();
+    const favorites = useBookmarkStore[LocalStorageKey.SEED_49_BOOKMARKS](store => store.bookmarks);
     const { height } = useWindowDimensions();
 
     const [search, setSearch] = useState<string>('');
@@ -39,11 +44,12 @@ const Seed49 = ({ data }: Seed49Props) => {
                     ...m,
                     location: l.location,
                 })))
+                .filter(m => showOnlyFavorite ? favorites.has(m.name) : true)
                 .filter(m => i18n.resolvedLanguage === Locales.Korean
                     ? isHangulMatching(search, m.location, m.name)
                     : isMatching(search, t(m.location, { ns: 'seed49' }), t(m.name, { ns: 'seed49' })))
                 .sort((a, b) => t(a.name, { ns: 'seed49' }).localeCompare(t(b.name, { ns: 'seed49' })))
-        , [search, locations, t, i18n.resolvedLanguage]);
+        , [search, locations, t, i18n.resolvedLanguage, showOnlyFavorite]);
 
     return (
         <>
@@ -54,6 +60,8 @@ const Seed49 = ({ data }: Seed49Props) => {
                   sx={theme => ({ marginBottom: theme.spacing(1) })}>
                 <CardContent>
                     <Seed49Search search={search}
+                                  showOnlyFavorite={showOnlyFavorite}
+                                  onChangeShowOnlyFavorite={onChangeShowOnlyFavorite}
                                   onSearch={setSearch}
                                   silhouette={silhouette}
                                   onChangeSilhouette={setSilhouette}

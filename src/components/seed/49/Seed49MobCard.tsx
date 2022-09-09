@@ -45,7 +45,7 @@ const Seed49MobCard = (props: Seed49MobCardProps) => {
         <>
             <Tooltip title={t('clickToCopy')} arrow placement={'top'}>
                 <MonsterCard tags={[t(mob.location, seed49I18nOptions)]}
-                             name={t(mob.name, seed49I18nOptions)}
+                             name={mob.name}
                              onClick={() => copy(t(mob.name, seed49I18nOptions))}
                              onMouseEnter={() => setSilhouette(false)}
                              onMouseLeave={() => setSilhouette(true)}>
