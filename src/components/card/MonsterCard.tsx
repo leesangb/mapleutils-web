@@ -1,5 +1,7 @@
 import { ForwardedRef, forwardRef, MouseEventHandler, PropsWithChildren } from 'react';
-import { Box, Card, CardActionArea, CardContent, Chip, Grid, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, CardActions, CardContent, Chip, Grid, Typography } from '@mui/material';
+import FavoriteButton from '@components/buttons/FavoriteButton';
+import { LocalStorageKey } from '@tools/localStorageHelper';
 
 interface MonsterCardContentProps {
     tags: string[];
@@ -58,6 +60,7 @@ const MonsterCard = (props: PropsWithChildren<MonsterCardProps>, ref: ForwardedR
 
     return (
         <Card ref={ref}
+              sx={{ position: 'relative' }}
               {...otherProps}
               variant={'outlined'}
               onMouseLeave={onMouseLeave}
@@ -70,6 +73,9 @@ const MonsterCard = (props: PropsWithChildren<MonsterCardProps>, ref: ForwardedR
                         </CardActionArea>
                     ) : <Content tags={tags} name={name}>{children}</Content>
             }
+            <CardActions sx={{ position: 'absolute', top: 0, right: 0 }}>
+                <FavoriteButton bookmarkKey={LocalStorageKey.SEED_49_BOOKMARKS} name={props.name} />
+            </CardActions>
         </Card>
     );
 };

@@ -12,13 +12,11 @@ interface FavoriteButtonProps {
 
 
 const FavoriteButton = ({ bookmarkKey, name, compact }: FavoriteButtonProps) => {
-    const isBookmarked = useBookmarkStore[bookmarkKey](state => state.bookmarks.has(name));
-    const toggleBookmark = useBookmarkStore[bookmarkKey](state => state.toggleBookmark);
+    const useBookmark = useBookmarkStore[bookmarkKey];
+    const isBookmarked = useBookmark(state => state.bookmarks.has(name));
+    const toggleBookmark = useBookmark(state => state.toggleBookmark);
     const { palette: { mode } } = useTheme();
     const isLight = mode === 'light';
-    if (name === '가로등') {
-        console.log(isBookmarked);
-    }
 
     return (
         <IconButton size={compact ? 'small' : 'medium'} onClick={() => toggleBookmark(name)}>

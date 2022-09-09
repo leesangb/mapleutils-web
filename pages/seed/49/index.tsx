@@ -1,6 +1,6 @@
 import { Seo } from '@components/seo';
 import { seed49Data, seed49GmsFilter, seed49KmsFilter, SeedLocation } from '@data/seed/49';
-import { Badge, Button, Card, CardContent, Typography } from '@mui/material';
+import { Badge, Button, Card, CardContent, NoSsr, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useMemo, useState } from 'react';
 import { isHangulMatching, isMatching } from '@tools/string';
@@ -24,7 +24,8 @@ interface Seed49Props {
 const MOB_CARDS_HEIGHT_OFFSET = 380; // magic number, need to compute this value later
 
 const Seed49 = ({ data }: Seed49Props) => {
-    const seoProps = useI18nSeoProps('seed49');
+    const keywords = useMemo(() => data.flatMap(l => l.mobs.map(m => m.name)), [data]);
+    const seoProps = useI18nSeoProps('seed49', keywords);
     const { t, i18n } = useTranslation(['common', 'seed49']);
     const [silhouette, setSilhouette] = useState(true);
     const { locations, onChangeLocations, allLocations } = useSeed49Location(data);
@@ -65,11 +66,15 @@ const Seed49 = ({ data }: Seed49Props) => {
             <Box sx={theme => ({ borderRadius: theme.spacing(2), overflowY: 'scroll' })}
                  maxHeight={height - MOB_CARDS_HEIGHT_OFFSET}
                  height={height - MOB_CARDS_HEIGHT_OFFSET}>
-                <Masonry spacing={1} columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
-                    {
-                        filtered.map(mob => <Seed49MobCard silhouette={silhouette} mob={mob} key={mob.name} />)
-                    }
-                </Masonry>
+                <NoSsr>
+                    <Masonry defaultColumns={4} defaultHeight={height - MOB_CARDS_HEIGHT_OFFSET} defaultSpacing={1}
+                             spacing={1}
+                             columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
+                        {
+                            filtered.map(mob => <Seed49MobCard silhouette={silhouette} mob={mob} key={mob.name} />)
+                        }
+                    </Masonry>
+                </NoSsr>
             </Box>
 
             <Card sx={{ marginTop: 1 }} elevation={0} variant={'outlined'} component={'section'}>
