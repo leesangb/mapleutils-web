@@ -1,6 +1,6 @@
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import { ChangeEvent, memo, ReactNode, useMemo, useState } from 'react';
-import { ListItem, Typography } from '@mui/material';
+import { ChangeEvent, memo, ReactNode, useEffect, useMemo, useState } from 'react';
+import { List, ListItem, Typography } from '@mui/material';
 import { SearchBar } from '@components/input';
 import { Box } from '@mui/system';
 import { useTranslation } from 'next-i18next';
@@ -11,9 +11,9 @@ interface VirtualizedFixedListItemProps<T> extends ListChildComponentProps<{ ite
 }
 
 const VirtualizedFixedListItem = <T, >(props: VirtualizedFixedListItemProps<T>) => {
-    const { data, index, style, divider } = props;
+    const { data, index, divider, style } = props;
     return (
-        <ListItem style={{ ...style, borderRadius: '0px' }} divider={divider}>
+        <ListItem style={style} sx={{ borderRadius: 0 }} divider={divider}>
             {props.rowRenderer(data.items[index], index)}
         </ListItem>
     );
@@ -36,6 +36,7 @@ const VirtualizedFixedList = <T, >(props: VirtualizedFixedListProps<T>) => {
     const { t } = useTranslation();
     const { width, height, items, rowSize, rowRenderer, divider, placeholder, searchFilter } = props;
     const [search, setSearch] = useState<string>('');
+    const [isSsr, setIsSsr] = useState<boolean>(true);
     const itemData: { items: T[] } = useMemo(
         () => ({
             items: searchFilter
@@ -48,6 +49,10 @@ const VirtualizedFixedList = <T, >(props: VirtualizedFixedListProps<T>) => {
     };
 
     const handleClear = () => setSearch('');
+
+    useEffect(() => {
+        setIsSsr(false);
+    }, []);
 
     return (
         <>
@@ -70,17 +75,30 @@ const VirtualizedFixedList = <T, >(props: VirtualizedFixedListProps<T>) => {
                                 {t('noResultsFound')}
                             </Typography>
                         </Box>
-                    ) : (
-                        <FixedSizeList height={height}
-                                       width={width || '100%'}
-                                       itemCount={itemData.items.length}
-                                       itemSize={rowSize}
-                                       itemData={itemData}>
-                            {(liProps) => <MemoizedVirtualizedFixedListItem {...liProps}
-                                                                            divider={divider}
-                                                                            rowRenderer={rowRenderer} />}
-                        </FixedSizeList>
-                    )
+                    ) : <>
+                        {
+                            isSsr
+                                ?
+                                <List>
+                                    {itemData.items.map((data, index) => (
+                                        <ListItem key={index} sx={{ borderRadius: 0 }} divider={divider}>
+                                            {rowRenderer(data, index)}
+                                        </ListItem>),
+                                    )}
+                                </List>
+                                :
+                                <FixedSizeList height={height}
+                                               width={width || '100%'}
+                                               itemCount={itemData.items.length}
+                                               itemSize={rowSize}
+                                               itemData={itemData}>
+                                    {(liProps) => <MemoizedVirtualizedFixedListItem {...liProps}
+                                                                                    divider={divider}
+                                                                                    rowRenderer={rowRenderer} />}
+                                </FixedSizeList>
+
+                        }
+                    </>
             }
 
         </>
