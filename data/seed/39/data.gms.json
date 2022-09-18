@@ -582,9 +582,9 @@
   {
     "question": "Which of these is NOT a Paladin skill?",
     "choices": [
-      "Elemental Charge",
+      "Holy Power",
       "Achilles",
-      "Threaten",
+      "Noble Demand",
       "Blessing"
     ],
     "answer": 3
