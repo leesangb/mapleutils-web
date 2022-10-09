@@ -37,19 +37,30 @@ const tryFixAndReturn = async (response: Response, callback: (comments: Comment[
     return false;
 };
 
-export const useComment = (page: string): [Comment[], number, CommentActions] => {
+export const useComment = (page: string) => {
     const [comments, setComments] = useState<Comment[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [hasError, setHasError] = useState<boolean>(false);
     const totalCount = useMemo(() => comments.reduce((acc, val) => acc + 1 + val.children.length, 0), [comments]);
 
     useEffect(() => {
+        setIsLoading(true);
         fetch(`${API_URL}/Comments/${page}`)
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    setHasError(true);
+                }
+                return response.json();
+            })
             .catch((err) => {
                 console.error(err);
             })
             .then((c: Comment[]) => setComments(fixDateAndSort(c)))
             .catch((err) => {
                 console.error(err);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, [page]);
 
@@ -86,11 +97,11 @@ export const useComment = (page: string): [Comment[], number, CommentActions] =>
         return await tryFixAndReturn(response, setComments);
     };
 
-    const action: CommentActions = {
+    const actions: CommentActions = {
         post,
         delete: remove,
         edit,
     };
 
-    return [comments, totalCount, action];
+    return { comments, count: totalCount, actions, isLoading, hasError };
 };

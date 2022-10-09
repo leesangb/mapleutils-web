@@ -16,12 +16,12 @@ interface CommentsProps {
 const Comments = ({ title = 'comment.title', pageKey: pk, defaultOpen }: CommentsProps) => {
     const { t, i18n } = useTranslation();
     const pageKey = i18n.resolvedLanguage === Locales.Korean ? pk : `en_${pk}`;
-    const [comments, count, actions] = useComment(pageKey);
+    const { comments, count, actions, isLoading, hasError } = useComment(pageKey);
     const [openComments, setOpenComments] = useState<boolean>(defaultOpen);
 
     const toggleOpen = () => setOpenComments(!openComments);
 
-    return (
+    return isLoading || hasError ? null : (
         <Card variant={'outlined'} sx={theme => ({ marginTop: theme.spacing(1) })}>
             <Box padding={theme => theme.spacing(1)}>
                 <ListItem component='div' button onClick={toggleOpen}>
