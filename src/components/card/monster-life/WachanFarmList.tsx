@@ -18,7 +18,6 @@ import { useState } from 'react';
 import { Box } from '@mui/system';
 import { Link } from '@components/link';
 import { CheckRounded, ContentCopyRounded } from '@mui/icons-material';
-import { API_URL } from '@tools/config';
 import useFetch from '@hooks/useFetch';
 import { WACHAN_URL } from '@tools/constants';
 
@@ -126,7 +125,7 @@ const WachanFarmList = ({ name }: WachanFarmListProps) => {
         isLoading,
         isFinished,
         error,
-    } = useFetch<WachanFarm[]>(`${API_URL}/Farm/Wachan/${encodeURI(name)}`,
+    } = useFetch<WachanFarm[]>(`/api/wachan?name=${encodeURI(name)}`,
         undefined,
         (data) => data.map(farm => ({ ...farm, expiryDate: farm.expiryDate && new Date(farm.expiryDate) })));
 
