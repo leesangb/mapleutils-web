@@ -41,6 +41,9 @@
       ],
       "@api/*": [
         "src/api/*"
+      ],
+      "@@types/*": [
+        "src/types/*"
       ]
     },
     "incremental": true
