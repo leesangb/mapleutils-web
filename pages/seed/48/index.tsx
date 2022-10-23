@@ -1,7 +1,6 @@
 import { I18nTitleCard } from '@components/card';
 import { Card, CardContent, Typography } from '@mui/material';
 import { VideoCapture } from '@components/video-capture';
-import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { Seo } from '@components/seo';
@@ -27,7 +26,7 @@ const Seed48 = () => {
                     <NextImage src={'/images/seed/48.png'} width={3760} height={1270} />
                 </CardContent>
             </Card>
-            <Comments pageKey={'seed48'} />
+            {/*<Comments pageKey={'seed48'} />*/}
         </>
     );
 };

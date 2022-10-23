@@ -1,5 +1,4 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Comments } from '@components/comments';
 import NextImage from 'next/image';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { Seo } from '@components/seo';
@@ -26,7 +25,7 @@ const Seed47 = () => {
                 </CardContent>
             </Card>
 
-            <Comments pageKey={'seed47'} />
+            {/*<Comments pageKey={'seed47'} />*/}
         </>
     );
 };

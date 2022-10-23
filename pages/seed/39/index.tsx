@@ -7,7 +7,6 @@ import { QuestionAnswer, seed39Data, seed39DataGMS } from '@data/seed/39';
 import { isHangulMatching, isMatching } from '@tools/string';
 import { Seo } from '@components/seo';
 import { I18nTitleCard } from '@components/card';
-import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
@@ -74,7 +73,7 @@ const Seed39 = (props: Seed39Props) => {
                                           rowRenderer={rowRenderer} />
                 </CardContent>
             </Card>
-            <Comments pageKey={'seed39'} />
+            {/*<Comments pageKey={'seed39'} />*/}
         </>
     );
 };

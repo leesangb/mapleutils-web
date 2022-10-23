@@ -1,7 +1,6 @@
 import { Seo } from '@components/seo';
 import { Card, CardContent } from '@mui/material';
 import { I18nTitleCard } from '@components/card';
-import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { Seed36Steps } from '@components/seed/36';
@@ -19,7 +18,7 @@ const Seed36 = () => {
                     <Seed36Steps />
                 </CardContent>
             </Card>
-            <Comments pageKey={'seed36'} />
+            {/*<Comments pageKey={'seed36'} />*/}
         </>
     );
 };

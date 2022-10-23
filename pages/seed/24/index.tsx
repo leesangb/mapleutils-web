@@ -26,7 +26,6 @@ import { useTranslation } from 'next-i18next';
 import { TOptions } from 'i18next';
 import { seed24AudioData, seed24AudioDataGMS } from '@data/seed/24';
 import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
-import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { useSeed24Tabs } from '@components/seed/24';
@@ -132,7 +131,7 @@ const Seed24 = ({ data }: Seed24Props) => {
                 <CopySnackbar />
             </TabContext>
 
-            <Comments pageKey={'seed24'} />
+            {/*<Comments pageKey={'seed24'} />*/}
         </>
     );
 };

@@ -5,7 +5,6 @@ import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { Seo } from '@components/seo';
 import { I18nTitleCard } from '@components/card';
 import { Box } from '@mui/material';
-import { Comments } from '@components/comments';
 import Seed24Simulator from '@components/seed/24/Seed24Simulator';
 import { MusicPlayerProvider } from '@components/seed/24/music-player/MusicPlayerContext';
 import { Locales } from '@tools/locales';
@@ -28,7 +27,7 @@ const Seed24SimulatorPage = ({ data }: Seed24SimulatorPageProps) => {
                 </MusicPlayerProvider>
             </Box>
 
-            <Comments pageKey={'seed24simulator'} />
+            {/*<Comments pageKey={'seed24simulator'} />*/}
         </>
     );
 };

@@ -4,7 +4,6 @@ import { Locales } from '@tools/locales';
 import { Seo } from '@components/seo';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { I18nTitleCard } from '@components/card';
-import { Comments } from '@components/comments';
 import { Box } from '@mui/material';
 import Seed49Simulator from '@components/seed/49/Seed49Simulator';
 import { useMemo } from 'react';
@@ -25,7 +24,7 @@ const Seed49SimulatorPage = ({ data }: Seed49SimulatorProps) => {
                 <Seed49Simulator data={data} />
             </Box>
 
-            <Comments pageKey={'seed49simulator'} />
+            {/*<Comments pageKey={'seed49simulator'} />*/}
         </>
     );
 };

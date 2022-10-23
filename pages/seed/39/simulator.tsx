@@ -5,7 +5,6 @@ import QuestionAnswerSimulator from '@components/seed/39/QuestionAnswerSimulator
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { Seo } from '@components/seo';
 import { I18nTitleCard } from '@components/card';
-import { Comments } from '@components/comments';
 import { Box } from '@mui/material';
 
 interface Seed39SimulatorPageProps {
@@ -22,7 +21,7 @@ const Seed39SimulatorPage = ({ data }: Seed39SimulatorPageProps) => {
             <Box display={'flex'} justifyContent={'center'}>
                 <QuestionAnswerSimulator data={data} />
             </Box>
-            <Comments pageKey={'seed39simulator'} />
+            {/*<Comments pageKey={'seed39simulator'} />*/}
         </>
     );
 };

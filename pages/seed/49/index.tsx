@@ -6,7 +6,6 @@ import { useMemo, useState } from 'react';
 import { isHangulMatching, isMatching } from '@tools/string';
 import { Masonry } from '@mui/lab';
 import useWindowDimensions from '@hooks/useWindowDimensions';
-import { Comments } from '@components/comments';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
@@ -93,7 +92,7 @@ const Seed49 = ({ data }: Seed49Props) => {
                 </NoSsr>
             </Box>
 
-            <Comments title={t('comments')} pageKey={'seed49'} />
+            {/*<Comments title={t('comments')} pageKey={'seed49'} />*/}
 
             <Display when={i18n.resolvedLanguage === Locales.English}>
                 <Typography variant={'caption'}>
@@ -128,4 +127,3 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
 };
 
 export default Seed49;
-

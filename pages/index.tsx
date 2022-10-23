@@ -3,7 +3,6 @@ import { CharacterCard, TitleCard } from '@components/card';
 import { Button, Card, CardContent, Grid, Typography } from '@mui/material';
 import { Link } from '@components/link';
 import { DiscordIcon, KakaoTalkIcon } from '@components/icons';
-import { Comments } from '@components/comments';
 import { GitHub } from '@mui/icons-material';
 import { discordLink, githubLink, githubReleaseLink, kakaotalkLink } from '@tools/socialLinks';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -186,7 +185,7 @@ const Home: NextPage = () => {
 
                 </CardContent>
             </Card>
-            <Comments title={'comment.feedbacks'} pageKey={'feedbacks'} defaultOpen />
+            {/*<Comments title={'comment.feedbacks'} pageKey={'feedbacks'} defaultOpen />*/}
         </>
     );
 };
