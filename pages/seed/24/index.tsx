@@ -1,6 +1,5 @@
 import {
     Avatar,
-    Badge,
     Button,
     Card,
     CardContent,
@@ -90,11 +89,9 @@ const Seed24 = ({ data }: Seed24Props) => {
             <Seo {...seoProps} image={'/images/24.png'} />
             <I18nTitleCard ns={'seed24'}>
                 <NextLink href={'/seed/24/simulator'} passHref>
-                    <Badge variant={'dot'} color={'error'}>
-                        <Button component={'a'}>
-                            {t('goToSeed24Simulator')}
-                        </Button>
-                    </Badge>
+                    <Button component={'a'}>
+                        {t('goToSeed24Simulator')}
+                    </Button>
                 </NextLink>
             </I18nTitleCard>
 

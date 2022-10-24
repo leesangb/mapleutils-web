@@ -2,7 +2,6 @@ import { Box, css, useTheme } from '@mui/system';
 import {
     Avatar,
     AvatarProps,
-    Badge,
     CSSObject,
     Divider,
     List,
@@ -148,9 +147,7 @@ const seedSimulatorDrawerItem: DrawerItem = {
             subtitle: `drawer.seedSimulator.${floor}.shortDescription`,
             link: `/seed/${floor}/simulator`,
             icon: () => (
-                <Badge variant={'dot'} color={'error'}>
-                    <LinkAvatar link={`/seed/${floor}/simulator`}>{floor}</LinkAvatar>
-                </Badge>
+                <LinkAvatar link={`/seed/${floor}/simulator`}>{floor}</LinkAvatar>
             ),
         }
     )),

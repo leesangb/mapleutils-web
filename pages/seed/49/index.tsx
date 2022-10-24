@@ -1,6 +1,6 @@
 import { Seo } from '@components/seo';
 import { seed49Data, seed49GmsFilter, seed49KmsFilter, SeedLocation } from '@data/seed/49';
-import { Badge, Button, Card, CardContent, NoSsr, Typography } from '@mui/material';
+import { Button, Card, CardContent, NoSsr, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useMemo, useState } from 'react';
 import { isHangulMatching, isMatching } from '@tools/string';
@@ -55,11 +55,9 @@ const Seed49 = ({ data }: Seed49Props) => {
             <Seo {...seoProps} image={'/images/49.png'} />
             <I18nTitleCard ns={'seed49'}>
                 <NextLink href={'/seed/49/simulator'} passHref>
-                    <Badge variant={'dot'} color={'error'}>
-                        <Button component={'a'}>
-                            {t('goToSeed49Simulator')}
-                        </Button>
-                    </Badge>
+                    <Button component={'a'}>
+                        {t('goToSeed49Simulator')}
+                    </Button>
                 </NextLink>
             </I18nTitleCard>
 

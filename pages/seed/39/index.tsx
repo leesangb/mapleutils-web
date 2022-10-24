@@ -1,4 +1,4 @@
-import { Badge, Button, Card, CardContent, useMediaQuery } from '@mui/material';
+import { Button, Card, CardContent, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { useCallback } from 'react';
 import useWindowDimensions from '@hooks/useWindowDimensions';
@@ -47,11 +47,9 @@ const Seed39 = (props: Seed39Props) => {
             <Seo {...seoProps} image={'/images/39.png'} />
             <I18nTitleCard ns={'seed39'}>
                 <NextLink href={'/seed/39/simulator'} passHref>
-                    <Badge variant={'dot'} color={'error'}>
-                        <Button component={'a'}>
-                            {t('goToSeed39Simulator')}
-                        </Button>
-                    </Badge>
+                    <Button component={'a'}>
+                        {t('goToSeed39Simulator')}
+                    </Button>
                 </NextLink>
             </I18nTitleCard>
 
