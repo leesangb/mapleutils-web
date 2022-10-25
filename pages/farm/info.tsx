@@ -31,7 +31,7 @@ const seoProps: SeoProps = {
 };
 
 const FarmInfo = () => {
-    const [selected, setSelected] = useState<OptionName>('농장');
+    const [selected, setSelected] = useState<OptionName>('전체');
     const information = mobsByEffect.find(m => m.name === selected)!;
 
     return (
