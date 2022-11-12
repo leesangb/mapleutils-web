@@ -7,7 +7,6 @@ import { MobCard } from '@components/card/monster-life';
 import { getMonsterBox } from '@data/farm/monsterLifeBox';
 import { useMemo } from 'react';
 import { Link } from '@components/link';
-import { Comments } from '@components/comments';
 import { Seo, SeoProps } from '@components/seo';
 import { LocalStorageKey } from '@tools/localStorageHelper';
 
@@ -91,7 +90,7 @@ const BookmarkPage = ({ recipes }: BookmarkPageProps) => {
                     </Grid>
                 </CardContent>
             </Card>
-            <Comments pageKey={'monster-life_bookmark'} />
+            {/*<Comments pageKey={'monster-life_bookmark'} />*/}
         </>
     );
 };

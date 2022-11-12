@@ -7,7 +7,6 @@ import useWindowDimensions from '@hooks/useWindowDimensions';
 import { isHangulMatching } from '@tools/string';
 import { Seo, SeoProps } from '@components/seo';
 import { MobCard } from '@components/card/monster-life';
-import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const seoProps: SeoProps = {
@@ -56,7 +55,7 @@ const FarmCombine = (props: FarmCombineProps) => {
     const rowRenderer = useCallback((item: Required<MonsterLifeRecipe>) => <RecipeItem {...item} />, []);
 
     const searchFilter = useCallback((item: Required<MonsterLifeRecipe>, pattern: string) => {
-        return isHangulMatching(pattern, item.mob.name, item.mob.category , ...item.parents.map(p => p.name), ...item.parents.map(p => p.category));
+        return isHangulMatching(pattern, item.mob.name, item.mob.category, ...item.parents.map(p => p.name), ...item.parents.map(p => p.category));
     }, []);
 
     return (
@@ -73,7 +72,7 @@ const FarmCombine = (props: FarmCombineProps) => {
                                           rowRenderer={rowRenderer} />
                 </CardContent>
             </Card>
-            <Comments pageKey={'monster-life_combine'} />
+            {/*<Comments pageKey={'monster-life_combine'} />*/}
         </>
     );
 };

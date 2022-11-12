@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { OptionName } from '@data/farm';
 import { mobsByEffect } from '@data/farm/mobsByEffect';
 import { MobCard } from '@components/card/monster-life';
-import { Comments } from '@components/comments';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const seoProps: SeoProps = {
@@ -81,7 +80,7 @@ const FarmInfo = () => {
                     )}
                 </CardContent>
             </Card>
-            <Comments pageKey={'monster-life_information'} />
+            {/*<Comments pageKey={'monster-life_information'} />*/}
         </>
     );
 };
