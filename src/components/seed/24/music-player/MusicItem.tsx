@@ -72,7 +72,7 @@ const MusicItem = (props: MusicItemProps) => {
                 </Tooltip>
             </Box>
         );
-    }, [isPlaying, isSelected, check, isPlayed, i18n.resolvedLanguage]);
+    }, [isPlaying, isSelected, check, isPlayed, i18n.resolvedLanguage, preference.autoClip]);
 };
 
 export default MusicItem;
