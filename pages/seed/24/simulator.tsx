@@ -8,6 +8,7 @@ import { Box } from '@mui/material';
 import Seed24Simulator from '@components/seed/24/Seed24Simulator';
 import { MusicPlayerProvider } from '@components/seed/24/music-player/MusicPlayerContext';
 import { Locales } from '@tools/locales';
+import { Comments } from '@components/comments';
 
 interface Seed24SimulatorPageProps {
     data: TrackInfo[];
@@ -27,7 +28,7 @@ const Seed24SimulatorPage = ({ data }: Seed24SimulatorPageProps) => {
                 </MusicPlayerProvider>
             </Box>
 
-            {/*<Comments pageKey={'seed24simulator'} />*/}
+            <Comments pageKey={'seed24simulator'} />
         </>
     );
 };

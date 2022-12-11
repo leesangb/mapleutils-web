@@ -8,6 +8,7 @@ import { discordLink, githubLink, githubReleaseLink, kakaotalkLink } from '@tool
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { Locales } from '@tools/locales';
+import { Comments } from '@components/comments';
 
 
 const English = () => {
@@ -185,7 +186,7 @@ const Home: NextPage = () => {
 
                 </CardContent>
             </Card>
-            {/*<Comments title={'comment.feedbacks'} pageKey={'feedbacks'} defaultOpen />*/}
+            <Comments title={'comment.feedbacks'} pageKey={'feedbacks'} defaultOpen />
         </>
     );
 };

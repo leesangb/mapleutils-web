@@ -5,6 +5,7 @@ import { Seo } from '@components/seo';
 import { I18nTitleCard } from '@components/card';
 import { useTranslation } from 'next-i18next';
 import { Box, Card, CardContent, Typography } from '@mui/material';
+import { Comments } from '@components/comments';
 
 const Seed47 = () => {
     const { t } = useTranslation();
@@ -25,7 +26,7 @@ const Seed47 = () => {
                 </CardContent>
             </Card>
 
-            {/*<Comments pageKey={'seed47'} />*/}
+            <Comments pageKey={'seed47'} />
         </>
     );
 };

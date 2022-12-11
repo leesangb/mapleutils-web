@@ -13,6 +13,7 @@ import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { QuestionAnswerItem } from '@components/seed/39';
 import { Locales } from '@tools/locales';
 import NextLink from 'next/link';
+import { Comments } from '@components/comments';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -71,7 +72,7 @@ const Seed39 = (props: Seed39Props) => {
                                           rowRenderer={rowRenderer} />
                 </CardContent>
             </Card>
-            {/*<Comments pageKey={'seed39'} />*/}
+            <Comments pageKey={'seed39'} />
         </>
     );
 };

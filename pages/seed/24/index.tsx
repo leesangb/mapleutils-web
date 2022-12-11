@@ -30,6 +30,7 @@ import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { useSeed24Tabs } from '@components/seed/24';
 import { Locales } from '@tools/locales';
 import NextLink from 'next/link';
+import { Comments } from '@components/comments';
 
 const SCREEN_HEIGHT_OFFSET = 400; // magic number ?
 const SMALL_SCREEN_ROW_SIZE = 110;
@@ -128,7 +129,7 @@ const Seed24 = ({ data }: Seed24Props) => {
                 <CopySnackbar />
             </TabContext>
 
-            {/*<Comments pageKey={'seed24'} />*/}
+            <Comments pageKey={'seed24'} />
         </>
     );
 };

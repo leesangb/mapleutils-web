@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 import { Seo } from '@components/seo';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import NextImage from 'next/image';
+import { Comments } from '@components/comments';
 
 
 const Seed48 = () => {
@@ -26,7 +27,7 @@ const Seed48 = () => {
                     <NextImage src={'/images/seed/48.png'} width={3760} height={1270} />
                 </CardContent>
             </Card>
-            {/*<Comments pageKey={'seed48'} />*/}
+            <Comments pageKey={'seed48'} />
         </>
     );
 };

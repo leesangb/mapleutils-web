@@ -17,6 +17,7 @@ import useSeed49Favorite from '@components/seed/49/useSeed49Favorite';
 import useBookmarkStore from '@store/useBookmarkStore';
 import { LocalStorageKey } from '@tools/localStorageHelper';
 import NextLink from 'next/link';
+import { Comments } from '@components/comments';
 
 
 interface Seed49Props {
@@ -90,7 +91,7 @@ const Seed49 = ({ data }: Seed49Props) => {
                 </NoSsr>
             </Box>
 
-            {/*<Comments title={t('comments')} pageKey={'seed49'} />*/}
+            <Comments title={t('comments')} pageKey={'seed49'} />
 
             <Display when={i18n.resolvedLanguage === Locales.English}>
                 <Typography variant={'caption'}>

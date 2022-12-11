@@ -7,6 +7,7 @@ import { I18nTitleCard } from '@components/card';
 import { Box } from '@mui/material';
 import Seed49Simulator from '@components/seed/49/Seed49Simulator';
 import { useMemo } from 'react';
+import { Comments } from '@components/comments';
 
 interface Seed49SimulatorProps {
     data: SeedMobData[];
@@ -24,7 +25,7 @@ const Seed49SimulatorPage = ({ data }: Seed49SimulatorProps) => {
                 <Seed49Simulator data={data} />
             </Box>
 
-            {/*<Comments pageKey={'seed49simulator'} />*/}
+            <Comments pageKey={'seed49simulator'} />
         </>
     );
 };
