@@ -41,7 +41,7 @@ const CommentItem = (props: CommentItemProps) => {
         <>
             {comment.isDeleted ? (
                 <Typography color='textSecondary'>
-                    {t('deletedComment')}
+                    {t('comment.deletedComment')}
                 </Typography>
             ) : (
                 <>
