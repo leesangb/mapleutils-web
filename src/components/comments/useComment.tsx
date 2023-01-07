@@ -55,7 +55,7 @@ export const useComment = (page: string) => {
             .catch((err) => {
                 console.error(err);
             })
-            .then((c: Comment[]) => setComments(fixDateAndSort(c)))
+            .then((c: Comment[]) => setComments(fixDateAndSort(c).filter(c => !c.isDeleted || c.children.length)))
             .catch((err) => {
                 console.error(err);
             })

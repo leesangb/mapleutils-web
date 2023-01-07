@@ -2,7 +2,7 @@ import { useState } from 'react';
 import CommentDeleteField from './CommentDeleteField';
 import CommentEditField from './CommentEditField';
 import CommentPostField from './CommentPostField';
-import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
+import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
 import { CommentActions } from '@components/comments/useComment';
 import { Comment, CommentEdit, CommentPost } from '@components/comments/index';
 import CommentHeader from '@components/comments/CommentHeader';
@@ -11,6 +11,7 @@ import ChildCommentItem from '@components/comments/ChildCommentItem';
 import CommentBody from '@components/comments/CommentBody';
 import { Box } from '@mui/system';
 import { useTranslation } from 'next-i18next';
+import { ClearOutlined } from '@mui/icons-material';
 
 interface CommentItemProps {
     comment: Comment;
@@ -40,9 +41,16 @@ const CommentItem = (props: CommentItemProps) => {
     return (
         <>
             {comment.isDeleted ? (
-                <Typography color='textSecondary'>
-                    {t('comment.deletedComment')}
-                </Typography>
+                <ListItem alignItems={'center'} disableGutters>
+                    <ListItemAvatar>
+                        <Avatar>
+                            <ClearOutlined />
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText>
+                        {t('comment.deletedComment')}
+                    </ListItemText>
+                </ListItem>
             ) : (
                 <>
                     <ListItem sx={{ paddingBottom: 0 }} alignItems='flex-start' disableGutters>
