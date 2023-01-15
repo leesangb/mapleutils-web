@@ -32,9 +32,11 @@ const Seed42 = ({}: Seed42Props) => {
                     <Box sx={{
                         position: 'relative',
                     }}>
-                        <Image sx={{ position: 'relative', top: 0, left: 0 }} src={'/images/seed/42/background.png'} />
-                        <Image src={'/images/seed/42/route.png'} />
-                        <Image src={'/images/seed/42/trap.png'} sx={{ opacity: opacity / 100 }} />
+                        <Image sx={{ position: 'relative', top: 0, left: 0 }}
+                               src={'/images/seed/42/background.png'}
+                               draggable={false} />
+                        <Image src={'/images/seed/42/route.png'} draggable={false} />
+                        <Image src={'/images/seed/42/trap.png'} sx={{ opacity: opacity / 100 }} draggable={false} />
                     </Box>
                     <Slider value={opacity}
                             onChange={(e, v) => setOpacity(v as number)}
