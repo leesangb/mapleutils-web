@@ -38,7 +38,7 @@ const Seed42 = ({}: Seed42Props) => {
     const [route, setRoute] = useState<string>('none');
     return (
         <>
-            <Seo {...seoProps} />
+            <Seo {...seoProps} image={'/images/42.png'} />
             <I18nTitleCard ns={'seed42'} />
 
             <Card elevation={0} variant={'outlined'} component={'section'}>
