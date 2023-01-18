@@ -62,6 +62,10 @@
     "seed": {
       "longName": "더 시드",
       "shortName": "시드",
+      "22": {
+        "title": "시드 22층",
+        "shortDescription": "구름 발판"
+      },
       "23": {
         "title": "시드 23층",
         "shortDescription": "맵 투명 발판"
