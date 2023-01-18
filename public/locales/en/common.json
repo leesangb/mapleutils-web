@@ -58,6 +58,10 @@
     "seed": {
       "longName": "Tower of Oz",
       "shortName": "Oz",
+      "22": {
+        "title": "Tower of Oz F22",
+        "shortDescription": "Cloud platforms"
+      },
       "23": {
         "title": "Tower of Oz F23",
         "shortDescription": "Invisible platforms"
