@@ -87,6 +87,7 @@ const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
 
 
 const seedFloors = [
+    22,
     23,
     24,
     36,
