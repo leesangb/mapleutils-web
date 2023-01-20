@@ -7,5 +7,9 @@
   "title": "Tower of Oz Floor 22",
   "map1": "1st zone",
   "map2": "2nd zone",
-  "map3": "Cloud zone"
+  "map3": "Cloud zone",
+  "path": "Path",
+  "none": "None",
+  "beginner": "Beginner",
+  "expert": "Expert"
 }
