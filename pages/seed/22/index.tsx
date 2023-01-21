@@ -3,6 +3,10 @@ import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { Seo } from '@components/seo';
 import { I18nTitleCard } from '@components/card';
 import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary as MuiAccordionSummary,
+    AccordionSummaryProps,
     Box,
     Card,
     CardContent,
@@ -19,6 +23,7 @@ import NextImage from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Comments } from '@components/comments';
 import { useState } from 'react';
+import { ArrowForwardIosSharp } from '@mui/icons-material';
 
 const LayerImage = styled('img')`
   position: absolute;
@@ -26,6 +31,22 @@ const LayerImage = styled('img')`
   top: 0;
   left: 0;
 `;
+
+const AccordionSummary = styled((props: AccordionSummaryProps) => (
+    <MuiAccordionSummary
+        expandIcon={<ArrowForwardIosSharp sx={{ fontSize: '0.9rem' }} />}
+        {...props}
+    />
+))(({ theme }) => ({
+    borderRadius: '16px',
+    flexDirection: 'row-reverse',
+    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+        transform: 'rotate(90deg)',
+    },
+    '& .MuiAccordionSummary-content': {
+        marginLeft: theme.spacing(1),
+    },
+}));
 
 const Seed22 = () => {
     const { t } = useTranslation('seed22');
@@ -41,10 +62,41 @@ const Seed22 = () => {
                     <Typography variant={'h3'} gutterBottom>{t('map1')}</Typography>
                     <NextImage src={'/images/seed/22/1.png'} width={1455} height={695} alt={'seed 22 1'} />
 
+                    <Accordion elevation={0} variant={'outlined'}>
+                        <AccordionSummary>
+                            <Typography>{t('gifTip')}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Box display={'flex'}>
+                                <NextImage src={'/images/seed/22/tip1.gif'} width={752} height={534}
+                                           alt={'seed 22 tip1'} />
+                            </Box>
+                        </AccordionDetails>
+                    </Accordion>
+
                     <Typography variant={'h3'} gutterBottom sx={theme => ({ marginTop: theme.spacing(2) })}>
                         {t('map2')}
                     </Typography>
                     <NextImage src={'/images/seed/22/2.png'} width={1611} height={702} alt={'seed 22 2'} />
+                    <Accordion elevation={0} variant={'outlined'}>
+                        <AccordionSummary>
+                            <Typography>{t('gifTip')}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Grid container spacing={1}>
+                                <Grid item xs>
+                                    <NextImage src={'/images/seed/22/tip2.gif'}
+                                               width={606} height={433}
+                                               alt={'seed 22 tip2'} />
+                                </Grid>
+                                <Grid item xs>
+                                    <NextImage src={'/images/seed/22/tip3.gif'}
+                                               width={606} height={433}
+                                               alt={'seed 22 tip3'} />
+                                </Grid>
+                            </Grid>
+                        </AccordionDetails>
+                    </Accordion>
 
                     <Typography variant={'h3'} gutterBottom sx={theme => ({ marginTop: theme.spacing(2) })}>
                         {t('map3')}
@@ -73,6 +125,19 @@ const Seed22 = () => {
                                     <FormControlLabel value='expert' control={<Radio />} label={t('expert')} />
                                 </RadioGroup>
                             </FormControl>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Accordion elevation={0} variant={'outlined'}>
+                                <AccordionSummary>
+                                    <Typography>{t('gifTip')}</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <video style={{ maxWidth: '100%' }} src={'/images/seed/22/tip4.mp4'} controls
+                                           loop />
+                                    <NextImage src={'/images/seed/22/tip4.1.gif'} width={702} height={424}
+                                               alt={'seed 22 tip4'} />
+                                </AccordionDetails>
+                            </Accordion>
                         </Grid>
                     </Grid>
                 </CardContent>

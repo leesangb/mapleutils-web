@@ -97,6 +97,16 @@ const buildThemeOptions = (mode: PaletteMode): ThemeOptions => ({
         borderRadius,
     },
     components: {
+        MuiAccordion: {
+            styleOverrides: {
+                root: {
+                    borderRadius: '16px',
+                    ['&::before']: {
+                        backgroundColor: 'transparent',
+                    },
+                },
+            },
+        },
         MuiAppBar: {
             styleOverrides: {
                 colorDefault: {
