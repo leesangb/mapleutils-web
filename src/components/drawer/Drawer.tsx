@@ -19,7 +19,7 @@ import { ReactNode, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Footer from '@components/footer/Footer';
 import { TFunction, useTranslation } from 'next-i18next';
-import { StarRounded } from '@mui/icons-material';
+import { CalculateRounded, StarRounded } from '@mui/icons-material';
 import { Locales } from '@tools/locales';
 
 interface DrawerProps {
@@ -223,7 +223,6 @@ const DrawerItemList = (props: DrawerItemListProps) => {
             </ListItem>
             {item.children.map(({ key, title, subtitle, ...rest }) => <DrawerChildItem key={key} title={t(title)}
                                                                                        subtitle={subtitle ? t(subtitle) : undefined} {...rest} />)}
-            <Divider sx={theme => ({ margin: theme.spacing(1) })} />
         </>
     );
 };
@@ -232,19 +231,29 @@ const Drawer = (props: DrawerProps) => {
     const { open } = props;
     const theme = useTheme();
     const mdDown = useMediaQuery(theme.breakpoints.down('md'));
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const DrawerContents = useCallback(() => <>
         <DrawerHeader />
         <Box sx={theme => ({ padding: theme.spacing(1), flex: 'auto' })}>
             <List>
                 <DrawerItemList open={open} key={seedDrawerItem.category.name} item={seedDrawerItem} />
+                <Divider sx={theme => ({ margin: theme.spacing(1) })} />
                 {
                     i18n.resolvedLanguage === Locales.Korean &&
-                    <DrawerItemList open={open} key={farmDrawerItem.category.name} item={farmDrawerItem} />
+                    <>
+                        <DrawerItemList open={open} key={farmDrawerItem.category.name} item={farmDrawerItem} />
+                        <Divider sx={theme => ({ margin: theme.spacing(1) })} />
+                    </>
                 }
                 <DrawerItemList open={open} key={seedSimulatorDrawerItem.category.name}
                                 item={seedSimulatorDrawerItem} />
+                <DrawerChildItem link={'/seed/point-calculator'}
+                                 icon={() =>
+                                     <LinkAvatar link={'/seed/point-calculator'}><CalculateRounded /></LinkAvatar>
+                                 }
+                                 title={t('drawer.seedSimulator.pointCalculator.title')} />
+                <Divider sx={theme => ({ margin: theme.spacing(1) })} />
             </List>
         </Box>
     </>, [open, i18n.resolvedLanguage]);
