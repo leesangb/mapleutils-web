@@ -53,6 +53,9 @@
       "49": {
         "title": "Tower of Oz F49",
         "shortDescription": "Simulator"
+      },
+      "pointCalculator": {
+        "title": "Point calculator"
       }
     },
     "seed": {

@@ -1,0 +1,13 @@
+{
+  "seo": {
+    "title": "더 시드 포인트 계산기",
+    "keywords": "포인트, 계산기, 타워인헨스",
+    "description": "더 시드 포인트 계산기"
+  },
+  "title": "포인트 계산기",
+  "floorPoints": "층별 포인트",
+  "floorPointsAccumulated": "층별 누적 포인트",
+  "floor": "{{floor}}층",
+  "level": "{{level}}렙",
+  "none": "없음"
+}
