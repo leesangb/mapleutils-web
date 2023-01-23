@@ -1,0 +1,13 @@
+{
+  "seo": {
+    "title": "Tower of Oz point calculator",
+    "keywords": "point, calculator",
+    "description": "Tower of Oz point calculator"
+  },
+  "title": "Point calculator",
+  "floorPoints": "Floor points",
+  "floorPointsAccumulated": "Accumulated floor points",
+  "floor": "Floor {{floor}}",
+  "level": "lv.{{level}}",
+  "none": "None"
+}

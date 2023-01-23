@@ -57,6 +57,9 @@
       "49": {
         "title": "시드 49층",
         "shortDescription": "시뮬레이터"
+      },
+      "pointCalculator": {
+        "title": "포인트 계산기"
       }
     },
     "seed": {
