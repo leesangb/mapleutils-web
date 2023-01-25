@@ -11,6 +11,9 @@ import {
     AccordionSummaryProps,
     Card,
     CardContent,
+    darken,
+    Grid,
+    lighten,
     styled,
     Table,
     TableBody,
@@ -19,9 +22,11 @@ import {
     TableRow,
     Typography,
 } from '@mui/material';
-import { ACCUMULATED, FLOOR_POINTS } from '@data/seed/point';
-import { Fragment } from 'react';
+import { ACCUMULATED, ENHANCED_FLOORS, FLOOR_POINTS } from '@data/seed/point';
+import { Fragment, useState } from 'react';
 import { ArrowForwardIosSharp } from '@mui/icons-material';
+import NumberTextField from '@components/input/NumberTextField';
+import { formatNumberComma } from '@tools/string';
 
 interface PointCalculatorProps {
 }
@@ -46,7 +51,7 @@ const PointTable = ({ data }: { data: number[][] }) => {
     return <Table size={'small'}>
         <TableHead>
             <TableRow>
-                <TableCell>타워인헨스 링</TableCell>
+                <TableCell>{t('towerEnhanceRing')}</TableCell>
                 <TableCell align={'right'}>{t('none')}</TableCell>
                 <TableCell align={'right'}>{t('level', { level: 1 })}</TableCell>
                 <TableCell align={'right'}>{t('level', { level: 2 })}</TableCell>
@@ -58,15 +63,24 @@ const PointTable = ({ data }: { data: number[][] }) => {
             {data.slice(1).map((points, i) => {
                 const floor = i + 1;
                 const isShelter = floor.toString().endsWith('5');
+                const isBoostedFloor = ENHANCED_FLOORS.includes(floor);
 
                 return <TableRow key={floor}
-                                 sx={isShelter ? { backgroundColor: theme => theme.palette.background.default } : {}}>
+                                 sx={isShelter
+                                     ? { backgroundColor: theme => theme.palette.background.default }
+                                     : isBoostedFloor
+                                         ? {
+                                             backgroundColor: theme => theme.palette.mode === 'dark'
+                                                 ? darken(theme.palette.primary.dark, 0.5)
+                                                 : lighten(theme.palette.primary.light, 0.5),
+                                         }
+                                         : {}}>
                     <TableCell>
                         {t('floor', { floor })}
                     </TableCell>
                     {points.map((point, j) => <Fragment key={j}>
                         <TableCell align={'right'}>
-                            {!isShelter && point}
+                            {!isShelter && formatNumberComma(point)}
                         </TableCell>
                     </Fragment>)}
                 </TableRow>;
@@ -78,6 +92,12 @@ const PointTable = ({ data }: { data: number[][] }) => {
 const PointCalculator = ({}: PointCalculatorProps) => {
     const { t } = useTranslation('pointCalculator');
     const seoProps = useI18nSeoProps('pointCalculator');
+
+    const [currentPoint, setCurrentPoint] = useState<string>('');
+    const [targetPoint, setTargetPoint] = useState<string>('');
+
+    const [n, setN] = useState<string>('');
+
     return (
         <>
             <Seo {...seoProps} image={'fixme'} />
@@ -85,6 +105,105 @@ const PointCalculator = ({}: PointCalculatorProps) => {
 
             <Card variant={'outlined'}>
                 <CardContent>
+                    <Grid container spacing={1}>
+                        <Grid item xs={12} sm={3}>
+                            <Typography variant={'h4'} gutterBottom>
+                                {t('howManyRuns')}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4} sm={3}>
+                            <NumberTextField value={targetPoint}
+                                             fullWidth
+                                             label={t('targetPoint')}
+                                             size={'small'}
+                                             onChange={e => setTargetPoint(e.target.value)} />
+                        </Grid>
+                        <Grid item xs={4} sm={3}>
+                            <NumberTextField value={currentPoint}
+                                             fullWidth
+                                             label={t('currentPoint')}
+                                             size={'small'}
+                                             onChange={e => setCurrentPoint(e.target.value)} />
+                        </Grid>
+                        <Grid item xs={4} sm={3}>
+                            <NumberTextField
+                                value={formatNumberComma(Math.max(Number(targetPoint) - Number(currentPoint), 0))}
+                                disabled
+                                size={'small'}
+                                fullWidth
+                                label={t('pointLeft')} />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Table size={'small'} sx={{ marginBottom: 2 }}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>{t('towerEnhanceRing')}</TableCell>
+                                        <TableCell align={'right'}>{t('none')}</TableCell>
+                                        <TableCell align={'right'}>{t('level', { level: 1 })}</TableCell>
+                                        <TableCell align={'right'}>{t('level', { level: 2 })}</TableCell>
+                                        <TableCell align={'right'}>{t('level', { level: 3 })}</TableCell>
+                                        <TableCell align={'right'}>{t('level', { level: 4 })}</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {[41, 46, 47, 50].map(floor => <TableRow key={floor}>
+                                        <TableCell>
+                                            {t('floor', { floor })}
+                                        </TableCell>
+                                        {ACCUMULATED[floor].map((acc, i) => <TableCell key={i} align={'right'}>
+                                            {t('atMost')} {formatNumberComma(
+                                            Math.max(
+                                                Math.ceil((Number(targetPoint) - Number(currentPoint)) / acc),
+                                                0),
+                                        )}{t('run')}
+                                        </TableCell>)}
+                                    </TableRow>)}
+                                </TableBody>
+                            </Table>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography variant={'h4'} gutterBottom>
+                                {t('howManyPoints')}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <NumberTextField value={n}
+                                             fullWidth
+                                             label={t('runCount')}
+                                             size={'small'}
+                                             onChange={e => setN(e.target.value)} />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Table size={'small'} sx={{ marginBottom: 2 }}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>{t('towerEnhanceRing')}</TableCell>
+                                        <TableCell align={'right'}>{t('none')}</TableCell>
+                                        <TableCell align={'right'}>{t('level', { level: 1 })}</TableCell>
+                                        <TableCell align={'right'}>{t('level', { level: 2 })}</TableCell>
+                                        <TableCell align={'right'}>{t('level', { level: 3 })}</TableCell>
+                                        <TableCell align={'right'}>{t('level', { level: 4 })}</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {[41, 46, 47, 50].map(floor => <TableRow key={floor}>
+                                        <TableCell>
+                                            {t('floor', { floor })}
+                                        </TableCell>
+                                        {ACCUMULATED[floor].map((acc, i) => <TableCell key={i} align={'right'}>
+                                            <Typography variant={'body2'}>
+                                                {formatNumberComma(acc * Number(n))}
+                                            </Typography>
+                                            <Typography variant={'caption'}>
+                                                + α
+                                            </Typography>
+                                        </TableCell>)}
+                                    </TableRow>)}
+                                </TableBody>
+                            </Table>
+                        </Grid>
+                    </Grid>
+
 
                     <Accordion variant={'outlined'}>
                         <AccordionSummary>

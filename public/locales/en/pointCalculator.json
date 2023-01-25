@@ -9,5 +9,14 @@
   "floorPointsAccumulated": "Accumulated floor points",
   "floor": "Floor {{floor}}",
   "level": "lv.{{level}}",
-  "none": "None"
+  "none": "None",
+  "howManyRuns": "How many runs do I need?",
+  "targetPoint": "Target Oz points",
+  "currentPoint": "Current Oz points",
+  "pointLeft": "Oz points left",
+  "towerEnhanceRing": "Tower Boost Ring",
+  "atMost": "<",
+  "run": "",
+  "howManyPoints": "How many points can I earn",
+  "runCount": "run count"
 }

@@ -9,5 +9,14 @@
   "floorPointsAccumulated": "층별 누적 포인트",
   "floor": "{{floor}}층",
   "level": "{{level}}렙",
-  "none": "없음"
+  "none": "없음",
+  "howManyRuns": "필요한 판 수",
+  "targetPoint": "목표 포인트",
+  "currentPoint": "현재 포인트",
+  "pointLeft": "필요 시드포인트",
+  "towerEnhanceRing": "타워인헨스 링",
+  "atMost": "<",
+  "run": "판",
+  "runCount": "판",
+  "howManyPoints": "n판하면 모이는 포인트"
 }
