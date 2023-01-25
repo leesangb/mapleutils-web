@@ -32,7 +32,7 @@ const FLOOR_POINT = [
     555, // floor 30
     394,
     419,
-    439,
+    489,
     472,
     0, // floor 35
     580,
@@ -54,7 +54,7 @@ const FLOOR_POINT = [
 
 export const TOWER_ENHANCE_FACTOR = [1, 1.25, 1.5, 1.75, 2];
 
-export const ENHANCED_FLOORS = [7, 9, 13, 18, 19, 20, 28, 29, 30, 32, 33, 38, 40, 47, 48, 49, 50];
+export const ENHANCED_FLOORS = [7, 9, 10, 13, 18, 19, 20, 28, 29, 30, 32, 33, 38, 40, 47, 48, 49, 50];
 
 export const FLOOR_POINTS: number[][] = FLOOR_POINT.map(
     (point, floor) => TOWER_ENHANCE_FACTOR.map(
