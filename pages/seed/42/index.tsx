@@ -48,6 +48,7 @@ const Seed42 = ({}: Seed42Props) => {
                     </Typography>
                     <Box sx={{
                         position: 'relative',
+                        width: 'min(1704px, 100%)',
                     }}>
                         <NextImage style={{ position: 'relative', top: 0, left: 0 }} draggable={false}
                                    src={'/images/seed/42/background.png'} width={1704} height={1000} />
