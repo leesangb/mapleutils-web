@@ -132,10 +132,17 @@ const Seed22 = () => {
                                     <Typography>{t('gifTip')}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <video style={{ maxWidth: '100%' }} src={'/images/seed/22/tip4.mp4'} controls
-                                           loop />
-                                    <NextImage src={'/images/seed/22/tip4.1.gif'} width={702} height={424}
-                                               alt={'seed 22 tip4'} />
+                                    <Grid container spacing={1}>
+                                        <Grid item xs>
+                                            <video style={{ maxWidth: '100%' }} src={'/images/seed/22/tip4.mp4'}
+                                                   controls
+                                                   loop />
+                                        </Grid>
+                                        <Grid item xs>
+                                            <NextImage src={'/images/seed/22/tip4.1.gif'} width={702} height={424}
+                                                       alt={'seed 22 tip4'} />
+                                        </Grid>
+                                    </Grid>
                                 </AccordionDetails>
                             </Accordion>
                         </Grid>
