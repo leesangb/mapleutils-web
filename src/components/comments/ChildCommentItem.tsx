@@ -77,6 +77,7 @@ const ChildCommentItem = (props: ChildCommentItemProps) => {
                                         setDelete={setOpenDelete}
                                         edit={openEdit}
                                         setEdit={setOpenEdit}
+                                        reactions={comment.reactions}
                                     />
                                 </>
                             }

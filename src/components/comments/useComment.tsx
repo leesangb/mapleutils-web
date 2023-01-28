@@ -4,12 +4,14 @@ import { Comment, CommentDelete, CommentEdit, CommentPost } from '@components/co
 
 const fixDateAndSort = (comments: Comment[]): Comment[] => {
     return comments
-        .map((c) => ({
+        .map(({ reactions, ...c }) => ({
             ...c,
+            reactions: decodeURI(reactions.toString()).split(',').filter(Boolean),
             creationDate: new Date(c.creationDate),
             modificationDate: new Date(c.modificationDate),
             children: c.children.map((ch) => ({
                 ...ch,
+                reactions: decodeURI(reactions.toString()).split(',').filter(Boolean),
                 creationDate: new Date(ch.creationDate),
                 modificationDate: new Date(ch.modificationDate),
             })),

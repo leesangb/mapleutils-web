@@ -85,6 +85,7 @@ const CommentItem = (props: CommentItemProps) => {
                                         setDelete={setOpenDelete}
                                         edit={openEdit}
                                         setEdit={setOpenEdit}
+                                        reactions={comment.reactions}
                                     />
                                 </>
                             }

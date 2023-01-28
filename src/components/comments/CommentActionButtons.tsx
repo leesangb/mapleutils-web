@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Button } from '@mui/material';
+import { Avatar, Button, Chip } from '@mui/material';
 import { Box } from '@mui/system';
 import { DeleteRounded, EditRounded, ReplyRounded } from '@mui/icons-material';
 import { useTranslation } from 'next-i18next';
@@ -11,11 +11,12 @@ interface CommentActionButtonsProps {
     setDelete: Dispatch<SetStateAction<boolean>>;
     edit: boolean;
     setEdit: Dispatch<SetStateAction<boolean>>;
+    reactions: string[];
 }
 
 const CommentActionButtons = (props: CommentActionButtonsProps) => {
     const { t } = useTranslation();
-    const { reply, setReply, setDelete, edit, setEdit } = props;
+    const { reply, setReply, setDelete, edit, setEdit, reactions } = props;
 
     const toggleReply = () => {
         setReply((o) => !o);
@@ -50,6 +51,12 @@ const CommentActionButtons = (props: CommentActionButtonsProps) => {
                     onClick={reply || edit ? undefined : toggleDelete}>
                 {props.delete ? t('cancel') : t('comment.delete')}
             </Button>
+            {reactions.length > 0 &&
+                <Chip sx={theme => ({ marginLeft: theme.spacing(2) })}
+                      size={'small'}
+                      avatar={<Avatar src={'/images/sangbin.png'} />}
+                      label={<Box sx={{ marginTop: '2px' }}>{reactions.join(' ')}</Box>} />}
+
         </Box>
     );
 };

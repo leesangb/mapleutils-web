@@ -7,6 +7,7 @@ export interface CommentBase {
     modificationDate: Date;
     isAdmin: boolean;
     isDeleted: boolean;
+    reactions: string[];
 }
 
 export interface CommentPost {
