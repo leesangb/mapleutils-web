@@ -55,7 +55,7 @@ const CommentActionButtons = (props: CommentActionButtonsProps) => {
                 <Chip sx={theme => ({ marginLeft: theme.spacing(2) })}
                       size={'small'}
                       avatar={<Avatar src={'/images/sangbin.png'} />}
-                      label={<Box sx={{ marginTop: '2px' }}>{reactions.join(' ')}</Box>} />}
+                      label={reactions.join(' ')} />}
 
         </Box>
     );
