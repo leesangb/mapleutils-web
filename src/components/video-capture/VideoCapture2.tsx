@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Box, Chip, styled, Typography } from '@mui/material';
-import { getMaxFrameRate } from '@tools/videoHelper';
 import cv from '@techstark/opencv-js';
 import {
     AutoAwesomeRounded,
@@ -10,18 +9,10 @@ import {
 } from '@mui/icons-material';
 import { useTranslation } from 'next-i18next';
 import CaptureViewer from '@components/video-capture/CaptureViewer';
+import { loadImage } from '@tools/imageHelper';
 
 const CANVAS_WIDTH = 243;
 const CANVAS_HEIGHT = 92;
-
-const loadImage = (src: string): Promise<HTMLImageElement> => {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.addEventListener('load', e => resolve(e.target as HTMLImageElement));
-        img.addEventListener('error', reject);
-        img.src = src;
-    })
-}
 
 const openCVMatchTemplate = async (canvas: HTMLCanvasElement, image: string): Promise<Record<'x1' | 'x2' | 'y1' | 'y2', number>> => {
     const src = cv.imread(canvas);
