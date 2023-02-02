@@ -18,6 +18,7 @@
     "@mui/icons-material": "^5.8.0",
     "@mui/lab": "^5.0.0-alpha.83",
     "@mui/material": "^5.8.1",
+    "@techstark/opencv-js": "^4.6.0-release.1",
     "hangul-js": "^0.2.6",
     "next": "12.1.5",
     "next-i18next": "^11.0.0",
