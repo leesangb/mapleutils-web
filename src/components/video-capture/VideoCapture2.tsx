@@ -10,6 +10,7 @@ import {
 import { useTranslation } from 'next-i18next';
 import CaptureViewer from '@components/video-capture/CaptureViewer';
 import { loadImage } from '@tools/imageHelper';
+import useMediaStream from '@hooks/useMediaStream';
 
 const CANVAS_WIDTH = 243;
 const CANVAS_HEIGHT = 92;
@@ -51,37 +52,6 @@ const defaultCoordinates = {
     y2: 32,
 }
 
-
-const useMediaStream = () => {
-    const [stream, setStream] = useState<MediaStream | null>(null);
-    const [fps, setFps] = useState<number>(0);
-
-    const stopStream = () => {
-        stream?.getTracks().forEach(track => track.stop());
-        setStream(null);
-    }
-
-    const captureStream = async () => {
-        const fps = Math.max(await getMaxFrameRate(), 60);
-        const stream = await navigator.mediaDevices.getDisplayMedia({
-            video: {
-                frameRate: fps,
-                aspectRatio: 1,
-            },
-            audio: false,
-        });
-        stream.addEventListener('inactive', stopStream);
-        setStream(stream);
-        setFps(fps);
-    };
-
-    return {
-        stream,
-        captureStream,
-        stopStream,
-        fps,
-    }
-}
 
 const CaptureHelp2 = () => {
     const {t} = useTranslation('seed48');
