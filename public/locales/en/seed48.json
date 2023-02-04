@@ -23,7 +23,8 @@
     "stop": "Stop",
     "pip": "Picture in Picture",
     "showJump": "Show jump",
-    "autoFix": "Auto fix position"
+    "autoFix": "Auto fix position",
+    "autoFixNotFound": "Cannot find minimap icon. Please make sure that minimap icon is visible and try again."
   },
   "advanced": {
     "title": "Advanced settings",

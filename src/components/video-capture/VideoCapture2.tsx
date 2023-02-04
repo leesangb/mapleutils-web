@@ -11,11 +11,12 @@ import { useTranslation } from 'next-i18next';
 import CaptureViewer from '@components/video-capture/CaptureViewer';
 import { loadImage } from '@tools/imageHelper';
 import useMediaStream from '@hooks/useMediaStream';
+import useNotification from '@hooks/useNotification';
 
 const CANVAS_WIDTH = 243;
 const CANVAS_HEIGHT = 92;
 
-const openCVMatchTemplate = async (canvas: HTMLCanvasElement, image: string): Promise<Record<'x1' | 'x2' | 'y1' | 'y2', number>> => {
+const openCVMatchTemplate = async (canvas: HTMLCanvasElement, image: string, onFail?: () => void): Promise<Record<'x1' | 'x2' | 'y1' | 'y2', number>> => {
     const src = cv.imread(canvas);
     const template = cv.imread(await loadImage(image));
     const dst = new cv.Mat();
@@ -27,8 +28,8 @@ const openCVMatchTemplate = async (canvas: HTMLCanvasElement, image: string): Pr
     // @ts-ignore
     const matchPercent: number = result.maxVal;
 
-    if (matchPercent <= 0.8) {
-        alert('미니맵에 시드아이콘 찾기 실패');
+    if (onFail && matchPercent <= 0.8) {
+        onFail();
     }
     const coordinates = matchPercent > 0.8
         ? {
@@ -113,6 +114,7 @@ const VideoCapture2 = () => {
 
     const { stream, fps, captureStream, stopStream } = useMediaStream();
     const settings = useVideoCapture2Settings();
+    const { notify, NotificationSnackbar } = useNotification();
 
     const matchTemplate = async () => {
         if (!stream || !stream.getVideoTracks().length) {
@@ -132,7 +134,7 @@ const VideoCapture2 = () => {
         context.drawImage(video, settings.x, settings.y, (canvas.width * settings.ratio) / 100,  (canvas.height * settings.ratio) / 100,  0, 0, canvas.width, canvas.height);
         video.srcObject = null;
 
-        const coordinates = await openCVMatchTemplate(canvas, '/images/seed/48/icon.png');
+        const coordinates = await openCVMatchTemplate(canvas, '/images/seed/48/icon.png', () => notify(t('capture.autoFixNotFound'), 'error'));
         setMatchingCoordinates(coordinates);
     };
 
@@ -215,6 +217,7 @@ const VideoCapture2 = () => {
                                           onChangeRatio={settings.setRatio}
                                           onReset={settings.reset}/>}
             </section>
+            <NotificationSnackbar />
         </>
     )
 }
