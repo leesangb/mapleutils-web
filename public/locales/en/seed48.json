@@ -11,11 +11,19 @@
     "2": "Click 'Capture screen' - Select MapleStory in 'Application Window' then click 'Share'",
     "3": "Adjust position and ratio like this if needed"
   },
+  "helpNew": {
+    "title": "※ Captured screen is neither recorded or sent to the server. It is only used to show the content on the browser ※",
+    "1": "Set MapleStory client to windowed mode",
+    "2": "Make minimap icon appear",
+    "3": "Click 'Capture screen' - Select MapleStory in 'Application Window' then click 'Share'",
+    "4": "Adjust position and ratio like this if needed"
+  },
   "capture": {
     "start": "Capture screen",
     "stop": "Stop",
     "pip": "Picture in Picture",
-    "showJump": "Show jump"
+    "showJump": "Show jump",
+    "autoFix": "Auto fix position"
   },
   "advanced": {
     "title": "Advanced settings",
