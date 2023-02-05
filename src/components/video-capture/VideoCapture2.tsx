@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Box, Chip, styled, Typography } from '@mui/material';
 import cv from '@techstark/opencv-js';
 import {
     AutoAwesomeRounded,
+    CheckBoxOutlineBlankOutlined,
+    CheckBoxRounded,
     FiberManualRecordRounded,
     PictureInPictureRounded,
     StopRounded,
@@ -97,13 +99,30 @@ const useVideoCapture2Settings = () => {
 
     const toggleJump = () => setShowJump(jump => !jump);
 
-    return {
+    return useMemo(() => ({
         x, setX,
         y, setY,
         ratio, setRatio,
         showJump, toggleJump,
         reset
-    }
+    }), [x, y, ratio, showJump]);
+}
+
+const useVideoCaptureImages = () => {
+    const [platformImage, setPlatformImage] = useState<HTMLImageElement | null>(null);
+    const [jumpImage, setJumpImage] = useState<HTMLImageElement | null>(null);
+
+    useEffect(() => {
+        (async () => {
+            setPlatformImage(await loadImage('/images/seed/48/platform.png'));
+            setJumpImage(await loadImage('/images/seed/48/jump.png'));
+        })();
+    }, [])
+
+    return useMemo(() => platformImage && jumpImage ? ({
+        platform: platformImage,
+        jump: jumpImage,
+    }) : null, [platformImage, jumpImage]);
 }
 
 const VideoCapture2 = () => {
@@ -111,6 +130,7 @@ const VideoCapture2 = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [matchingCoordinates, setMatchingCoordinates] = useState<Record<'x1' | 'x2' | 'y1' | 'y2', number>>(defaultCoordinates);
+    const images = useVideoCaptureImages();
 
     const { stream, fps, captureStream, stopStream } = useMediaStream();
     const settings = useVideoCapture2Settings();
@@ -151,7 +171,7 @@ const VideoCapture2 = () => {
     }, [stream])
 
     useEffect(() => {
-        if (!stream) {
+        if (!stream || !images) {
             return;
         }
 
@@ -159,35 +179,32 @@ const VideoCapture2 = () => {
         video.autoplay = true;
         video.srcObject = stream;
         let intervalId: number;
-        (async () => {
-            const platform = await loadImage('/images/seed/48/platform.png');
-            const jump = await loadImage('/images/seed/48/jump.png');
-            videoRef.current!.srcObject = canvasRef.current!.captureStream();
-            const drawInCanvas = () => {
-                if (!canvasRef.current) {
-                    if (intervalId) {
-                        clearInterval(intervalId);
-                    }
-                    return;
+
+        videoRef.current!.srcObject = canvasRef.current!.captureStream();
+        const drawInCanvas = () => {
+            if (!canvasRef.current) {
+                if (intervalId) {
+                    clearInterval(intervalId);
                 }
-                const context = canvasRef.current.getContext('2d')!;
-                context.imageSmoothingEnabled = false;
-                const { x1, y2 } = matchingCoordinates;
-                context.drawImage(video, settings.x + x1 - 3, settings.y + y2 + 7, CANVAS_WIDTH * settings.ratio / 100, CANVAS_HEIGHT * settings.ratio / 100, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-                context.drawImage(platform,0, 0);
-                context.drawImage(jump,0, 0);
-            };
-            drawInCanvas();
-            // @ts-ignore
-            intervalId = setInterval(drawInCanvas, 1000 / fps);
-        })();
+                return;
+            }
+            const context = canvasRef.current.getContext('2d')!;
+            context.imageSmoothingEnabled = false;
+            const { x1, y2 } = matchingCoordinates;
+            context.drawImage(video, settings.x + x1 - 3, settings.y + y2 + 7, CANVAS_WIDTH * settings.ratio / 100, CANVAS_HEIGHT * settings.ratio / 100, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            context.drawImage(images.platform,0, 0);
+            if (settings.showJump) {
+                context.drawImage(images.jump,0, 0);
+            }
+        };
+        drawInCanvas();
+        // @ts-ignore
+        intervalId = setInterval(drawInCanvas, 1000 / fps);
         return () => {
             video.srcObject = null;
-            setTimeout(() => {
-                clearInterval(intervalId);
-            }, 1000);
+            clearInterval(intervalId);
         };
-    }, [stream, matchingCoordinates, settings]);
+    }, [stream, matchingCoordinates, settings, images]);
     return (
         <>
             <CaptureHelp2 />
@@ -204,6 +221,10 @@ const VideoCapture2 = () => {
                                       label={t('capture.pip')}
                                       onClick={() => videoRef.current!.requestPictureInPicture()}
                                       sx={{ marginRight: 1 }} />
+                                <Chip icon={settings.showJump ? <CheckBoxRounded /> : <CheckBoxOutlineBlankOutlined />}
+                                      onClick={settings.toggleJump}
+                                      label={t('capture.showJump')}
+                                />
                                 <Chip icon={<AutoAwesomeRounded/>}
                                       onClick={matchTemplate}
                                       label={t('capture.autoFix')}/>
