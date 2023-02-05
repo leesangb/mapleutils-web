@@ -164,7 +164,13 @@ const VideoCapture2 = () => {
             const jump = await loadImage('/images/seed/48/jump.png');
             videoRef.current!.srcObject = canvasRef.current!.captureStream();
             const drawInCanvas = () => {
-                const context = canvasRef.current!.getContext('2d')!;
+                if (!canvasRef.current) {
+                    if (intervalId) {
+                        clearInterval(intervalId);
+                    }
+                    return;
+                }
+                const context = canvasRef.current.getContext('2d')!;
                 context.imageSmoothingEnabled = false;
                 const { x1, y2 } = matchingCoordinates;
                 context.drawImage(video, settings.x + x1 - 3, settings.y + y2 + 7, CANVAS_WIDTH * settings.ratio / 100, CANVAS_HEIGHT * settings.ratio / 100, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
