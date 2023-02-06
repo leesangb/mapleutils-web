@@ -14,6 +14,7 @@ import CaptureViewer from '@components/video-capture/CaptureViewer';
 import { loadImage } from '@tools/imageHelper';
 import useMediaStream from '@hooks/useMediaStream';
 import useNotification from '@hooks/useNotification';
+import useVideoCaptureSettings from '@components/video-capture/useVideoCaptureSettings';
 
 const CANVAS_WIDTH = 243;
 const CANVAS_HEIGHT = 92;
@@ -81,33 +82,6 @@ const CaptureHelp2 = () => {
     )
 }
 
-const DEFAULT_X = 2;
-const DEFAULT_Y = 25;
-const DEFAULT_RATIO = 100;
-const useVideoCapture2Settings = () => {
-    const [x, setX] = useState<number>(DEFAULT_X);
-    const [y, setY] = useState<number>(DEFAULT_Y);
-    const [ratio, setRatio] = useState<number>(DEFAULT_RATIO);
-    const [showJump, setShowJump] = useState<boolean>(true);
-
-    const reset = () => {
-        setX(DEFAULT_X);
-        setY(DEFAULT_Y);
-        setRatio(DEFAULT_RATIO);
-        setShowJump(true);
-    }
-
-    const toggleJump = () => setShowJump(jump => !jump);
-
-    return useMemo(() => ({
-        x, setX,
-        y, setY,
-        ratio, setRatio,
-        showJump, toggleJump,
-        reset
-    }), [x, y, ratio, showJump]);
-}
-
 const useVideoCaptureImages = () => {
     const [platformImage, setPlatformImage] = useState<HTMLImageElement | null>(null);
     const [jumpImage, setJumpImage] = useState<HTMLImageElement | null>(null);
@@ -133,7 +107,7 @@ const VideoCapture2 = () => {
     const images = useVideoCaptureImages();
 
     const { stream, fps, captureStream, stopStream } = useMediaStream();
-    const settings = useVideoCapture2Settings();
+    const settings = useVideoCaptureSettings();
     const { notify, NotificationSnackbar } = useNotification();
 
     const matchTemplate = async () => {
