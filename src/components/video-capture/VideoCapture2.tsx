@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Box, Chip, styled, Typography } from '@mui/material';
 import cv from '@techstark/opencv-js';
 import {
@@ -15,6 +15,7 @@ import { loadImage } from '@tools/imageHelper';
 import useMediaStream from '@hooks/useMediaStream';
 import useNotification from '@hooks/useNotification';
 import useVideoCaptureSettings from '@components/video-capture/useVideoCaptureSettings';
+import useVideoCaptureImages from '@components/video-capture/useVideoCaptureImages';
 
 const CANVAS_WIDTH = 243;
 const CANVAS_HEIGHT = 92;
@@ -82,22 +83,6 @@ const CaptureHelp2 = () => {
     )
 }
 
-const useVideoCaptureImages = () => {
-    const [platformImage, setPlatformImage] = useState<HTMLImageElement | null>(null);
-    const [jumpImage, setJumpImage] = useState<HTMLImageElement | null>(null);
-
-    useEffect(() => {
-        (async () => {
-            setPlatformImage(await loadImage('/images/seed/48/platform.png'));
-            setJumpImage(await loadImage('/images/seed/48/jump.png'));
-        })();
-    }, [])
-
-    return useMemo(() => platformImage && jumpImage ? ({
-        platform: platformImage,
-        jump: jumpImage,
-    }) : null, [platformImage, jumpImage]);
-}
 
 const VideoCapture2 = () => {
     const { t } = useTranslation('seed48');
