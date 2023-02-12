@@ -19,6 +19,10 @@ import OpenCV from '../../opencv/OpenCV';
 const CANVAS_WIDTH = 243;
 const CANVAS_HEIGHT = 92;
 
+const MINIMAP_ICON_TOP_LEFT_X_OFFSET = -3;
+const MINIMAP_ICON_TOP_LEFT_Y_OFFSET = 7;
+
+
 const defaultCoordinates = {
     x1: 0,
     x2: 32,
@@ -123,7 +127,15 @@ const VideoCapture2 = () => {
             const context = canvasRef.current.getContext('2d')!;
             context.imageSmoothingEnabled = false;
             const { x1, y2 } = matchingCoordinates;
-            context.drawImage(video, settings.x + x1 - 3, settings.y + y2 + 7, CANVAS_WIDTH * settings.ratio / 100, CANVAS_HEIGHT * settings.ratio / 100, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            context.drawImage(video,
+                settings.x + x1 + MINIMAP_ICON_TOP_LEFT_X_OFFSET,
+                settings.y + y2 + MINIMAP_ICON_TOP_LEFT_Y_OFFSET,
+                CANVAS_WIDTH * settings.ratio / 100,
+                CANVAS_HEIGHT * settings.ratio / 100,
+                0,
+                0,
+                CANVAS_WIDTH,
+                CANVAS_HEIGHT);
             context.drawImage(images.platform,0, 0);
             if (settings.showJump) {
                 context.drawImage(images.jump,0, 0);
