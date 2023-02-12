@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Box, Chip, styled, Typography } from '@mui/material';
-import cv from '@techstark/opencv-js';
 import {
     AutoAwesomeRounded,
     CheckBoxOutlineBlankOutlined,
@@ -11,44 +10,14 @@ import {
 } from '@mui/icons-material';
 import { useTranslation } from 'next-i18next';
 import CaptureViewer from '@components/video-capture/CaptureViewer';
-import { loadImage } from '@tools/imageHelper';
 import useMediaStream from '@hooks/useMediaStream';
 import useNotification from '@hooks/useNotification';
 import useVideoCaptureSettings from '@components/video-capture/useVideoCaptureSettings';
 import useVideoCaptureImages from '@components/video-capture/useVideoCaptureImages';
+import OpenCV from '../../opencv/OpenCV';
 
 const CANVAS_WIDTH = 243;
 const CANVAS_HEIGHT = 92;
-
-const openCVMatchTemplate = async (canvas: HTMLCanvasElement, image: string, onFail?: () => void): Promise<Record<'x1' | 'x2' | 'y1' | 'y2', number>> => {
-    const src = cv.imread(canvas);
-    const template = cv.imread(await loadImage(image));
-    const dst = new cv.Mat();
-    const mask = new cv.Mat();
-    cv.matchTemplate(src, template, dst, cv.TM_CCOEFF_NORMED, mask);
-    const result = cv.minMaxLoc(dst, mask);
-    // @ts-ignore
-    const point: { x: number, y: number } = result.maxLoc;
-    // @ts-ignore
-    const matchPercent: number = result.maxVal;
-
-    if (onFail && matchPercent <= 0.8) {
-        onFail();
-    }
-    const coordinates = matchPercent > 0.8
-        ? {
-            x1: point.x,
-            x2: point.x + template.cols,
-            y1: point.y,
-            y2: point.y + template.rows,
-        } : defaultCoordinates;
-
-    src.delete();
-    template.delete();
-    dst.delete();
-    mask.delete();
-    return coordinates;
-}
 
 const defaultCoordinates = {
     x1: 0,
@@ -113,8 +82,12 @@ const VideoCapture2 = () => {
         context.drawImage(video, settings.x, settings.y, (canvas.width * settings.ratio) / 100,  (canvas.height * settings.ratio) / 100,  0, 0, canvas.width, canvas.height);
         video.srcObject = null;
 
-        const coordinates = await openCVMatchTemplate(canvas, '/images/seed/48/icon.png', () => notify(t('capture.autoFixNotFound'), 'error'));
-        setMatchingCoordinates(coordinates);
+        const {x1, x2, y1, y2, matchPercent} = await OpenCV.matchTemplate(canvas, '/images/seed/48/icon.png');
+        if (matchPercent < 0.8) {
+            notify(t('capture.autoFixNotFound'), 'error');
+        } else {
+            setMatchingCoordinates({ x1, x2, y1, y2 });
+        }
     };
 
     useEffect(() => {
