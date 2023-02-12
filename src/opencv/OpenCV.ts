@@ -1,3 +1,6 @@
+import cv from '@techstark/opencv-js';
+import { loadImage } from '@tools/imageHelper';
+
 interface MatchTemplate {
     message: 'matchTemplate',
     payload: string;
@@ -13,6 +16,8 @@ interface DefaultOpenCVEvent {
 }
 
 type OpenCVEvent = MatchTemplate | Load | DefaultOpenCVEvent;
+
+type MatchTemplateResult = Record<'x1' | 'x2' | 'y1' | 'y2' | 'matchPercent', number>;
 
 class OpenCV {
     public status: Record<OpenCVEvent['message'], { state: 'loading' | 'done' | 'error', data?: any, promise?: Promise<any> }> = {};
@@ -49,6 +54,33 @@ class OpenCV {
             handler();
         });
         return this.status[message].promise;
+    }
+
+    public async matchTemplate(canvas: HTMLCanvasElement, image: string): Promise<MatchTemplateResult> {
+        const src = cv.imread(canvas);
+        const template = cv.imread(await loadImage(image));
+        const dst = new cv.Mat();
+        const mask = new cv.Mat();
+        cv.matchTemplate(src, template, dst, cv.TM_CCOEFF_NORMED, mask);
+        const result = cv.minMaxLoc(dst, mask);
+        // @ts-ignore
+        const point: { x: number, y: number } = result.maxLoc;
+        // @ts-ignore
+        const matchPercent: number = result.maxVal;
+
+        const coordinates: MatchTemplateResult = {
+            x1: point.x,
+            x2: point.x + template.cols,
+            y1: point.y,
+            y2: point.y + template.rows,
+            matchPercent,
+        };
+
+        src.delete();
+        template.delete();
+        dst.delete();
+        mask.delete();
+        return coordinates;
     }
 
     private load() {
