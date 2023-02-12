@@ -23,6 +23,10 @@ class OpenCV {
     public status: Record<OpenCVEvent['message'], { state: 'loading' | 'done' | 'error', data?: any, promise?: Promise<any> }> = {};
     private worker?: Worker;
 
+    /**
+     * @deprecated WIP TODO: not implemented correctly
+     * @param event
+     */
     public async dispatch(event: OpenCVEvent): Promise<any> {
         if (!this.worker) {
             const isLoaded = await this.load();
