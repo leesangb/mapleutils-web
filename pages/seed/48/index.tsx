@@ -1,12 +1,12 @@
 import { I18nTitleCard } from '@components/card';
 import { Card, CardContent, Typography } from '@mui/material';
-import { VideoCapture } from '@components/video-capture';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { Seo } from '@components/seo';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import NextImage from 'next/image';
 import { Comments } from '@components/comments';
+import VideoCapture2 from '@components/video-capture/VideoCapture2';
 
 
 const Seed48 = () => {
@@ -18,7 +18,7 @@ const Seed48 = () => {
             <I18nTitleCard ns={'seed48'} />
             <Card variant={'outlined'} sx={theme => ({ marginBottom: theme.spacing(1) })}>
                 <CardContent>
-                    <VideoCapture />
+                    <VideoCapture2 />
                 </CardContent>
             </Card>
             <Card variant={'outlined'}>
