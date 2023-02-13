@@ -4,6 +4,9 @@ import {
     AutoAwesomeRounded,
     CheckBoxOutlineBlankOutlined,
     CheckBoxRounded,
+    CloseRounded,
+    CompareArrowsRounded,
+    DoneRounded,
     FiberManualRecordRounded,
     PictureInPictureRounded,
     StopRounded,
@@ -38,7 +41,7 @@ const CaptureHelp2 = () => {
             <Typography align='center' variant={'h5'} component={'h2'} gutterBottom>
                 {t('helpNew.title')}
             </Typography>
-            <ol>
+            <Box component={'ol'} paddingLeft={2}>
                 <li>
                     {t('helpNew.1')}
                 </li>
@@ -50,12 +53,33 @@ const CaptureHelp2 = () => {
                 </li>
                 <li>
                     {t('helpNew.4')}
+
+                    <Box component={'div'} display={'grid'} gridTemplateColumns={'1fr auto 1fr'} alignItems={'center'}>
+                        <Box component={'div'}>
+                            <Image src={'/images/seed/48/ok.png'} alt={'setting ok'} />
+                            <Typography variant={'body2'} justifyContent={'center'} display={'flex'} alignItems={'center'}>
+                                <DoneRounded color={'success'}/> {t('helpNew.ok')}
+                            </Typography>
+                        </Box>
+                        <CompareArrowsRounded fontSize={'large'} sx={{margin: 1}}/>
+                        <Box component={'div'}>
+                            <Image src={'/images/seed/48/ko.png'} alt={'setting ko'} />
+                            <Typography variant={'body2'} justifyContent={'center'} display={'flex'} alignItems={'center'}>
+                                <CloseRounded color={'error'}/> {t('helpNew.ko')}
+                            </Typography>
+                        </Box>
+                    </Box>
                 </li>
-            </ol>
+            </Box>
         </section>
     )
 }
 
+const Image = styled('img')`
+  width: 100%;
+  height: auto;
+    image-rendering: pixelated;
+`
 
 const VideoCapture2 = () => {
     const { t } = useTranslation('seed48');
