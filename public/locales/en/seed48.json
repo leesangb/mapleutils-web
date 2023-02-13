@@ -16,7 +16,9 @@
     "1": "Set MapleStory client to windowed mode",
     "2": "Make minimap icon appear",
     "3": "Click 'Capture screen' - Select MapleStory in 'Application Window' then click 'Share'",
-    "4": "Adjust position and ratio like this if needed"
+    "4": "Adjust position and ratio like this if needed",
+    "ok": "good 👍",
+    "ko": "Minimap's white border need to be fully covered"
   },
   "capture": {
     "start": "Capture screen",
