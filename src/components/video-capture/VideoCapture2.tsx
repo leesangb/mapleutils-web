@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Box, Chip, styled, Typography } from '@mui/material';
+import { Badge, Box, Chip, styled, Typography } from '@mui/material';
 import {
     AutoAwesomeRounded,
     CheckBoxOutlineBlankOutlined,
@@ -168,10 +168,13 @@ const VideoCapture2 = () => {
                                 <Chip icon={settings.showJump ? <CheckBoxRounded /> : <CheckBoxOutlineBlankOutlined />}
                                       onClick={settings.toggleJump}
                                       label={t('capture.showJump')}
+                                      sx={{ marginRight: 1 }}
                                 />
-                                <Chip icon={<AutoAwesomeRounded/>}
-                                      onClick={matchTemplate}
-                                      label={t('capture.autoFix')}/>
+                                <Badge badgeContent={'beta'} color={'primary'}>
+                                    <Chip icon={<AutoAwesomeRounded/>}
+                                          onClick={matchTemplate}
+                                          label={t('capture.autoFix')}/>
+                                </Badge>
                             </Box>
                         ) : <Chip icon={<FiberManualRecordRounded />} onClick={captureStream} label={t('capture.start')}/>
                 }
