@@ -5,5 +5,7 @@
     "description": "Tower of Oz 36F"
   },
   "title": "Tower of Oz Floor 36",
-  "step": "Step {{step}}"
+  "step": "Step {{step}}",
+  "vertical": "Vertical",
+  "horizontal": "Horizontal"
 }
