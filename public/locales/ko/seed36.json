@@ -5,5 +5,7 @@
     "description": "더 시드 36층 메모지"
   },
   "title": "시드 36층",
-  "step": "{{step}} 단계"
+  "step": "{{step}} 단계",
+  "vertical": "세로",
+  "horizontal": "가로"
 }
