@@ -4,6 +4,7 @@ import { CSSProperties, useEffect } from 'react';
 import { Box, styled } from '@mui/system';
 import { isProduction } from '@tools/helper';
 import useWindowDimensions from '@hooks/useWindowDimensions';
+import { useIsMounted } from '@hooks/useIsMounted';
 
 export enum AdSenseSlot {
     NavigationBottom = '1801603735',
@@ -37,6 +38,7 @@ const AdSense = ({ slot, format, responsive, containerStyle, width, height, fixe
     const dimensions = isNaN(width) || isNaN(height) ? undefined : { width: `${width}px`, height: `${height}px` };
     const router = useRouter();
     const { width: windowWidth } = useWindowDimensions();
+    const isMounted = useIsMounted();
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -48,7 +50,7 @@ const AdSense = ({ slot, format, responsive, containerStyle, width, height, fixe
         }
     }, [router.pathname]);
 
-    return (
+    return isMounted && (
         <Box key={router.pathname} sx={theme => ({
             margin: theme.breakpoints.down('lg') ? theme.spacing(1) : theme.spacing(4),
             border: !isProduction ? 'solid 1px red' : undefined,
