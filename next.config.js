@@ -6,13 +6,16 @@ module.exports = {
     reactStrictMode: true,
     i18n,
     webpack5: true,
-    webpack: (config) => {
-        config.resolve.fallback = { fs: false, path: false, crypto: false };
-        config.plugins.push(
-            new webpack.ProvidePlugin({
-                process: 'process/browser',
-            }),
-        );
+    webpack: (config, { isServer }) => {
+        if (!isServer) {
+            // for opencv.js
+            config.resolve.fallback = { ...config.resolve.fallback, fs: false, path: false, crypto: false };
+            config.plugins.push(
+                new webpack.ProvidePlugin({
+                    process: 'process/browser',
+                }),
+            );
+        }
         return config;
     },
 };
