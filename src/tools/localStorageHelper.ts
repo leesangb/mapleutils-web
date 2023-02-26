@@ -32,6 +32,7 @@ export enum LocalStorageKey {
     BOOKMARKS = 'BOOKMARKS',
     SEED_49_BOOKMARKS = 'SEED_49_BOOKMARKS',
     SEED_49_SHOW_FILTER = 'SEED_49_SHOW_FILTER',
+    SEED_36 = 'SEED_36',
 }
 
 const parsePreference = (): Preference => {
@@ -190,6 +191,9 @@ const parsers: Partial<Record<LocalStorageKey, () => any>> = {
     [LocalStorageKey.SEED_49_SHOW_FILTER]: parseSeed49ShowFilter,
 };
 
+/**
+ * @deprecated prefer using zustand persist
+ */
 export class LocalStorageHelper {
     static save(key: LocalStorageKey, value: any) {
         localStorage.setItem(key, JSON.stringify(value));
