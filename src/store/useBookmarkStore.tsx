@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import { LocalStorageHelper, LocalStorageKey } from '@tools/localStorageHelper';
 
 interface BookmarkState {
