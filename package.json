@@ -30,7 +30,7 @@
     "react-syntax-highlighter": "^15.4.5",
     "react-window": "^1.8.6",
     "sharp": "^0.29.3",
-    "zustand": "^4.0.0-rc.1"
+    "zustand": "^4.3.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
