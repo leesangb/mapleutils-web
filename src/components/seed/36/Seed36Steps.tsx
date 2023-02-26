@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { styled } from '@mui/system';
 import NextImage from 'next/image';
 import { AlignHorizontalLeftRounded, AlignVerticalTopRounded, ReplayRounded } from '@mui/icons-material';
+import { useSeed36Store } from '@store/useSeed36Store';
 
 type Step = 0 | 1 | 2 | 3 | undefined;
 type Steps = [Step, Step, Step, Step, Step, Step, Step, Step]
@@ -25,7 +26,7 @@ const Seed36Steps = () => {
         setSteps(steps => steps.map((s, i) => i === index ? step : s) as Steps);
     };
 
-    const [alignment, setAlignment] = useState<string>('vertical');
+    const { setAlignment, alignment } = useSeed36Store();
     const isVertical = alignment === 'vertical';
 
     const handleAlignment = (
@@ -35,7 +36,7 @@ const Seed36Steps = () => {
         if (!newAlignment) {
             return;
         }
-        setAlignment(newAlignment);
+        setAlignment(newAlignment as 'vertical' | 'horizontal');
     };
 
     return (
