@@ -9,9 +9,9 @@ const fixDateAndSort = (comments: Comment[]): Comment[] => {
             reactions: decodeURI(reactions.toString()).split(',').filter(Boolean),
             creationDate: new Date(c.creationDate),
             modificationDate: new Date(c.modificationDate),
-            children: c.children.map((ch) => ({
+            children: c.children.map(({ reactions: chReactions, ...ch }) => ({
                 ...ch,
-                reactions: decodeURI(reactions.toString()).split(',').filter(Boolean),
+                reactions: decodeURI(chReactions.toString()).split(',').filter(Boolean),
                 creationDate: new Date(ch.creationDate),
                 modificationDate: new Date(ch.modificationDate),
             })),
