@@ -6,9 +6,11 @@ import CommentEditField from './CommentEditField';
 import CommentPostField from './CommentPostField';
 import { CommentActions } from '@components/comments/useComment';
 import CommentHeader from '@components/comments/CommentHeader';
-import { Avatar, Divider, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
+import { Avatar, Divider, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
 import CommentBody from '@components/comments/CommentBody';
 import { Box } from '@mui/system';
+import { ClearOutlined } from '@mui/icons-material';
+import { useTranslation } from 'next-i18next';
 
 interface ChildCommentItemProps {
     comment: ChildComment;
@@ -18,6 +20,7 @@ interface ChildCommentItemProps {
 }
 
 const ChildCommentItem = (props: ChildCommentItemProps) => {
+    const { t } = useTranslation();
     const { comment, pageKey, actions, parentId } = props;
 
     const [openReply, setOpenReply] = useState<boolean>(false);
@@ -38,9 +41,17 @@ const ChildCommentItem = (props: ChildCommentItemProps) => {
     return (
         <>
             {comment.isDeleted ? (
-                <Typography color='textSecondary'>
-                    삭제된 댓글입니다.
-                </Typography>
+                <ListItem sx={theme => ({ paddingLeft: theme.spacing(6), paddingBottom: 1 })}
+                          alignItems={'center'} disableGutters>
+                    <ListItemAvatar>
+                        <Avatar>
+                            <ClearOutlined />
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText>
+                        {t('comment.deletedComment')}
+                    </ListItemText>
+                </ListItem>
             ) : (
                 <>
                     <ListItem sx={theme => ({ paddingLeft: theme.spacing(6), paddingBottom: 0 })}
@@ -95,9 +106,9 @@ const ChildCommentItem = (props: ChildCommentItemProps) => {
                     )}
                     {openDelete && <CommentDeleteField nested id={comment.id} onDeleteComment={actions.delete} />}
 
-                    <Divider sx={theme => ({ marginLeft: theme.spacing(6) })} />
                 </>
             )}
+            <Divider sx={theme => ({ marginLeft: theme.spacing(6) })} />
         </>
     );
 };
