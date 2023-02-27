@@ -50,11 +50,12 @@ export const useComment = (page: string) => {
         fetch(`${API_URL}/Comments/${page}`)
             .then((response) => {
                 if (!response.ok) {
-                    setHasError(true);
+                    throw new Error(response.statusText);
                 }
                 return response.json();
             })
             .catch((err) => {
+                setHasError(true);
                 console.error(err);
             })
             .then((c: Comment[]) => setComments(fixDateAndSort(c).filter(c => !c.isDeleted || c.children.length)))

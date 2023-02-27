@@ -21,7 +21,7 @@ const Comments = ({ title = 'comment.title', pageKey: pk, defaultOpen }: Comment
 
     const toggleOpen = () => setOpenComments(!openComments);
 
-    return isLoading || hasError ? null : (
+    return (isLoading || hasError) ? null : (
         <Card variant={'outlined'} sx={theme => ({ marginTop: theme.spacing(1) })}>
             <Box padding={theme => theme.spacing(1)}>
                 <ListItem component='div' button onClick={toggleOpen}>
@@ -58,5 +58,3 @@ Comments.defaultProps = {
 };
 
 export default Comments;
-
-
