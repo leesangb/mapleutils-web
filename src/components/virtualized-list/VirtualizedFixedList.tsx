@@ -1,9 +1,10 @@
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import { ChangeEvent, memo, ReactNode, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, memo, ReactNode, useMemo, useState } from 'react';
 import { List, ListItem, Typography } from '@mui/material';
 import { SearchBar } from '@components/input';
 import { Box } from '@mui/system';
 import { useTranslation } from 'next-i18next';
+import { useIsMounted } from '@hooks/useIsMounted';
 
 interface VirtualizedFixedListItemProps<T> extends ListChildComponentProps<{ items: T[] }> {
     rowRenderer: (item: T, index: number) => ReactNode;
@@ -36,7 +37,8 @@ const VirtualizedFixedList = <T, >(props: VirtualizedFixedListProps<T>) => {
     const { t } = useTranslation();
     const { width, height, items, rowSize, rowRenderer, divider, placeholder, searchFilter } = props;
     const [search, setSearch] = useState<string>('');
-    const [isSsr, setIsSsr] = useState<boolean>(true);
+    const isMounted = useIsMounted();
+    const isSsr = !isMounted;
     const itemData: { items: T[] } = useMemo(
         () => ({
             items: searchFilter
@@ -49,10 +51,6 @@ const VirtualizedFixedList = <T, >(props: VirtualizedFixedListProps<T>) => {
     };
 
     const handleClear = () => setSearch('');
-
-    useEffect(() => {
-        setIsSsr(false);
-    }, []);
 
     return (
         <>
