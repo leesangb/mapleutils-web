@@ -50,7 +50,7 @@ const AdSense = ({ slot, format, responsive, containerStyle, width, height, fixe
         }
     }, [router.pathname]);
 
-    return isMounted && (
+    return isMounted ? (
         <Box key={router.pathname} sx={theme => ({
             margin: theme.breakpoints.down('lg') ? theme.spacing(1) : theme.spacing(4),
             border: !isProduction ? 'solid 1px red' : undefined,
@@ -70,7 +70,7 @@ const AdSense = ({ slot, format, responsive, containerStyle, width, height, fixe
                  data-adtest={isProduction ? 'off' : 'on'}
                  data-full-width-responsive={responsive} />
         </Box>
-    );
+    ) : null;
 };
 
 AdSense.defaultProps = {
