@@ -1,10 +1,11 @@
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import { ChangeEvent, memo, ReactNode, useMemo, useState } from 'react';
-import { List, ListItem, Typography } from '@mui/material';
+import { ChangeEvent, memo, MouseEvent, ReactNode, useMemo, useState } from 'react';
+import { IconButton, List, ListItem, Popover, Tooltip, Typography } from '@mui/material';
 import { SearchBar } from '@components/input';
 import { Box } from '@mui/system';
 import { useTranslation } from 'next-i18next';
 import { useIsMounted } from '@hooks/useIsMounted';
+import { SettingsRounded } from '@mui/icons-material';
 
 interface VirtualizedFixedListItemProps<T> extends ListChildComponentProps<{ items: T[] }> {
     rowRenderer: (item: T, index: number) => ReactNode;
@@ -31,11 +32,12 @@ interface VirtualizedFixedListProps<T> {
     rowRenderer: (item: T, index: number) => ReactNode;
     placeholder?: string;
     searchFilter?: (item: T, term: string) => boolean;
+    optionMenu?: ReactNode;
 }
 
 const VirtualizedFixedList = <T, >(props: VirtualizedFixedListProps<T>) => {
     const { t } = useTranslation();
-    const { width, height, items, rowSize, rowRenderer, divider, placeholder, searchFilter } = props;
+    const { width, height, items, rowSize, rowRenderer, divider, placeholder, searchFilter, optionMenu } = props;
     const [search, setSearch] = useState<string>('');
     const isMounted = useIsMounted();
     const isSsr = !isMounted;
@@ -44,7 +46,7 @@ const VirtualizedFixedList = <T, >(props: VirtualizedFixedListProps<T>) => {
             items: searchFilter
                 ? items.filter((value) => searchFilter(value, search))
                 : items,
-        }), [search]);
+        }), [search, searchFilter]);
 
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
@@ -52,14 +54,55 @@ const VirtualizedFixedList = <T, >(props: VirtualizedFixedListProps<T>) => {
 
     const handleClear = () => setSearch('');
 
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <>
             {
                 !!searchFilter && (
-                    <SearchBar placeholder={placeholder}
-                               value={search}
-                               onChange={handleSearch}
-                               onClear={handleClear} />
+                    <Box display={'flex'}>
+                        <SearchBar placeholder={placeholder}
+                                   value={search}
+                                   onChange={handleSearch}
+                                   onClear={handleClear} />
+                        <>
+                            {optionMenu && <>
+                                <Tooltip title={t('settings')}>
+                                    <IconButton
+                                        onClick={handleClick}
+                                        size='small'
+                                        sx={{ ml: 2 }}>
+                                        <SettingsRounded />
+                                    </IconButton>
+                                </Tooltip>
+                                <Popover
+                                    PaperProps={{ variant: 'outlined', elevation: 0, sx: { padding: 1 } }}
+                                    open={open}
+                                    anchorEl={anchorEl}
+                                    onClose={handleClose}
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'right',
+                                    }}
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}>
+                                    {optionMenu}
+                                </Popover>
+                            </>}
+
+                        </>
+                    </Box>
+
+
                 )
             }
             {

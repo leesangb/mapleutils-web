@@ -5,5 +5,8 @@
     "description": "더 시드 39층 문제 풀이, 족보"
   },
   "title": "시드 39층",
-  "searchPlaceholder": "문제 또는 답 검색 (예: 골드비치, ㄱㄷㅂㅊ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱, 초성 검색 ✅"
+  "searchPlaceholder": "문제 또는 답 검색 (예: 골드비치, ㄱㄷㅂㅊ, ...) [Ctrl] + [F] 또는 [F3]으로 포커싱, 초성 검색 ✅",
+  "searchFilter": "검색 필터",
+  "question": "문제",
+  "all": "전체"
 }

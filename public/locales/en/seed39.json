@@ -5,5 +5,8 @@
     "description": "Tower of Oz 39F Questions & Answers"
   },
   "title": "Tower of Oz Floor 39",
-  "searchPlaceholder": "Type question or choice (ex: Maple, story, ...) You can press [Ctrl] + [F] or [F3] to focus search field, case insensitive ✅"
+  "searchPlaceholder": "Type question or choice (ex: Maple, story, ...) You can press [Ctrl] + [F] or [F3] to focus search field, case insensitive ✅",
+  "searchFilter": "Search Filter",
+  "question": "Question",
+  "all": "All"
 }

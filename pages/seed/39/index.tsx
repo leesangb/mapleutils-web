@@ -1,4 +1,15 @@
-import { Button, Card, CardContent, useMediaQuery } from '@mui/material';
+import {
+    Button,
+    Card,
+    CardContent,
+    Checkbox,
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Typography,
+    useMediaQuery,
+} from '@mui/material';
 import { useTheme } from '@mui/system';
 import { useCallback } from 'react';
 import useWindowDimensions from '@hooks/useWindowDimensions';
@@ -14,6 +25,7 @@ import { QuestionAnswerItem } from '@components/seed/39';
 import { Locales } from '@tools/locales';
 import NextLink from 'next/link';
 import { Comments } from '@components/comments';
+import { useSeed39Store } from '@store/useSeed39Store';
 
 interface Seed39Props {
     data: QuestionAnswer[];
@@ -31,6 +43,7 @@ const Seed39 = (props: Seed39Props) => {
     const theme = useTheme();
     const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
     const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+    const { filter, setFilter } = useSeed39Store(state => state);
 
     const rowRenderer = useCallback(
         (item: QuestionAnswer) => <QuestionAnswerItem {...item} />,
@@ -38,10 +51,11 @@ const Seed39 = (props: Seed39Props) => {
     );
 
     const searchFilter = useCallback((item: QuestionAnswer, pattern: string) => {
+        const choices = [item.question, ...item.choices].filter((_, i) => filter[i]);
         return i18n.resolvedLanguage === Locales.Korean
-            ? isHangulMatching(pattern, item.question, ...item.choices)
-            : isMatching(pattern, item.question, ...item.choices);
-    }, [i18n.resolvedLanguage]);
+            ? isHangulMatching(pattern, ...choices)
+            : isMatching(pattern, ...choices);
+    }, [i18n.resolvedLanguage, ...filter]);
 
     return (
         <>
@@ -69,7 +83,37 @@ const Seed39 = (props: Seed39Props) => {
                                           divider
                                           searchFilter={searchFilter}
                                           placeholder={t('searchPlaceholder', { ns: 'seed39' })}
-                                          rowRenderer={rowRenderer} />
+                                          rowRenderer={rowRenderer}
+                                          optionMenu={
+                                              <>
+                                                  <Typography
+                                                      padding={0.5}>{t('searchFilter', { ns: 'seed39' })}</Typography>
+                                                  <List dense sx={{ minWidth: '120px' }}>
+                                                      <ListItemButton sx={{ padding: 0 }}
+                                                                      onClick={() => setFilter(!filter.every(v => v), 0, 1, 2, 3, 4)}>
+                                                          <ListItemIcon>
+                                                              <Checkbox checked={filter.every(value => value)}
+                                                                        indeterminate={filter.some(value => value) && !filter.every(value => value)}
+                                                              />
+                                                          </ListItemIcon>
+                                                          <ListItemText>
+                                                              {t('all', { ns: 'seed39' })}
+                                                          </ListItemText>
+                                                      </ListItemButton>
+                                                      {filter.slice(0).map((value, index) =>
+                                                          <ListItemButton key={index} sx={{ padding: 0 }}
+                                                                          onClick={() => setFilter(!value, index as 0 | 1 | 2 | 3 | 4)}>
+                                                              <ListItemIcon>
+                                                                  <Checkbox checked={value} />
+                                                              </ListItemIcon>
+                                                              <ListItemText>
+                                                                  {index === 0 ? t('question', { ns: 'seed39' }) : `${index}`}
+                                                              </ListItemText>
+                                                          </ListItemButton>,
+                                                      )}
+                                                  </List>
+                                              </>
+                                          } />
                 </CardContent>
             </Card>
             <Comments pageKey={'seed39'} />
