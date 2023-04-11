@@ -14,7 +14,7 @@ import { useTheme } from '@mui/system';
 import { useCallback } from 'react';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
-import { QuestionAnswer, seed39Data, seed39DataGMS } from '@data/seed/39';
+import { QuestionAnswer, seed39Data, seed39DataGMS, seed39DataTMS } from '@data/seed/39';
 import { isHangulMatching, isMatching } from '@tools/string';
 import { Seo } from '@components/seo';
 import { I18nTitleCard } from '@components/card';
@@ -30,6 +30,16 @@ import { useSeed39Store } from '@store/useSeed39Store';
 interface Seed39Props {
     data: QuestionAnswer[];
 }
+
+interface LocalesData39Mapping {
+    [key: string]: TrackInfo[];
+}
+
+const data39Mapping: LocalesData39Mapping = {
+    [Locales.Korean]: seed39Data.sort((a, b) => a.question.localeCompare(b.question)),
+    [Locales.English]: seed39DataGMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)),
+    [Locales.TraditionalChinese]: seed39DataTMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)),
+};
 
 const SCREEN_HEIGHT_OFFSET = 330; // magic number ?
 const SMALL_SCREEN_ROW_SIZE = 280;
@@ -125,9 +135,7 @@ const Seed39 = (props: Seed39Props) => {
 export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
-            data: locale === Locales.Korean
-                ? seed39Data.sort((a, b) => a.question.localeCompare(b.question))
-                : seed39DataGMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)),
+            data: data39Mapping[locale],
             ...(await serverSideTranslations(locale, ['common', 'seed39'])),
         },
     };
