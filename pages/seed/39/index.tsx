@@ -32,13 +32,13 @@ interface Seed39Props {
 }
 
 interface LocalesData39Mapping {
-    [key: string]: TrackInfo[];
+    [key: string]: QuestionAnswer[];
 }
 
 const data39Mapping: LocalesData39Mapping = {
-    [Locales.Korean]: seed39Data.sort((a, b) => a.question.localeCompare(b.question)),
-    [Locales.English]: seed39DataGMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)),
-    [Locales.TraditionalChinese]: seed39DataTMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)),
+    [Locales.Korean]: seed39Data.sort((a, b) => a.question.localeCompare(b.question)) as QuestionAnswer[],
+    [Locales.English]: seed39DataGMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)) as QuestionAnswer[],
+    [Locales.TraditionalChinese]: seed39DataTMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)) as QuestionAnswer[]
 };
 
 const SCREEN_HEIGHT_OFFSET = 330; // magic number ?
