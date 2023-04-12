@@ -82,20 +82,23 @@ const SettingsButton = (props: SettingsButtonProps) => {
                             <ListItemIcon>{theme.icon}</ListItemIcon>
                             <ListItemText>{t(theme.label)}</ListItemText>
                         </ListItem>
-                        {
-                            router.locale === Locales.Korean
-                                ? (
-                                    <ListItem component={Link} href={router.route} locale={Locales.English} button>
-                                        <ListItemIcon><TranslateRounded /></ListItemIcon>
-                                        <ListItemText>English / GMS</ListItemText>
-                                    </ListItem>
-                                ) : (
-                                    <ListItem component={Link} href={router.route} locale={Locales.Korean} button>
-                                        <ListItemIcon><TranslateRounded /></ListItemIcon>
-                                        <ListItemText>한국어 / KMS</ListItemText>
-                                    </ListItem>
-                                )
-                        }
+                        {[Locales.Korean, Locales.English, Locales.TraditionalChinese]
+                            .filter((locale) => locale !== router.locale)
+                            .map((locale) => (
+                                <ListItem
+                                    key={locale}
+                                    component={Link}
+                                    href={router.route}
+                                    locale={locale}
+                                    button
+                                >
+                                    <ListItemIcon><TranslateRounded /></ListItemIcon>
+                                    <ListItemText>
+                                        {locale === Locales.Korean ? '한국어 / KMS' : locale === Locales.English ? 'English / GMS' : '繁體中文 / TMS'}
+                                    </ListItemText>
+                                </ListItem>
+                            ))}
+
                     </List>
                 </CardContent>
             </Popover>
