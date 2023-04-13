@@ -23,7 +23,7 @@ import { TabContext, TabPanel } from '@mui/lab';
 import useCopy from '@hooks/useCopy';
 import { useTranslation } from 'next-i18next';
 import { TOptions } from 'i18next';
-import { seed24AudioData, seed24AudioDataGMS } from '@data/seed/24';
+import { seed24AudioData, seed24AudioDataGMS, seed24AudioDataTMS } from '@data/seed/24';
 import VirtualizedFixedList from '@components/virtualized-list/VirtualizedFixedList';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
@@ -41,6 +41,16 @@ const seed24Translation: TOptions = { ns: 'seed24' };
 interface Seed24Props {
     data: TrackInfo[];
 }
+
+interface LocalesAudioDataMapping {
+    [key: string]: TrackInfo[];
+}
+
+const audioDataMapping: LocalesAudioDataMapping = {
+    [Locales.Korean]: seed24AudioData,
+    [Locales.English]: seed24AudioDataGMS,
+    [Locales.TraditionalChinese]: seed24AudioDataTMS,
+};
 
 const Seed24 = ({ data }: Seed24Props) => {
     const { height } = useWindowDimensions();
@@ -137,9 +147,7 @@ const Seed24 = ({ data }: Seed24Props) => {
 export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
-            data: locale === Locales.Korean
-                ? seed24AudioData
-                : seed24AudioDataGMS,
+            data: audioDataMapping[locale],
             ...(await serverSideTranslations(locale, ['common', 'seed24'])),
         },
     };

@@ -1,0 +1,22 @@
+{
+  "seo": {
+    "title": "種子點數計算機",
+    "keywords": "The Seed, 點數, 計算機",
+    "description": "種子點數計算機"
+  },
+  "title": "種子點數計算機",
+  "floorPoints": "樓層點數",
+  "floorPointsAccumulated": "累積樓層點數",
+  "floor": "{{floor}}樓",
+  "level": "lv.{{level}}",
+  "none": "無",
+  "howManyRuns": "需要爬幾次？",
+  "targetPoint": "目標種子點數",
+  "currentPoint": "現在的種子點數",
+  "pointLeft": "剩餘種子點數",
+  "towerEnhanceRing": "塔增強戒指",
+  "atMost": "最多",
+  "run": "次",
+  "howManyPoints": "可以獲得多少點數",
+  "runCount": "爬幾次"
+}

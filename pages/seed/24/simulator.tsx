@@ -1,5 +1,5 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { seed24AudioData, seed24AudioDataGMS } from '@data/seed/24';
+import { seed24AudioData, seed24AudioDataGMS, seed24AudioDataTMS } from '@data/seed/24';
 import { TrackInfo } from '@components/seed/24/music-player';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
 import { Seo } from '@components/seo';
@@ -13,6 +13,16 @@ import { Comments } from '@components/comments';
 interface Seed24SimulatorPageProps {
     data: TrackInfo[];
 }
+
+interface LocalesAudioDataMapping {
+    [key: string]: TrackInfo[];
+}
+
+const audioDataMapping: LocalesAudioDataMapping = {
+    [Locales.Korean]: seed24AudioData,
+    [Locales.English]: seed24AudioDataGMS,
+    [Locales.TraditionalChinese]: seed24AudioDataTMS,
+};
 
 const Seed24SimulatorPage = ({ data }: Seed24SimulatorPageProps) => {
     const seoProps = useI18nSeoProps('seed24simulator');
@@ -38,9 +48,7 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
             ...(await serverSideTranslations(locale, ['common', 'seed24', 'seed24simulator'])),
-            data: locale === Locales.Korean
-                ? seed24AudioData
-                : seed24AudioDataGMS,
+            data: audioDataMapping[locale]
         },
     };
 };

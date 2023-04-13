@@ -1,5 +1,5 @@
 import { Locales } from '@tools/locales';
-import { QuestionAnswer, seed39Data, seed39DataGMS } from '@data/seed/39';
+import { QuestionAnswer, seed39Data, seed39DataGMS, seed39DataTMS } from '@data/seed/39';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import QuestionAnswerSimulator from '@components/seed/39/QuestionAnswerSimulator';
 import useI18nSeoProps from '@components/seo/useI18nSeoProps';
@@ -12,6 +12,15 @@ interface Seed39SimulatorPageProps {
     data: QuestionAnswer[];
 }
 
+interface LocalesData39Mapping {
+    [key: string]: QuestionAnswer[];
+}
+
+const data39Mapping: LocalesData39Mapping = {
+    [Locales.Korean]: seed39Data.sort((a, b) => a.question.localeCompare(b.question)) as QuestionAnswer[],
+    [Locales.English]: seed39DataGMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)) as QuestionAnswer[],
+    [Locales.TraditionalChinese]: seed39DataTMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)) as QuestionAnswer[]
+};
 
 const Seed39SimulatorPage = ({ data }: Seed39SimulatorPageProps) => {
     const seoProps = useI18nSeoProps('seed39simulator');
@@ -31,9 +40,7 @@ const Seed39SimulatorPage = ({ data }: Seed39SimulatorPageProps) => {
 export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
-            data: locale === Locales.Korean
-                ? seed39Data.sort((a, b) => a.question.localeCompare(b.question))
-                : seed39DataGMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)),
+            data: data39Mapping[locale],
             ...(await serverSideTranslations(locale, ['common', 'seed39simulator'])),
         },
     };

@@ -1,4 +1,5 @@
 export enum Locales {
     Korean = 'ko',
-    English = 'en'
+    English = 'en',
+    TraditionalChinese = 'zh_tw',
 }

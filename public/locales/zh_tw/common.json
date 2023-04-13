@@ -1,0 +1,135 @@
+{
+  "welcome": "歡迎",
+  "discord": "Discord",
+  "reset": "重設",
+  "clickToCopy": "點擊複製",
+  "copyItem": "複製 <{{text}}>",
+  "silhouette": "剪影",
+  "filters": "過濾器",
+  "comments": "評論",
+  "selectAll": "全選",
+  "invert": "反選",
+  "home": "首頁",
+  "darkMode": "深色模式",
+  "lightMode": "淺色模式",
+  "comment": {
+    "title": "留言",
+    "comment": "評論",
+    "editComment": "編輯評論",
+    "feedbacks": "回饋意見",
+    "nickname": "暱稱",
+    "password": "密碼",
+    "passwordHelp": "密碼幫助",
+    "commentPlaceholder": "輸入評論...",
+    "letters": "字",
+    "repliedTo": "回復{{name}}",
+    "deletedComment": "該評論已被刪除。",
+    "passwordIncorrect": "密碼錯誤。",
+    "reply": "回復",
+    "edit": "編輯",
+    "delete": "刪除",
+    "deleteComment": "刪除評論"
+  },
+  "online": "線上",
+  "settings": "設定",
+  "correctAnswerRate": "正確答案率",
+  "pageNotFound": "找不到頁面 😥",
+  "noResultsFound": "找不到結果... 😥",
+  "goToSeed24Simulator": "前往The Seed 24樓 模擬器",
+  "goToSeed39Simulator": "前往The Seed 39樓 模擬器",
+  "goToSeed49Simulator": "前往The Seed 49樓 模擬器",
+  "drawer": {
+    "seedSimulator": {
+      "longName": "The Seed模擬器",
+      "shortName": "模擬",
+      "24": {
+        "title": "The Seed 24樓",
+        "shortDescription": "模擬器"
+      },
+      "39": {
+        "title": "The Seed 39樓",
+        "shortDescription": "模擬器"
+      },
+      "49": {
+        "title": "The Seed 49樓",
+        "shortDescription": "模擬器"
+      },
+      "pointCalculator": {
+        "title": "種子點數計算機"
+      }
+    },
+    "seed": {
+      "longName": "The Seed 海底之塔",
+      "shortName": "Seed",
+      "22": {
+        "title": "The Seed 22樓",
+        "shortDescription": "雲朵平台"
+      },
+      "23": {
+        "title": "The Seed 23樓",
+        "shortDescription": "隱形平台"
+      },
+      "24": {
+        "title": "The Seed 24樓",
+        "shortDescription": "配樂"
+      },
+      "36": {
+        "title": "The Seed 36樓",
+        "shortDescription": "記住怪物"
+      },
+      "39": {
+        "title": "The Seed 39樓",
+        "shortDescription": "問答"
+      },
+      "42": {
+        "title": "The Seed 42樓",
+        "shortDescription": "平台指南"
+      },
+      "47": {
+        "title": "The Seed 47樓",
+        "shortDescription": "隱形平台"
+      },
+      "48": {
+        "title": "The Seed 48樓",
+        "shortDescription": "小地圖覆蓋"
+      },
+      "49": {
+        "title": "The Seed 49樓",
+        "shortDescription": "怪物剪影指南"
+      }
+    },
+    "farm": {
+      "longName": "怪物農場(TMS 未實裝)",
+      "shortName": "農場",
+      "combine": {
+        "longName": "合成公式",
+        "shortName": "合成"
+      },
+      "info": {
+        "longName": "怪物列表",
+        "shortName": "列表"
+      }
+    }
+  },
+  "default": "預設",
+  "nameAsc": "按字母順序",
+  "nameDesc": "按字母順序 (降序)",
+  "sort": "排序",
+  "copyMessage": "<{{text}}> 已複製到剪貼簿!",
+  "more": "更多",
+  "autoClipOnPlay": "播放時自動複製",
+  "showCheck": "顯示勾選框",
+  "copy": "複製",
+  "play": "播放",
+  "pause": "暫停",
+  "stop": "停止",
+  "next": "下一首",
+  "start": "開始",
+  "restart": "重新開始",
+  "cancel": "取消",
+  "spaceToPausePlay": "空白鍵暫停/播放",
+  "upDownVolume": "↑/↓ 調高/降低音量",
+  "seek": "←/→ 快退/快進",
+  "maxVolume": "最大音量",
+  "minVolume": "最小音量"
+}
