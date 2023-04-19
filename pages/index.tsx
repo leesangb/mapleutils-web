@@ -67,6 +67,10 @@ const English = () => {
                         <Typography variant={'h5'} component={'p'}>
                             Special thanks to <i>Billy | 2DBF</i> (GMS) for English translations
                         </Typography>
+                        <Typography variant={'h5'} component={'p'}>
+                            Special thanks to <i><a href={'https://github.com/takidog'}>takidog</a> | 多脂狗狗</i> (TMS)
+                            for Traditional Chinese translations
+                        </Typography>
                     </Grid>
                 </Grid>
             </Grid>
@@ -170,6 +174,10 @@ const Korean = () => {
             </Grid>
         </>
     );
+};
+
+const TraditionalChinese = () => {
+
 };
 
 const Home: NextPage = () => {
