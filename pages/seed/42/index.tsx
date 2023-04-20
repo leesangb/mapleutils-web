@@ -18,8 +18,8 @@ import {
 } from '@mui/material';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Comments } from '@components/comments';
-import { useState } from 'react';
 import NextImage from 'next/image';
+import { useSeed42Store } from '@store/useSeed42Store';
 
 interface Seed42Props {
 }
@@ -34,8 +34,7 @@ const LayerImage = styled('img')`
 const Seed42 = ({}: Seed42Props) => {
     const { t } = useTranslation('seed42');
     const seoProps = useI18nSeoProps('seed42');
-    const [opacity, setOpacity] = useState<number>(50);
-    const [route, setRoute] = useState<string>('none');
+    const { route, setRoute, opacity, setOpacity } = useSeed42Store(state => state);
     return (
         <>
             <Seo {...seoProps} image={'/images/42.png'} />
@@ -78,7 +77,7 @@ const Seed42 = ({}: Seed42Props) => {
                                 <FormLabel id='route-radio'>{t('path')}</FormLabel>
                                 <RadioGroup row aria-labelledby='route-radio' name='route-radio-group'
                                             value={route}
-                                            onChange={e => setRoute((e.target as HTMLInputElement).value)}>
+                                            onChange={e => setRoute((e.target as HTMLInputElement).value as typeof route)}>
                                     <FormControlLabel value='none' control={<Radio />} label={t('none')} />
                                     <FormControlLabel value='route1' control={<Radio />} label={t('path1')} />
                                     <FormControlLabel value='route2' control={<Radio />} label={t('path2')} />
