@@ -35,6 +35,7 @@ export enum LocalStorageKey {
     SEED_36 = 'SEED_36',
     SEED_39 = 'SEED_39',
     SEED_42 = 'SEED_42',
+    SEED_22 = 'SEED_22',
 }
 
 const parsePreference = (): Preference => {

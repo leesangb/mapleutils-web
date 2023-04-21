@@ -22,8 +22,8 @@ import {
 import NextImage from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Comments } from '@components/comments';
-import { useState } from 'react';
 import { ArrowForwardIosSharp } from '@mui/icons-material';
+import { useSeed22Store } from '@store/useSeed22Store';
 
 const LayerImage = styled('img')`
   position: absolute;
@@ -51,7 +51,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 const Seed22 = () => {
     const { t } = useTranslation('seed22');
     const seoProps = useI18nSeoProps('seed22');
-    const [route, setRoute] = useState<string>('none');
+    const { route, setRoute } = useSeed22Store();
 
     return (
         <>
@@ -119,7 +119,7 @@ const Seed22 = () => {
                                 <FormLabel id='route-radio'>{t('path')}</FormLabel>
                                 <RadioGroup row aria-labelledby='route-radio' name='route-radio-group'
                                             value={route}
-                                            onChange={e => setRoute((e.target as HTMLInputElement).value)}>
+                                            onChange={e => setRoute((e.target as HTMLInputElement).value as typeof route)}>
                                     <FormControlLabel value='none' control={<Radio />} label={t('none')} />
                                     <FormControlLabel value='beginner' control={<Radio />} label={t('beginner')} />
                                     <FormControlLabel value='expert' control={<Radio />} label={t('expert')} />
