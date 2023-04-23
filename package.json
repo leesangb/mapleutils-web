@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sitemap": "next-sitemap --config next-sitemap.config.js",
+    "sitemap": "next-sitemap --config legacy/next-sitemap.config.js",
     "test": "jest"
   },
   "dependencies": {
