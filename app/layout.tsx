@@ -3,7 +3,9 @@ import { ReactNode } from 'react';
 const RootLayout = ({ children }: { children: ReactNode }) => {
     return (
         <html lang='ko'>
-            <body>{children}</body>
+            <body>
+                {children}
+            </body>
         </html>
     );
 };

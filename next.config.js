@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withLinaria = require('next-with-linaria');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     experimental: {
@@ -5,4 +8,4 @@ const nextConfig = {
     },
 };
 
-module.exports = nextConfig;
+module.exports = withLinaria(nextConfig);
