@@ -27,7 +27,7 @@ const config: StorybookConfig = {
                         presets: [
                             '@babel/preset-env',
                             '@babel/preset-typescript',
-                            '@babel/preset-react',
+                            ['@babel/preset-react', { runtime: 'automatic' }],
                         ],
                     },
                 },
@@ -39,7 +39,7 @@ const config: StorybookConfig = {
                             presets: [
                                 '@babel/preset-env',
                                 '@babel/preset-typescript',
-                                '@babel/preset-react',
+                                ['@babel/preset-react', { runtime: 'automatic' }],
                                 '@linaria/babel-preset',
                             ],
                         },
