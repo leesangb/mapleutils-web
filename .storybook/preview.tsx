@@ -22,22 +22,21 @@ const preview: Preview = {
                 storybook.setAttribute('data-theme', context.globals.theme);
                 storybook.style.background = theme.background;
 
-
                 const docs = document.querySelector<HTMLDivElement>('#storybook-docs .sbdocs-wrapper');
                 if (docs) {
                     docs.style.color = theme.text.primary;
                     docs.style.background = theme.background;
 
-                    const tableHead = docs.querySelectorAll<HTMLElement>('table > thead > tr > th');
+                    const tableHead = docs.querySelectorAll<HTMLElement>('.sbdocs-wrapper > table > thead > tr > th');
                     tableHead.forEach(th => th.style.color = theme.text.primary);
 
-                    const h1 = docs.querySelectorAll<HTMLElement>('h1');
+                    const h1 = docs.querySelectorAll<HTMLElement>('.sbdocs-wrapper > h1');
                     h1.forEach(h => h.style.color = theme.text.primary);
 
-                    const h2 = docs.querySelectorAll<HTMLElement>('h2');
+                    const h2 = docs.querySelectorAll<HTMLElement>('.sbdocs-wrapper > h2');
                     h2.forEach(h => h.style.color = theme.text.secondary);
 
-                    const h3 = docs.querySelectorAll<HTMLElement>('h3');
+                    const h3 = docs.querySelectorAll<HTMLElement>('.sbdocs-wrapper > h3');
                     h3.forEach(h => h.style.color = theme.text.secondary);
 
                     const docsPreview = docs.querySelectorAll<HTMLElement>('.sbdocs-preview .docs-story');

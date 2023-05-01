@@ -1,4 +1,8 @@
-export interface ThemePalette {
+interface CommonTheme {
+    font: string;
+}
+
+interface ThemePalette {
     primary: string;
     secondary: string;
 
@@ -9,6 +13,7 @@ export interface ThemePalette {
 
     surface: string;
     background: string;
+    contour: string;
 
     text: {
         primary: string;
@@ -28,6 +33,7 @@ export const light: ThemePalette = {
 
     surface: '#fbfbfb',
     background: '#efefef',
+    contour: '#e0e0e0',
 
     text: {
         primary: 'rgba(0,0,0,0.87)',
@@ -47,6 +53,7 @@ export const dark: ThemePalette = {
 
     surface: '#262626',
     background: '#1d1d1d',
+    contour: '#2a2a2a',
 
     text: {
         primary: 'rgba(255,255,255,0.95)',
@@ -55,7 +62,13 @@ export const dark: ThemePalette = {
     },
 };
 
-export const theme: ThemePalette = (<T extends object>({
+const common: CommonTheme = {
+    font: ['Spoqa Han Sans Neo', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(','),
+};
+
+export type Theme = ThemePalette & CommonTheme;
+
+export const theme: Theme = (<T extends object>({
     obj,
     separator = '_',
     transformer = (v) => v.toString(),
@@ -79,4 +92,4 @@ export const theme: ThemePalette = (<T extends object>({
 
     assignFlatten(finalObj, '');
     return finalObj;
-})({ obj: light, transformer: (k) => `var(--${k})` });
+})({ obj: { ...common, ...light }, transformer: (k) => `var(--${k})` });

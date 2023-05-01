@@ -28,11 +28,13 @@ export const globals = css`
     html {
       background-color: ${theme.background};
       color: ${theme.text.primary};
+      font-family: ${theme.font};
     }
 
-    * {
+    html > * {
       background-color: inherit;
       color: inherit;
+      font-family: inherit;
     }
 
     [data-theme='dark'] {
