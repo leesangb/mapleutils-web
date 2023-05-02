@@ -11,7 +11,11 @@ interface ThemePalette {
     warning: string;
     info: string;
 
-    surface: string;
+    surface: {
+        default: string;
+        hover: string;
+        active: string;
+    };
     background: string;
     contour: string;
 
@@ -22,7 +26,7 @@ interface ThemePalette {
     };
 }
 
-export const light: ThemePalette = {
+const light: ThemePalette = {
     primary: '#919aff',
     secondary: '#fff691',
 
@@ -31,7 +35,11 @@ export const light: ThemePalette = {
     warning: '#ff9800',
     info: '#2196f3',
 
-    surface: '#fbfbfb',
+    surface: {
+        default: '#fbfbfb',
+        hover: 'rgba(224, 224, 224, 0.5)',
+        active: 'rgba(224, 224, 224, 0.85)',
+    },
     background: '#efefef',
     contour: '#e0e0e0',
 
@@ -42,7 +50,7 @@ export const light: ThemePalette = {
     },
 };
 
-export const dark: ThemePalette = {
+const dark: ThemePalette = {
     primary: '#919aff',
     secondary: '#fff691',
 
@@ -51,7 +59,11 @@ export const dark: ThemePalette = {
     warning: '#ff9800',
     info: '#2196f3',
 
-    surface: '#262626',
+    surface: {
+        default: '#262626',
+        hover: 'rgba(42, 42, 42, 0.5)',
+        active: 'rgba(42, 42, 42, 0.85)',
+    },
     background: '#1d1d1d',
     contour: '#2a2a2a',
 
@@ -63,7 +75,8 @@ export const dark: ThemePalette = {
 };
 
 const common: CommonTheme = {
-    font: ['Spoqa Han Sans Neo', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(','),
+    font: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+        'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'].join(','),
 };
 
 export type Theme = ThemePalette & CommonTheme;
@@ -93,3 +106,33 @@ export const theme: Theme = (<T extends object>({
     assignFlatten(finalObj, '');
     return finalObj;
 })({ obj: { ...common, ...light }, transformer: (k) => `var(--${k})` });
+
+const flattenObject = (obj: object, separator = '_'): Record<string, string> => {
+    const flatten: Record<string, string> = {};
+
+    const flattenRec = (obj: object, prefix: string) => {
+        Object.entries(obj).forEach(([k, v]) => {
+            const key = prefix
+                ? `${prefix}${separator}${k}`
+                : k;
+            if (typeof v === 'object') {
+                flattenRec(v, key);
+            }
+            if (typeof v === 'string' || typeof v === 'number') {
+                flatten[key] = v.toString();
+            }
+        });
+    };
+
+    flattenRec(obj, '');
+
+    return flatten;
+};
+
+const toCssVar = (obj: object) => {
+    return Object.entries(flattenObject(obj)).map(([k, v]) => `--${k}: ${v};`).join('\n');
+};
+
+export const darkThemeVar = toCssVar(dark);
+export const lightThemeVar = toCssVar(light);
+export const commonThemeVar = toCssVar(common);

@@ -1,48 +1,37 @@
 import { css } from '@linaria/core';
-import { dark, light, theme } from '@/ds/theme';
-
-const flattenObject = (obj: object, separator = '_'): Record<string, string> => {
-    const flatten: Record<string, string> = {};
-
-    const flattenRec = (obj: object, prefix: string) => {
-        Object.entries(obj).forEach(([k, v]) => {
-            const key = prefix
-                ? `${prefix}${separator}${k}`
-                : k;
-            if (typeof v === 'object') {
-                flattenRec(v, key);
-            }
-            if (typeof v === 'string' || typeof v === 'number') {
-                flatten[key] = v.toString();
-            }
-        });
-    };
-
-    flattenRec(obj, '');
-
-    return flatten;
-};
+import { commonThemeVar, darkThemeVar, lightThemeVar, theme } from '@/ds/theme';
+import { pretendardCss } from '@/ds/fonts';
 
 export const globals = css`
   :global() {
+    :root {
+      ${commonThemeVar};
+    }
+
     html {
       background-color: ${theme.background};
       color: ${theme.text.primary};
       font-family: ${theme.font};
     }
 
-    html > * {
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
       background-color: inherit;
       color: inherit;
       font-family: inherit;
     }
 
+    ${pretendardCss}
     [data-theme='dark'] {
-      ${Object.entries(flattenObject(dark)).map(([k, v]) => `--${k}: ${v};`).join('\n')}
+      ${darkThemeVar};
     }
 
     [data-theme='light'] {
-      ${Object.entries(flattenObject(light)).map(([k, v]) => `--${k}: ${v};`).join('\n')}
+      ${lightThemeVar};
     }
   }
 `;
