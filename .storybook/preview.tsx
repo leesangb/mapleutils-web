@@ -5,6 +5,7 @@ import { theme } from '@/ds/theme';
 // @ts-ignore
 import GlobalStyle from '@/ds/global.style';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
+import { ThemeProvider } from 'styled-components';
 
 const preview: Preview = {
     parameters: {
@@ -53,7 +54,9 @@ const preview: Preview = {
             }, [context.globals.theme]);
 
             return (
-                <Story />
+                <ThemeProvider theme={theme}>
+                    <Story />
+                </ThemeProvider>
             );
         },
     ],
