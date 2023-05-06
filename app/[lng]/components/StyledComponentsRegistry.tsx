@@ -20,13 +20,14 @@ export default function StyledComponentsRegistry({
         return <>{styles}</>;
     });
 
-    if (typeof window !== 'undefined') return <>{children}</>;
-
-    return (
-        <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
-            <ThemeProvider theme={theme}>
-                {children as React.ReactChild}
-            </ThemeProvider>
-        </StyleSheetManager>
-    );
+    return (typeof window !== 'undefined')
+        ? (
+            <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        ) : (
+            <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+                <ThemeProvider theme={theme}>
+                    {children as React.ReactChild}
+                </ThemeProvider>
+            </StyleSheetManager>
+        );
 }
