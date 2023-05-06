@@ -9,7 +9,8 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/jsx-runtime",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "plugin:@next/next/recommended"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
@@ -21,6 +22,11 @@
     "react",
     "@typescript-eslint"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "indent": [
       "error",
