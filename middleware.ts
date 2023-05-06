@@ -9,7 +9,6 @@ const redirects: Record<string, string> = {
     ['/monster-life']: '/farm',
     ['/monster-life/information']: '/farm/info',
     ['/monster-life/combine']: '/farm/combine',
-    ['/monster-life']: '/farm/combine',
     ['/farm']: '/farm/combine',
     ['/seed']: '/seed/39',
 };
