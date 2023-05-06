@@ -3,6 +3,10 @@ const nextConfig = {
     experimental: {
         appDir: true,
     },
+    swcMinify: true,
+    compiler: {
+        styledComponents: true,
+    },
     reactStrictMode: true,
     typescript: {
         tsconfigPath: './tsconfig.build.json',
