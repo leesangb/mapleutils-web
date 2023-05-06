@@ -4,6 +4,9 @@ const nextConfig = {
         appDir: true,
     },
     reactStrictMode: true,
+    typescript: {
+        tsconfigPath: './tsconfig.build.json',
+    },
 };
 
 module.exports = nextConfig;
