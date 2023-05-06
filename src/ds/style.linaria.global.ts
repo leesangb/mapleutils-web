@@ -20,9 +20,18 @@ export const globals = css`
     }
 
     * {
-      background-color: inherit;
+      background-color: transparent;
       color: inherit;
       font-family: inherit;
+    }
+
+    img {
+      border-radius: ${theme.borderRadius};
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid ${theme.contour};
     }
 
     ${pretendardCss}

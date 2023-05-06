@@ -1,21 +1,21 @@
-interface CommonTheme {
-    font: string;
+import { darken } from 'polished';
+
+type InteractingColor = {
+    default: string;
+    hover: string;
+    active: string;
 }
 
 interface ThemePalette {
-    primary: string;
-    secondary: string;
+    primary: InteractingColor;
+    secondary: InteractingColor;
 
     success: string;
     danger: string;
     warning: string;
     info: string;
 
-    surface: {
-        default: string;
-        hover: string;
-        active: string;
-    };
+    surface: InteractingColor;
     background: string;
     contour: string;
 
@@ -27,8 +27,16 @@ interface ThemePalette {
 }
 
 const light: ThemePalette = {
-    primary: '#919aff',
-    secondary: '#fff691',
+    primary: {
+        default: '#a8a8ff',
+        hover: darken(0.05, '#a8a8ff'),
+        active: darken(0.1, '#a8a8ff'),
+    },
+    secondary: {
+        default: '#fff691',
+        hover: '#fff691',
+        active: '#fff691',
+    },
 
     success: '#4caf50',
     danger: '#f44336',
@@ -36,23 +44,31 @@ const light: ThemePalette = {
     info: '#2196f3',
 
     surface: {
-        default: '#fbfbfb',
+        default: 'rgba(255, 255, 255, 0.65)',
         hover: 'rgba(224, 224, 224, 0.5)',
         active: 'rgba(224, 224, 224, 0.85)',
     },
-    background: '#efefef',
+    background: '#eaeaea',
     contour: '#e0e0e0',
 
     text: {
-        primary: 'rgba(0,0,0,0.87)',
-        secondary: 'rgba(0,0,0,0.54)',
-        disabled: 'rgba(0,0,0,0.38)',
+        primary: 'rgba(0, 0, 0, 0.87)',
+        secondary: 'rgba(0, 0, 0, 0.54)',
+        disabled: 'rgba(0, 0, 0, 0.38)',
     },
 };
 
 const dark: ThemePalette = {
-    primary: '#919aff',
-    secondary: '#fff691',
+    primary: {
+        default: '#919aff',
+        hover: darken(0.05, '#919aff'),
+        active: darken(0.1, '#919aff'),
+    },
+    secondary: {
+        default: '#fff691',
+        hover: '#fff691',
+        active: '#fff691',
+    },
 
     success: '#4caf50',
     danger: '#f44336',
@@ -60,23 +76,45 @@ const dark: ThemePalette = {
     info: '#2196f3',
 
     surface: {
-        default: '#262626',
+        default: 'rgba(29, 29, 29, 0.65)',
         hover: 'rgba(42, 42, 42, 0.5)',
         active: 'rgba(42, 42, 42, 0.85)',
     },
-    background: '#1d1d1d',
+    background: 'rgb(21, 21, 21)',
     contour: '#2a2a2a',
 
     text: {
-        primary: 'rgba(255,255,255,0.95)',
-        secondary: 'rgba(255,255,255,0.7)',
-        disabled: 'rgba(255,255,255,0.5)',
+        primary: 'rgba(255, 255, 255, 0.95)',
+        secondary: 'rgba(255, 255, 255, 0.7)',
+        disabled: 'rgba(255, 255, 255, 0.5)',
     },
 };
+
+interface CommonTheme {
+    font: string;
+    borderRadius: string;
+    sideBar: {
+        width: string;
+        blur: string;
+    };
+    appBar: {
+        height: string;
+        blur: string;
+    };
+}
 
 const common: CommonTheme = {
     font: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
         'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'].join(','),
+    appBar: {
+        height: '64px',
+        blur: '12px',
+    },
+    sideBar: {
+        width: '63px',
+        blur: '12px',
+    },
+    borderRadius: '8px',
 };
 
 export type Theme = ThemePalette & CommonTheme;
