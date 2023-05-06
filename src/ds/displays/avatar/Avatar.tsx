@@ -13,16 +13,23 @@ export const Avatar = ({ name, backgroundColor, color }: AvatarProps) => {
     );
 };
 
+const size = 32;
+
 const Container = styled.div<Omit<AvatarProps, 'name'>>`
-  width: 40px;
-  height: 40px;
-  font-size: 24px;
+  height: ${size}px;
+  min-height: ${size}px;
+  max-height: ${size}px;
+  width: ${size}px;
+  min-width: ${size}px;
+  max-width: ${size}px;
+  font-size: 16px;
   border-radius: 50%;
+  border: 1px solid ${theme.contour};
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
   user-select: none;
   color: ${({ color }) => color || theme.text.secondary};
-  background-color: ${({ backgroundColor }) => backgroundColor || theme.surface};
+  background-color: ${({ backgroundColor }) => backgroundColor || theme.background};
 `;

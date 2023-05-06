@@ -1,6 +1,4 @@
 import type { StorybookConfig } from '@storybook/nextjs';
-// @ts-ignore
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const config: StorybookConfig = {
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -10,6 +8,7 @@ const config: StorybookConfig = {
         '@storybook/addon-interactions',
         '@storybook/addon-a11y',
     ],
+    staticDirs: ['../public'],
     framework: {
         name: '@storybook/nextjs',
         options: {},
@@ -49,27 +48,6 @@ const config: StorybookConfig = {
                             ],
                         },
                     },
-                },
-            ],
-        };
-
-        config.plugins.push(
-            new MiniCssExtractPlugin({
-                filename: 'styles.css',
-            }),
-        );
-        // Replace CSS loader
-        // @ts-ignore
-        const cssKey = config.module.rules.findIndex(rule => rule.test.toString() === '/\\.css$/');
-        config.module.rules[cssKey] = {
-            test: /\.css$/,
-            use: [
-                {
-                    loader: MiniCssExtractPlugin.loader,
-                },
-                {
-                    loader: 'css-loader',
-                    options: { sourceMap: true },
                 },
             ],
         };

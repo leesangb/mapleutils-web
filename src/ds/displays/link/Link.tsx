@@ -9,6 +9,5 @@ export const Link = ({ href, lang, ...props }: LinkProps) => {
     const hrefWithLocale = lang
         ? `/${lang}${href}`
         : href;
-    console.log(hrefWithLocale);
     return <NextLink href={hrefWithLocale} {...props} />;
 };

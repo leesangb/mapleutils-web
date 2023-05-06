@@ -3,7 +3,7 @@
 import i18next from 'i18next';
 import { initReactI18next, useTranslation as useTranslationOrg, UseTranslationOptions } from 'react-i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
-import { getOptions, Languages } from './settings';
+import { defaultNS, getOptions, Languages } from './settings';
 
 //
 i18next
@@ -17,7 +17,7 @@ i18next
         },
     });
 
-export function useTranslation(lng: Languages, ns: string, options?: UseTranslationOptions) {
+export function useTranslation(lng: Languages, ns: string = defaultNS, options?: UseTranslationOptions) {
     if (i18next.resolvedLanguage !== lng) {
         i18next.changeLanguage(lng);
     }

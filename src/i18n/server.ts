@@ -1,4 +1,5 @@
 import 'server-only';
+import { cache } from 'react';
 
 import { createInstance } from 'i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
@@ -14,12 +15,12 @@ const initI18next = async (lng: Languages, ns: string) => {
     return i18nInstance;
 };
 
-export async function useTranslation(lng: Languages, ns: string, options: {
+export const useTranslation = cache(async (lng: Languages, ns: string, options: {
     keyPrefix?: string
-} = {}) {
+} = {}) => {
     const i18nextInstance = await initI18next(lng, ns);
     return {
         t: i18nextInstance.getFixedT(lng, ns, options.keyPrefix),
         i18n: i18nextInstance,
     };
-}
+});

@@ -1,56 +1,59 @@
-'use client';
+import 'server-only';
 
-import { PropsWithChildren, useRef } from 'react';
-import { AppBar } from '@/ds/surfaces';
+import { PropsWithChildren } from 'react';
 import '@/ds/style.linaria.global';
-import NextLink from 'next/link';
-import { Button } from '@/ds/inputs';
-import { useLocalStorageState } from '@/hooks/useLocalStorageState';
+import { AppBar, Card, SideBar } from '@/ds/surfaces';
 import { I18nPageProps, languages } from '@/i18n/settings';
+import { ThemeSwitcher } from './components/ThemeSwitcher';
+import { SideNavigations } from './components/SideNavigations';
+import { AppNavigations } from './components/AppNavigations';
+import { styled } from '@linaria/react';
+import { theme } from '@/ds/theme';
+import { Typography } from '@/ds/displays';
+
+const currentYear = new Date().getFullYear();
 
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
 }
 
-const RootLayout = ({
-    children,
-    params: {
-        lng,
-    },
-}: PropsWithChildren<I18nPageProps>) => {
-    const html = useRef<HTMLHtmlElement>(null);
-    const [theme, setTheme] = useLocalStorageState<'light' | 'dark'>('theme', 'light');
-
-    const toggleTheme = () => {
-        if (!html.current) {
-            return;
-        }
-
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        html.current.dataset.theme = newTheme;
-        setTheme(newTheme);
-    };
-    
+const RootLayout = ({ children, params: { lng } }: PropsWithChildren<I18nPageProps>) => {
     return (
-        <html ref={html} lang={lng} data-theme={theme}>
-            <body>
-                <AppBar as={'nav'}>
-                    <NextLink href={'/'}>
-                home
-                    </NextLink>
-                    <NextLink href={'/seed'}>
-                seed
-                    </NextLink>
-                    <Button onClick={toggleTheme}>
-                theme
-                    </Button>
+        <html lang={lng} data-theme={'light'}>
+            <Body>
+                <AppBar>
+                    <AppNavigations />
+                    <ThemeSwitcher />
                 </AppBar>
-                <main>
-                    {children}
-                </main>
-            </body>
+                <SideBar>
+                    <SideNavigations />
+                </SideBar>
+                <Main>
+                    <Card as={'article'}>
+                        {children}
+                    </Card>
+                </Main>
+                <Footer>
+                    <Typography fontSize={12}>
+                    © {currentYear} mapleutils All rights reserved. mapleutils is not associated with NEXON
+                    Korea.
+                    </Typography>
+                </Footer>
+            </Body>
         </html>
     );
 };
+
+const Body = styled.body`
+  margin: ${theme.appBar.height} 0 0 ${theme.sideBar.width};
+`;
+
+const Main = styled.main`
+  padding: 16px;
+`;
+
+const Footer = styled.footer`
+  padding: 16px;
+`;
 
 export default RootLayout;

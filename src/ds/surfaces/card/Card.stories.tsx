@@ -13,6 +13,6 @@ export default meta;
 
 type Story = StoryObj<typeof Card>;
 
-export const Default = {
+export const Default: Story = {
     args: {},
 };
