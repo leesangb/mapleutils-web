@@ -45,7 +45,9 @@ export const Typography = ({ as = 'p', variant = as, fontSize, ...props }: Props
     return <Text as={as} $fontSize={fontSize} $variant={variant} {...props} />;
 };
 
-const Text = styled.p<TransientProps<TypographyProps>>`
+type TransientTypographyProps = TransientProps<Omit<TypographyProps, 'as'>>;
+
+const Text = styled.p<TransientTypographyProps>`
   color: ${({ $color }) => $color || theme.text.primary};
   font-family: ${theme.font};
   font-size: 16px;
