@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import { PropsWithChildren, ReactNode, useEffect, useRef } from 'react';
+import { ComponentProps, PropsWithChildren, useEffect, useRef } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
+import { Box } from '@/ds/displays';
 
 interface AccordionProps {
-    title: string | ReactNode;
     defaultOpen?: boolean;
 }
 
 const expanded = '--_expanded_height';
 const collapsed = '--_collapsed_height';
 
-export const Accordion = ({ title, defaultOpen, children }: PropsWithChildren<AccordionProps>) => {
+export const Accordion = ({ defaultOpen = false, children }: PropsWithChildren<AccordionProps>) => {
     const detailsRef = useRef<HTMLDetailsElement>(null);
 
     useEffect(() => {
@@ -52,12 +52,7 @@ export const Accordion = ({ title, defaultOpen, children }: PropsWithChildren<Ac
 
     return (
         <Accordion.Details ref={detailsRef} open={defaultOpen}>
-            <Accordion.Summary>
-                {title}
-            </Accordion.Summary>
-            <Accordion.Content>
-                {children}
-            </Accordion.Content>
+            {children}
         </Accordion.Details>
     );
 };
@@ -80,7 +75,7 @@ Accordion.Details = styled.details`
   }
 `;
 
-const AccordionSummary = ({ children }: PropsWithChildren) => {
+export const AccordionSummary = ({ children }: PropsWithChildren) => {
     return (
         <Summary>
             {children}
@@ -116,7 +111,6 @@ const Summary = styled.summary`
   }
 `;
 
-Accordion.Summary = AccordionSummary;
-Accordion.Content = styled.div`
-  padding: 8px;
-`;
+export const AccordionContent = ({ styles, ...props }: ComponentProps<typeof Box>) => {
+    return <Box styles={[{ padding: '8px' }, styles]} {...props} />;
+};
