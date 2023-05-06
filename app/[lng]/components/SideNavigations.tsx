@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
-import { styled } from '@linaria/react';
+import styled from 'styled-components';
 import { Typography } from '@/ds/displays';
 import { useTranslation } from '@/i18n/client';
 import { SideBar } from '@/ds/surfaces';

@@ -1,8 +1,10 @@
 import type { Preview } from '@storybook/react';
-import '@/ds/style.linaria.global';
 import { useEffect } from 'react';
 // @ts-ignore
 import { theme } from '@/ds/theme';
+// @ts-ignore
+import GlobalStyle from '@/ds/global.style';
+import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 
 const preview: Preview = {
     parameters: {
@@ -16,6 +18,9 @@ const preview: Preview = {
         backgrounds: { disable: true },
     },
     decorators: [
+        withThemeFromJSXProvider({
+            GlobalStyles: GlobalStyle,
+        }),
         (Story, context) => {
             useEffect(() => {
                 const storybook = document.querySelector('html');

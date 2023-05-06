@@ -1,4 +1,4 @@
-import { styled } from '@linaria/react';
+import styled from 'styled-components';
 import { theme } from '@/ds/theme';
 
 export const Card = styled.div`

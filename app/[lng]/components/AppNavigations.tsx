@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@/ds/displays';
-import { styled } from '@linaria/react';
+import styled from 'styled-components';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 
 export const AppNavigations = () => {

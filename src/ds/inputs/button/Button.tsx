@@ -1,8 +1,7 @@
 import { theme } from '@/ds/theme';
-import { css, cx } from '@linaria/core';
-import { Link } from '@/ds/displays';
 import { Languages } from '@/i18n/settings';
 import { CSSProperties, ReactNode } from 'react';
+import styled, { css } from 'styled-components';
 
 type ButtonProps = {
     style?: CSSProperties;
@@ -11,47 +10,10 @@ type ButtonProps = {
     lang?: Languages;
     onClick?: () => void;
     children?: ReactNode;
-    className?: string;
     active?: boolean;
 }
 
-export const Button = ({
-    size,
-    href,
-    lang,
-    active,
-    className,
-    ...props
-}: ButtonProps) => {
-    return href && lang
-        ? <Link className={cx(active && activeCss, buttonCss, className)} href={href} lang={lang} {...props} />
-        : <button className={cx(active && activeCss, buttonCss, className)} {...props} />;
-};
-
-const activeCss = css`
-  && {
-    background-color: ${theme.primary.default};
-    transition: background-color 0.125s ease-in-out;
-  }
-
-  &:hover {
-    background-color: ${theme.primary.hover};
-  }
-
-  &:active {
-    background-color: ${theme.primary.active};
-  }
-
-  &&:hover::after {
-    opacity: 0;
-  }
-
-  &&:active::after {
-    opacity: 0;
-  }
-`;
-
-const buttonCss = css`
+export const Button = styled.button<TransientProps<ButtonProps>>`
   position: relative;
   background-color: ${theme.surface.default};
   border-radius: ${theme.borderRadius};
@@ -85,6 +47,27 @@ const buttonCss = css`
   &:active::after {
     opacity: 0.375;
   }
-`;
 
-Button.buttonCss = buttonCss;
+  ${({ $active }) => $active && css`
+    && {
+      background-color: ${theme.primary.default};
+      transition: background-color 0.125s ease-in-out;
+    }
+
+    &:hover {
+      background-color: ${theme.primary.hover};
+    }
+
+    &:active {
+      background-color: ${theme.primary.active};
+    }
+
+    &&:hover::after {
+      opacity: 0;
+    }
+
+    &&:active::after {
+      opacity: 0;
+    }
+  `}
+`;

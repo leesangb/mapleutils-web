@@ -1,4 +1,4 @@
-import { styled } from '@linaria/react';
+import styled from 'styled-components';
 import { theme } from '@/ds/theme';
 
 interface AvatarProps {
@@ -9,13 +9,13 @@ interface AvatarProps {
 
 export const Avatar = ({ name, backgroundColor, color }: AvatarProps) => {
     return (
-        <Container backgroundColor={backgroundColor} color={color}>{name.slice(0, 2)}</Container>
+        <Container $backgroundColor={backgroundColor} $color={color}>{name.slice(0, 2)}</Container>
     );
 };
 
 const size = 32;
 
-const Container = styled.div<Omit<AvatarProps, 'name'>>`
+const Container = styled.div<TransientProps<Omit<AvatarProps, 'name'>>>`
   height: ${size}px;
   min-height: ${size}px;
   max-height: ${size}px;
@@ -30,6 +30,6 @@ const Container = styled.div<Omit<AvatarProps, 'name'>>`
   justify-content: center;
   pointer-events: none;
   user-select: none;
-  color: ${({ color }) => color || theme.text.secondary};
-  background-color: ${({ backgroundColor }) => backgroundColor || theme.background};
+  color: ${({ $color }) => $color || theme.text.secondary};
+  background-color: ${({ $backgroundColor }) => $backgroundColor || theme.background};
 `;

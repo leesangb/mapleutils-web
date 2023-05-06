@@ -1,10 +1,9 @@
 import { PropsWithChildren } from 'react';
-import { styled } from '@linaria/react';
+import styled from 'styled-components';
 import { theme } from '@/ds/theme';
 import { Button } from '@/ds/inputs';
 import { Languages } from '@/i18n/settings';
-import { Avatar, Typography } from '@/ds/displays';
-import { css } from '@linaria/core';
+import { Avatar, Link, Typography } from '@/ds/displays';
 
 interface SideBarProps {
     open?: boolean;
@@ -32,7 +31,7 @@ interface SideBarLinkProps {
     subtitle?: string;
 }
 
-const sideBarLinkButtonCss = css`
+const SideBarLinkButton = styled(Button)`
   && {
     padding: 6px;
     gap: 8px;
@@ -43,8 +42,7 @@ const sideBarLinkButtonCss = css`
 
 SideBar.Link = function SideBarLink({ href, lang, active, title, subtitle }: SideBarLinkProps) {
     return (
-        <Button href={href}
-            className={sideBarLinkButtonCss}
+        <SideBarLinkButton as={Link} href={href}
             lang={lang}>
             <Avatar name={title}
                 backgroundColor={active ? theme.primary.default : undefined} />
@@ -52,7 +50,7 @@ SideBar.Link = function SideBarLink({ href, lang, active, title, subtitle }: Sid
             <Typography
                 fontSize={12}
                 as={'span'}>{subtitle}</Typography>
-        </Button>
+        </SideBarLinkButton>
     );
 };
 
