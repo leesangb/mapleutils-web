@@ -1,12 +1,11 @@
-import { MonsterLifeGrade } from '@data/farm/monsterLifeGrade';
-import { MonsterLifeMob } from '@data/farm/mobs';
+import { MonsterLifeGrade } from './monsterLifeGrade';
+import { MonsterLifeMob } from './mobs';
 
 export interface MonsterLifeBox {
     name: string;
     img: string;
     price: number[];
 }
-
 
 const normal: MonsterLifeBox = {
     name: '평범한 상자',
@@ -37,7 +36,6 @@ const petitLuminous: MonsterLifeBox = {
     img: '/images/monster-life/상자2.png',
     price: [582_000],
 };
-
 
 const GRADE_BOX: Record<MonsterLifeGrade, MonsterLifeBox[]> = {
     ['C']: [normal],
