@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { theme } from '@/ds/theme';
 import { Button } from '@/ds/inputs';
 import { Languages } from '@/i18n/settings';
-import { Avatar, Link, Typography } from '@/ds/displays';
+import { Avatar, Typography } from '@/ds/displays';
 
 interface SideBarProps {
     open?: boolean;
@@ -32,18 +32,15 @@ interface SideBarLinkProps {
 }
 
 const SideBarLinkButton = styled(Button)`
-  && {
-    padding: 6px;
-    gap: 8px;
-    border: 0;
-    background-color: transparent;
-  }
+  padding: 6px;
+  gap: 8px;
+  border: 0;
+  background-color: transparent;
 `;
 
 SideBar.Link = function SideBarLink({ href, lang, active, title, subtitle }: SideBarLinkProps) {
     return (
-        <SideBarLinkButton as={Link} href={href}
-            lang={lang}>
+        <SideBarLinkButton href={href} lang={lang}>
             <Avatar name={title}
                 backgroundColor={active ? theme.primary.default : undefined} />
             {'  '}
@@ -75,12 +72,12 @@ const Aside = styled.aside`
   gap: 8px;
   transition: width 0.125s ease-in-out;
 
-  & > ${SideBar.Nav} {
+  & > nav {
     transition: width 0.125s ease-in-out;
     width: calc(100% - 17px);
   }
 
-  & > ${SideBar.Nav} > a {
+  & > nav > a {
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;

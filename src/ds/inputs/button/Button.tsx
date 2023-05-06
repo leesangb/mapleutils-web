@@ -1,23 +1,30 @@
 import { theme } from '@/ds/theme';
 import { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
+import { Languages } from '@/i18n/settings';
+import Link from 'next/link';
 
 type ButtonProps = {
     size?: 'small' | 'medium' | 'large';
     onClick?: () => void;
     children?: ReactNode;
     active?: boolean;
+    href?: string;
+    lang?: Languages;
 }
 
-export const Button = ({ children, size, active, ...props }: ButtonProps) => {
-    return (
-        <StyledButton $active={active} $size={size} {...props}>
-            {children}
-        </StyledButton>
-    );
+export const Button = ({ children, size, active, href, lang, ...props }: ButtonProps) => {
+    return href && lang ?
+        <StyledButton as={Link} href={href} lang={lang} $active={active}
+            $size={size} {...props}>{children}</StyledButton>
+        : (
+            <StyledButton $active={active} $size={size} {...props}>
+                {children}
+            </StyledButton>
+        );
 };
 
-const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'children' | 'onClick'>>>`
+const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'children' | 'onClick' | 'href' | 'lang'>>>`
   position: relative;
   background-color: ${theme.surface.default};
   border-radius: ${theme.borderRadius};

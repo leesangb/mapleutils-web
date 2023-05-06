@@ -50,9 +50,9 @@ type TransientTypographyProps = TransientProps<Omit<TypographyProps, 'as'>>;
 const Text = styled.p<TransientTypographyProps>`
   color: ${({ $color }) => $color || theme.text.primary};
   font-family: ${theme.font};
-  font-size: 16px;
   padding: 0;
   margin: 0;
+  font-size: 16px;
   ${({ $variant }) => $variant && typographyCssMap[$variant]};
-  ${({ $fontSize }) => $fontSize && `${$fontSize}px`};
+  ${({ $fontSize }) => $fontSize && `font-size: ${$fontSize}px`};
 `;
