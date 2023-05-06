@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { PropsWithChildren, ReactNode, useEffect, useRef } from 'react';
-import { RiArrowDownSLine } from 'react-icons/all';
+import { RiArrowDownSLine } from 'react-icons/ri';
 
 interface AccordionProps {
     title: string | ReactNode;
@@ -17,17 +17,37 @@ export const Accordion = ({ title, defaultOpen, children }: PropsWithChildren<Ac
         if (!detailsRef.current)
             return;
 
-        const details = detailsRef.current;
+        let currentWidth = -1;
+        const computedStyle = window.getComputedStyle(detailsRef.current);
+        const detailsBorderOffset = parseInt(computedStyle.borderTopWidth) + parseInt(computedStyle.borderBottomWidth);
 
-        // get height when expanded
-        details.open = true;
-        const expandedHeight = details.getBoundingClientRect().height - 2;
-        details.style.setProperty(expanded, `${expandedHeight}px`);
+        const getHeight = (details: HTMLDetailsElement, open: boolean) => {
+            const opened = details.open;
+            details.open = open;
+            const { height } = details.getBoundingClientRect();
+            details.open = opened;
+            return height - detailsBorderOffset;
+        };
 
-        // get height when collapsed
-        details.open = false;
-        const collapsedHeight = details.getBoundingClientRect().height - 2;
-        details.style.setProperty(collapsed, `${collapsedHeight}px`);
+        const resizeObserver = new ResizeObserver((entries) => {
+            entries.forEach((entry) => {
+                const details = entry.target as HTMLDetailsElement;
+                const { width } = details.getBoundingClientRect();
+
+                if (currentWidth !== width) {
+                    currentWidth = width;
+                    details.removeAttribute('style');
+                    details.style.setProperty(collapsed, `${getHeight(details, false)}px`);
+                    details.style.setProperty(expanded, `${getHeight(details, true)}px`);
+                }
+            });
+        });
+
+        resizeObserver.observe(detailsRef.current);
+
+        return () => {
+            resizeObserver.disconnect();
+        };
     }, []);
 
     return (
@@ -61,13 +81,16 @@ Accordion.Details = styled.details`
 `;
 
 const AccordionSummary = ({ children }: PropsWithChildren) => {
-    return <Summary>
-        {children}
-        <RiArrowDownSLine />
-    </Summary>;
+    return (
+        <Summary>
+            {children}
+            <RiArrowDownSLine />
+        </Summary>
+    );
 };
 
 const Summary = styled.summary`
+  height: calc(var(${collapsed}) - 16px);
   min-height: 18px;
   position: relative;
   padding: 8px;
@@ -94,13 +117,6 @@ const Summary = styled.summary`
 `;
 
 Accordion.Summary = AccordionSummary;
-
-AccordionSummary.Icon = styled.span`
-  position: absolute;
-  right: 8px;
-  display: inline-block;
-`;
-
 Accordion.Content = styled.div`
   padding: 8px;
 `;
