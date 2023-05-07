@@ -63,4 +63,5 @@ export const SideNavigations = () => {
 
 const Hr = styled.hr`
   width: calc(100% - 16px);
+  margin: 8px 0;
 `;

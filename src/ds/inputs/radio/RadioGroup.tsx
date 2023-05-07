@@ -1,13 +1,16 @@
 import { PropsWithChildren, ReactNode, useId } from 'react';
 import styled from 'styled-components';
+import { Fieldset } from '@/ds/displays';
 
 interface RadioGroupProps<T = unknown> {
     name: string;
     options: readonly T[];
+    title?: string;
     value?: T;
     onChange?: (value: T) => void;
     direction?: 'row' | 'column';
     align?: 'left' | 'right' | 'center';
+    legendAlign?: 'left' | 'right' | 'center';
     getOptionValue?: (option: T) => string;
     getRender?: (option: T) => ReactNode;
     getCompare?: (a: T, b: T) => boolean;
@@ -22,9 +25,11 @@ export const RadioGroup = <T, >({
     value,
     onChange,
     align = 'left',
+    legendAlign = 'left',
     direction = 'column',
+    title,
 }: RadioGroupProps<T>) => {
-    return (
+    const content = (
         <RadioGroup.OptionContainer $direction={direction} $align={align}>
             {options.map(option => {
                 const optionValue = getOptionValue(option);
@@ -40,6 +45,9 @@ export const RadioGroup = <T, >({
             })}
         </RadioGroup.OptionContainer>
     );
+
+    return title ? (
+        <Fieldset title={title} align={align} legendAlign={legendAlign}>{content}</Fieldset>) : <>{content}</>;
 };
 
 RadioGroup.OptionContainer = styled.div<TransientProps<Pick<RadioGroupProps, 'direction' | 'align'>>>`

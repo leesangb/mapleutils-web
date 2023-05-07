@@ -25,13 +25,14 @@ const GlobalStyle = createGlobalStyle`
     font-family: inherit;
   }
 
-  img {
+  img, video {
     border-radius: ${theme.borderRadius};
   }
 
   hr {
     border: none;
     border-top: 1px solid ${theme.contour};
+    margin: 16px 0;
   }
 
   ${pretendardCss}
