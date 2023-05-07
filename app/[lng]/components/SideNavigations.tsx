@@ -8,7 +8,7 @@ import { SideBar } from '@/ds/surfaces';
 
 export const SideNavigations = () => {
     const { pathname, locale } = useLocalizedPathname();
-    const { t } = useTranslation(locale);
+    const { t } = useTranslation();
 
     return (
         <>

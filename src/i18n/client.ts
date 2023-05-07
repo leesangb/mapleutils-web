@@ -17,9 +17,11 @@ i18next
         },
     });
 
-export function useTranslation(lng: Languages, ns: string = defaultNS, options?: UseTranslationOptions) {
-    if (i18next.resolvedLanguage !== lng) {
-        i18next.changeLanguage(lng);
+export const useTranslation = ({ lang, ns = defaultNS, options }: {
+    lang?: Languages, ns?: string, options?: UseTranslationOptions,
+} = {}) => {
+    if (i18next.resolvedLanguage !== lang) {
+        i18next.changeLanguage(lang);
     }
     return useTranslationOrg(ns, options);
-}
+};
