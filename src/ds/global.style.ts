@@ -43,6 +43,14 @@ const GlobalStyle = createGlobalStyle`
   [data-theme='light'] {
     ${lightThemeVar};
   }
+
+  ::-moz-selection { /* Code for Firefox */
+    background: ${theme.primary.default};
+  }
+
+  ::selection {
+    background: ${theme.primary.default};
+  }
 `;
 
 export default GlobalStyle;
