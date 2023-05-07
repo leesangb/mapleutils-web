@@ -12,6 +12,7 @@ import tip4 from '@/assets/images/seed/22/tip4.1.gif';
 import { CSSProperties } from 'react';
 import { Accordion, AccordionContent, AccordionSummary } from '@/ds/surfaces';
 import { PlatformMap } from './components/PlatformMap';
+import { RiLightbulbLine } from 'react-icons/all';
 
 const imageStyle: CSSProperties = {
     objectFit: 'scale-down',
@@ -29,7 +30,10 @@ const Seed22Page = async ({ params }: I18nPageProps) => {
             <Typography as={'h2'}>{t('map1')}</Typography>
             <NextImage style={imageStyle} src={map1} placeholder={'blur'} alt={'seed 22 1'} />
             <Accordion>
-                <AccordionSummary>{t('gifTip')}</AccordionSummary>
+                <AccordionSummary>
+                    <RiLightbulbLine />
+                    {t('gifTip')}
+                </AccordionSummary>
                 <AccordionContent>
                     <NextImage style={imageStyle} src={tip1} alt={'seed 22 tip1'} />
                 </AccordionContent>
@@ -40,7 +44,10 @@ const Seed22Page = async ({ params }: I18nPageProps) => {
             <Typography as={'h2'}>{t('map2')}</Typography>
             <NextImage src={map2} style={imageStyle} placeholder={'blur'} alt={'seed 22 2'} />
             <Accordion>
-                <AccordionSummary>{t('gifTip')}</AccordionSummary>
+                <AccordionSummary>
+                    <RiLightbulbLine />
+                    {t('gifTip')}
+                </AccordionSummary>
                 <AccordionContent
                     styles={{ display: 'grid', gap: '8px', gridTemplateColumns: '1fr 1fr', justifyItems: 'center' }}>
                     <NextImage style={imageStyle} src={tip2} alt={'seed 22 tip2'} />
@@ -53,7 +60,10 @@ const Seed22Page = async ({ params }: I18nPageProps) => {
             <Typography as={'h2'}>{t('map3')}</Typography>
             <PlatformMap />
             <Accordion>
-                <AccordionSummary>{t('gifTip')}</AccordionSummary>
+                <AccordionSummary>
+                    <RiLightbulbLine />
+                    {t('gifTip')}
+                </AccordionSummary>
                 <AccordionContent
                     styles={{
                         display: 'grid',

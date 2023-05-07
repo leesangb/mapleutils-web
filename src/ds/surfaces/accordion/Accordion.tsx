@@ -69,7 +69,7 @@ Accordion.Details = styled.details`
   &[open] {
     height: var(${expanded});
 
-    & > summary > svg {
+    & > summary > svg:last-of-type {
       transform: rotate(180deg);
     }
   }
@@ -92,6 +92,9 @@ const Summary = styled.summary`
   cursor: pointer;
   transition: all 0.325s cubic-bezier(0.4, 0.01, 0.165, 0.99);
   list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
   &:hover {
     background-color: ${({ theme }) => theme.surface.hover};
@@ -101,7 +104,7 @@ const Summary = styled.summary`
     background-color: ${({ theme }) => theme.surface.active};
   }
 
-  & > svg {
+  & > svg:last-of-type {
     position: absolute;
     right: 8px;
     top: 0;

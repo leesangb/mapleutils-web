@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: ${theme.appBar.height} 0 0 ${theme.sideBar.width};
     padding: 0;
-
   }
 
   * {
