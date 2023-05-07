@@ -101,6 +101,11 @@ interface CommonTheme {
         height: string;
         blur: string;
     };
+
+    zIndex: {
+        appBar: number;
+        sideBar: number;
+    };
 }
 
 const common: CommonTheme = {
@@ -115,6 +120,10 @@ const common: CommonTheme = {
         blur: '12px',
     },
     borderRadius: '8px',
+    zIndex: {
+        appBar: 1000,
+        sideBar: 1000,
+    },
 };
 
 export type Theme = ThemePalette & CommonTheme;

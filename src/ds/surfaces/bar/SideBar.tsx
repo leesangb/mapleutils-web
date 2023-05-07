@@ -71,6 +71,7 @@ const Aside = styled.aside`
   align-items: center;
   gap: 8px;
   transition: width 0.125s ease-in-out;
+  z-index: ${theme.zIndex.sideBar};
 
   & > nav {
     transition: width 0.125s ease-in-out;

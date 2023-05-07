@@ -28,4 +28,5 @@ const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: ${theme.zIndex.appBar};
 `;
