@@ -1,5 +1,7 @@
 export interface QuestionAnswer {
     question: string;
-    choices: [string, string, string, string];
-    answer: 0 | 1 | 2 | 3;
+    // [string, string, string, string]
+    choices: string[];
+    // 0 | 1 | 2 | 3
+    answer: number;
 }
