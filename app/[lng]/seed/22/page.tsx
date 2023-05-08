@@ -12,7 +12,7 @@ import tip4 from '@/assets/images/seed/22/tip4.1.gif';
 import { CSSProperties } from 'react';
 import { Accordion, AccordionContent, AccordionSummary } from '@/ds/surfaces';
 import { PlatformMap } from './components/PlatformMap';
-import { RiLightbulbLine } from 'react-icons/all';
+import { RiLightbulbLine } from 'react-icons/ri';
 
 const imageStyle: CSSProperties = {
     objectFit: 'scale-down',
