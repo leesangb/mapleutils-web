@@ -25,6 +25,7 @@ export const ThemeSwitcher = () => {
 
     return (
         <Button onClick={toggleTheme} aria-label={t(`${theme}Mode`)} styles={css`
+
           &:active > svg {
             transform: scale(0.2) rotate(-360deg);
           }
@@ -34,7 +35,7 @@ export const ThemeSwitcher = () => {
             animation: ${keyframes.spin} 0.325s ease-in-out;
           }
         `}>
-            {theme === 'dark' ? <RiMoonFill /> : <RiSunFill />}
+            {theme === 'dark' ? <RiMoonFill fontSize={'16px'} /> : <RiSunFill fontSize={'16px'} />}
         </Button>
     );
 };
