@@ -30,7 +30,7 @@ const QuestionAnswerRow = ({ rowData, measureRef, ...props }: VirtualizedRowProp
             </td>
             {
                 choices.map((choice, i) => (
-                    <Choice key={choice} style={{ gridArea: `choice${i + 1}` }}
+                    <Choice key={`${choice}_${i}`} style={{ gridArea: `choice${i + 1}` }}
                         $active={i === answer}>
                         {i + 1}. {choice}
                     </Choice>
