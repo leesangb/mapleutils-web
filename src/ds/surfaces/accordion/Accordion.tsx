@@ -79,7 +79,7 @@ export const AccordionSummary = ({ children }: PropsWithChildren) => {
     return (
         <Summary>
             {children}
-            <RiArrowDownSLine />
+            <RiArrowDownSLine fontSize={'20px'} />
         </Summary>
     );
 };
