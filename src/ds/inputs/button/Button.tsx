@@ -2,8 +2,8 @@ import { theme } from '@/ds/theme';
 import { CSSProperties, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { Languages } from '@/i18n/settings';
-import Link from 'next/link';
 import { Interpolation } from 'styled-components/dist/types';
+import { Link } from '@/ds/displays';
 
 type ButtonProps = {
     size?: 'small' | 'medium' | 'large';
@@ -16,9 +16,19 @@ type ButtonProps = {
 }
 
 export const Button = ({ children, size, active, href, lang, styles, ...props }: ButtonProps) => {
-    return href && lang ?
-        <StyledButton as={Link} href={href} lang={lang} $active={active} $styles={styles}
-            $size={size} {...props}>{children}</StyledButton>
+    return href
+        ? lang
+            ? (
+                <StyledButton as={Link} href={href} lang={lang}
+                    $active={active} $styles={styles} $size={size} {...props}>
+                    {children}
+                </StyledButton>
+            ) : (
+                <StyledButton as={'a'} href={href}
+                    $active={active} $styles={styles} $size={size} {...props}>
+                    {children}
+                </StyledButton>
+            )
         : (
             <StyledButton $active={active} $size={size} $styles={styles} {...props}>
                 {children}
