@@ -26,7 +26,10 @@
       ],
       "@/assets/*": [
         "public/*"
-      ]
+      ],
+      "@/data/*": [
+        "data/*"
+      ],
     },
     "incremental": true,
     "plugins": [
