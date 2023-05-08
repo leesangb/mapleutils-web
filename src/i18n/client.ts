@@ -3,7 +3,8 @@
 import i18next from 'i18next';
 import { initReactI18next, useTranslation as useTranslationOrg, UseTranslationOptions } from 'react-i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
-import { defaultNS, getOptions, Languages } from './settings';
+import { defaultNS, getOptions } from './settings';
+import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 
 //
 i18next
@@ -17,11 +18,12 @@ i18next
         },
     });
 
-export const useTranslation = ({ lang, ns = defaultNS, options }: {
-    lang?: Languages, ns?: string, options?: UseTranslationOptions,
+export const useTranslation = ({ ns = defaultNS, options }: {
+    ns?: string, options?: UseTranslationOptions,
 } = {}) => {
-    if (i18next.resolvedLanguage !== lang) {
-        i18next.changeLanguage(lang);
+    const { locale } = useLocalizedPathname();
+    if (i18next.resolvedLanguage !== locale) {
+        i18next.changeLanguage(locale);
     }
     return useTranslationOrg(ns, options);
 };
