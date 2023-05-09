@@ -19,7 +19,7 @@ export const TextField = ({
     const { start, end } = adornment;
     return start || end
         ? (
-            <Container>
+            <Container $fullWidth={fullWidth}>
                 {start && <Adornment $placement={'left'}>{start}</Adornment>}
                 <Input ref={inputRef} $left={!!start} $right={!!end} $fullWidth={fullWidth} {...props} />
                 {end && <Adornment $placement={'right'}>{end}</Adornment>}
@@ -27,8 +27,9 @@ export const TextField = ({
         ) : <Input ref={inputRef} $fullWidth={fullWidth} {...props} />;
 };
 
-const Container = styled.div`
+const Container = styled.div<TransientProps<{ fullWidth?: boolean }>>`
   position: relative;
+  width: ${({ $fullWidth }) => $fullWidth ? '100%' : 'fit-content'};
 
   &:focus-within > span:first-child {
     color: ${({ theme }) => theme.primary.default};
