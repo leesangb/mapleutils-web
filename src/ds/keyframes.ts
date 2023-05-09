@@ -10,4 +10,22 @@ export const keyframes = {
         transform: scale(1) rotate(360deg);
       }
     `,
+    fadeIn: css`
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    `,
+    fadeOut: css`
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    `,
 } as const;
