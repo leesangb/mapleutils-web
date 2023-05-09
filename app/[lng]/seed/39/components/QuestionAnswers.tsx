@@ -34,6 +34,7 @@ const QuestionAnswers = ({ data }: QuestionAnswersProps) => {
             <SearchField fullWidth
                 placeholder={t('searchPlaceholder')}
                 value={input}
+                onFocus={(e) => e.target.select()}
                 onChange={(e) => setInput(e.target.value)}
                 onClear={() => setInput('')}
             />
