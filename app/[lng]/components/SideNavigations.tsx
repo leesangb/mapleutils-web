@@ -15,7 +15,7 @@ export const SideNavigations = () => {
             <Typography>{t('drawer.seed.shortName')}</Typography>
             <SideBar.Nav>
                 {
-                    [22, 24, 36, 39, 42, 47, 48, 49]
+                    [22, 23, 24, 36, 39, 42, 47, 48, 49]
                         .map((f) => (
                             <SideBar.Link href={`/seed/${f}`}
                                 lang={locale}
