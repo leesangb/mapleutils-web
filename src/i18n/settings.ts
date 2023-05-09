@@ -4,6 +4,12 @@ export type Languages = typeof languages[number];
 export const defaultNS = 'common';
 export const cookieName = 'i18next';
 
+declare module 'i18next' {
+    interface CustomTypeOptions {
+        returnNull: false;
+    }
+}
+
 export type I18nPageProps<P = unknown> = P & {
     params: {
         lng: Languages

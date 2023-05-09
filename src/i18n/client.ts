@@ -16,6 +16,7 @@ i18next
         detection: {
             order: ['path', 'htmlTag', 'cookie', 'navigator'],
         },
+        returnNull: false,
     });
 
 export const useTranslation = ({ ns = defaultNS, options }: {
