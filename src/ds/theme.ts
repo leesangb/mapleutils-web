@@ -76,17 +76,17 @@ const dark: ThemePalette = {
     info: '#2196f3',
 
     surface: {
-        default: 'rgba(29, 29, 29, 0.65)',
-        hover: 'rgba(42, 42, 42, 0.5)',
-        active: 'rgba(42, 42, 42, 0.85)',
+        default: 'rgb(36, 36, 36, 0.8)',
+        hover: 'rgba(52, 52, 52, 0.65)',
+        active: 'rgba(52, 52, 52, 0.8)',
     },
-    background: 'rgb(21, 21, 21)',
-    contour: '#2a2a2a',
+    background: 'rgb(29, 29, 29)',
+    contour: '#3a3a3a',
 
     text: {
-        primary: 'rgba(255, 255, 255, 0.95)',
-        secondary: 'rgba(255, 255, 255, 0.7)',
-        disabled: 'rgba(255, 255, 255, 0.5)',
+        primary: 'rgba(249, 249, 249, 0.95)',
+        secondary: 'rgba(249, 249, 249, 0.7)',
+        disabled: 'rgba(249, 249, 249, 0.5)',
     },
 };
 

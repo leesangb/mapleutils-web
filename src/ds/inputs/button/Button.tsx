@@ -47,28 +47,14 @@ const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'children' |
   user-select: none;
   display: flex;
   align-items: center;
+  transition: background-color 0.125s ease-in-out;
 
-  &::after {
-    content: '';
-    border-radius: calc(${theme.borderRadius} - 1px);
-    display: inline-block;
-    background: black;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0;
-    z-index: -1;
-    transition: all 0.125s ease-in-out;
+  &:hover {
+    background-color: ${theme.surface.hover};
   }
 
-  &:hover::after {
-    opacity: 0.125;
-  }
-
-  &:active::after {
-    opacity: 0.375;
+  &:active {
+    background-color: ${theme.surface.active};
   }
 
   ${({ $active }) => $active && css`
@@ -83,14 +69,6 @@ const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'children' |
 
     &:active {
       background-color: ${theme.primary.active};
-    }
-
-    &&:hover::after {
-      opacity: 0;
-    }
-
-    &&:active::after {
-      opacity: 0;
     }
   `}
   ${({ $styles }) => $styles && $styles}
