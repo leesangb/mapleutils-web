@@ -16,12 +16,14 @@ export interface VirtualizedTableProps<T> {
     estimatedRowHeight: (index: number) => number;
     overScan: number;
     RowComponent: VirtualizedRowComponent<T>;
+    EmptyComponent?: ComponentType;
 }
 
 const VirtualizedTable = <T, >({
     data,
     height,
     RowComponent,
+    EmptyComponent,
     overScan,
     estimatedRowHeight,
 }: VirtualizedTableProps<T>) => {
@@ -38,17 +40,21 @@ const VirtualizedTable = <T, >({
 
     return (
         <Container ref={parentRef} style={{ height }}>
-            <Table style={{ height: rowVirtualizer.getTotalSize() }}>
-                <Tbody style={{ transform: `translateY(${virtualItems[0].start}px)` }}>
-                    {virtualItems.map((virtualRow) => {
-                        const rowData = data[virtualRow.index];
-                        return (
-                            <RowComponent key={virtualRow.key}
-                                measureRef={rowVirtualizer.measureElement}
-                                data-index={virtualRow.index} rowData={rowData} />);
-                    })}
-                </Tbody>
-            </Table>
+            {
+                data.length === 0 && EmptyComponent
+                    ? <EmptyComponent />
+                    : <Table style={{ height: rowVirtualizer.getTotalSize() }}>
+                        <Tbody style={{ transform: `translateY(${virtualItems[0]?.start}px)` }}>
+                            {virtualItems.map((virtualRow) => {
+                                const rowData = data[virtualRow.index];
+                                return (
+                                    <RowComponent key={virtualRow.key}
+                                        measureRef={rowVirtualizer.measureElement}
+                                        data-index={virtualRow.index} rowData={rowData} />);
+                            })}
+                        </Tbody>
+                    </Table>
+            }
         </Container>
     );
 };
