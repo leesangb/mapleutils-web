@@ -50,6 +50,8 @@
         "max": 1,
         "maxEOF": 1
       }
-    ]
+    ],
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }
