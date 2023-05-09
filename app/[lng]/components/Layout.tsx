@@ -1,7 +1,7 @@
 'use client';
 
 import GlobalStyle from '@/ds/global.style';
-import { AppBar, Card, SideBar } from '@/ds/surfaces';
+import { AppBar, SideBar } from '@/ds/surfaces';
 import { AppNavigations } from './AppNavigations';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { SideNavigations } from './SideNavigations';
@@ -23,9 +23,7 @@ const Layout = ({ children }: PropsWithChildren) => {
                 <SideNavigations />
             </SideBar>
             <Main>
-                <Card as={'article'}>
-                    {children}
-                </Card>
+                {children}
             </Main>
             <Footer>
                 <Typography fontSize={12}>
