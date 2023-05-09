@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PropsWithChildren } from 'react';
+import { CSSProperties, PropsWithChildren } from 'react';
 import { theme } from '@/ds/theme';
 
 type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div';
@@ -9,6 +9,7 @@ interface TypographyProps {
     variant?: Variant;
     color?: string;
     fontSize?: number;
+    style?: CSSProperties;
 }
 
 const typographyCssMap: Partial<Record<NonNullable<TypographyProps['as']>, string>> = {
