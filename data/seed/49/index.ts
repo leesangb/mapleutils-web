@@ -40,5 +40,6 @@ export const seed49KmsFilter: Set<string> = new Set(
         '로얄 카투스',
         '아이언보어',
         '이상한 돼지',
+        '히죽대는 고스텀프',
     ],
 );
