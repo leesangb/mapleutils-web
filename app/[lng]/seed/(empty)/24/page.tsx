@@ -1,4 +1,4 @@
-import { Tab } from '@/ds/surfaces';
+import { Tabs } from '@/ds/surfaces';
 import { I18nPageProps } from '@/i18n/settings';
 import { useTranslation } from '@/i18n/server';
 
@@ -6,7 +6,7 @@ const Seed24Page = async ({ params }: I18nPageProps) => {
     const { t } = await useTranslation(params.lng, 'seed24');
     return (
         <>
-            <Tab tabs={[
+            <Tabs tabs={[
                 {
                     name: t('bgm'),
                     content: <>bgm</>,
