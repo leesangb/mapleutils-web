@@ -32,4 +32,5 @@ const Container = styled.div<TransientProps<Omit<AvatarProps, 'name'>>>`
   user-select: none;
   color: ${({ $color }) => $color || theme.text.secondary};
   background-color: ${({ $backgroundColor }) => $backgroundColor || theme.background};
+  transition: background-color 0.2s ease-in-out;
 `;
