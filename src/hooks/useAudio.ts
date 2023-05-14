@@ -14,19 +14,19 @@ interface AudioInfo {
     duration: number;
 }
 
-const newAudio = ({ initialVolume = 0.5, loop = true }: UseAudioOptions) => {
+const newAudio = ({ initialVolume = 50, loop = true }: UseAudioOptions) => {
     if (typeof window === 'undefined') {
         return null;
     }
     const audio = document.createElement('audio');
     audio.loop = loop;
     audio.currentTime = 0;
-    audio.volume = initialVolume;
+    audio.volume = initialVolume / 100;
     return audio;
 };
 
 export const useAudio = ({
-    initialVolume = 0.5,
+    initialVolume = 50,
     loop = true,
 }: UseAudioOptions = {}) => {
     const { current: audio } = useRef<HTMLAudioElement>(newAudio({ initialVolume, loop }));
@@ -73,12 +73,12 @@ export const useAudio = ({
                 ? play()
                 : pause();
         }
-        stop();
         audio.src = nextTrack;
+        audio.currentTime = 0;
         play(() => {
             setTrack({
                 src: nextTrack,
-                volume: audio.volume,
+                volume: audio.volume * 100,
                 time: 0,
                 duration: Math.floor(audio.duration),
             });
