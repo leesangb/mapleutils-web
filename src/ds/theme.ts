@@ -24,6 +24,11 @@ interface ThemePalette {
         secondary: string;
         disabled: string;
     };
+
+    tooltip: {
+        color: string;
+        background: string;
+    };
 }
 
 const light: ThemePalette = {
@@ -52,9 +57,14 @@ const light: ThemePalette = {
     contour: '#e0e0e0',
 
     text: {
-        primary: 'rgba(0, 0, 0, 0.87)',
+        primary: 'rgba(0, 0, 0, 0.75)',
         secondary: 'rgba(0, 0, 0, 0.54)',
         disabled: 'rgba(0, 0, 0, 0.38)',
+    },
+
+    tooltip: {
+        color: '#fafafa',
+        background: 'rgba(0, 0, 0, 0.3)',
     },
 };
 
@@ -87,6 +97,11 @@ const dark: ThemePalette = {
         primary: 'rgba(249, 249, 249, 0.95)',
         secondary: 'rgba(249, 249, 249, 0.7)',
         disabled: 'rgba(249, 249, 249, 0.5)',
+    },
+
+    tooltip: {
+        color: '#fafafa',
+        background: 'rgba(170, 170, 170, 0.2)',
     },
 };
 

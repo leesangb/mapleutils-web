@@ -17,6 +17,7 @@ const Seed24Page = async ({ params }: I18nPageProps) => {
     return (
         <>
             <Tabs name={'seed24'}
+                fadeMs={0}
                 tabs={[
                     {
                         name: t('bgm'),

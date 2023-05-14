@@ -10,6 +10,10 @@ export const Slider = styled.input.attrs({ type: 'range' })`
   position: relative;
   overflow: hidden;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &:active {
     cursor: grabbing;
   }
