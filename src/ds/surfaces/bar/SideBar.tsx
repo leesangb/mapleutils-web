@@ -11,17 +11,11 @@ interface SideBarProps {
 
 export const SideBar = ({ children }: PropsWithChildren<SideBarProps>) => {
     return (
-        <Aside>
+        <Container>
             {children}
-        </Aside>
+        </Container>
     );
 };
-
-SideBar.Nav = styled.nav`
-  display: flex;
-  gap: 0;
-  flex-direction: column;
-`;
 
 interface SideBarLinkProps {
     href: string;
@@ -51,7 +45,7 @@ SideBar.Link = function SideBarLink({ href, lang, active, title, subtitle }: Sid
     );
 };
 
-const Aside = styled.aside`
+const Container = styled.div`
   position: fixed;
   width: ${theme.sideBar.width};
   margin-top: 16px;
@@ -72,18 +66,6 @@ const Aside = styled.aside`
   gap: 8px;
   transition: width 0.125s ease-in-out;
   z-index: ${theme.zIndex.sideBar};
-
-  & > nav {
-    transition: width 0.125s ease-in-out;
-    width: calc(100% - 17px);
-  }
-
-  & > nav > a {
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-    white-space: pre;
-  }
 
   &:hover {
     width: 192px;
