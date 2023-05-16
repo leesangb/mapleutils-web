@@ -120,6 +120,7 @@ interface CommonTheme {
     zIndex: {
         appBar: number;
         sideBar: number;
+        tooltip: number;
     };
 }
 
@@ -138,6 +139,7 @@ const common: CommonTheme = {
     zIndex: {
         appBar: 1000,
         sideBar: 1000,
+        tooltip: 1001,
     },
 };
 

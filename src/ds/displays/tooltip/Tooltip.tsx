@@ -5,13 +5,20 @@ interface TooltipProps {
     placement?: 'top' | 'bottom' | 'left' | 'right';
     title: string;
     as?: keyof JSX.IntrinsicElements;
+    size?: 'small' | 'medium' | 'large';
 }
 
-export const Tooltip = ({ as = 'div', placement = 'bottom', title, children }: PropsWithChildren<TooltipProps>) => {
+export const Tooltip = ({
+    as = 'div',
+    placement = 'bottom',
+    size = 'medium',
+    title,
+    children,
+}: PropsWithChildren<TooltipProps>) => {
     return (
         <Container as={as}>
             {children}
-            <Content $placement={placement}>{title}</Content>
+            <Content $size={size} $placement={placement}>{title}</Content>
         </Container>
     );
 };
@@ -63,20 +70,34 @@ const placementMap = {
     `,
 };
 
-const Content = styled.span<Required<TransientProps<Pick<TooltipProps, 'placement'>>>>`
+const sizeMap = {
+    small: css`
+      padding: 4px;
+      font-size: 12px;
+    `,
+    medium: css`
+      padding: 6px;
+      font-size: 14px;
+    `,
+    large: css`
+      padding: 8px;
+      font-size: 16px;
+    `,
+};
+
+const Content = styled.span<Required<TransientProps<Pick<TooltipProps, 'placement' | 'size'>>>>`
   position: absolute;
   visibility: hidden;
   background-color: ${({ theme }) => theme.tooltip.background};
   color: ${({ theme }) => theme.tooltip.color};
   text-align: center;
   border-radius: ${({ theme }) => theme.borderRadius};
-  padding: 8px;
-  font-size: 14px;
+  width: max-content;
   backdrop-filter: blur(10px);
   transition: opacity 0.125s ease-in-out;
   opacity: 0;
-  z-index: 1;
-  min-width: 70%;
+  z-index: ${({ theme }) => theme.zIndex.tooltip};
+  max-width: 280px;
 
   &::after {
     content: "";
@@ -87,6 +108,7 @@ const Content = styled.span<Required<TransientProps<Pick<TooltipProps, 'placemen
     border-color: ${({ theme }) => theme.tooltip.background} transparent transparent transparent;
   }
 
+  ${({ $size }) => sizeMap[$size]};
   ${({ $placement }) => placementMap[$placement]};
 `;
 
