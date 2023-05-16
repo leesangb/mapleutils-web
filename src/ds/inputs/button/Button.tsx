@@ -13,33 +13,51 @@ type ButtonProps = {
     href?: string;
     lang?: Languages;
     styles?: Interpolation<CSSProperties>;
+    variant?: 'outlined' | 'ghost';
 }
 
-export const Button = ({ children, size, active, href, lang, styles, ...props }: ButtonProps) => {
+export const Button = ({ children, size, active, href, lang, styles, variant = 'outlined', ...props }: ButtonProps) => {
     return href
         ? lang
             ? (
                 <StyledButton as={Link} href={href} lang={lang}
-                    $active={active} $styles={styles} $size={size} {...props}>
+                    $variant={variant} $size={size}
+                    $active={active}
+                    $styles={styles}{...props}>
                     {children}
                 </StyledButton>
             ) : (
                 <StyledButton as={'a'} href={href}
-                    $active={active} $styles={styles} $size={size} {...props}>
+                    $variant={variant} $size={size}
+                    $active={active}
+                    $styles={styles} {...props}>
                     {children}
                 </StyledButton>
             )
         : (
-            <StyledButton $active={active} $size={size} $styles={styles} {...props}>
+            <StyledButton $active={active}
+                $variant={variant} $size={size}
+                $styles={styles} {...props}>
                 {children}
             </StyledButton>
         );
 };
 
+const variantMap = {
+    outlined: css`
+      border: 1px solid ${theme.contour};
+    `,
+    ghost: css`
+      background-color: transparent;
+      border: none;
+      padding: 9px;
+    `,
+};
+
 const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'children' | 'onClick' | 'href' | 'lang'>>>`
   position: relative;
-  background-color: ${theme.surface.default};
   border-radius: ${theme.borderRadius};
+  background-color: ${theme.surface.default};
   border: 1px solid ${theme.contour};
   padding: 8px;
   cursor: pointer;
@@ -72,4 +90,5 @@ const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'children' |
     }
   `}
   ${({ $styles }) => $styles && $styles}
+  ${({ $variant }) => $variant && variantMap[$variant]}
 `;
