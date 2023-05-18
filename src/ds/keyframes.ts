@@ -28,4 +28,18 @@ export const keyframes = {
         opacity: 0;
       }
     `,
+    growIn: css`
+      0% {
+        transform: scale(0.2);
+      }
+
+      75% {
+        transform: scale(1.2);
+      }
+    `,
+    growOut: css`
+      100% {
+        transform: scale(0.2);
+      }
+    `,
 } as const;
