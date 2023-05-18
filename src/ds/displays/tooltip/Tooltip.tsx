@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
+import { keyframes } from '@/ds/keyframes';
 
 interface TooltipProps {
     placement?: 'top' | 'bottom' | 'left' | 'right';
@@ -87,17 +88,17 @@ const sizeMap = {
 
 const Content = styled.span<Required<TransientProps<Pick<TooltipProps, 'placement' | 'size'>>>>`
   position: absolute;
-  visibility: hidden;
+  display: none;
   background-color: ${({ theme }) => theme.tooltip.background};
   color: ${({ theme }) => theme.tooltip.color};
   text-align: center;
   border-radius: ${({ theme }) => theme.borderRadius};
   width: max-content;
   backdrop-filter: blur(10px);
-  transition: opacity 0.125s ease-in-out;
   opacity: 0;
   z-index: ${({ theme }) => theme.zIndex.tooltip};
   max-width: 280px;
+  animation: ${keyframes.fadeIn} 0.125s ease-in-out;
 
   &::after {
     content: "";
@@ -117,7 +118,6 @@ const Container = styled.div`
 
   &:hover > ${Content},
   &:active > ${Content} {
-    visibility: visible;
     display: block;
     opacity: 1;
   }
