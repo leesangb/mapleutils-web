@@ -31,7 +31,6 @@ export const HintContent = ({ data }: HintContentProps) => {
                 value={input}
                 onFocus={(e) => e.target.select()}
                 onChange={(e) => setInput(e.target.value)}
-                onClear={() => setInput('')}
             />
 
             <VirtualizedTable data={rows}
@@ -50,7 +49,7 @@ const QuestionAnswerRow = ({ rowData, measureRef, ...props }: VirtualizedRowProp
     return (
         <Row ref={measureRef} {...props}>
             <GridIconCell>
-                <img src={coverImg} alt={name} />
+                <Image src={coverImg} alt={name} />
             </GridIconCell>
             <GridNameCell>
                 {name}
@@ -61,6 +60,10 @@ const QuestionAnswerRow = ({ rowData, measureRef, ...props }: VirtualizedRowProp
         </Row>
     );
 };
+
+const Image = styled.img`
+  image-rendering: pixelated;
+`;
 
 const ROW_PADDING = 8;
 const ROW_BORDER_BOTTOM_WIDTH = 1;
