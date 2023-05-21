@@ -114,8 +114,7 @@ const Title = styled(Typography).attrs({ as: 'h1' })`
   font-size: 32px;
   gap: 8px;
   min-height: 48px;
-  margin-top: 24px;
-  margin-bottom: 16px;
+  margin: 16px 0;
 `;
 
 const Hint = styled.p`
