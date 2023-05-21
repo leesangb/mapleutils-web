@@ -23,7 +23,7 @@ export const Button = ({ children, size, active, href, lang, styles, variant = '
                 <StyledButton as={Link} href={href} lang={lang}
                     $variant={variant} $size={size}
                     $active={active}
-                    $styles={styles}{...props}>
+                    $styles={styles} {...props}>
                     {children}
                 </StyledButton>
             ) : (
