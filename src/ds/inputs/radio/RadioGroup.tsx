@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode, useId } from 'react';
+import { CSSProperties, PropsWithChildren, ReactNode, useId } from 'react';
 import styled from 'styled-components';
 import { Fieldset } from '@/ds/displays';
 
@@ -14,6 +14,8 @@ interface RadioGroupProps<T = unknown> {
     getOptionValue?: (option: T) => string;
     getRender?: (option: T) => ReactNode;
     getCompare?: (a: T, b: T) => boolean;
+    style?: CSSProperties;
+    className?: string;
 }
 
 export const RadioGroup = <T, >({
@@ -28,6 +30,8 @@ export const RadioGroup = <T, >({
     legendAlign = 'left',
     direction = 'column',
     title,
+    style,
+    className,
 }: RadioGroupProps<T>) => {
     const content = (
         <RadioGroup.OptionContainer $direction={direction} $align={align}>
@@ -47,7 +51,8 @@ export const RadioGroup = <T, >({
     );
 
     return title ? (
-        <Fieldset title={title} align={align} legendAlign={legendAlign}>{content}</Fieldset>) : <>{content}</>;
+        <Fieldset style={style} className={className} title={title} align={align}
+            legendAlign={legendAlign}>{content}</Fieldset>) : <>{content}</>;
 };
 
 RadioGroup.OptionContainer = styled.div<TransientProps<Pick<RadioGroupProps, 'direction' | 'align'>>>`

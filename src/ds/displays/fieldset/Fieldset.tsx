@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { CSSProperties, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
 type Alignment = 'left' | 'right' | 'center';
@@ -7,6 +7,8 @@ interface FieldsetProps {
     align?: Alignment;
     title?: string;
     legendAlign?: Alignment;
+    style?: CSSProperties;
+    className?: string;
 }
 
 const marginMap: Record<Alignment, string> = {
@@ -20,8 +22,10 @@ export const Fieldset = ({
     title,
     align = 'left',
     legendAlign = 'left',
+    style,
+    className,
 }: PropsWithChildren<FieldsetProps>) => {
-    return <Container $align={align}>
+    return <Container style={style} className={className} $align={align}>
         <Legend $align={legendAlign}>{title}</Legend>
         {children}
     </Container>;
