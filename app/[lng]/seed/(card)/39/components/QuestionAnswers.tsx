@@ -36,7 +36,6 @@ const QuestionAnswers = ({ data }: QuestionAnswersProps) => {
                 value={input}
                 onFocus={(e) => e.target.select()}
                 onChange={(e) => setInput(e.target.value)}
-                onClear={() => setInput('')}
             />
             <VirtualizedTable data={rows}
                 height={'calc(100vh - var(--appBar_height) * 3.5)'}
