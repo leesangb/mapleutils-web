@@ -7,7 +7,7 @@
   "title": "Tower of Oz Floor 24",
   "nowPlaying": "Now playing",
   "selectBGMToPlay": "Please select BGM to play",
-  "searchPlaceholder": "Type BGM name or hint (ex: Lith, harbor, penguins,...) You can press [Ctrl] + [F] or [F3] to focus search field, case insensitive ✅",
+  "searchPlaceholder": "Type BGM name or hint (ex: Lith, harbor, penguins,...) case insensitive ✅",
   "bgm": "BGM",
   "hint": "Hint",
   "리스항구": "Lith Harbor",
