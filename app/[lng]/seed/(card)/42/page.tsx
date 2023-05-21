@@ -27,7 +27,7 @@ const Seed42Page = () => {
         <>
             <Container>
                 <NextImage style={{ ...imageStyle, position: 'relative', top: 0, left: 0 }} src={background}
-                    alt={'background'} draggable={false} />
+                    alt={'background'} draggable={false} placeholder={'blur'} />
                 <LayerImage src={'/images/seed/42/route.png'} draggable={false} />
                 <LayerImage src={'/images/seed/42/trap.png'} style={{ opacity: opacity / 100 }}
                     draggable={false} />
@@ -58,7 +58,7 @@ const Seed42Page = () => {
             <Typography as={'h2'}>
                 {t('lastPart')}
             </Typography>
-            <NextImage src={end} alt={'end'} style={imageStyle} />
+            <NextImage src={end} alt={'end'} style={imageStyle} placeholder={'blur'} />
 
         </>
     );

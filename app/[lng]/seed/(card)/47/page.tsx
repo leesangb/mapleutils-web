@@ -17,7 +17,7 @@ const Seed47Page = async ({ params }: I18nPageProps) => {
                 height: 'auto',
                 display: 'block',
                 margin: '8px auto',
-            }} src={seed47} alt={'seed 47'} />
+            }} src={seed47} alt={'seed 47'} width={576} placeholder={'blur'} />
         </>
     );
 };
