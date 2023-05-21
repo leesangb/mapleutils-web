@@ -1,13 +1,11 @@
 import { TextField, TextFieldProps } from '@/ds/inputs/textField/TextField';
-import { RiDeleteBack2Fill, RiSearchLine } from 'react-icons/ri';
-import styled from 'styled-components';
+import { RiSearchLine } from 'react-icons/ri';
 import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 
-interface SearchFieldProps extends TextFieldProps {
-    onClear?: () => void;
-}
+type SearchFieldProps = Omit<TextFieldProps, 'adornment'>;
 
-export const SearchField = ({ onClear, ...props }: SearchFieldProps) => {
+export const SearchField = ({ ...props }: SearchFieldProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -30,25 +28,14 @@ export const SearchField = ({ onClear, ...props }: SearchFieldProps) => {
 
     }, []);
 
-    return <TextField inputRef={inputRef} adornment={{
+    return <TextField inputRef={inputRef} autoFocus {...props} adornment={{
         start: <RiSearchLine />,
-        end: onClear && props.value && <ClearButton onClick={onClear}><RiDeleteBack2Fill /></ClearButton>,
-    }} autoFocus {...props} />;
+        end: <>
+            <kbd>F3</kbd> <Span>/</Span> <kbd>Ctrl</kbd> <Span>+</Span> <kbd>F</kbd>
+        </>,
+    }} />;
 };
 
-const ClearButton = styled.button`
-  outline: none;
-  padding: 6px;
-  border: none;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: all 0.125s ease-in-out;
-  margin-right: 8px;
-
-  &:hover {
-    color: ${({ theme }) => theme.primary.default};
-    background-color: ${({ theme }) => theme.surface.hover};
-  }
+const Span = styled.span`
+  font-size: 10px;
 `;
