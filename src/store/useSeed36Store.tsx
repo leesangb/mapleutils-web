@@ -29,7 +29,7 @@ const usePersistedSeed36Store = create<Seed36State>()(
 );
 
 const emptyState: Seed36State = {
-    alignment: 'vertical',
+    alignment: 'horizontal',
     setAlignment: () => {
     },
 };
