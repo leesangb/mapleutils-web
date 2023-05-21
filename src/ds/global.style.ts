@@ -28,6 +28,20 @@ const GlobalStyle = createGlobalStyle`
     border-radius: ${theme.borderRadius};
   }
 
+  kbd {
+    background-color: ${theme.surface.default};
+    border-radius: 3px;
+    border: 1px solid ${theme.contour};
+    color: ${theme.text.secondary};
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+    margin: 0 2px;
+  }
+
   hr {
     border: none;
     border-top: 1px solid ${theme.contour};
