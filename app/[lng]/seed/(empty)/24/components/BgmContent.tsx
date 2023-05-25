@@ -20,7 +20,7 @@ export const BgmContent = ({ data }: BgmContentProps) => {
     return (
         <Container>
             <Player>
-                <Title>
+                <Title as={'h1'}>
                     {currentTrack
                         ? <>
                             <Image src={currentTrack.coverImg} alt={currentTrack.name} />
@@ -106,7 +106,7 @@ const Image = styled.img`
   border-radius: 0;
 `;
 
-const Title = styled(Typography).attrs({ as: 'h1' })`
+const Title = styled(Typography)`
   grid-area: title;
   padding: 0;
   display: flex;
