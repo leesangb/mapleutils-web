@@ -32,6 +32,10 @@ const hangulMap: Record<string, string> = {
     Q: 'ㅃ', W: 'ㅉ', E: 'ㄸ', R: 'ㄲ', T: 'ㅆ', O: 'ㅒ', P: 'ㅖ',
 };
 
+export const englishToHangul = (s: string): string => {
+    return Hangul.a(s.split('').map((c) => hangulMap[c] || c));
+};
+
 export const isHangulMatching = (pattern: string, ...words: string[]): boolean => {
     const searched = removeSpecialChars(pattern).replace(/[A-Za-z]/g, (s) => hangulMap[s] || s);
 

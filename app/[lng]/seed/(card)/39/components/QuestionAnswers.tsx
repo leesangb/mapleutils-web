@@ -4,11 +4,11 @@ import { QuestionAnswer } from '@/data/seed/39';
 import VirtualizedTable, { VirtualizedRowProps } from '@/components/virtualized/VirtualizedTable';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { isHangulMatching, isMatching } from '@/utils/string';
+import { englishToHangul, isHangulMatching, isMatching } from '@/utils/string';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { SearchField } from '@/ds/inputs';
 import { useTranslation } from '@/i18n/client';
-import { Typography } from '@/ds/displays';
+import { Tooltip, Typography } from '@/ds/displays';
 import { theme } from '@/ds/theme';
 
 interface QuestionAnswersProps {
@@ -31,12 +31,14 @@ const QuestionAnswers = ({ data }: QuestionAnswersProps) => {
 
     return (
         <>
-            <SearchField fullWidth
-                placeholder={t('searchPlaceholder')}
-                value={input}
-                onFocus={(e) => e.target.select()}
-                onChange={(e) => setInput(e.target.value)}
-            />
+            <Tooltip title={locale === 'ko' ? englishToHangul(input) : ''} placement={'top'}>
+                <SearchField fullWidth
+                    placeholder={t('searchPlaceholder')}
+                    value={input}
+                    onFocus={(e) => e.target.select()}
+                    onChange={(e) => setInput(e.target.value)}
+                />
+            </Tooltip>
             <VirtualizedTable data={rows}
                 height={'calc(100vh - var(--appBar_height) * 3.5)'}
                 estimatedRowHeight={estimatedRowHeight}
