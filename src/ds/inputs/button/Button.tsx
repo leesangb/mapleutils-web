@@ -1,5 +1,5 @@
 import { theme } from '@/ds/theme';
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, MouseEventHandler, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { Languages } from '@/i18n/settings';
 import { Interpolation } from 'styled-components/dist/types';
@@ -7,7 +7,7 @@ import { Link } from '@/ds/displays';
 
 type ButtonProps = {
     size?: 'small' | 'medium' | 'large';
-    onClick?: () => void;
+    onClick?: MouseEventHandler;
     children?: ReactNode;
     active?: boolean;
     href?: string;
