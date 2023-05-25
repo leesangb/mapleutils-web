@@ -3,10 +3,9 @@ import { persist } from 'zustand/middleware';
 import { useIsMounted } from '@/hooks/useIsMounted';
 import { LocalStorageKey } from '@/utils/localStorageHelper';
 
-interface Seed36State {
+type Seed36State = StoreProps<{
     alignment: 'vertical' | 'horizontal';
-    setAlignment: (alignment: Seed36State['alignment']) => void;
-}
+}>;
 
 const usePersistedSeed36Store = create<Seed36State>()(
     persist(

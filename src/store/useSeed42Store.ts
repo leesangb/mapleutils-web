@@ -3,12 +3,10 @@ import { persist } from 'zustand/middleware';
 import { LocalStorageKey } from '@/utils/localStorageHelper';
 import { useIsMounted } from '@/hooks/useIsMounted';
 
-interface Seed42State {
+type Seed42State = StoreProps<{
     route: 'none' | 'route1' | 'route2';
     opacity: number;
-    setRoute: (route: Seed42State['route']) => void;
-    setOpacity: (opacity: number) => void;
-}
+}>;
 
 const usePersistedSeed42Store = create<Seed42State>()(
     persist(
