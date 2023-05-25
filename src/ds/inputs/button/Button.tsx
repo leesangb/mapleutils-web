@@ -64,6 +64,7 @@ const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'children' |
   text-decoration: none;
   user-select: none;
   display: flex;
+  gap: 8px;
   align-items: center;
   transition: background-color 0.125s ease-in-out;
 
