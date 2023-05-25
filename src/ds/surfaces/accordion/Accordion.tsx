@@ -60,6 +60,7 @@ export const Accordion = ({ defaultOpen = false, children }: PropsWithChildren<A
 Accordion.Details = styled.details`
   height: var(${collapsed});
   overflow: hidden;
+  will-change: height;
   transition: height 325ms cubic-bezier(0.4, 0.01, 0.165, 0.99);
   cursor: auto;
   border: 1px solid ${({ theme }) => theme.contour};
