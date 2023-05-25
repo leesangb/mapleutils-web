@@ -19,7 +19,7 @@ export const Tooltip = ({
     return (
         <Container as={as}>
             {children}
-            <Content $size={size} $placement={placement}>{title}</Content>
+            {title && <Content $size={size} $placement={placement}>{title}</Content>}
         </Container>
     );
 };
