@@ -61,6 +61,8 @@ const emptyState: Seed49State = {
     },
     toggleLocation: () => {
     },
+    reverseLocations: () => {
+    },
 };
 
 // @ts-ignore
