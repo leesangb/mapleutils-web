@@ -65,6 +65,7 @@ const Container = styled.div`
   align-items: center;
   gap: 8px;
   transition: width 0.125s ease-in-out;
+  will-change: width;
   z-index: ${theme.zIndex.sideBar};
 
   &:hover {
