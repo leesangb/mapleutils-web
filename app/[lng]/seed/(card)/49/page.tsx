@@ -1,9 +1,216 @@
+'use client';
+
+import VirtualizedMasonry, {
+    VirtualizedMasonryDataProps,
+    VirtualizedMasonryProps,
+} from '@/components/virtualized/VirtualizedMasonry';
+import { seed49Locations, seed49Mobs, SeedMobData } from '@/data/seed/49';
+import styled from 'styled-components';
+import { Tooltip, Typography } from '@/ds/displays';
+import { ReactElement, useState } from 'react';
+import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
+import { isHangulMatching, isMatching } from '@/utils/string';
+import { Button, SearchField } from '@/ds/inputs';
+import { useTranslation } from '@/i18n/client';
+import { theme } from '@/ds/theme';
+import { RiCheckboxFill, RiEyeFill, RiEyeOffFill, RiStarFill, RiStarLine } from 'react-icons/ri';
+
 const Seed49Page = () => {
+    const { locale } = useLocalizedPathname();
+    const { t } = useTranslation({ ns: 'seed49' });
+    const [input, setInput] = useState<string>('');
+    const [silhouette, setSilhouette] = useState<boolean>(false);
+
+    const mobs = seed49Mobs.map(m => ({ ...m, name: t(m.name), location: t(m.location) }))
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .filter(({ name, location }) => locale === 'ko'
+            ? isHangulMatching(input, name, location)
+            : isMatching(input, name, location));
+
+    const locations = seed49Locations.map(t).sort((a, b) => a.localeCompare(b));
+
     return (
-        <div>
-            <h1>Seed 49 Page</h1>
-        </div>
+        <>
+            <SearchField fullWidth
+                placeholder={t('searchPlaceholder')}
+                value={input}
+                onFocus={(e) => e.target.select()}
+                onChange={e => setInput(e.target.value)} />
+            <Toolbar style={{ margin: '8px 0' }}>
+                <Tooltip title={`${t('silhouette')} ${silhouette ? 'OFF' : 'ON'}`}>
+                    <Button onClick={() => setSilhouette(!silhouette)}>
+                        {silhouette ? <RiEyeFill /> : <RiEyeOffFill />}
+                    </Button>
+                </Tooltip>
+                <Tooltip title={t('showOnlyFavorite')}>
+                    <Button>
+                        <RiStarFill color={'orange'} />
+                        <RiStarLine color={'orange'} />
+                    </Button>
+                </Tooltip>
+                <Toolbar>
+                    {locations.map(location =>
+                        <Button key={location}>
+                            <RiCheckboxFill />
+                            {location}
+                        </Button>)}
+                </Toolbar>
+            </Toolbar>
+            <Masonry data={mobs}
+                getLanes={(width) => Math.max(1, Math.floor(width / 200))}
+                height={'calc(100vh - var(--appBar_height) * 3.5)'}
+                estimatedHeight={mob => mob.height + OFFSET}
+                overScan={10}
+                EmptyComponent={EmptyComponent}
+                Component={Component}
+                $silhouette={silhouette} />
+        </>
     );
 };
+
+const Masonry = styled(VirtualizedMasonry)`
+  ${({ $silhouette }) => $silhouette && `
+        && img {
+            filter: none;
+        }
+    `})}
+` as <T>(props: VirtualizedMasonryProps<T> & { $silhouette: boolean }) => ReactElement;
+
+const Component = ({ data }: VirtualizedMasonryDataProps<SeedMobData>) => {
+    const { t } = useTranslation({ ns: 'seed49' });
+    return (
+        <Container onClick={() => {
+
+        }}>
+            <LocationChip>{t(data.location)}</LocationChip>
+            <FavoriteButton variant={'ghost'} onClick={(e) => {
+                e.stopPropagation();
+            }}>
+                <RiStarFill color={'orange'} />
+            </FavoriteButton>
+            <ImageBackground>
+                <Image src={data.img} alt={t(data.name)} style={{ height: data.height + IMAGE_PADDING * 2 }} />
+            </ImageBackground>
+            <Typography>{t(data.name)}</Typography>
+        </Container>
+    );
+};
+
+const LocationChip = styled.span`
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 10px;
+  border-radius: 4px;
+  padding: 2px 4px;
+  background-color: ${({ theme }) => theme.surface.default};
+  transition: box-shadow 0.125s ease-in-out;
+  backdrop-filter: blur(2px);
+
+  &:hover {
+    z-index: 1;
+    box-shadow: 0 0 4px 2px ${({ theme }) => theme.contour};
+  }
+`;
+
+const FavoriteButton = styled(Button)`
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  border-radius: 50%;
+  z-index: 1;
+`;
+
+const EmptyComponent = () => {
+    const { t } = useTranslation();
+    return (
+        <Typography variant={'h3'}
+            style={{
+                color: theme.text.disabled,
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}>
+            {t('noResultsFound')}
+        </Typography>
+    );
+};
+
+const Toolbar = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+  align-items: center;
+`;
+
+const IMAGE_PADDING = 8;
+const Image = styled.img.attrs({ draggable: false })`
+  object-fit: scale-down;
+  width: 100%;
+  box-sizing: border-box;
+  padding: ${IMAGE_PADDING}px;
+  filter: brightness(0%) drop-shadow(0 0 1px white);
+  user-select: none;
+  pointer-events: none;
+
+  transition: filter 0.125s ease-in-out;
+`;
+
+const ImageBackground = styled.div`
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  background-color: ${({ theme }) => theme.background};
+  text-align: center;
+  transition: background-color 0.125s ease-in-out;
+`;
+
+const CONTAINER_PADDING = 8;
+const CONTAINER_MARGIN = 4;
+const Container = styled.button`
+  width: calc(100% - 8px);
+  border: 1px solid ${({ theme }) => theme.contour};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  margin: ${CONTAINER_MARGIN}px;
+  padding: ${CONTAINER_PADDING}px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: background-color 0.125s ease-in-out;
+  position: relative;
+
+  &:hover {
+    & > ${ImageBackground} > ${Image} {
+      filter: brightness(100%);
+    }
+
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.surface.default};
+
+    & > ${ImageBackground} {
+      background-color: ${({ theme }) => theme.surface.hover};
+    }
+  }
+
+  &:active:not(:has(button:active)) {
+    & > ${ImageBackground} {
+      background-color: ${({ theme }) => theme.surface.active};
+    }
+  }
+
+
+`;
+
+const OFFSET = IMAGE_PADDING * 2
+    + CONTAINER_PADDING * 2
+    + CONTAINER_MARGIN * 2
+    + 2 // container border
+    + 8 // container gap
+    + 16 * 1.5 // font size
+    + 4; // font padding
 
 export default Seed49Page;
