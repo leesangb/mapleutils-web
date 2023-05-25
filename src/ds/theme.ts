@@ -1,4 +1,4 @@
-import { darken } from 'polished';
+import { darken, lighten, transparentize } from 'polished';
 
 type InteractingColor = {
     default: string;
@@ -6,14 +6,18 @@ type InteractingColor = {
     active: string;
 }
 
-interface ThemePalette {
-    primary: InteractingColor;
-    secondary: InteractingColor;
+type SurfaceColor = {
+    default: string;
+    background: string;
+}
 
-    success: string;
-    danger: string;
-    warning: string;
-    info: string;
+interface ThemePalette {
+    primary: InteractingColor & SurfaceColor;
+
+    success: SurfaceColor;
+    danger: SurfaceColor;
+    warning: SurfaceColor;
+    info: SurfaceColor;
 
     surface: InteractingColor;
     background: string;
@@ -31,22 +35,36 @@ interface ThemePalette {
     };
 }
 
+const primaryLight = '#a8a8ff';
+const success = '#4bef54';
+const danger = '#f85d51';
+const warning = '#ffdf71';
+const info = '#69b2ec';
+
 const light: ThemePalette = {
     primary: {
-        default: '#a8a8ff',
-        hover: darken(0.05, '#a8a8ff'),
-        active: darken(0.1, '#a8a8ff'),
-    },
-    secondary: {
-        default: '#fff691',
-        hover: '#fff691',
-        active: '#fff691',
+        default: primaryLight,
+        hover: darken(0.05, primaryLight),
+        active: darken(0.1, primaryLight),
+        background: transparentize(0.8, lighten(0.1, primaryLight)),
     },
 
-    success: '#4caf50',
-    danger: '#f44336',
-    warning: '#ff9800',
-    info: '#2196f3',
+    success: {
+        default: darken(0.2, success),
+        background: transparentize(0.8, success),
+    },
+    danger: {
+        default: danger,
+        background: transparentize(0.8, danger),
+    },
+    warning: {
+        default: darken(0.25, warning),
+        background: transparentize(0.8, warning),
+    },
+    info: {
+        default: info,
+        background: transparentize(0.8, info),
+    },
 
     surface: {
         default: 'rgba(255, 255, 255, 0.65)',
@@ -68,22 +86,31 @@ const light: ThemePalette = {
     },
 };
 
+const primaryDark = '#919aff';
 const dark: ThemePalette = {
     primary: {
-        default: '#919aff',
-        hover: darken(0.05, '#919aff'),
-        active: darken(0.1, '#919aff'),
-    },
-    secondary: {
-        default: '#fff691',
-        hover: '#fff691',
-        active: '#fff691',
+        default: primaryDark,
+        hover: darken(0.05, primaryDark),
+        active: darken(0.1, primaryDark),
+        background: transparentize(0.8, primaryDark),
     },
 
-    success: '#4caf50',
-    danger: '#f44336',
-    warning: '#ff9800',
-    info: '#2196f3',
+    success: {
+        default: success,
+        background: transparentize(0.8, success),
+    },
+    danger: {
+        default: danger,
+        background: transparentize(0.8, danger),
+    },
+    warning: {
+        default: warning,
+        background: transparentize(0.8, warning),
+    },
+    info: {
+        default: info,
+        background: transparentize(0.8, info),
+    },
 
     surface: {
         default: 'rgb(36, 36, 36, 0.8)',
