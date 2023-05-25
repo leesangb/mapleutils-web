@@ -16,7 +16,7 @@ interface TypographyProps {
 
 const typographyCssMap: Partial<Record<NonNullable<TypographyProps['variant']>, string>> = {
     p: `
-        lineHeight: 1.5;
+        line-height: 1.5;
     `,
     h1: `
       font-size: 32px;
