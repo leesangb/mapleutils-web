@@ -25,7 +25,7 @@ import {
     RiSwapBoxFill,
 } from 'react-icons/ri';
 import { useSeed49Store } from '@/store/useSeed49Store';
-import { Collapse } from '@/ds/surfaces';
+import { Card, Collapse } from '@/ds/surfaces';
 import { keyframes } from '@/ds/keyframes';
 
 const Seed49Page = () => {
@@ -52,7 +52,7 @@ const Seed49Page = () => {
     const allLocations = seed49Locations.sort((a, b) => t(a).localeCompare(t(b)));
 
     return (
-        <>
+        <Card>
             <SearchField fullWidth
                 placeholder={t('searchPlaceholder')}
                 value={input}
@@ -119,7 +119,7 @@ const Seed49Page = () => {
                 EmptyComponent={EmptyComponent}
                 Component={Component}
                 $silhouette={silhouette} />
-        </>
+        </Card>
     );
 };
 

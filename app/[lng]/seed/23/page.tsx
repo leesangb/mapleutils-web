@@ -8,6 +8,7 @@ import map2 from '@/assets/images/seed/23/2.png';
 import map3 from '@/assets/images/seed/23/3.png';
 
 import { CSSProperties } from 'react';
+import { Card } from '@/ds/surfaces';
 
 const imageStyle: CSSProperties = {
     objectFit: 'scale-down',
@@ -21,7 +22,7 @@ const Seed23Page = async ({ params }: I18nPageProps) => {
     const { t } = await useTranslation(params.lng, 'seed23');
 
     return (
-        <>
+        <Card>
             <Typography as={'h2'}>{t('mapFull')}</Typography>
             <NextImage style={imageStyle} src={full} placeholder={'blur'} alt={'seed 23 full'} />
 
@@ -39,7 +40,7 @@ const Seed23Page = async ({ params }: I18nPageProps) => {
 
             <Typography as={'h2'}>{t('map3')}</Typography>
             <NextImage src={map3} style={imageStyle} placeholder={'blur'} alt={'seed 23 3'} />
-        </>
+        </Card>
     );
 };
 

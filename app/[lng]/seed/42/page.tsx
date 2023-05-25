@@ -10,6 +10,7 @@ import { useSeed42Store } from '@/store/useSeed42Store';
 import { RadioGroup, Slider } from '@/ds/inputs';
 import { useTranslation } from '@/i18n/client';
 import { Typography } from '@/ds/displays';
+import { Card } from '@/ds/surfaces';
 
 const imageStyle: CSSProperties = {
     objectFit: 'scale-down',
@@ -24,7 +25,7 @@ const Seed42Page = () => {
     const { route, setRoute, opacity, setOpacity } = useSeed42Store(state => state);
 
     return (
-        <>
+        <Card>
             <Container>
                 <NextImage style={{ ...imageStyle, position: 'relative', top: 0, left: 0 }} src={background}
                     alt={'background'} draggable={false} placeholder={'blur'} />
@@ -60,7 +61,7 @@ const Seed42Page = () => {
             </Typography>
             <NextImage src={end} alt={'end'} style={imageStyle} placeholder={'blur'} />
 
-        </>
+        </Card>
     );
 };
 

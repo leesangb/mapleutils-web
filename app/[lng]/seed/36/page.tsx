@@ -7,6 +7,7 @@ import { seed36Data } from '@/data/seed/36';
 import { Button } from '@/ds/inputs';
 import styled, { css } from 'styled-components';
 import { RiArrowDownLine, RiArrowRightLine, RiRestartLine } from 'react-icons/ri';
+import { Card } from '@/ds/surfaces';
 
 type Step = 0 | 1 | 2 | 3 | undefined;
 type Steps = [Step, Step, Step, Step, Step, Step, Step, Step]
@@ -26,7 +27,7 @@ const Seed36Page = () => {
     const { setAlignment, alignment } = useSeed36Store();
 
     return (
-        <>
+        <Card>
             <ButtonsContainer>
                 <IconButton active={alignment === 'vertical'} onClick={() => setAlignment('vertical')}>
                     <RiArrowDownLine />
@@ -73,7 +74,7 @@ const Seed36Page = () => {
                     )}
                 </Tbody>
             </Table>
-        </>
+        </Card>
     );
 };
 

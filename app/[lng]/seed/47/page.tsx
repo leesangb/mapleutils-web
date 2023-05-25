@@ -3,11 +3,12 @@ import { I18nPageProps } from '@/i18n/settings';
 import { useTranslation } from '@/i18n/server';
 import seed47 from '@/assets/images/seed/47.png';
 import NextImage from 'next/image';
+import { Card } from '@/ds/surfaces';
 
 const Seed47Page = async ({ params }: I18nPageProps) => {
     const { t } = await useTranslation(params.lng, 'seed47');
     return (
-        <>
+        <Card>
             <Typography as={'h2'} style={{ marginBottom: '8px' }}>{t('map')}</Typography>
             <Typography>{t('switchDescription')}</Typography>
 
@@ -18,7 +19,7 @@ const Seed47Page = async ({ params }: I18nPageProps) => {
                 display: 'block',
                 margin: '8px auto',
             }} src={seed47} alt={'seed 47'} width={576} placeholder={'blur'} />
-        </>
+        </Card>
     );
 };
 

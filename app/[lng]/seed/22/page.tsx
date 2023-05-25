@@ -10,7 +10,7 @@ import tip3 from '@/assets/images/seed/22/tip3.gif';
 import tip4 from '@/assets/images/seed/22/tip4.1.gif';
 
 import { CSSProperties } from 'react';
-import { Accordion, AccordionContent, AccordionSummary } from '@/ds/surfaces';
+import { Accordion, AccordionContent, AccordionSummary, Card } from '@/ds/surfaces';
 import { PlatformMap } from './components/PlatformMap';
 import { RiLightbulbLine } from 'react-icons/ri';
 
@@ -26,7 +26,7 @@ const Seed22Page = async ({ params }: I18nPageProps) => {
     const { t } = await useTranslation(params.lng, 'seed22');
 
     return (
-        <>
+        <Card>
             <Typography as={'h2'}>{t('map1')}</Typography>
             <NextImage style={imageStyle} src={map1} placeholder={'blur'} alt={'seed 22 1'} />
             <Accordion>
@@ -76,7 +76,7 @@ const Seed22Page = async ({ params }: I18nPageProps) => {
                     <NextImage style={imageStyle} src={tip4} alt={'seed 22 tip4'} />
                 </AccordionContent>
             </Accordion>
-        </>
+        </Card>
     );
 };
 
