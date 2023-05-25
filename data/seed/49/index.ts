@@ -5,22 +5,8 @@ export interface SeedMobData {
     width: number;
     height: number;
     img: string;
-    location: string;
+    location: SeedLocation;
 }
-
-export interface SeedLocation {
-    location: string;
-    mobs: SeedMobData[];
-}
-
-export const seed49Data: SeedLocation[] = data.map(l => ({
-    ...l,
-    mobs: l.mobs.map(m => ({
-        ...m,
-        location: l.location,
-        img: encodeURI(`/images/seed/49/${m.name}.png`),
-    })),
-}));
 
 export const seed49GmsFilter: Set<string> = new Set(
     [
@@ -56,4 +42,24 @@ export const seed49Mobs: SeedMobData[] = data.reduce((acc, cur) => {
     return acc;
 }, [] as SeedMobData[]);
 
-export const seed49Locations: string[] = data.map(l => l.location);
+export const seedLocations = [
+    '에레브',
+    '에델슈타인',
+    '오르비스',
+    '아쿠아리움',
+    '루디브리엄',
+    '지구방위본부',
+    '아랫마을',
+    '무릉',
+    '아리안트',
+    '리엔',
+    '마가티아',
+    '헤네시스',
+    '엘리니아',
+    '페리온',
+    '커닝시티',
+] as const;
+export type SeedLocation = typeof seedLocations[number]
+    | string;
+
+export const seed49Locations: SeedLocation[] = data.map(l => l.location);

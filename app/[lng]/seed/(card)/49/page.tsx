@@ -5,7 +5,7 @@ import VirtualizedMasonry, {
     VirtualizedMasonryProps,
 } from '@/components/virtualized/VirtualizedMasonry';
 import { seed49Locations, seed49Mobs, SeedMobData } from '@/data/seed/49';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Tooltip, Typography } from '@/ds/displays';
 import { ReactElement, useState } from 'react';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
@@ -13,21 +13,43 @@ import { isHangulMatching, isMatching } from '@/utils/string';
 import { Button, SearchField } from '@/ds/inputs';
 import { useTranslation } from '@/i18n/client';
 import { theme } from '@/ds/theme';
-import { RiCheckboxFill, RiEyeFill, RiEyeOffFill, RiStarFill, RiStarLine } from 'react-icons/ri';
+import {
+    RiCheckboxBlankLine,
+    RiCheckboxFill,
+    RiCheckboxMultipleFill,
+    RiEyeFill,
+    RiEyeOffFill,
+    RiSettings2Fill,
+    RiStarFill,
+    RiStarLine,
+    RiSwapBoxFill,
+} from 'react-icons/ri';
+import { useSeed49Store } from '@/store/useSeed49Store';
+import { Collapse } from '@/ds/surfaces';
+import { keyframes } from '@/ds/keyframes';
 
 const Seed49Page = () => {
     const { locale } = useLocalizedPathname();
     const { t } = useTranslation({ ns: 'seed49' });
     const [input, setInput] = useState<string>('');
     const [silhouette, setSilhouette] = useState<boolean>(false);
+    const [openFilter, setOpenFilter] = useState<boolean>(false);
+    const {
+        showOnlyFavorite, setShowOnlyFavorite,
+        favorites,
+        locations, toggleLocation,
+        setLocations, reverseLocations,
+    } = useSeed49Store();
 
-    const mobs = seed49Mobs.map(m => ({ ...m, name: t(m.name), location: t(m.location) }))
+    const mobs = seed49Mobs
+        .filter(({ location, name }) => !locations[location] && (showOnlyFavorite ? favorites.includes(name) : true))
+        .map(m => ({ ...m, name: t(m.name), location: t(m.location) }))
         .sort((a, b) => a.name.localeCompare(b.name))
         .filter(({ name, location }) => locale === 'ko'
             ? isHangulMatching(input, name, location)
             : isMatching(input, name, location));
 
-    const locations = seed49Locations.map(t).sort((a, b) => a.localeCompare(b));
+    const allLocations = seed49Locations.sort((a, b) => t(a).localeCompare(t(b)));
 
     return (
         <>
@@ -43,22 +65,55 @@ const Seed49Page = () => {
                     </Button>
                 </Tooltip>
                 <Tooltip title={t('showOnlyFavorite')}>
-                    <Button>
-                        <RiStarFill color={'orange'} />
-                        <RiStarLine color={'orange'} />
+                    <Button onClick={() => setShowOnlyFavorite(!showOnlyFavorite)}>
+                        {
+                            showOnlyFavorite
+                                ? <RiStarFill color={'orange'} />
+                                : <RiStarLine color={'orange'} />
+                        }
                     </Button>
                 </Tooltip>
-                <Toolbar>
-                    {locations.map(location =>
-                        <Button key={location}>
-                            <RiCheckboxFill />
-                            {location}
+
+                <Button styles={css`
+                  margin-left: auto;
+
+                  &:active > svg {
+                    transform: scale(0.2) rotate(-360deg);
+                  }
+
+                  svg {
+                    transition: transform 0.325s ease-in-out;
+                    animation: ${keyframes.spin} 0.325s ease-in-out;
+                  }
+                `} onClick={() => setOpenFilter(!openFilter)}>
+                    <RiSettings2Fill /> {t('filters')}
+                </Button>
+
+            </Toolbar>
+            <Collapse open={openFilter}>
+                <Toolbar style={{ marginBottom: '8px' }}>
+                    <Button onClick={() => setLocations({})}>
+                        <RiCheckboxMultipleFill /> {t('selectAll')}
+                    </Button>
+                    <Button onClick={() => reverseLocations()}>
+                        <RiSwapBoxFill /> {t('invert')}
+                    </Button>
+                </Toolbar>
+                <Toolbar style={{ marginBottom: '8px' }}>
+                    {allLocations.map(location =>
+                        <Button key={location} onClick={() => toggleLocation(location)}>
+                            {
+                                locations[location] ? <RiCheckboxBlankLine /> :
+                                    <RiCheckboxFill color={theme.primary.default} />
+                            }
+                            {t(location)}
                         </Button>)}
                 </Toolbar>
-            </Toolbar>
+            </Collapse>
+
             <Masonry data={mobs}
                 getLanes={(width) => Math.max(1, Math.floor(width / 200))}
-                height={'calc(100vh - var(--appBar_height) * 3.5)'}
+                height={'calc(100vh - var(--appBar_height) * 4.5)'}
                 estimatedHeight={mob => mob.height + OFFSET}
                 overScan={10}
                 EmptyComponent={EmptyComponent}
@@ -78,15 +133,21 @@ const Masonry = styled(VirtualizedMasonry)`
 
 const Component = ({ data }: VirtualizedMasonryDataProps<SeedMobData>) => {
     const { t } = useTranslation({ ns: 'seed49' });
+    const { favorites, toggleFavorite } = useSeed49Store();
+
     return (
         <Container onClick={() => {
-
         }}>
             <LocationChip>{t(data.location)}</LocationChip>
             <FavoriteButton variant={'ghost'} onClick={(e) => {
                 e.stopPropagation();
+                toggleFavorite(data.name);
             }}>
-                <RiStarFill color={'orange'} />
+                {
+                    favorites.includes(data.name)
+                        ? <RiStarFill color={'orange'} />
+                        : <RiStarLine color={'orange'} />
+                }
             </FavoriteButton>
             <ImageBackground>
                 <Image src={data.img} alt={t(data.name)} style={{ height: data.height + IMAGE_PADDING * 2 }} />

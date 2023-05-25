@@ -52,12 +52,12 @@ const VirtualizedMasonry = <T, >({
             const lanes = getLanes(width);
             if (lanes !== rowVirtualizer.options.lanes) {
                 setLanes(lanes);
-                setRowData([]);
                 // some hack to force a re-calculating of the virtualizer
-                Promise.resolve().then(() => {
-                    setRowData(data);
-                });
+                setRowData([]);
             }
+            setTimeout(() => {
+                setRowData(data);
+            }, 0);
         };
         handleResize();
         window.addEventListener('resize', handleResize);
