@@ -59,6 +59,7 @@ const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'children' |
   border-radius: ${theme.borderRadius};
   background-color: ${theme.surface.default};
   border: 1px solid ${theme.contour};
+  height: fit-content;
   padding: 8px;
   cursor: pointer;
   text-decoration: none;
