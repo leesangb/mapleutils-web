@@ -14,7 +14,6 @@ export const seed49GmsFilter: Set<string> = new Set(
 
 export const seed49KmsFilter: Set<string> = new Set(
     [
-        '게비알',
         '로얄 카투스',
         '아이언보어',
         '이상한 돼지',
