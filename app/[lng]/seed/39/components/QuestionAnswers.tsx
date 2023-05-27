@@ -6,10 +6,13 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { englishToHangul, isHangulMatching, isMatching } from '@/utils/string';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
-import { SearchField } from '@/ds/inputs';
+import { Button, SearchField } from '@/ds/inputs';
 import { useTranslation } from '@/i18n/client';
 import { Tooltip, Typography } from '@/ds/displays';
 import { media, theme } from '@/ds';
+import { RiCheckboxBlankLine, RiCheckboxFill, RiCheckboxMultipleFill, RiSettings2Fill } from 'react-icons/ri';
+import { Collapse } from '@/ds/surfaces';
+import { useSeed39Store } from '@/store/useSeed39Store';
 
 interface QuestionAnswersProps {
     data: QuestionAnswer[];
@@ -24,21 +27,48 @@ const QuestionAnswers = ({ data }: QuestionAnswersProps) => {
     const { locale } = useLocalizedPathname();
     const { t } = useTranslation({ ns: 'seed39' });
     const [input, setInput] = useState<string>('');
+    const [settingsOpen, setSettingsOpen] = useState<boolean>(false);
+    const { filter, setFilter } = useSeed39Store();
 
-    const rows = data.filter(({ question, choices }) => locale === 'ko'
-        ? isHangulMatching(input, question, ...choices)
-        : isMatching(input, question, ...choices));
+    const rows = data.filter(({ question, choices }) => {
+        const keywords = [question, ...choices].filter((_, i) => filter[i]);
+        return locale === 'ko'
+            ? isHangulMatching(input, ...keywords)
+            : isMatching(input, ...keywords);
+    });
 
     return (
         <>
-            <Tooltip title={locale === 'ko' ? englishToHangul(input) : ''} placement={'top'}>
-                <SearchField fullWidth
-                    placeholder={t('searchPlaceholder')}
-                    value={input}
-                    onFocus={(e) => e.target.select()}
-                    onChange={(e) => setInput(e.target.value)}
-                />
-            </Tooltip>
+            <SearchBarContainer>
+                <Tooltip style={{ width: '100%' }} title={locale === 'ko' ? englishToHangul(input) : ''}
+                    placement={'top'}>
+                    <SearchField fullWidth
+                        placeholder={t('searchPlaceholder')}
+                        value={input}
+                        onFocus={(e) => e.target.select()}
+                        onChange={(e) => setInput(e.target.value)}
+                    />
+                </Tooltip>
+                <Tooltip title={t('settings')}>
+                    <Button onClick={() => setSettingsOpen(!settingsOpen)}>
+                        <RiSettings2Fill />
+                    </Button>
+                </Tooltip>
+            </SearchBarContainer>
+            <ButtonContainer open={settingsOpen}>
+                <Button onClick={() => setFilter(!filter.every(v => v), 0, 1, 2, 3, 4)}>
+                    <RiCheckboxMultipleFill />
+                    {t('all')}
+                </Button>
+                {filter.map((value, index) =>
+                    <Button key={index} onClick={() => setFilter(!value, index as 0 | 1 | 2 | 3 | 4)}>
+                        {value
+                            ? <RiCheckboxFill color={theme.primary.default} />
+                            : <RiCheckboxBlankLine />}
+                        {index === 0 ? t('question') : `${index}`}
+                    </Button>,
+                )}
+            </ButtonContainer>
             <VirtualizedTable data={rows}
                 height={'calc(100vh - var(--appBar_height) * 3.5)'}
                 estimatedRowHeight={estimatedRowHeight}
@@ -87,6 +117,13 @@ const QuestionAnswerRow = ({ rowData, measureRef, ...props }: VirtualizedRowProp
     );
 };
 
+const SearchBarContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+`;
+
 const ROW_PADDING = 8;
 const ROW_BORDER_BOTTOM_WIDTH = 1;
 
@@ -126,6 +163,11 @@ const Choice = styled.td<TransientProps<{ active: boolean }>>`
   border-radius: calc(${({ theme }) => theme.borderRadius} * 2);
   font-size: ${CHOICE_FONT_SIZE}px;
   background-color: ${({ theme, $active }) => $active ? theme.primary.default : theme.background};
+`;
+
+const ButtonContainer = styled(Collapse)`
+  display: flex;
+  gap: 8px;
 `;
 
 export default QuestionAnswers;
