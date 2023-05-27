@@ -1,12 +1,12 @@
 'use client';
 
-import { Link } from '@/ds/displays';
 import styled from 'styled-components';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { DISCORD_URL, GITHUB_URL, KAKAOTALK_URL } from '@/utils/constants';
-import { RiDiscordFill, RiGithubFill, RiKakaoTalkFill } from 'react-icons/ri';
+import { RiDiscordFill, RiGithubFill, RiHome4Line, RiKakaoTalkFill } from 'react-icons/ri';
 import { Button } from '@/ds/inputs';
 import { Languages } from '@/i18n/settings';
+import { useTranslation } from '@/i18n/client';
 
 const locales: { locale: Languages, name: string }[] = [
     { locale: 'ko', name: '한국어 / KMS' },
@@ -16,15 +16,15 @@ const locales: { locale: Languages, name: string }[] = [
 
 export const AppNavigations = () => {
     const { pathname, locale } = useLocalizedPathname();
+    const { t } = useTranslation({ ns: 'common' });
+
     return (
         <>
             <Nav>
-                <Link href={'/'} lang={locale}>
-                    home
-                </Link>
-                <Link href={'/seed'} lang={locale}>
-                    seed
-                </Link>
+                <Button href={'/'} lang={locale} styles={{ fontSize: '12px' }}>
+                    <RiHome4Line />
+                    {t('home')}
+                </Button>
                 {locales.filter((l) => l.locale !== locale).map((l) => (
                     <Button key={l.name} styles={{ fontSize: '12px' }} href={pathname} lang={l.locale}>{l.name}</Button>
                 ))}
