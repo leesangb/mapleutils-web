@@ -3,7 +3,15 @@
 import { TrackInfo } from '@/data/seed/24';
 import styled from 'styled-components';
 import { Tooltip, Typography } from '@/ds/displays';
-import { RiFileCopyFill, RiPauseFill, RiPlayFill, RiStopFill, RiVolumeDownFill, RiVolumeUpFill } from 'react-icons/ri';
+import {
+    RiFileCopyFill,
+    RiPauseFill,
+    RiPlayFill,
+    RiQuestionLine,
+    RiStopFill,
+    RiVolumeDownFill,
+    RiVolumeUpFill,
+} from 'react-icons/ri';
 import { minmax, toMinuteSecond } from '@/utils/number';
 import { useAudio } from '@/hooks/useAudio';
 import { useTranslation } from '@/i18n/client';
@@ -33,6 +41,14 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                 <Hint>
                     {currentTrack?.hint}
                 </Hint>
+                <Tooltip style={{ gridArea: 'help' }} tooltipStyle={{ whiteSpace: 'pre-line' }}
+                    placement={'top'}
+                    title={`${t('spaceToPausePlay')}
+                    ${t('upDownVolume')}
+                    ${t('seek')}
+                `}>
+                    <RiQuestionLine />
+                </Tooltip>
                 <ButtonsContainer>
                     <Tooltip title={t('stop')} size={'small'} placement={'top'}>
                         <PlayerButton disabled={!currentTrack} onClick={stop}><RiStopFill /></PlayerButton>
@@ -220,7 +236,7 @@ const Player = styled.section`
   grid-template-areas:
         "title title title title title"
         "hint hint hint hint hint"
-        ". . buttons volume volume"
+        "help help buttons volume volume"
         "time time time time time";
 
   @media (max-width: 800px) {

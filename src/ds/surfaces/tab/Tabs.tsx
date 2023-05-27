@@ -138,6 +138,7 @@ const TabContent = styled.div<TransientProps<{ fadeMs: number }>>`
   padding: 8px;
   animation: ${keyframes.fadeIn} ${({ $fadeMs }) => `${$fadeMs}ms ease-in-out`};
   transition: opacity ${({ $fadeMs }) => $fadeMs}ms ease-in-out;
+  outline: none;
 
   &[hidden] {
     display: none;

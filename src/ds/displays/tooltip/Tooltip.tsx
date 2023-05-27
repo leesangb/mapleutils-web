@@ -8,6 +8,7 @@ interface TooltipProps {
     as?: keyof JSX.IntrinsicElements;
     size?: 'small' | 'medium' | 'large';
     style?: CSSProperties;
+    tooltipStyle?: CSSProperties;
 }
 
 export const Tooltip = ({
@@ -17,11 +18,12 @@ export const Tooltip = ({
     title,
     children,
     style,
+    tooltipStyle,
 }: PropsWithChildren<TooltipProps>) => {
     return (
         <Container as={as} style={style}>
             {children}
-            {title && <Content $size={size} $placement={placement}>{title}</Content>}
+            {title && <Content $size={size} $placement={placement} style={tooltipStyle}>{title}</Content>}
         </Container>
     );
 };

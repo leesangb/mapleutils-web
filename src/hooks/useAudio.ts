@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { isKeyboardTargetInput } from '@/utils/keyboardEventHelper';
 
 interface UseAudioOptions {
     initialVolume?: number;
@@ -89,6 +90,7 @@ export const useAudio = ({
         if (!audio) {
             return;
         }
+        volume = Math.min(100, Math.max(0, volume));
         audio.volume = volume / 100;
         setTrack(track => ({ ...track, volume }));
     }, []);
@@ -97,7 +99,7 @@ export const useAudio = ({
         if (!audio) {
             return;
         }
-        audio.currentTime = time;
+        audio.currentTime = Math.min(audio.duration, Math.max(0, time));
         setTrack(track => ({ ...track, time }));
     }, []);
 
@@ -125,6 +127,31 @@ export const useAudio = ({
             audio.removeEventListener('loadeddata', onLoadedData);
             stop();
             audio.srcObject = null;
+        };
+    }, []);
+
+    useEffect(() => {
+        const KeyEvents: Record<string, () => void> = {
+            [' ']: () => audio?.paused ? play() : pause(),
+            ['ArrowLeft']: () => onChangeTime((audio?.currentTime || 0) - 5),
+            ['ArrowRight']: () => onChangeTime((audio?.currentTime || 0) + 5),
+            ['ArrowUp']: () => onChangeVolume((audio?.volume || 0) * 100 + 5),
+            ['ArrowDown']: () => onChangeVolume((audio?.volume || 0) * 100 - 5),
+        };
+
+        const keyHandler = (e: KeyboardEvent) => {
+            if (isKeyboardTargetInput(e))
+                return;
+
+            const handler = KeyEvents[e.key];
+            if (handler) {
+                e.preventDefault();
+                handler();
+            }
+        };
+        window.addEventListener('keydown', keyHandler);
+        return () => {
+            window.removeEventListener('keydown', keyHandler);
         };
     }, []);
 
