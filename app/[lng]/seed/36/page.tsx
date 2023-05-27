@@ -172,6 +172,10 @@ const MobButton = styled(Button).attrs({ variant: 'ghost' })`
   width: 100%;
   justify-content: center;
   background-color: ${({ active, theme }) => active ? theme.primary.hover : theme.background};
+
+  &:hover {
+    background-color: ${({ active, theme }) => active ? theme.primary.hover : theme.surface.active};
+  }
 `;
 
 export default Seed36Page;
