@@ -4,10 +4,10 @@ import { TrackInfo } from '@/data/seed/24';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { useTranslation } from '@/i18n/client';
 import { useState } from 'react';
-import { isHangulMatching, isMatching } from '@/utils/string';
+import { englishToHangul, isHangulMatching, isMatching } from '@/utils/string';
 import { SearchField } from '@/ds/inputs';
 import VirtualizedTable, { VirtualizedRowProps } from '@/components/virtualized/VirtualizedTable';
-import { Typography } from '@/ds/displays';
+import { Tooltip, Typography } from '@/ds/displays';
 import { theme } from '@/ds/theme';
 import styled from 'styled-components';
 
@@ -26,13 +26,14 @@ export const HintContent = ({ data }: HintContentProps) => {
 
     return (
         <>
-            <SearchField fullWidth
-                placeholder={t('searchPlaceholder')}
-                value={input}
-                onFocus={(e) => e.target.select()}
-                onChange={(e) => setInput(e.target.value)}
-            />
-
+            <Tooltip title={locale === 'ko' ? englishToHangul(input) : ''} placement={'top'}>
+                <SearchField fullWidth
+                    placeholder={t('searchPlaceholder')}
+                    value={input}
+                    onFocus={(e) => e.target.select()}
+                    onChange={(e) => setInput(e.target.value)}
+                />
+            </Tooltip>
             <VirtualizedTable data={rows}
                 height={'calc(100vh - var(--appBar_height) * 3.5)'}
                 estimatedRowHeight={i => 40}

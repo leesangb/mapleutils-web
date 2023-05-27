@@ -9,7 +9,7 @@ import styled, { css } from 'styled-components';
 import { Tooltip, Typography } from '@/ds/displays';
 import { ReactElement, useState } from 'react';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
-import { isHangulMatching, isMatching } from '@/utils/string';
+import { englishToHangul, isHangulMatching, isMatching } from '@/utils/string';
 import { Button, SearchField } from '@/ds/inputs';
 import { useTranslation } from '@/i18n/client';
 import { theme } from '@/ds/theme';
@@ -53,11 +53,13 @@ const Seed49Page = () => {
 
     return (
         <Card>
-            <SearchField fullWidth
-                placeholder={t('searchPlaceholder')}
-                value={input}
-                onFocus={(e) => e.target.select()}
-                onChange={e => setInput(e.target.value)} />
+            <Tooltip title={locale === 'ko' ? englishToHangul(input) : ''} placement={'top'}>
+                <SearchField fullWidth
+                    placeholder={t('searchPlaceholder')}
+                    value={input}
+                    onFocus={(e) => e.target.select()}
+                    onChange={e => setInput(e.target.value)} />
+            </Tooltip>
             <Toolbar style={{ margin: '8px 0' }}>
                 <Tooltip title={`${t('silhouette')} ${silhouette ? 'OFF' : 'ON'}`}>
                     <Button onClick={() => setSilhouette(!silhouette)}>
