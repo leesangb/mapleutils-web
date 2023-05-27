@@ -8,8 +8,8 @@ import { englishToHangul, isHangulMatching, isMatching } from '@/utils/string';
 import { SearchField } from '@/ds/inputs';
 import VirtualizedTable, { VirtualizedRowProps } from '@/components/virtualized/VirtualizedTable';
 import { Tooltip, Typography } from '@/ds/displays';
-import { theme } from '@/ds/theme';
 import styled from 'styled-components';
+import { media, theme } from '@/ds';
 
 interface HintContentProps {
     data: TrackInfo[];
@@ -94,7 +94,8 @@ const Row = styled.tr`
   gap: 8px;
   border-bottom: ${ROW_BORDER_BOTTOM_WIDTH}px solid ${({ theme }) => theme.contour};
 
-  @media (max-width: 768px) {
+
+  ${media.max('sm')} {
     grid-template-columns: 60px 1fr;
     grid-template-areas:
     "icon name"

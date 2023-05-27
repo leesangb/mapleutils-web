@@ -9,7 +9,7 @@ import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { SearchField } from '@/ds/inputs';
 import { useTranslation } from '@/i18n/client';
 import { Tooltip, Typography } from '@/ds/displays';
-import { theme } from '@/ds/theme';
+import { media, theme } from '@/ds';
 
 interface QuestionAnswersProps {
     data: QuestionAnswer[];
@@ -100,13 +100,14 @@ const Row = styled.tr`
   gap: 8px;
   border-bottom: ${ROW_BORDER_BOTTOM_WIDTH}px solid ${({ theme }) => theme.contour};
 
-  @media (max-width: 1024px) {
+  ${media.max('md')} {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas:
     "question question question question"
     "choice1  choice2  choice3  choice4 ";
   }
-  @media (max-width: 720px) {
+
+  ${media.max('sm')} {
     grid-template-columns: 1fr;
     grid-template-areas:
     "question"

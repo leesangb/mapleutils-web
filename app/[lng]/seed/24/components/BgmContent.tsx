@@ -8,6 +8,7 @@ import { minmax, toMinuteSecond } from '@/utils/number';
 import { useAudio } from '@/hooks/useAudio';
 import { useTranslation } from '@/i18n/client';
 import { Button, Slider } from '@/ds/inputs';
+import { media } from '@/ds';
 
 interface BgmContentProps {
     data: TrackInfo[];
@@ -244,15 +245,15 @@ const TrackList = styled.ol`
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
 
-  @media screen and (max-width: 1280px) {
+  ${media.max('lg')} {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  @media screen and (max-width: 950px) {
+  ${media.max('md')} {
     grid-template-columns: 1fr 1fr;
   }
 
-  @media screen and (max-width: 800px) {
+  @media (max-width: 800px) {
     grid-template-columns: 1fr;
   }
 `;

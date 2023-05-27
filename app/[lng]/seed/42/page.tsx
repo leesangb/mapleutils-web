@@ -11,6 +11,7 @@ import { RadioGroup, Slider } from '@/ds/inputs';
 import { useTranslation } from '@/i18n/client';
 import { Typography } from '@/ds/displays';
 import { Card } from '@/ds/surfaces';
+import { media } from '@/ds';
 
 const imageStyle: CSSProperties = {
     objectFit: 'scale-down',
@@ -86,7 +87,7 @@ const OptionContainer = styled.div`
   grid-template-areas: "help opacity path";
   margin: 16px 0;
 
-  @media (max-width: 1024px) {
+  ${media.max('md')} {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
             "help opacity"
