@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { LocalStorageKey } from '@/utils/localStorageHelper';
 import { useIsMounted } from '@/hooks/useIsMounted';
 
 type Seed22State = StoreProps<{
@@ -14,7 +13,7 @@ const usePersistedSeed22Store = create<Seed22State>()(
             setRoute: (route) => set({ route }),
         }),
         {
-            name: LocalStorageKey.SEED_22,
+            name: 'SEED_22',
         },
     ),
 );

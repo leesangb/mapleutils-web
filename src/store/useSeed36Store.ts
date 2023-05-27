@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { useIsMounted } from '@/hooks/useIsMounted';
-import { LocalStorageKey } from '@/utils/localStorageHelper';
 
 type Seed36State = StoreProps<{
     alignment: 'vertical' | 'horizontal';
@@ -19,7 +18,7 @@ const usePersistedSeed36Store = create<Seed36State>()(
             }),
         }),
         {
-            name: LocalStorageKey.SEED_36,
+            name: 'SEED_36',
             partialize: state => ({
                 alignment: state.alignment,
             }),

@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { LocalStorageKey } from '@/utils/localStorageHelper';
 import { useIsMounted } from '@/hooks/useIsMounted';
 
 interface Seed39State {
@@ -25,7 +24,7 @@ const usePersistedSeed39Store = create<Seed39State>()(
             }),
         }),
         {
-            name: LocalStorageKey.SEED_39,
+            name: 'SEED_39',
             partialize: state => ({
                 filter: state.filter,
             }),

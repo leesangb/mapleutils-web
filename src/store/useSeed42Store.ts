@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { LocalStorageKey } from '@/utils/localStorageHelper';
 import { useIsMounted } from '@/hooks/useIsMounted';
 
 type Seed42State = StoreProps<{
@@ -17,7 +16,7 @@ const usePersistedSeed42Store = create<Seed42State>()(
             setOpacity: (opacity) => set({ opacity }),
         }),
         {
-            name: LocalStorageKey.SEED_42,
+            name: 'SEED_42',
         },
     ),
 );
