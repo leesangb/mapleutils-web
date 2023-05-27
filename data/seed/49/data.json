@@ -163,11 +163,6 @@
         "height": 80
       },
       {
-        "name": "포이즌 푸퍼",
-        "width": 59,
-        "height": 44
-      },
-      {
         "name": "프리져",
         "width": 75,
         "height": 82
@@ -196,16 +191,6 @@
         "name": "라츠",
         "width": 50,
         "height": 40
-      },
-      {
-        "name": "레츠",
-        "width": 59,
-        "height": 48
-      },
-      {
-        "name": "마스터 로보",
-        "width": 73,
-        "height": 86
       },
       {
         "name": "마스터 크로노스",
@@ -303,11 +288,6 @@
         "height": 55
       },
       {
-        "name": "머신 MT-09",
-        "width": 124,
-        "height": 125
-      },
-      {
         "name": "메카티안",
         "width": 81,
         "height": 88
@@ -323,34 +303,9 @@
         "height": 111
       },
       {
-        "name": "원로 그레이",
-        "width": 79,
-        "height": 111
-      },
-      {
         "name": "플라티안",
         "width": 63,
         "height": 83
-      }
-    ]
-  },
-  {
-    "location": "아랫마을",
-    "mobs": [
-      {
-        "name": "월묘",
-        "width": 47,
-        "height": 66
-      }
-    ]
-  },
-  {
-    "location": "무릉",
-    "mobs": [
-      {
-        "name": "비급",
-        "width": 84,
-        "height": 90
       }
     ]
   },
@@ -448,11 +403,6 @@
     "location": "마가티아",
     "mobs": [
       {
-        "name": "강화된 아이언 뮤테",
-        "width": 70,
-        "height": 59
-      },
-      {
         "name": "루모",
         "width": 39,
         "height": 58
@@ -496,11 +446,6 @@
         "name": "이상한 돼지",
         "width": 59,
         "height": 55
-      },
-      {
-        "name": "짜증내는 좀비버섯",
-        "width": 63,
-        "height": 58
       },
       {
         "name": "파란 리본돼지",

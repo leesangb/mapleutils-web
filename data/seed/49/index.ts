@@ -21,17 +21,7 @@ export const seed49Data: SeedLocation[] = data.map(l => ({
 }));
 
 export const seed49GmsFilter: Set<string> = new Set(
-    [
-        '강화된 아이언 뮤테',
-        '마스터 로보',
-        '머신 MT-09',
-        '레츠',
-        '비급',
-        '원로 그레이',
-        '월묘',
-        '짜증내는 좀비버섯',
-        '포이즌 푸퍼',
-    ],
+    [],
 );
 
 export const seed49KmsFilter: Set<string> = new Set(
