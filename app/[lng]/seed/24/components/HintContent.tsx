@@ -38,14 +38,14 @@ export const HintContent = ({ data }: HintContentProps) => {
                 height={'calc(100vh - var(--appBar_height) * 3.5)'}
                 estimatedRowHeight={i => 40}
                 overScan={5}
-                RowComponent={QuestionAnswerRow}
+                RowComponent={HintRow}
                 EmptyComponent={EmptyComponent}
             />
         </>
     );
 };
 
-const QuestionAnswerRow = ({ rowData, measureRef, ...props }: VirtualizedRowProps<TrackInfo>) => {
+const HintRow = ({ rowData, measureRef, ...props }: VirtualizedRowProps<TrackInfo>) => {
     const { name, hint, coverImg } = rowData;
     return (
         <Row ref={measureRef} {...props}>
@@ -64,6 +64,7 @@ const QuestionAnswerRow = ({ rowData, measureRef, ...props }: VirtualizedRowProp
 
 const Image = styled.img`
   image-rendering: pixelated;
+  border-radius: 0;
 `;
 
 const ROW_PADDING = 8;
