@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { CSSProperties, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 import { keyframes } from '@/ds/keyframes';
 
@@ -7,6 +7,7 @@ interface TooltipProps {
     title: string;
     as?: keyof JSX.IntrinsicElements;
     size?: 'small' | 'medium' | 'large';
+    style?: CSSProperties;
 }
 
 export const Tooltip = ({
@@ -15,9 +16,10 @@ export const Tooltip = ({
     size = 'medium',
     title,
     children,
+    style,
 }: PropsWithChildren<TooltipProps>) => {
     return (
-        <Container as={as}>
+        <Container as={as} style={style}>
             {children}
             {title && <Content $size={size} $placement={placement}>{title}</Content>}
         </Container>
