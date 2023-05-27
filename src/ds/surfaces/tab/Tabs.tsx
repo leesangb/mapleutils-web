@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactNode, useRef, useState } from 'react';
+import { ReactNode, useRef } from 'react';
 import { keyframes } from '@/ds/keyframes';
 
 type Tab = {
@@ -7,18 +7,19 @@ type Tab = {
     content: ReactNode;
 }
 
-interface TabProps {
+interface TabsProps {
     name: string;
     tabs: Tab[];
     fadeMs?: number;
     initialTab?: number;
+    activeTab: number;
+    onChangeTab: (index: number) => void;
 }
 
 const getTabId = (tabListName: string, index: number) => `${tabListName}-tab-${index}`;
 const getTabPanelId = (tabListName: string, index: number) => `${tabListName}-tabpanel-${index}`;
 
-export const Tabs = ({ name: tabListName, tabs, fadeMs = 125, initialTab = 0 }: TabProps) => {
-    const [activeTab, setActiveTab] = useState<number>(initialTab);
+export const Tabs = ({ name: tabListName, tabs, fadeMs = 125, activeTab, onChangeTab }: TabsProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     const onTabClick = (index: number) => {
@@ -29,7 +30,7 @@ export const Tabs = ({ name: tabListName, tabs, fadeMs = 125, initialTab = 0 }: 
         currentTabPanel.classList.add('fadeOut');
         setTimeout(() => {
             currentTabPanel.classList.remove('fadeOut');
-            setActiveTab(index);
+            onChangeTab(index);
         }, fadeMs);
     };
 
