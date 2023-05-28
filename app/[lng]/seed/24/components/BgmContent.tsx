@@ -17,13 +17,15 @@ import { useAudio } from '@/hooks/useAudio';
 import { useTranslation } from '@/i18n/client';
 import { Button, Slider } from '@/ds/inputs';
 import { media } from '@/ds';
+import { useSeed24Store } from '@/store/useSeed24Store';
 
 interface BgmContentProps {
     data: TrackInfo[];
 }
 
 export const BgmContent = ({ data }: BgmContentProps) => {
-    const { audio, setTrack, setVolume, setTime, playState, play, pause, stop } = useAudio();
+    const { autoClip, check } = useSeed24Store();
+    const { audio, setTrack, setVolume, setTime, playState, play, pause, stop, volume } = useAudio();
     const { t } = useTranslation({ ns: 'seed24' });
     const currentTrack = data.find(track => audio?.src?.endsWith(track.src));
     return (
@@ -75,8 +77,8 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                             <RiVolumeDownFill />
                         </Button>
                     </Tooltip>
-                    <VolumeSlider value={audio.volume}
-                        onChange={e => setVolume(minmax(0, 100, Number(e.target.value)))} />
+                    <VolumeSlider value={volume}
+                        onChange={e => setVolume(Number(e.target.value))} />
                     <Tooltip title={t('maxVolume')} size={'small'} placement={'top'}>
                         <Button variant={'ghost'} onClick={() => setVolume(100)}>
                             <RiVolumeUpFill />

@@ -2,38 +2,37 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { isKeyboardTargetInput } from '@/utils/keyboardEventHelper';
+import { useAudioStore } from '@/store/useAudioStore';
+import { minmax } from '@/utils/number';
 
 interface UseAudioOptions {
-    initialVolume?: number;
     loop?: boolean;
 }
 
 interface AudioInfo {
     src: string;
-    volume: number;
     time: number;
     duration: number;
 }
 
-const newAudio = ({ initialVolume = 50, loop = true }: UseAudioOptions) => {
+const newAudio = ({ volume = 50, loop = true }: UseAudioOptions & { volume: number }) => {
     if (typeof window === 'undefined') {
         return null;
     }
     const audio = document.createElement('audio');
     audio.loop = loop;
     audio.currentTime = 0;
-    audio.volume = initialVolume / 100;
+    audio.volume = volume / 100;
     return audio;
 };
 
 export const useAudio = ({
-    initialVolume = 50,
     loop = true,
 }: UseAudioOptions = {}) => {
-    const { current: audio } = useRef<HTMLAudioElement>(newAudio({ initialVolume, loop }));
+    const { volume, setVolume } = useAudioStore();
+    const { current: audio } = useRef<HTMLAudioElement>(newAudio({ volume, loop }));
     const [track, setTrack] = useState<AudioInfo>(() => ({
         src: '',
-        volume: initialVolume,
         time: 0,
         duration: 0,
     }));
@@ -79,7 +78,6 @@ export const useAudio = ({
         play(() => {
             setTrack({
                 src: nextTrack,
-                volume: audio.volume * 100,
                 time: 0,
                 duration: Math.floor(audio.duration),
             });
@@ -90,10 +88,10 @@ export const useAudio = ({
         if (!audio) {
             return;
         }
-        volume = Math.min(100, Math.max(0, volume));
+        volume = minmax(0, 100, volume);
         audio.volume = volume / 100;
-        setTrack(track => ({ ...track, volume }));
-    }, []);
+        setVolume(volume);
+    }, [setVolume]);
 
     const onChangeTime = useCallback((time: number) => {
         if (!audio) {
@@ -122,15 +120,6 @@ export const useAudio = ({
         };
         audio.addEventListener('loadeddata', onLoadedData);
 
-        return () => {
-            audio.removeEventListener('timeupdate', onTimeUpdate);
-            audio.removeEventListener('loadeddata', onLoadedData);
-            stop();
-            audio.srcObject = null;
-        };
-    }, []);
-
-    useEffect(() => {
         const KeyEvents: Record<string, () => void> = {
             [' ']: () => audio?.paused ? play() : pause(),
             ['ArrowLeft']: () => onChangeTime((audio?.currentTime || 0) - 5),
@@ -150,7 +139,12 @@ export const useAudio = ({
             }
         };
         window.addEventListener('keydown', keyHandler);
+
         return () => {
+            audio.removeEventListener('timeupdate', onTimeUpdate);
+            audio.removeEventListener('loadeddata', onLoadedData);
+            stop();
+            audio.srcObject = null;
             window.removeEventListener('keydown', keyHandler);
         };
     }, []);
@@ -164,5 +158,6 @@ export const useAudio = ({
         play,
         pause,
         stop,
+        volume,
     };
 };

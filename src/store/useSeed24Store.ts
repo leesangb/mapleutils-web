@@ -4,7 +4,6 @@ import { useIsMounted } from '@/hooks/useIsMounted';
 
 type Seed24State = StoreProps<{
     tab: 'bgm' | 'hint';
-    volume: number;
     autoClip: boolean;
     check: boolean;
 }>
@@ -14,8 +13,6 @@ const usePersistedSeed24Store = create<Seed24State>()(
         (set, get) => ({
             tab: 'bgm',
             setTab: (tab) => set({ tab }),
-            volume: 50,
-            setVolume: (volume) => set({ volume }),
             autoClip: true,
             setAutoClip: (autoClip) => set({ autoClip }),
             check: false,
@@ -30,9 +27,6 @@ const usePersistedSeed24Store = create<Seed24State>()(
 const emptyState: Seed24State = {
     tab: 'bgm',
     setTab: () => {
-    },
-    volume: 50,
-    setVolume: () => {
     },
     autoClip: true,
     setAutoClip: () => {
