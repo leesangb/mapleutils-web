@@ -159,7 +159,7 @@ const Component = ({ data }: VirtualizedMasonryDataProps<SeedMobData>) => {
 const LocationChip = styled.span`
   position: absolute;
   top: 12px;
-  left: 12px;
+  left: 16px;
   font-size: 10px;
   border-radius: 4px;
   padding: 2px 4px;
@@ -229,6 +229,8 @@ const ImageBackground = styled.div`
 
 const Container = styled.div`
   position: relative;
+  padding: 0;
+  margin: 0;
 `;
 
 const MOB_BUTTON_PADDING = 8;
