@@ -39,7 +39,7 @@ export const useAudio = ({
     const [playState, setPlayState] = useState<'playing' | 'paused' | 'stopped'>('stopped');
 
     const play = useCallback((callback?: () => void) => {
-        if (!audio)
+        if (!audio?.src)
             return;
         audio.play().then(() => {
             setPlayState('playing');
@@ -48,7 +48,7 @@ export const useAudio = ({
     }, []);
 
     const pause = useCallback(() => {
-        if (!audio) {
+        if (!audio?.src) {
             return;
         }
         audio.pause();
@@ -56,7 +56,7 @@ export const useAudio = ({
     }, []);
 
     const stop = useCallback(() => {
-        if (!audio) {
+        if (!audio?.src) {
             return;
         }
         audio.pause();
@@ -94,10 +94,10 @@ export const useAudio = ({
     }, [setVolume]);
 
     const onChangeTime = useCallback((time: number) => {
-        if (!audio) {
+        if (!audio?.src) {
             return;
         }
-        audio.currentTime = Math.min(audio.duration, Math.max(0, time));
+        audio.currentTime = minmax(0, audio.duration, time);
         setTrack(track => ({ ...track, time }));
     }, []);
 
@@ -124,8 +124,8 @@ export const useAudio = ({
             [' ']: () => audio?.paused ? play() : pause(),
             ['ArrowLeft']: () => onChangeTime((audio?.currentTime || 0) - 5),
             ['ArrowRight']: () => onChangeTime((audio?.currentTime || 0) + 5),
-            ['ArrowUp']: () => onChangeVolume((audio?.volume || 0) * 100 + 5),
-            ['ArrowDown']: () => onChangeVolume((audio?.volume || 0) * 100 - 5),
+            ['ArrowUp']: () => onChangeVolume(Math.round((audio?.volume || 0) * 100) + 5),
+            ['ArrowDown']: () => onChangeVolume(Math.round((audio?.volume || 0) * 100) - 5),
         };
 
         const keyHandler = (e: KeyboardEvent) => {
@@ -147,7 +147,7 @@ export const useAudio = ({
             audio.srcObject = null;
             window.removeEventListener('keydown', keyHandler);
         };
-    }, []);
+    }, [onChangeVolume]);
 
     return {
         audio: track,
