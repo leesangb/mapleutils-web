@@ -14,6 +14,7 @@ import {
     RiCheckboxMultipleFill,
     RiEyeFill,
     RiEyeOffFill,
+    RiFileCopyFill,
     RiSettings2Fill,
     RiStarFill,
     RiStarLine,
@@ -26,6 +27,8 @@ import VirtualizedMasonry, {
     VirtualizedMasonryDataProps,
     VirtualizedMasonryProps,
 } from '@/components/virtualized/VirtualizedMasonry';
+import { copy } from '@/utils/clipboard';
+import { toast } from 'react-toastify';
 
 interface MobGridProps {
     mobs: SeedMobData[];
@@ -135,12 +138,19 @@ const Component = ({ data }: VirtualizedMasonryDataProps<SeedMobData>) => {
     return (
         <Container>
             <MobButton onClick={() => {
+                copy(t(data.name)).then(() => {
+                    toast.success(t('copyMessage', { text: t(data.name) }));
+                });
             }}>
                 <LocationChip>{t(data.location)}</LocationChip>
                 <ImageBackground>
                     <Image src={data.img} alt={t(data.name)} style={{ height: data.height + IMAGE_PADDING * 2 }} />
                 </ImageBackground>
                 <Typography>{t(data.name)}</Typography>
+                <Tooltip style={{ position: 'absolute', bottom: '8px', right: '8px' }} placement={'left'}
+                    title={t('clickToCopy')}>
+                    <RiFileCopyFill color={theme.text.secondary} />
+                </Tooltip>
             </MobButton>
             <FavoriteButton variant={'ghost'} onClick={(e) => {
                 e.stopPropagation();
@@ -236,6 +246,7 @@ const Container = styled.div`
 const MOB_BUTTON_PADDING = 8;
 const MOB_BUTTON_MARGIN = 4;
 const MobButton = styled.button`
+  position: relative;
   width: calc(100% - 8px);
   border: 1px solid ${({ theme }) => theme.contour};
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -266,8 +277,6 @@ const MobButton = styled.button`
       background-color: ${({ theme }) => theme.surface.active};
     }
   }
-
-
 `;
 
 const Masonry = styled(VirtualizedMasonry)`

@@ -29,7 +29,7 @@ const Layout = ({ children }: PropsWithChildren) => {
             </Main>
             <ToastContainer
                 position='bottom-left'
-                autoClose={5000}
+                autoClose={3000}
                 newestOnTop
                 closeOnClick
                 draggable
