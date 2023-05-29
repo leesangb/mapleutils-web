@@ -20,8 +20,8 @@ import {
     RiStarLine,
     RiSwapBoxFill,
 } from 'react-icons/ri';
-import styled, { css } from 'styled-components';
-import { keyframes, theme } from '@/ds';
+import styled from 'styled-components';
+import { theme } from '@/ds';
 import { Collapse } from '@/ds/surfaces';
 import VirtualizedMasonry, {
     VirtualizedMasonryDataProps,
@@ -29,6 +29,7 @@ import VirtualizedMasonry, {
 } from '@/components/virtualized/VirtualizedMasonry';
 import { copy } from '@/utils/clipboard';
 import { toast } from 'react-toastify';
+import { rotateGrowOut } from '@/ds/css';
 
 interface MobGridProps {
     mobs: SeedMobData[];
@@ -81,22 +82,9 @@ const MobGrid = ({ mobs: seed49Mobs }: MobGridProps) => {
                         }
                     </Button>
                 </Tooltip>
-
-                <Button styles={css`
-                  margin-left: auto;
-
-                  &:active > svg {
-                    transform: scale(0.2) rotate(-360deg);
-                  }
-
-                  svg {
-                    transition: transform 0.325s ease-in-out;
-                    animation: ${keyframes.spin} 0.325s ease-in-out;
-                  }
-                `} onClick={() => setOpenFilter(!openFilter)}>
+                <Button styles={rotateGrowOut} onClick={() => setOpenFilter(!openFilter)}>
                     <RiSettings2Fill /> {t('filters')}
                 </Button>
-
             </Toolbar>
             <Collapse open={openFilter}>
                 <Toolbar style={{ marginBottom: '8px' }}>
@@ -169,7 +157,7 @@ const Component = ({ data }: VirtualizedMasonryDataProps<SeedMobData>) => {
 const LocationChip = styled.span`
   position: absolute;
   top: 12px;
-  left: 16px;
+  left: 12px;
   font-size: 10px;
   border-radius: 4px;
   padding: 2px 4px;
