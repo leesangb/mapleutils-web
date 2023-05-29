@@ -133,9 +133,15 @@ const Component = ({ data }: VirtualizedMasonryDataProps<SeedMobData>) => {
     const { favorites, toggleFavorite } = useSeed49Store();
 
     return (
-        <Container onClick={() => {
-        }}>
-            <LocationChip>{t(data.location)}</LocationChip>
+        <Container>
+            <MobButton onClick={() => {
+            }}>
+                <LocationChip>{t(data.location)}</LocationChip>
+                <ImageBackground>
+                    <Image src={data.img} alt={t(data.name)} style={{ height: data.height + IMAGE_PADDING * 2 }} />
+                </ImageBackground>
+                <Typography>{t(data.name)}</Typography>
+            </MobButton>
             <FavoriteButton variant={'ghost'} onClick={(e) => {
                 e.stopPropagation();
                 toggleFavorite(data.name);
@@ -146,10 +152,6 @@ const Component = ({ data }: VirtualizedMasonryDataProps<SeedMobData>) => {
                         : <RiStarLine color={'orange'} />
                 }
             </FavoriteButton>
-            <ImageBackground>
-                <Image src={data.img} alt={t(data.name)} style={{ height: data.height + IMAGE_PADDING * 2 }} />
-            </ImageBackground>
-            <Typography>{t(data.name)}</Typography>
         </Container>
     );
 };
@@ -174,7 +176,7 @@ const LocationChip = styled.span`
 const FavoriteButton = styled(Button)`
   position: absolute;
   top: 4px;
-  right: 4px;
+  right: 8px;
   border-radius: 50%;
   z-index: 1;
 `;
@@ -225,21 +227,24 @@ const ImageBackground = styled.div`
   transition: background-color 0.125s ease-in-out;
 `;
 
-const CONTAINER_PADDING = 8;
-const CONTAINER_MARGIN = 4;
-const Container = styled.button`
+const Container = styled.div`
+  position: relative;
+`;
+
+const MOB_BUTTON_PADDING = 8;
+const MOB_BUTTON_MARGIN = 4;
+const MobButton = styled.button`
   width: calc(100% - 8px);
   border: 1px solid ${({ theme }) => theme.contour};
   border-radius: ${({ theme }) => theme.borderRadius};
-  margin: ${CONTAINER_MARGIN}px;
-  padding: ${CONTAINER_PADDING}px;
+  margin: ${MOB_BUTTON_MARGIN}px;
+  padding: ${MOB_BUTTON_PADDING}px;
   display: flex;
   gap: 8px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   transition: background-color 0.125s ease-in-out;
-  position: relative;
 
   &:hover {
     & > ${ImageBackground} > ${Image} {
@@ -272,8 +277,8 @@ const Masonry = styled(VirtualizedMasonry)`
 ` as <T>(props: VirtualizedMasonryProps<T> & { $silhouette: boolean }) => ReactElement;
 
 const OFFSET = IMAGE_PADDING * 2
-    + CONTAINER_PADDING * 2
-    + CONTAINER_MARGIN * 2
+    + MOB_BUTTON_PADDING * 2
+    + MOB_BUTTON_MARGIN * 2
     + 2 // container border
     + 8 // container gap
     + 16 * 1.5 // font size
