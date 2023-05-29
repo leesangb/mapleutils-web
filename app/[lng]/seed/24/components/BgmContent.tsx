@@ -4,7 +4,10 @@ import { TrackInfo } from '@/data/seed/24';
 import styled from 'styled-components';
 import { Tooltip, Typography } from '@/ds/displays';
 import {
+    RiCheckboxBlankLine,
+    RiCheckboxFill,
     RiFileCopyFill,
+    RiMore2Fill,
     RiPauseFill,
     RiPlayFill,
     RiQuestionLine,
@@ -16,17 +19,18 @@ import { minmax, toMinuteSecond } from '@/utils/number';
 import { useAudio } from '@/hooks/useAudio';
 import { useTranslation } from '@/i18n/client';
 import { Button, Slider } from '@/ds/inputs';
-import { media } from '@/ds';
+import { media, theme } from '@/ds';
 import { useSeed24Store } from '@/store/useSeed24Store';
 import { copy } from '@/utils/clipboard';
 import { toast } from 'react-toastify';
+import { Popover } from '@/ds/surfaces/popover/Popover';
 
 interface BgmContentProps {
     data: TrackInfo[];
 }
 
 export const BgmContent = ({ data }: BgmContentProps) => {
-    const { autoClip, check } = useSeed24Store();
+    const { autoClip, check, setAutoClip, setCheck } = useSeed24Store();
     const { audio, setTrack, setVolume, setTime, playState, play, pause, stop, volume } = useAudio();
     const { t } = useTranslation({ ns: 'seed24' });
     const currentTrack = data.find(track => audio?.src?.endsWith(track.src));
@@ -54,6 +58,19 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                 `}>
                     <RiQuestionLine />
                 </Tooltip>
+                <Popover style={{ gridArea: 'more' }}
+                    tooltipProps={{ placement: 'top', title: t('more') }}
+                    panelProps={{ style: { display: 'flex', flexDirection: 'column', width: 'max-content' } }}
+                    buttonProps={{ variant: 'ghost', children: <RiMore2Fill /> }}>
+                    <Button variant={'ghost'} onClick={() => setCheck(!check)}>
+                        {check ? <RiCheckboxFill color={theme.primary.default} /> : <RiCheckboxBlankLine />}
+                        {t('showCheck')}
+                    </Button>
+                    <Button variant={'ghost'} onClick={() => setAutoClip(!autoClip)}>
+                        {autoClip ? <RiCheckboxFill color={theme.primary.default} /> : <RiCheckboxBlankLine />}
+                        {t('autoClipOnPlay')}
+                    </Button>
+                </Popover>
                 <ButtonsContainer>
                     <Tooltip title={t('stop')} size={'small'} placement={'top'}>
                         <PlayerButton disabled={!currentTrack} onClick={stop}><RiStopFill /></PlayerButton>
@@ -113,7 +130,7 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                     <Tooltip key={track.name} title={track.hint} as={'li'} placement={'top'} size={'medium'}>
                         <TrackButton onClick={() => {
                             setTrack(track.src);
-                            if (track.src !== audio.src) {
+                            if (autoClip && track.src !== audio.src) {
                                 copy(track.name).then(() => {
                                     toast.success(t('copyMessage', { text: track.name }));
                                 });
@@ -252,7 +269,7 @@ const Player = styled.section`
   grid-template-areas:
         "title title title title title"
         "hint hint hint hint hint"
-        "help help buttons volume volume"
+        "help more buttons volume volume"
         "time time time time time";
 
   @media (max-width: 800px) {

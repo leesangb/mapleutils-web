@@ -5,4 +5,4 @@ export { Typography } from './typography/Typography';
 export { Link } from './link/Link';
 export { Box } from './box/Box';
 export { Fieldset } from './fieldset/Fieldset';
-export { Tooltip } from './tooltip/Tooltip';
+export * from './tooltip/Tooltip';

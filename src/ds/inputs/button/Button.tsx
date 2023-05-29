@@ -5,7 +5,7 @@ import { Languages } from '@/i18n/settings';
 import { Interpolation } from 'styled-components/dist/types';
 import { Link } from '@/ds/displays';
 
-type ButtonProps = {
+export type ButtonProps = {
     size?: 'small' | 'medium' | 'large';
     onClick?: MouseEventHandler;
     children?: ReactNode;

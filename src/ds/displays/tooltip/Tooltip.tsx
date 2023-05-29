@@ -2,7 +2,7 @@ import { CSSProperties, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 import { keyframes } from '@/ds/keyframes';
 
-interface TooltipProps {
+export interface TooltipProps {
     placement?: 'top' | 'bottom' | 'left' | 'right';
     title: string;
     as?: keyof JSX.IntrinsicElements;
