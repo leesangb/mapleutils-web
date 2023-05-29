@@ -18,6 +18,8 @@ import { useTranslation } from '@/i18n/client';
 import { Button, Slider } from '@/ds/inputs';
 import { media } from '@/ds';
 import { useSeed24Store } from '@/store/useSeed24Store';
+import { copy } from '@/utils/clipboard';
+import { toast } from 'react-toastify';
 
 interface BgmContentProps {
     data: TrackInfo[];
@@ -28,6 +30,7 @@ export const BgmContent = ({ data }: BgmContentProps) => {
     const { audio, setTrack, setVolume, setTime, playState, play, pause, stop, volume } = useAudio();
     const { t } = useTranslation({ ns: 'seed24' });
     const currentTrack = data.find(track => audio?.src?.endsWith(track.src));
+
     return (
         <Container>
             <Player>
@@ -65,7 +68,13 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                         </PlayerButton>
                     </Tooltip>
                     <Tooltip title={t('copy')} size={'small'} placement={'top'}>
-                        <PlayerButton disabled={!currentTrack}>
+                        <PlayerButton disabled={!currentTrack} onClick={() => {
+                            if (!currentTrack)
+                                return;
+                            copy(currentTrack.name).then(() => {
+                                toast.success(t('copyMessage', { text: currentTrack.name }));
+                            });
+                        }}>
                             <RiFileCopyFill />
                         </PlayerButton>
                     </Tooltip>
@@ -104,6 +113,11 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                     <Tooltip key={track.name} title={track.hint} as={'li'} placement={'top'} size={'medium'}>
                         <TrackButton onClick={() => {
                             setTrack(track.src);
+                            if (track.src !== audio.src) {
+                                copy(track.name).then(() => {
+                                    toast.success(t('copyMessage', { text: track.name }));
+                                });
+                            }
                         }}>
                             <Image src={track.coverImg} alt={track.name} />
                             <span>

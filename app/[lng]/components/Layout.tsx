@@ -8,6 +8,8 @@ import { SideNavigations } from './SideNavigations';
 import { Typography } from '@/ds/displays';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const currentYear = new Date().getFullYear();
 
@@ -25,6 +27,14 @@ const Layout = ({ children }: PropsWithChildren) => {
             <Main>
                 {children}
             </Main>
+            <ToastContainer
+                position='bottom-left'
+                autoClose={5000}
+                newestOnTop
+                closeOnClick
+                draggable
+                pauseOnHover
+            />
             <Footer>
                 <Typography fontSize={12}>
                     © {currentYear} mapleutils All rights reserved. mapleutils is not associated with NEXON

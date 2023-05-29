@@ -5,6 +5,33 @@ import { pretendardCss } from '@/ds/fonts';
 const GlobalStyle = createGlobalStyle`
   :root {
     ${commonThemeVar};
+    --toastify-color-light: ${theme.surface.default};
+    --toastify-color-dark: ${theme.surface.default};
+    --toastify-color-info: ${theme.info.default};
+    --toastify-color-success: ${theme.success.default};
+    --toastify-color-warning: ${theme.warning.default};
+    --toastify-color-error: ${theme.danger.default};
+    --toastify-color-transparent: rgba(255, 255, 255, 0.9);
+    --toastify-icon-color-info: var(--toastify-color-info);
+    --toastify-icon-color-success: var(--toastify-color-success);
+    --toastify-icon-color-warning: var(--toastify-color-warning);
+    --toastify-icon-color-error: var(--toastify-color-error);
+    --toastify-toast-background: ${theme.background};
+    --toastify-text-color-light: ${theme.text.primary};
+    --toastify-text-color-dark: ${theme.text.primary};
+    --toastify-text-color-info: ${theme.info.default};
+    --toastify-text-color-success: ${theme.success.default};
+    --toastify-text-color-warning: ${theme.warning.default};
+    --toastify-text-color-error: ${theme.danger.default};
+    --toastify-spinner-color: ${theme.contour};
+    --toastify-spinner-color-empty-area: ${theme.contour};
+    --toastify-color-progress-light: ${theme.primary.default};
+    --toastify-color-progress-dark: ${theme.primary.default};
+    --toastify-color-progress-info: var(--toastify-color-info);
+    --toastify-color-progress-success: var(--toastify-color-success);
+    --toastify-color-progress-warning: var(--toastify-color-warning);
+    --toastify-color-progress-error: var(--toastify-color-error);
+    --toastify-toast-width: 320px;
   }
 
   html {
@@ -63,6 +90,20 @@ const GlobalStyle = createGlobalStyle`
 
   ::selection {
     background: ${theme.primary.default};
+  }
+
+  .Toastify__toast {
+    backdrop-filter: blur(10px);
+    border-radius: ${theme.borderRadius};
+    border: 1px solid ${theme.contour};
+  }
+
+  .Toastify__toast-container {
+    font-size: 14px;
+  }
+
+  .Toastify__close-button > svg {
+    fill: ${theme.text.primary};
   }
 `;
 
