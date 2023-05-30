@@ -59,7 +59,7 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                     <RiQuestionLine />
                 </Tooltip>
                 <Popover style={{ gridArea: 'more' }}
-                    tooltipProps={{ placement: 'top', title: t('more') }}
+                    tooltipProps={{ placement: 'top', title: t('more'), size: 'small' }}
                     panelProps={{ style: { display: 'flex', flexDirection: 'column', width: 'max-content' } }}
                     buttonProps={{ variant: 'ghost', children: <RiMore2Fill /> }}>
                     <Button variant={'ghost'} onClick={() => setCheck(!check)}>
