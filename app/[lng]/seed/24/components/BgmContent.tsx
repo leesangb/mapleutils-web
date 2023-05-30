@@ -24,6 +24,7 @@ import { useSeed24Store } from '@/store/useSeed24Store';
 import { copy } from '@/utils/clipboard';
 import { toast } from 'react-toastify';
 import { Popover } from '@/ds/surfaces/popover/Popover';
+import { TrackButton } from './TrackButton';
 
 interface BgmContentProps {
     data: TrackInfo[];
@@ -127,24 +128,18 @@ export const BgmContent = ({ data }: BgmContentProps) => {
             </Player>
             <TrackList>
                 {data.map((track) => (
-                    <Tooltip key={track.name} title={track.hint} as={'li'} placement={'top'} size={'medium'}>
-                        <TrackButton onClick={() => {
+                    <TrackButton key={track.name}
+                        track={track}
+                        checkbox={check}
+                        onClick={track => {
                             setTrack(track.src);
                             if (autoClip && track.src !== audio.src) {
                                 copy(track.name).then(() => {
                                     toast.success(t('copyMessage', { text: track.name }));
                                 });
                             }
-                        }}>
-                            <Image src={track.coverImg} alt={track.name} />
-                            <span>
-                                {track.name}
-                            </span>
-                            {track.name === currentTrack?.name && playState === 'playing'
-                                ? <RiPauseFill />
-                                : <RiPlayFill />}
-                        </TrackButton>
-                    </Tooltip>
+                        }}
+                        isPlaying={track.name === currentTrack?.name && playState === 'playing'} />
                 ))}
             </TrackList>
         </Container>
@@ -304,34 +299,5 @@ const TrackList = styled.ol`
 
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
-  }
-`;
-
-const TrackButton = styled.button`
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  font-size: 16px;
-  padding: 8px 16px 8px 8px;
-  margin: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-  width: 100%;
-  text-align: left;
-  border-radius: ${({ theme }) => theme.borderRadius};
-  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.surface.hover};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.surface.active};
-    transform: scale(0.98);
-  }
-
-  & > span {
-    flex-grow: 1;
   }
 `;
