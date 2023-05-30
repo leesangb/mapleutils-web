@@ -8,7 +8,7 @@ type Seed22State = StoreProps<{
 
 const usePersistedSeed22Store = create<Seed22State>()(
     persist(
-        (set, get) => ({
+        (set) => ({
             route: 'none',
             setRoute: (route) => set({ route }),
         }),

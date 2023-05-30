@@ -10,7 +10,7 @@ type Seed24State = StoreProps<{
 
 const usePersistedSeed24Store = create<Seed24State>()(
     persist(
-        (set, get) => ({
+        (set) => ({
             tab: 'bgm',
             setTab: (tab) => set({ tab }),
             autoClip: true,

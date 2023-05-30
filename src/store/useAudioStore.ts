@@ -8,7 +8,7 @@ type AudioState = StoreProps<{
 
 const usePersistedAudioStore = create<AudioState>()(
     persist(
-        (set, get) => ({
+        (set) => ({
             volume: 50,
             setVolume: (volume) => set({ volume }),
         }),

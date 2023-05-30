@@ -12,7 +12,7 @@ interface Seed39State {
 
 const usePersistedSeed39Store = create<Seed39State>()(
     persist(
-        (set, get) => ({
+        (set) => ({
             filter: [true, true, true, true, true],
             setFilter: (value: boolean, ...indexes: (0 | 1 | 2 | 3 | 4)[]) => set(state => {
                 const filter = state.filter;

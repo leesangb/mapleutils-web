@@ -35,7 +35,7 @@ export const Popover = ({
 
     useEffect(() => {
         if (open) {
-            let timeoutId: any;
+            let timeoutId: ReturnType<typeof setTimeout>;
             const clickAway = (e: MouseEvent) => {
                 if (!(e.target as HTMLElement).closest(`[data-popover="${id}"]`)) {
                     if (ref.current) {

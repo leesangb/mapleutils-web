@@ -78,16 +78,16 @@ const VideoCapture = () => {
     }, [stream]);
 
     useEffect(() => {
-        if (!stream || !images) {
+        if (!stream || !images || !videoRef.current || !canvasRef.current) {
             return;
         }
 
         const video = document.createElement('video');
         video.autoplay = true;
         video.srcObject = stream;
-        let intervalId = 0;
+        let intervalId: ReturnType<typeof setInterval> | null = null;
 
-        videoRef.current!.srcObject = canvasRef.current!.captureStream();
+        videoRef.current.srcObject = canvasRef.current.captureStream();
         const drawInCanvas = () => {
             if (!canvasRef.current) {
                 if (intervalId) {
@@ -113,11 +113,12 @@ const VideoCapture = () => {
             }
         };
         drawInCanvas();
-        // @ts-ignore
         intervalId = setInterval(drawInCanvas, 1000 / fps);
         return () => {
             video.srcObject = null;
-            clearInterval(intervalId);
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
         };
     }, [stream, matchingCoordinates, settings, images]);
 

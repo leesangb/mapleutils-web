@@ -9,7 +9,7 @@ type Seed42State = StoreProps<{
 
 const usePersistedSeed42Store = create<Seed42State>()(
     persist(
-        (set, get) => ({
+        (set) => ({
             route: 'none',
             setRoute: (route) => set({ route }),
             opacity: 50,

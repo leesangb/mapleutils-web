@@ -8,7 +8,7 @@ type Seed36State = StoreProps<{
 
 const usePersistedSeed36Store = create<Seed36State>()(
     persist(
-        (set, get) => ({
+        (set) => ({
             alignment: 'vertical',
             setAlignment: (alignment) => set(state => {
                 return {

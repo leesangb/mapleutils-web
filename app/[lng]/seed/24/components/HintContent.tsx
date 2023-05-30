@@ -36,7 +36,7 @@ export const HintContent = ({ data }: HintContentProps) => {
             </Tooltip>
             <VirtualizedTable data={rows}
                 height={'calc(100vh - var(--appBar_height) * 3.5)'}
-                estimatedRowHeight={i => 40}
+                estimatedRowHeight={() => 40}
                 overScan={5}
                 RowComponent={HintRow}
                 EmptyComponent={EmptyComponent}

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { SearchField } from './SearchField';
-import { useArgs } from '@storybook/preview-api';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof SearchField> = {
@@ -29,7 +28,6 @@ export const WithOnClear: Story = {
         value: 'value',
     },
     render: (args) => {
-        const [_, updateArgs] = useArgs();
-        return <SearchField {...args} onClear={() => updateArgs({ value: '' })} />;
+        return <SearchField {...args} />;
     },
 };
