@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import { ComponentType, useEffect, useRef, useState } from 'react';
+import { ComponentType, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 export type VirtualizedMasonryDataProps<T> = {
@@ -33,13 +33,24 @@ const VirtualizedMasonry = <T, >({
     const parentRef = useRef<HTMLDivElement>(null);
 
     const [lanes, setLanes] = useState(1);
-    const [rowData, setRowData] = useState<T[]>([]);
+    const [count, setCount] = useState(data.length);
+
+    // overscan for ssr
+    const [overscan, setOverscan] = useState(data.length);
+    useEffect(() => {
+        setOverscan(overScan);
+    }, [overScan]);
+
+    // hack to force a re-calculating of the virtualizer
+    useLayoutEffect(() => {
+        setCount(0);
+    }, []);
 
     const rowVirtualizer = useVirtualizer({
-        count: rowData.length,
+        count,
         getScrollElement: () => parentRef.current,
-        estimateSize: i => estimatedHeight(rowData[i]),
-        overscan: overScan,
+        estimateSize: i => estimatedHeight(data[i]),
+        overscan,
         lanes: lanes,
     });
 
@@ -53,10 +64,10 @@ const VirtualizedMasonry = <T, >({
             if (lanes !== rowVirtualizer.options.lanes) {
                 setLanes(lanes);
                 // some hack to force a re-calculating of the virtualizer
-                setRowData([]);
+                setCount(0);
             }
             setTimeout(() => {
-                setRowData(data);
+                setCount(data.length);
             }, 0);
         };
         handleResize();
@@ -64,7 +75,7 @@ const VirtualizedMasonry = <T, >({
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [data, getLanes]);
+    }, [data.length, getLanes]);
 
     const laneWidth = 100 / lanes;
 

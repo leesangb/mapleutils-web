@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import { ComponentType, useRef } from 'react';
+import { ComponentType, useEffect, useRef, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 export type VirtualizedRowProps<T> = {
@@ -29,11 +29,17 @@ const VirtualizedTable = <T, >({
 }: VirtualizedTableProps<T>) => {
     const parentRef = useRef<HTMLDivElement>(null);
 
+    // overscan for ssr
+    const [overscan, setOverscan] = useState(data.length);
+    useEffect(() => {
+        setOverscan(overScan);
+    }, [overScan]);
+
     const rowVirtualizer = useVirtualizer({
         count: data.length,
         getScrollElement: () => parentRef.current,
         estimateSize: estimatedRowHeight,
-        overscan: overScan,
+        overscan,
     });
 
     const virtualItems = rowVirtualizer.getVirtualItems();
