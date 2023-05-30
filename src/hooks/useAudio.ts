@@ -15,14 +15,13 @@ interface AudioInfo {
     duration: number;
 }
 
-const newAudio = ({ volume = 50, loop = true }: UseAudioOptions & { volume: number }) => {
+const newAudio = ({ loop = true }: UseAudioOptions) => {
     if (typeof window === 'undefined') {
         return null;
     }
     const audio = document.createElement('audio');
     audio.loop = loop;
     audio.currentTime = 0;
-    audio.volume = volume / 100;
     return audio;
 };
 
@@ -30,7 +29,7 @@ export const useAudio = ({
     loop = true,
 }: UseAudioOptions = {}) => {
     const { volume, setVolume } = useAudioStore();
-    const { current: audio } = useRef<HTMLAudioElement>(newAudio({ volume, loop }));
+    const { current: audio } = useRef<HTMLAudioElement>(newAudio({ loop }));
     const [track, setTrack] = useState<AudioInfo>(() => ({
         src: '',
         time: 0,
@@ -88,10 +87,15 @@ export const useAudio = ({
         if (!audio) {
             return;
         }
-        volume = minmax(0, 100, volume);
-        audio.volume = volume / 100;
-        setVolume(volume);
+        setVolume(minmax(0, 100, volume));
     }, [setVolume]);
+
+    useEffect(() => {
+        if (!audio) {
+            return;
+        }
+        audio.volume = volume / 100;
+    }, [volume]);
 
     const onChangeTime = useCallback((time: number) => {
         if (!audio?.src) {
