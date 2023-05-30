@@ -121,6 +121,8 @@
   "default": "기본",
   "nameAsc": "가나다",
   "nameDesc": "가나다 (역순)",
+  "nameLengthAsc": "이름 글자 수",
+  "nameLengthDesc": "이름 글자 수 (역순)",
   "sort": "정렬",
   "copyMessage": "<{{text}}>를(을) 복사했습니다!",
   "more": "더보기",

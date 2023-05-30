@@ -114,6 +114,8 @@
   "default": "預設",
   "nameAsc": "按字母順序",
   "nameDesc": "按字母順序 (降序)",
+  "nameLengthAsc": "Length",
+  "nameLengthDesc": "Length (Desc)",
   "sort": "排序",
   "copyMessage": "<{{text}}> 已複製到剪貼簿!",
   "more": "更多",

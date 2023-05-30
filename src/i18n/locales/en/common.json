@@ -114,6 +114,8 @@
   "default": "Default",
   "nameAsc": "Alphabetically",
   "nameDesc": "Alphabetically (Desc)",
+  "nameLengthAsc": "Length",
+  "nameLengthDesc": "Length (Desc)",
   "sort": "Order",
   "copyMessage": "<{{text}}> copied to clipboard!",
   "more": "More",

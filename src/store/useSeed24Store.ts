@@ -2,10 +2,13 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { useIsMounted } from '@/hooks/useIsMounted';
 
+export type TrackOrder = 'default' | 'nameAsc' | 'nameDesc' | 'nameLengthAsc' | 'nameLengthDesc';
+
 type Seed24State = StoreProps<{
     tab: 'bgm' | 'hint';
     autoClip: boolean;
     check: boolean;
+    order: TrackOrder;
 }>
 
 const usePersistedSeed24Store = create<Seed24State>()(
@@ -17,6 +20,8 @@ const usePersistedSeed24Store = create<Seed24State>()(
             setAutoClip: (autoClip) => set({ autoClip }),
             check: false,
             setCheck: (check) => set({ check }),
+            order: 'default',
+            setOrder: (order) => set({ order }),
         }),
         {
             name: 'SEED_24',
@@ -33,6 +38,9 @@ const emptyState: Seed24State = {
     },
     check: false,
     setCheck: () => {
+    },
+    order: 'default',
+    setOrder: () => {
     },
 };
 

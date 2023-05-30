@@ -18,23 +18,34 @@ import {
 import { minmax, toMinuteSecond } from '@/utils/number';
 import { useAudio } from '@/hooks/useAudio';
 import { useTranslation } from '@/i18n/client';
-import { Button, Slider } from '@/ds/inputs';
+import { Button, RadioGroup, Slider } from '@/ds/inputs';
 import { media, theme } from '@/ds';
-import { useSeed24Store } from '@/store/useSeed24Store';
+import { TrackOrder, useSeed24Store } from '@/store/useSeed24Store';
 import { copy } from '@/utils/clipboard';
 import { toast } from 'react-toastify';
 import { Popover } from '@/ds/surfaces/popover/Popover';
 import { TrackButton } from './TrackButton';
+import { TFunction } from 'i18next';
 
 interface BgmContentProps {
     data: TrackInfo[];
 }
 
+const orderFunctions: Record<TrackOrder, (tracks: TrackInfo[], t: TFunction) => TrackInfo[]> = {
+    default: tracks => [...tracks],
+    nameAsc: (tracks, t) => [...tracks].sort((t1, t2) => t(t1.name).localeCompare(t(t2.name))),
+    nameDesc: (tracks, t) => [...tracks].sort((t1, t2) => t(t2.name).localeCompare(t(t1.name))),
+    nameLengthAsc: (tracks, t) => [...tracks].sort((t1, t2) => t(t1.name).length - t(t2.name).length),
+    nameLengthDesc: (tracks, t) => [...tracks].sort((t1, t2) => t(t2.name).length - t(t1.name).length),
+};
+
 export const BgmContent = ({ data }: BgmContentProps) => {
-    const { autoClip, check, setAutoClip, setCheck } = useSeed24Store();
+    const { autoClip, check, setAutoClip, setCheck, order, setOrder } = useSeed24Store();
     const { audio, setTrack, setVolume, setTime, playState, play, pause, stop, volume } = useAudio();
     const { t } = useTranslation({ ns: 'seed24' });
     const currentTrack = data.find(track => audio?.src?.endsWith(track.src));
+
+    const orderedTracks = orderFunctions[order](data, t);
 
     return (
         <Container>
@@ -63,6 +74,7 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                     tooltipProps={{ placement: 'top', title: t('more'), size: 'small' }}
                     panelProps={{ style: { display: 'flex', flexDirection: 'column', width: 'max-content' } }}
                     buttonProps={{ variant: 'ghost', children: <RiMore2Fill /> }}>
+                    <Typography style={{ padding: '4px' }}>{t('settings')}</Typography>
                     <Button variant={'ghost'} onClick={() => setCheck(!check)}>
                         {check ? <RiCheckboxFill color={theme.primary.default} /> : <RiCheckboxBlankLine />}
                         {t('showCheck')}
@@ -71,6 +83,13 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                         {autoClip ? <RiCheckboxFill color={theme.primary.default} /> : <RiCheckboxBlankLine />}
                         {t('autoClipOnPlay')}
                     </Button>
+                    <hr style={{ margin: '4px 0' }} />
+                    <Typography style={{ padding: '4px' }}>{t('sort')}</Typography>
+                    <RadioGroup name={'order'}
+                        getRender={(v) => <Typography as={'span'} fontSize={14}>{t(v)}</Typography>}
+                        value={order}
+                        onChange={setOrder}
+                        options={['default', 'nameAsc', 'nameDesc', 'nameLengthAsc', 'nameLengthDesc']} />
                 </Popover>
                 <ButtonsContainer>
                     <Tooltip title={t('stop')} size={'small'} placement={'top'}>
@@ -127,7 +146,7 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                 </Time>}
             </Player>
             <TrackList>
-                {data.map((track) => (
+                {orderedTracks.map((track) => (
                     <TrackButton key={track.name}
                         track={track}
                         checkbox={check}
