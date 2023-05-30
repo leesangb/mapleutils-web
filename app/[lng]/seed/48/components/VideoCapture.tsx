@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import useVideoCaptureImages from '../../../../../legacy/src/components/video-capture/useVideoCaptureImages';
-import useMediaStream from '../../../../../legacy/src/hooks/useMediaStream';
-import OpenCV from '../../../../../legacy/src/opencv/OpenCV';
+import useVideoCaptureImages from './useVideoCaptureImages';
+import useMediaStream from './useMediaStream';
+import OpenCV from './OpenCV';
 import { useSeed48Store } from '@/store/useSeed48Store';
 import styled from 'styled-components';
 import { Button } from '@/ds/inputs';
