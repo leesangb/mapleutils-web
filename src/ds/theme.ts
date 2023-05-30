@@ -1,4 +1,4 @@
-import { darken, lighten, transparentize } from 'polished';
+import { darken, transparentize } from 'polished';
 
 type InteractingColor = {
     default: string;
@@ -44,9 +44,9 @@ const info = '#69b2ec';
 const light: ThemePalette = {
     primary: {
         default: primaryLight,
-        hover: darken(0.05, primaryLight),
-        active: darken(0.1, primaryLight),
-        background: transparentize(0.8, lighten(0.1, primaryLight)),
+        hover: transparentize(0.2, darken(0.05, primaryLight)),
+        active: transparentize(0.2, darken(0.1, primaryLight)),
+        background: transparentize(0.3, darken(0.02, primaryLight)),
     },
 
     success: {
@@ -90,9 +90,9 @@ const primaryDark = '#919aff';
 const dark: ThemePalette = {
     primary: {
         default: primaryDark,
-        hover: darken(0.05, primaryDark),
-        active: darken(0.1, primaryDark),
-        background: transparentize(0.8, primaryDark),
+        hover: transparentize(0.1, darken(0.05, primaryDark)),
+        active: transparentize(0.1, darken(0.1, primaryDark)),
+        background: transparentize(0.2, primaryDark),
     },
 
     success: {

@@ -21,9 +21,7 @@ export const TrackButton = ({ track, onClick, checkbox, isPlaying }: TrackButton
                     onClick={() => setChecked(!checked)}>
                     {checked ? <RiCheckboxFill /> : <RiCheckboxBlankLine />}
                 </Button>}
-                <Track onClick={() => {
-                    onClick(track);
-                }}>
+                <Track onClick={() => onClick(track)} $active={isPlaying}>
                     <Image src={track.coverImg} alt={track.name} />
                     <span>
                         {track.name}
@@ -37,7 +35,7 @@ export const TrackButton = ({ track, onClick, checkbox, isPlaying }: TrackButton
     );
 };
 
-const Track = styled.button`
+const Track = styled.button<TransientProps<{ active?: boolean }>>`
   display: flex;
   gap: 8px;
   align-items: center;
@@ -51,13 +49,14 @@ const Track = styled.button`
   text-align: left;
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  background-color: ${({ theme, $active }) => $active ? theme.primary.background : 'transparent'};
 
   &:hover {
-    background-color: ${({ theme }) => theme.surface.hover};
+    background-color: ${({ theme, $active }) => $active ? theme.primary.hover : theme.surface.hover};
   }
 
   &:active {
-    background-color: ${({ theme }) => theme.surface.active};
+    background-color: ${({ theme, $active }) => $active ? theme.primary.active : theme.surface.active};
     transform: scale(0.98);
   }
 
