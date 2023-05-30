@@ -29,7 +29,7 @@ import VirtualizedMasonry, {
 } from '@/components/virtualized/VirtualizedMasonry';
 import { copy } from '@/utils/clipboard';
 import { toast } from 'react-toastify';
-import { rotateGrowOut } from '@/ds/css';
+import { rotateGrowOutLeft } from '@/ds/css';
 
 interface MobGridProps {
     mobs: SeedMobData[];
@@ -82,7 +82,7 @@ const MobGrid = ({ mobs: seed49Mobs }: MobGridProps) => {
                         }
                     </Button>
                 </Tooltip>
-                <Button styles={rotateGrowOut} onClick={() => setOpenFilter(!openFilter)}>
+                <Button styles={[{ marginLeft: 'auto' }, rotateGrowOutLeft]} onClick={() => setOpenFilter(!openFilter)}>
                     <RiSettings2Fill /> {t('filters')}
                 </Button>
             </Toolbar>

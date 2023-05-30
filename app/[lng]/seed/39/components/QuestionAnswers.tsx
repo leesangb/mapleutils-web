@@ -13,7 +13,7 @@ import { media, theme } from '@/ds';
 import { RiCheckboxBlankLine, RiCheckboxFill, RiCheckboxMultipleFill, RiSettings2Fill } from 'react-icons/ri';
 import { Collapse } from '@/ds/surfaces';
 import { useSeed39Store } from '@/store/useSeed39Store';
-import { rotateGrowOut } from '@/ds/css';
+import { rotateGrowOutLeft } from '@/ds/css';
 
 interface QuestionAnswersProps {
     data: QuestionAnswer[];
@@ -51,7 +51,8 @@ const QuestionAnswers = ({ data }: QuestionAnswersProps) => {
                     />
                 </Tooltip>
                 <Tooltip title={t('settings')}>
-                    <Button styles={rotateGrowOut} onClick={() => setSettingsOpen(!settingsOpen)}>
+                    <Button styles={[{ marginLeft: 'auto' }, rotateGrowOutLeft]}
+                        onClick={() => setSettingsOpen(!settingsOpen)}>
                         <RiSettings2Fill />
                     </Button>
                 </Tooltip>

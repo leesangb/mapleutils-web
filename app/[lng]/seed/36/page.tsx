@@ -8,7 +8,7 @@ import { Button } from '@/ds/inputs';
 import styled, { css } from 'styled-components';
 import { RiArrowDownLine, RiArrowRightLine, RiRestartLine } from 'react-icons/ri';
 import { Card } from '@/ds/surfaces';
-import { rotateGrowOut } from '@/ds/css';
+import { rotateGrowOutRight } from '@/ds/css';
 
 type Step = 0 | 1 | 2 | 3 | undefined;
 type Steps = [Step, Step, Step, Step, Step, Step, Step, Step]
@@ -38,7 +38,7 @@ const Seed36Page = () => {
                     <RiArrowRightLine />
                     {t('horizontal')}
                 </IconButton>
-                <IconButton styles={[{ marginLeft: 'auto' }, rotateGrowOut]} onClick={() => resetSteps()}>
+                <IconButton styles={[{ marginLeft: 'auto' }, rotateGrowOutRight]} onClick={() => resetSteps()}>
                     <RiRestartLine />
                     {t('reset')}
                 </IconButton>
