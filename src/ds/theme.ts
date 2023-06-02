@@ -58,7 +58,7 @@ const light: ThemePalette = {
         background: transparentize(0.8, danger),
     },
     warning: {
-        default: darken(0.25, warning),
+        default: darken(0.15, warning),
         background: transparentize(0.8, warning),
     },
     info: {
