@@ -26,6 +26,7 @@
     "pip": "子母畫面",
     "showJump": "顯示跳躍點",
     "autoFix": "自動修正位置",
+    "autoFixFound": "Position set!",
     "autoFixNotFound": "找不到小地圖圖示。請確保小地圖圖示可見，然後重試。"
   },
   "advanced": {

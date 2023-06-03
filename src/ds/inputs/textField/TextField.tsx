@@ -17,14 +17,11 @@ export const TextField = ({
     ...props
 }: TextFieldProps & ComponentProps<'input'>) => {
     const { start, end } = adornment;
-    return start || end
-        ? (
-            <Container $fullWidth={fullWidth}>
-                {start && <Adornment $placement={'left'}>{start}</Adornment>}
-                <Input ref={inputRef} $left={!!start} $right={!!end} $fullWidth={fullWidth} {...props} />
-                {end && <Adornment $placement={'right'}>{end}</Adornment>}
-            </Container>
-        ) : <Input ref={inputRef} $fullWidth={fullWidth} {...props} />;
+    return <Container $fullWidth={fullWidth}>
+        {start && <Adornment $placement={'left'}>{start}</Adornment>}
+        <Input ref={inputRef} $left={!!start} $right={!!end} $fullWidth={fullWidth} {...props} />
+        {end && <Adornment $placement={'right'}>{end}</Adornment>}
+    </Container>;
 };
 
 const Container = styled.div<TransientProps<{ fullWidth?: boolean }>>`

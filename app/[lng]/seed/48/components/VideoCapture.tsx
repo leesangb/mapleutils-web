@@ -6,7 +6,7 @@ import useMediaStream from './useMediaStream';
 import OpenCV from './OpenCV';
 import { useSeed48Store } from '@/store/useSeed48Store';
 import styled from 'styled-components';
-import { Button } from '@/ds/inputs';
+import { Button, Slider, TextField } from '@/ds/inputs';
 import { useTranslation } from '@/i18n/client';
 import {
     RiCameraFill,
@@ -15,7 +15,11 @@ import {
     RiCheckboxFill,
     RiMagicFill,
     RiPictureInPictureFill,
+    RiRestartLine,
 } from 'react-icons/ri';
+import { Fieldset, Typography } from '@/ds/displays';
+import { rotateGrowOutRight } from '@/ds/css';
+import { toast } from 'react-toastify';
 
 const defaultCoordinates = {
     x1: 0,
@@ -59,8 +63,9 @@ const VideoCapture = () => {
 
         const { x1, x2, y1, y2, matchPercent } = await OpenCV.matchTemplate(canvas, '/images/seed/48/icon.png');
         if (matchPercent < 0.8) {
-            // notify(t('capture.autoFixNotFound'), 'error');
+            toast.error(t('capture.autoFixNotFound'));
         } else {
+            toast.success(t('capture.autoFixFound'));
             setMatchingCoordinates({ x1, x2, y1, y2 });
         }
     };
@@ -158,6 +163,36 @@ const VideoCapture = () => {
             <Canvas style={{ display: stream ? 'block' : 'none' }} ref={canvasRef} width={CANVAS_WIDTH}
                 height={CANVAS_HEIGHT} />
             <Video ref={videoRef} autoPlay />
+            {stream && (
+                <Settings title={t('advanced.title')} align={'center'} legendAlign={'center'}>
+                    <Label as={'label'}>
+                        x
+                        <Slider min={0} max={200} value={settings.x}
+                            onChange={(e) => settings.setX(Number(e.target.value))} />
+                        <TextField value={settings.x}
+                            onChange={(e) => settings.setX(Number(e.target.value))} />
+                    </Label>
+                    <Label as={'label'}>
+                        y
+                        <Slider min={0} max={200} value={settings.y}
+                            onChange={(e) => settings.setY(Number(e.target.value))} />
+                        <TextField value={settings.y}
+                            onChange={(e) => settings.setY(Number(e.target.value))} />
+                    </Label>
+                    <Label as={'label'}>
+                        ratio
+                        <Slider min={0} max={200} value={settings.ratio}
+                            onChange={(e) => settings.setRatio(Number(e.target.value))} />
+                        <TextField value={settings.ratio}
+                            onChange={(e) => settings.setRatio(Number(e.target.value))} />
+                    </Label>
+
+                    <Button styles={rotateGrowOutRight} onClick={() => settings.reset()}>
+                        <RiRestartLine />
+                        {t('reset')}
+                    </Button>
+                </Settings>
+            )}
         </>
     );
 };
@@ -176,6 +211,34 @@ const Toolbar = styled.div`
   display: flex;
   gap: 8px;
   margin-bottom: 8px;
+`;
+
+const Sliders = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid ${props => props.theme.contour};
+  padding: 8px;
+  border-radius: 8px;
+  justify-content: center;
+`;
+
+const Label = styled(Typography)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  & > :last-child {
+    width: 64px;
+
+  }
+`;
+
+const Settings = styled(Fieldset)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
 export default VideoCapture;
