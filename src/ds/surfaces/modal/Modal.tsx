@@ -4,6 +4,7 @@ import { Typography } from '@/ds/displays';
 import { Card } from '@/ds/surfaces';
 import { Button } from '@/ds/inputs';
 import { RiCloseLine } from 'react-icons/ri';
+import { keyframes } from '@/ds';
 
 interface ModalProps {
     title?: string;
@@ -16,7 +17,7 @@ export const Modal = ({ children, title, onClose }: PropsWithChildren<ModalProps
             {onClose && <CloseButton variant={'ghost'} onClick={() => onClose()}>
                 <RiCloseLine />
             </CloseButton>}
-            {title && <Typography as={'h1'}>{title}</Typography>}
+            {title && <Typography as={'h2'}>{title}</Typography>}
             {children}
         </Container>
     );
@@ -49,6 +50,8 @@ const Container = styled(Card)`
   border-color: ${({ theme }) => theme.surface.active};
   min-width: 320px;
   padding: 12px;
+
+  animation: ${keyframes.growInSmall} 0.2s ease-in-out;
 `;
 
 const CloseButton = styled(Button)`

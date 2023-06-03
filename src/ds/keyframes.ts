@@ -42,4 +42,18 @@ export const keyframes = {
         transform: scale(0.2);
       }
     `,
+    growInSmall: css`
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      75% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    `,
 } as const;
