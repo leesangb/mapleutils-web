@@ -39,12 +39,12 @@ const ActionsContainer = styled.div`
 
 Modal.Actions = ModalActions;
 Modal.Content = styled.div`
-  overflow-y: scroll;
-  max-height: 60vh;
+  overflow: scroll;
+  max-height: 85vh;
 `;
 
 const Container = styled(Card)`
-  position: relative;
+  position: fixed;
   background-color: ${({ theme }) => theme.background};
   border-color: ${({ theme }) => theme.surface.active};
   min-width: 320px;

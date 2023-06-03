@@ -1,4 +1,13 @@
-import { ComponentType, createContext, MouseEvent, PropsWithChildren, useMemo, useState } from 'react';
+import {
+    ComponentType,
+    createContext,
+    MouseEvent,
+    PropsWithChildren,
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react';
 import styled from 'styled-components';
 
 export type ModalComponent<T = any> = {
@@ -25,11 +34,25 @@ export const ModalsProvider = ({ children }: PropsWithChildren) => {
         setOpenedModals(modals => modals.filter(m => m.Component !== modal.Component));
     };
 
+    const closeLast = useCallback(() => openedModals.length && close(openedModals.slice(-1)[0]), [openedModals]);
+
     const onMouseUp = (e: MouseEvent) => {
         if (e.target === e.currentTarget) {
-            close(openedModals.slice(-1)[0]);
+            closeLast();
         }
     };
+
+    useEffect(() => {
+        const closeEsc = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                closeLast();
+            }
+        };
+        window.addEventListener('keyup', closeEsc);
+        return () => {
+            window.removeEventListener('keyup', closeEsc);
+        };
+    }, [closeLast]);
 
     const dispatch = useMemo(() => ({ open, close }), []);
 
