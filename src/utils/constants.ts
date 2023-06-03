@@ -1,5 +1,6 @@
 export const MESO_KR_URL = 'https://meso.kr/monster.php';
 export const WACHAN_URL = 'http://wachan.me/farm.php';
+export const WACHAN_API_URL = 'http://wachan.me';
 export const MAPLE_GG_URL = 'https://maple.gg';
 
 export const DISCORD_URL = 'https://discord.gg/FxU7b6fmgE';
