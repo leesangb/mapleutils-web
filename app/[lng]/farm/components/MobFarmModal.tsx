@@ -21,6 +21,7 @@ export const MobFarmModal = ({ mob, onClose }: MobFarmModalProps) => {
     const mesokr = mob.name.replace(/ /g, '+');
 
     const [farms, setFarms] = useState<WachanFarm[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch(`/api/wachan?name=${encodeURI(mob.name)}`)
@@ -32,6 +33,7 @@ export const MobFarmModal = ({ mob, onClose }: MobFarmModalProps) => {
             })
             .then((res) => {
                 setFarms(res);
+                setLoading(false);
             })
             .catch(e => {
                 console.error(e);
@@ -45,45 +47,47 @@ export const MobFarmModal = ({ mob, onClose }: MobFarmModalProps) => {
                     <RiSearch2Line /> meso.kr에서 <b>{mob.name}</b> 검색
                 </Button>
                 <hr />
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableHeadCell />
-                            <TableHeadCell>농장</TableHeadCell>
-                            <TableHeadCell>기간</TableHeadCell>
-                            <TableHeadCell>정확한 정보입니까?</TableHeadCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {farms.map((farm) => (
-                            <TableRow key={farm.id}>
-                                <TableCell>
-                                    <CopyButton text={farm.name.replace(TRAILING_NOT_VALID_LETTERS, (a, b) => b)} />
-                                </TableCell>
-                                <TableCell>
-                                    {farm.name}
-                                </TableCell>
-                                <TableCell>
-                                    {farm.expiryDate ? new Date(farm.expiryDate).toLocaleDateString('ko-KR', {
-                                        year: '2-digit',
-                                        month: 'long',
-                                        day: '2-digit',
-                                    }) : '무한'}
-                                </TableCell>
-                                <TableCell>
-                                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                                        <Text>
-                                            {farm.upVote - farm.downVote}
-                                        </Text>
-                                        <Text fontSize={12}>
-                                            (<RiThumbUpFill />{farm.upVote} / <RiThumbDownFill />{farm.downVote})
-                                        </Text>
-                                    </div>
-                                </TableCell>
+                {loading ? (<></>) : (
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableHeadCell />
+                                <TableHeadCell>농장</TableHeadCell>
+                                <TableHeadCell>기간</TableHeadCell>
+                                <TableHeadCell>정확한 정보입니까?</TableHeadCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                        </TableHead>
+                        <TableBody>
+                            {farms.map((farm) => (
+                                <TableRow key={farm.id}>
+                                    <TableCell>
+                                        <CopyButton text={farm.name.replace(TRAILING_NOT_VALID_LETTERS, (a, b) => b)} />
+                                    </TableCell>
+                                    <TableCell>
+                                        {farm.name}
+                                    </TableCell>
+                                    <TableCell>
+                                        {farm.expiryDate ? new Date(farm.expiryDate).toLocaleDateString('ko-KR', {
+                                            year: '2-digit',
+                                            month: 'long',
+                                            day: '2-digit',
+                                        }) : '무한'}
+                                    </TableCell>
+                                    <TableCell>
+                                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                                            <Text>
+                                                {farm.upVote - farm.downVote}
+                                            </Text>
+                                            <Text fontSize={12}>
+                                                (<RiThumbUpFill />{farm.upVote} / <RiThumbDownFill />{farm.downVote})
+                                            </Text>
+                                        </div>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>)
+                }
             </Modal.Content>
         </Modal>
     );

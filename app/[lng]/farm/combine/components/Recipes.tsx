@@ -6,8 +6,9 @@ import styled from 'styled-components';
 import MobCard from '../../components/MobCard';
 import { media } from '@/ds';
 import { useState } from 'react';
-import { isHangulMatching } from '@/utils/string';
+import { englishToHangul, isHangulMatching } from '@/utils/string';
 import { SearchField } from '@/ds/inputs';
+import { Tooltip } from '@/ds/displays';
 
 interface RecipesProps {
     recipes: Required<MonsterLifeRecipe>[];
@@ -29,11 +30,13 @@ const Recipes = ({ recipes }: RecipesProps) => {
 
     return (
         <>
-            <SearchField fullWidth
-                value={input}
-                onFocus={(e) => e.target.select()}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder={'몬스터 이름, 카테고리, 효과 검색 (예: 각성한 락 스피릿, ㄳㅎㄽㅍㄹ, 악마, ㅇㄹㄷㅅ...), 초성 검색 ✅'} />
+            <Tooltip title={englishToHangul(input)} placement={'top'}>
+                <SearchField fullWidth
+                    value={input}
+                    onFocus={(e) => e.target.select()}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder={'몬스터 이름, 카테고리, 효과 검색 (예: 각성한 락 스피릿, ㄳㅎㄽㅍㄹ, 악마, frvf...), 영어, 초성 검색 ✅'} />
+            </Tooltip>
             <VirtualizedTable data={data}
                 height={'calc(100vh - var(--appBar_height) * 3.5)'}
                 estimatedRowHeight={() => 205}
