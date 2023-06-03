@@ -50,6 +50,7 @@ const AdSense = ({ slot, format, responsive, width, height }: AdSenseProps) => {
     return isMounted ? (
         <Ins className='adsbygoogle'
             key={pathname}
+            style={{ ...dimensions }}
             $dimensions={dimensions}
             data-ad-client={ADSENSE_ID}
             data-ad-slot={slot}

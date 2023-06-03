@@ -18,6 +18,7 @@ const Container = styled.header`
   margin-left: calc(0px - ${theme.sideBar.width});
   background-color: ${theme.surface.default};
   backdrop-filter: blur(${theme.appBar.blur});
+  -webkit-backdrop-filter: blur(${theme.appBar.blur});
   border-radius: 0 0 ${theme.borderRadius} ${theme.borderRadius};
   padding: 16px;
   position: fixed;

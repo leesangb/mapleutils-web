@@ -107,6 +107,7 @@ const PanelContainer = styled.div<TransientProps<{ alignment: Alignment, fadeMs:
   z-index: ${({ theme }) => theme.zIndex.popover};
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 15px 0 rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   animation: ${keyframes.fadeIn} ${({ $fadeMs }) => $fadeMs}ms ease-in-out;
   min-width: 120px;
   width: fit-content;

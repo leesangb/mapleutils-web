@@ -164,6 +164,7 @@ const LocationChip = styled.span`
   background-color: ${({ theme }) => theme.surface.default};
   transition: box-shadow 0.125s ease-in-out;
   backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 
   &:hover {
     z-index: 1;

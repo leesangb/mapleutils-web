@@ -94,6 +94,7 @@ const GlobalStyle = createGlobalStyle`
 
   .Toastify__toast {
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: ${theme.borderRadius};
     border: 1px solid ${theme.contour};
   }

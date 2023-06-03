@@ -82,6 +82,7 @@ const ModalsRoot = styled.div<TransientProps<{ open: boolean }>>`
   pointer-events: ${({ $open }) => $open ? 'auto' : 'none'};
   background-color: ${({ $open, theme }) => $open ? theme.tooltip.background : 'transparent'};
   backdrop-filter: ${({ $open }) => $open ? 'blur(4px)' : 'none'};
+  -webkit-backdrop-filter: ${({ $open }) => $open ? 'blur(4px)' : 'none'};
   display: flex;
   align-items: center;
   justify-content: center;

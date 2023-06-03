@@ -100,6 +100,7 @@ const Content = styled.span<Required<TransientProps<Pick<TooltipProps, 'placemen
   border-radius: ${({ theme }) => theme.borderRadius};
   width: max-content;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(2px);
   opacity: 0;
   z-index: ${({ theme }) => theme.zIndex.tooltip};
   max-width: 280px;

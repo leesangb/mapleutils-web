@@ -62,6 +62,7 @@ const Container = styled.div`
   border-radius: 0 ${theme.borderRadius} ${theme.borderRadius} 0;
   background-color: ${theme.surface.default};
   backdrop-filter: blur(${theme.appBar.blur});
+  -webkit-backdrop-filter: blur(${theme.appBar.blur});
   align-items: center;
   gap: 8px;
   transition: width 0.125s ease-in-out;
