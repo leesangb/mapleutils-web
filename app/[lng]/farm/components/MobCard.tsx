@@ -5,12 +5,13 @@ import styled from 'styled-components';
 import { Button } from '@/ds/inputs';
 import { Typography } from '@/ds/displays';
 import { media, theme } from '@/ds';
-import { RiStarLine } from 'react-icons/ri';
+import { RiGiftLine, RiNodeTree, RiStarLine } from 'react-icons/ri';
 import { getExtendCost } from '@/data/farm/monsterLifeCost';
 import GradeChip from './GradeChip';
 import CostChip from './CostChip';
 import useModals from '@/hooks/useModals';
 import { MobFamilyTreeModal } from './MobFamilyTreeModal';
+import { monsterLifeFamilyMapping } from '@/data/farm/recipes';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
@@ -21,7 +22,7 @@ const MobCard = ({ mob }: MobCardProps) => {
 
     const { open, close } = useModals();
 
-    const openMobModal = () => {
+    const openMobFamilyModal = () => {
         open({
             Component: MobFamilyTreeModal,
             props: {
@@ -44,7 +45,7 @@ const MobCard = ({ mob }: MobCardProps) => {
                     </LabelItem>
                 }
             </LabelList>
-            <MobButton onClick={() => openMobModal()}>
+            <MobButton>
                 <ImageBackground>
                     <Image src={mob.img} alt={mob.name} />
                 </ImageBackground>
@@ -54,6 +55,26 @@ const MobCard = ({ mob }: MobCardProps) => {
             <FavoriteButton variant={'ghost'}>
                 <RiStarLine color={'orange'} />
             </FavoriteButton>
+            <ButtonGroup>
+                {
+                    monsterLifeFamilyMapping[mob.name]
+                    && (
+                        <Button variant={'ghost'} size={'small'} onClick={() => openMobFamilyModal()}>
+                            <RiNodeTree />
+                            전체 조합식
+                        </Button>
+                    )
+                }
+                {
+                    mob.other === '상자' || mob.name === '쁘띠 루미너스(빛)'
+                    && (
+                        <Button variant={'ghost'} size={'small'}>
+                            <RiGiftLine />
+                            상자
+                        </Button>
+                    )
+                }
+            </ButtonGroup>
         </Container>
     );
 };
@@ -95,7 +116,7 @@ const MobButton = styled.button`
   margin: 0;
   border: 1px solid ${({ theme }) => theme.contour};
   border-radius: ${({ theme }) => theme.borderRadius};
-  padding: 8px;
+  padding: 8px 8px 40px 8px;
   display: flex;
   gap: 8px;
   justify-content: center;
@@ -118,6 +139,15 @@ const MobButton = styled.button`
       background-color: ${({ theme }) => theme.surface.active};
     }
   }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
 `;
 
 const MobName = styled(Typography)`
