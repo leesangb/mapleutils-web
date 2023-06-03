@@ -1,14 +1,17 @@
 import { theme } from '@/ds';
 import styled from 'styled-components';
+import { CSSProperties } from 'react';
 
 interface GradeChipProps {
     grade: string;
-    category: string;
+    category?: string;
+    className?: string;
+    style?: CSSProperties;
 }
 
-const GradeChip = ({ grade, category }: GradeChipProps) => {
+const GradeChip = ({ grade, category, ...props }: GradeChipProps) => {
     return (
-        <div>
+        <div {...props}>
             <Grade $grade={grade as unknown as any}>{grade}</Grade> {category}
         </div>
     );

@@ -9,6 +9,8 @@ import { RiStarLine } from 'react-icons/ri';
 import { getExtendCost } from '@/data/farm/monsterLifeCost';
 import GradeChip from './GradeChip';
 import CostChip from './CostChip';
+import useModals from '@/hooks/useModals';
+import { MobFamilyTreeModal } from './MobFamilyTreeModal';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
@@ -16,6 +18,19 @@ interface MobCardProps {
 
 const MobCard = ({ mob }: MobCardProps) => {
     const cost = getExtendCost(mob);
+
+    const { open, close } = useModals();
+
+    const openMobModal = () => {
+        open({
+            Component: MobFamilyTreeModal,
+            props: {
+                onClose: () => close({ Component: MobFamilyTreeModal }),
+                mob: mob,
+            },
+        });
+    };
+
     return (
         <Container>
             <LabelList>
@@ -29,7 +44,7 @@ const MobCard = ({ mob }: MobCardProps) => {
                     </LabelItem>
                 }
             </LabelList>
-            <MobButton>
+            <MobButton onClick={() => openMobModal()}>
                 <ImageBackground>
                     <Image src={mob.img} alt={mob.name} />
                 </ImageBackground>

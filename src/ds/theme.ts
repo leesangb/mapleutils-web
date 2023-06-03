@@ -22,6 +22,7 @@ interface ThemePalette {
     surface: InteractingColor;
     background: string;
     contour: string;
+    line: string;
 
     text: {
         primary: string;
@@ -73,6 +74,7 @@ const light: ThemePalette = {
     },
     background: '#eaeaea',
     contour: '#e0e0e0',
+    line: '#bdbdbd',
 
     text: {
         primary: 'rgba(0, 0, 0, 0.75)',
@@ -119,6 +121,7 @@ const dark: ThemePalette = {
     },
     background: 'rgb(29, 29, 29)',
     contour: '#3a3a3a',
+    line: '#b9b9b9',
 
     text: {
         primary: 'rgba(249, 249, 249, 0.95)',
