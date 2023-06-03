@@ -11,6 +11,9 @@ import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ModalsProvider } from '@/ds/surfaces/modal/ModalsProvider';
+import { theme } from '@/ds';
+import AdSense, { AdSenseSlot } from '@/components/adsense/AdSense';
+import { isProduction } from '@/utils/helper';
 
 const currentYear = new Date().getFullYear();
 
@@ -31,6 +34,12 @@ const Layout = ({ children }: PropsWithChildren) => {
                     {children}
                 </Main>
             </ModalsProvider>
+            <Aside>
+                <AdSense slot={AdSenseSlot.RightContent}
+                    format={'auto'}
+                    responsive
+                    width={250} height={600} fixed />
+            </Aside>
             <ToastContainer
                 position='bottom-left'
                 autoClose={3000}
@@ -51,10 +60,22 @@ const Layout = ({ children }: PropsWithChildren) => {
 
 const Main = styled.main`
   padding: 16px;
+  margin-right: 260px;
 `;
 
 const Footer = styled.footer`
   padding: 16px;
+`;
+
+const Aside = styled.aside`
+  position: fixed;
+  width: 260px;
+  top: calc(${theme.appBar.height} + 16px);
+  right: 0;
+  border: ${isProduction ? 'none' : '1px solid red'};
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 export default Layout;
