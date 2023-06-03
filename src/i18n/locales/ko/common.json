@@ -114,7 +114,8 @@
         "shortName": "몹"
       },
       "bookmark": {
-        "longName": "즐겨찾기"
+        "longName": "즐겨찾기",
+        "shortName": "★"
       }
     }
   },

@@ -34,10 +34,9 @@ export const SideNavigations = () => {
                     <Hr />
                     <Typography>{t('drawer.farm.shortName')}</Typography>
                     <Nav>
-
                         <Ul>
                             {
-                                ['combine', 'info', 'bookmarks']
+                                ['combine', 'info', 'bookmark']
                                     .map((f) => (
                                         <Li key={f}>
                                             <SideBar.Link href={`/farm/${f}`}
