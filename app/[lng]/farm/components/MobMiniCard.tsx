@@ -22,7 +22,7 @@ export const MobMiniCard = ({ mob, active }: MobMiniCardProps) => {
                 <GradeChip grade={mob.grade} />
             </Tooltip>
             <Image src={`/images/monster-life/${mob.name}.png`} alt={mob.name} />
-            <Typography fontSize={12}>{mob.name}</Typography>
+            <Typography fontSize={14}>{mob.name}</Typography>
             <Typography as={'span'} fontSize={10} style={{ whiteSpace: 'pre-wrap' }}>{mob.effect}</Typography>
             <FavoriteButton variant={'ghost'} onClick={() => toggleBookmark(mob.name)}>
                 {
