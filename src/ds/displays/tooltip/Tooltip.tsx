@@ -19,9 +19,10 @@ export const Tooltip = ({
     children,
     style,
     tooltipStyle,
+    ...props
 }: PropsWithChildren<TooltipProps>) => {
     return (
-        <Container as={as} style={style}>
+        <Container as={as} style={style} {...props}>
             {children}
             {title && <Content $size={size} $placement={placement} style={tooltipStyle}>{title}</Content>}
         </Container>

@@ -36,7 +36,7 @@ const Recipes = ({ recipes }: RecipesProps) => {
                 placeholder={'몬스터 이름, 카테고리, 효과 검색 (예: 각성한 락 스피릿, ㄳㅎㄽㅍㄹ, 악마, ㅇㄹㄷㅅ...), 초성 검색 ✅'} />
             <VirtualizedTable data={data}
                 height={'calc(100vh - var(--appBar_height) * 3.5)'}
-                estimatedRowHeight={() => 173}
+                estimatedRowHeight={() => 205}
                 overScan={5}
                 RowComponent={RowComponent} />
         </>

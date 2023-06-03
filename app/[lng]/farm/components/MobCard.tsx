@@ -12,6 +12,7 @@ import CostChip from './CostChip';
 import useModals from '@/hooks/useModals';
 import { MobFamilyTreeModal } from './MobFamilyTreeModal';
 import { monsterLifeFamilyMapping } from '@/data/farm/recipes';
+import { MobBoxModal } from './MobBoxModal';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
@@ -27,6 +28,16 @@ const MobCard = ({ mob }: MobCardProps) => {
             Component: MobFamilyTreeModal,
             props: {
                 onClose: () => close({ Component: MobFamilyTreeModal }),
+                mob: mob,
+            },
+        });
+    };
+
+    const openMobBoxModal = () => {
+        open({
+            Component: MobBoxModal,
+            props: {
+                onClose: () => close({ Component: MobBoxModal }),
                 mob: mob,
             },
         });
@@ -66,9 +77,9 @@ const MobCard = ({ mob }: MobCardProps) => {
                     )
                 }
                 {
-                    mob.other === '상자' || mob.name === '쁘띠 루미너스(빛)'
+                    (mob.other === '상자' || mob.name === '쁘띠 루미너스(빛)')
                     && (
-                        <Button variant={'ghost'} size={'small'}>
+                        <Button variant={'ghost'} size={'small'} onClick={() => openMobBoxModal()}>
                             <RiGiftLine />
                             상자
                         </Button>
