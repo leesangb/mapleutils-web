@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Button } from '@/ds/inputs';
 import { Typography } from '@/ds/displays';
 import { media, theme } from '@/ds';
-import { RiGiftLine, RiNodeTree, RiSearch2Line, RiStarLine } from 'react-icons/ri';
+import { RiGiftLine, RiNodeTree, RiSearch2Line, RiStarFill, RiStarLine } from 'react-icons/ri';
 import { getExtendCost } from '@/data/farm/monsterLifeCost';
 import GradeChip from './GradeChip';
 import CostChip from './CostChip';
@@ -15,6 +15,7 @@ import { monsterLifeFamilyMapping } from '@/data/farm/recipes';
 import { MobBoxModal } from './MobBoxModal';
 import { MobFarmModal } from './MobFarmModal';
 import { MESO_KR_URL } from '@/utils/constants';
+import { useFarmBookmarkStore } from '@/store/useFarmBookbarkStore';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
@@ -22,6 +23,7 @@ interface MobCardProps {
 
 const MobCard = ({ mob }: MobCardProps) => {
     const cost = getExtendCost(mob);
+    const { isBookmarked, toggleBookmark } = useFarmBookmarkStore();
 
     const { open, close } = useModals();
 
@@ -75,8 +77,12 @@ const MobCard = ({ mob }: MobCardProps) => {
                 <MobName>{mob.name}</MobName>
                 <MobEffect as={'span'} color={theme.text.secondary}>{mob.effect}</MobEffect>
             </MobButton>
-            <FavoriteButton variant={'ghost'}>
-                <RiStarLine color={'orange'} />
+            <FavoriteButton variant={'ghost'} onClick={() => toggleBookmark(mob.name)}>
+                {
+                    isBookmarked(mob.name)
+                        ? <RiStarFill color={'orange'} />
+                        : <RiStarLine color={'orange'} />
+                }
             </FavoriteButton>
             <ButtonGroup>
                 <Button variant={'ghost'} size={'small'} style={{ marginRight: 'auto' }}
