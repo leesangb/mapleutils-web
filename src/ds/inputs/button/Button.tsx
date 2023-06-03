@@ -11,16 +11,29 @@ export type ButtonProps = {
     children?: ReactNode;
     active?: boolean;
     href?: string;
+    target?: string;
     lang?: Languages;
     styles?: Interpolation<CSSProperties>;
     variant?: 'outlined' | 'ghost';
+    style?: CSSProperties;
 }
 
-export const Button = ({ children, size, active, href, lang, styles, variant = 'outlined', ...props }: ButtonProps) => {
+export const Button = ({
+    children,
+    size,
+    active,
+    href,
+    lang,
+    styles,
+    target,
+    variant = 'outlined',
+    ...props
+}: ButtonProps) => {
     return href
         ? lang
             ? (
                 <StyledButton as={Link} href={href} lang={lang}
+                    target={target}
                     $variant={variant} $size={size}
                     $active={active}
                     $styles={styles} {...props}>
@@ -28,6 +41,7 @@ export const Button = ({ children, size, active, href, lang, styles, variant = '
                 </StyledButton>
             ) : (
                 <StyledButton as={'a'} href={href}
+                    target={target}
                     $variant={variant} $size={size}
                     $active={active}
                     $styles={styles} {...props}>
@@ -54,7 +68,19 @@ const variantMap = {
     `,
 };
 
-const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'children' | 'onClick' | 'href' | 'lang'>>>`
+const sizeMap = {
+    small: css`
+      font-size: 12px;
+    `,
+    medium: css`
+      font-size: 14px;
+    `,
+    large: css`
+      font-size: 16px;
+    `,
+};
+
+const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'onClick' | 'href' | 'lang'>>>`
   position: relative;
   border-radius: ${theme.borderRadius};
   background-color: ${theme.surface.default};
@@ -93,4 +119,5 @@ const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'children' |
   `}
   ${({ $styles }) => $styles && $styles}
   ${({ $variant }) => $variant && variantMap[$variant]}
+  ${({ $size }) => $size && sizeMap[$size]}
 `;

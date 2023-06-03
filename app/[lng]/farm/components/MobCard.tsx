@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Button } from '@/ds/inputs';
 import { Typography } from '@/ds/displays';
 import { media, theme } from '@/ds';
-import { RiGiftLine, RiNodeTree, RiStarLine } from 'react-icons/ri';
+import { RiGiftLine, RiNodeTree, RiSearch2Line, RiStarLine } from 'react-icons/ri';
 import { getExtendCost } from '@/data/farm/monsterLifeCost';
 import GradeChip from './GradeChip';
 import CostChip from './CostChip';
@@ -13,6 +13,8 @@ import useModals from '@/hooks/useModals';
 import { MobFamilyTreeModal } from './MobFamilyTreeModal';
 import { monsterLifeFamilyMapping } from '@/data/farm/recipes';
 import { MobBoxModal } from './MobBoxModal';
+import { MobFarmModal } from './MobFarmModal';
+import { MESO_KR_URL } from '@/utils/constants';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
@@ -43,6 +45,16 @@ const MobCard = ({ mob }: MobCardProps) => {
         });
     };
 
+    const openMobFarmModal = () => {
+        open({
+            Component: MobFarmModal,
+            props: {
+                onClose: () => close({ Component: MobFarmModal }),
+                mob: mob,
+            },
+        });
+    };
+
     return (
         <Container>
             <LabelList>
@@ -56,7 +68,7 @@ const MobCard = ({ mob }: MobCardProps) => {
                     </LabelItem>
                 }
             </LabelList>
-            <MobButton>
+            <MobButton onClick={() => openMobFarmModal()}>
                 <ImageBackground>
                     <Image src={mob.img} alt={mob.name} />
                 </ImageBackground>
@@ -67,6 +79,11 @@ const MobCard = ({ mob }: MobCardProps) => {
                 <RiStarLine color={'orange'} />
             </FavoriteButton>
             <ButtonGroup>
+                <Button variant={'ghost'} size={'small'} style={{ marginRight: 'auto' }}
+                    target={'_blank'}
+                    href={`${MESO_KR_URL}?n=${mob.name.replace(/ /g, '+')}`}>
+                    <RiSearch2Line /> meso.kr
+                </Button>
                 {
                     monsterLifeFamilyMapping[mob.name]
                     && (
@@ -157,8 +174,11 @@ const ButtonGroup = styled.div`
   gap: 4px;
   align-items: center;
   position: absolute;
-  bottom: 4px;
-  right: 4px;
+  bottom: 0;
+  left: 0;
+  padding: 4px;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 const MobName = styled(Typography)`
