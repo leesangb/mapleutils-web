@@ -10,10 +10,12 @@ import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ModalsProvider } from '@/ds/surfaces/modal/ModalsProvider';
 
 const currentYear = new Date().getFullYear();
 
 const Layout = ({ children }: PropsWithChildren) => {
+
     return (
         <>
             <GlobalStyle />
@@ -24,9 +26,11 @@ const Layout = ({ children }: PropsWithChildren) => {
             <SideBar>
                 <SideNavigations />
             </SideBar>
-            <Main>
-                {children}
-            </Main>
+            <ModalsProvider>
+                <Main>
+                    {children}
+                </Main>
+            </ModalsProvider>
             <ToastContainer
                 position='bottom-left'
                 autoClose={3000}

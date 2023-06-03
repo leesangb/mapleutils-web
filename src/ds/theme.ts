@@ -149,6 +149,7 @@ interface CommonTheme {
         sideBar: number;
         tooltip: number;
         popover: number;
+        modal: number;
     };
 }
 
@@ -169,6 +170,7 @@ const common: CommonTheme = {
         sideBar: 1000,
         tooltip: 1001,
         popover: 2000,
+        modal: 9000,
     },
 };
 
