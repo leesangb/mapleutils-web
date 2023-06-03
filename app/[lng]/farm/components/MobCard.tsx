@@ -91,20 +91,20 @@ const MobCard = ({ mob }: MobCardProps) => {
                     <RiSearch2Line /> meso.kr
                 </Button>
                 {
-                    monsterLifeFamilyMapping[mob.name]
-                    && (
-                        <Button variant={'ghost'} size={'small'} onClick={() => openMobFamilyModal()}>
-                            <RiNodeTree />
-                            전체 조합식
-                        </Button>
-                    )
-                }
-                {
                     (mob.other === '상자' || mob.name === '쁘띠 루미너스(빛)')
                     && (
                         <Button variant={'ghost'} size={'small'} onClick={() => openMobBoxModal()}>
                             <RiGiftLine />
                             상자
+                        </Button>
+                    )
+                }
+                {
+                    monsterLifeFamilyMapping[mob.name]
+                    && (
+                        <Button variant={'ghost'} size={'small'} onClick={() => openMobFamilyModal()}>
+                            <RiNodeTree />
+                            전체 조합식
                         </Button>
                     )
                 }
