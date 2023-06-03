@@ -38,8 +38,8 @@ const getRedirectUrl = (request: NextRequest): string | undefined => {
 
 export function middleware(request: NextRequest) {
     const lng: Languages = getLanguageFromRequest(request);
-    if (!languages.some(lang => request.nextUrl.pathname.startsWith(`/${lang}`))) {
-        console.log(request.nextUrl.pathname);
+    if (!languages.some(lang => request.nextUrl.pathname.startsWith(`/${lang}`))
+        && !request.nextUrl.pathname.startsWith('/api')) {
         return NextResponse.redirect(new URL(`/${lng}${request.nextUrl.pathname}`, request.url));
     }
 

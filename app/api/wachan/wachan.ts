@@ -1,7 +1,6 @@
-import { WachanFarm, WachanResponse } from '../types/Wachan';
-import { sortFarms, toWachanFarm } from '../tools/wachanHelper';
-
-const WACHAN_API_URL: string = 'http://wachan.me';
+import { WachanFarm, WachanResponse } from '@/types/Wachan';
+import { sortFarms, toWachanFarm } from './wachanHelper';
+import { WACHAN_API_URL } from '@/utils/constants';
 
 export const getWachanFarms = async (name: string): Promise<WachanFarm[]> => {
     const formData: Record<string, string> = {
@@ -16,7 +15,7 @@ export const getWachanFarms = async (name: string): Promise<WachanFarm[]> => {
             body: new URLSearchParams(formData),
         });
 
-        const farmResponse: WachanResponse = await response.json();
+        const farmResponse = await response.json() as WachanResponse;
 
         const farmArray = farmResponse.farm_list
             .map(toWachanFarm)

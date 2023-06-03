@@ -1,4 +1,4 @@
-import { WachanFarm, WachanFarmItem } from '../types/Wachan';
+import { WachanFarm, WachanFarmItem } from '@/types/Wachan';
 
 export const toWachanFarm = (item: WachanFarmItem): WachanFarm => {
     const [name, date, id, up, down] = item;
