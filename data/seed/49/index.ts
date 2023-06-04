@@ -9,7 +9,9 @@ export interface SeedMobData {
 }
 
 export const seed49GmsFilter: Set<string> = new Set(
-    [],
+    [
+        '엑스텀프',
+    ],
 );
 
 export const seed49KmsFilter: Set<string> = new Set(
