@@ -10,14 +10,17 @@ import {
 } from 'react';
 import styled from 'styled-components';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ModalComponent<T = any> = {
     Component: ComponentType<T>;
     props: T;
 }
 
 export const ModalsDispatchContext = createContext({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     open: <T, >(modal: ModalComponent<T>) => {
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     close: <T, >(modal: Pick<ModalComponent<T>, 'Component'>) => {
     },
 });

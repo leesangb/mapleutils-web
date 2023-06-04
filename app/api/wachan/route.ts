@@ -10,7 +10,7 @@ export const GET = async (req: Request) => {
         }
         const farms = await getWachanFarms(name);
         return NextResponse.json(farms);
-    } catch (e: any) {
+    } catch (e: unknown) {
         return NextResponse.error();
     }
 };

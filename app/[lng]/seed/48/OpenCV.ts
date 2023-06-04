@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import cv from '@techstark/opencv-js';
 import { loadImage } from '@/utils/imageHelper';
 

@@ -1,9 +1,10 @@
 import { theme } from '@/ds';
 import styled from 'styled-components';
 import { CSSProperties } from 'react';
+import { MonsterLifeGrade } from '@/data/farm/monsterLifeGrade';
 
 interface GradeChipProps {
-    grade: string;
+    grade: MonsterLifeGrade;
     category?: string;
     className?: string;
     style?: CSSProperties;
@@ -12,7 +13,7 @@ interface GradeChipProps {
 const GradeChip = ({ grade, category, ...props }: GradeChipProps) => {
     return (
         <div {...props}>
-            <Grade $grade={grade as unknown as any}>{grade}</Grade> {category}
+            <Grade $grade={grade}>{grade}</Grade> {category}
         </div>
     );
 };
@@ -27,7 +28,7 @@ const GradeColors = {
     C: theme.contour,
 };
 
-const Grade = styled.span<TransientProps<{ grade: 'C' | 'B' | 'B+' | 'A' | 'A+' | 'S' | 'SS' }>>`
+const Grade = styled.span<TransientProps<Pick<GradeChipProps, 'grade'>>>`
   display: inline-flex;
   background-color: ${({ theme }) => theme.primary.default};
   width: 12px;

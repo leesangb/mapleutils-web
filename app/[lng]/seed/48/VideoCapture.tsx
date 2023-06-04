@@ -213,17 +213,6 @@ const Toolbar = styled.div`
   margin-bottom: 8px;
 `;
 
-const Sliders = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-  border: 1px solid ${props => props.theme.contour};
-  padding: 8px;
-  border-radius: 8px;
-  justify-content: center;
-`;
-
 const Label = styled(Typography)`
   display: flex;
   align-items: center;
