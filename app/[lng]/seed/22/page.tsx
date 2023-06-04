@@ -1,3 +1,4 @@
+import 'server-only';
 import { I18nPageProps } from '@/i18n/settings';
 import { useTranslation } from '@/i18n/server';
 import { Typography } from '@/ds/displays';
@@ -8,11 +9,23 @@ import tip1 from '@/assets/images/seed/22/tip1.gif';
 import tip2 from '@/assets/images/seed/22/tip2.gif';
 import tip3 from '@/assets/images/seed/22/tip3.gif';
 import tip4 from '@/assets/images/seed/22/tip4.1.gif';
-
 import { CSSProperties } from 'react';
 import { Accordion, AccordionContent, AccordionSummary, Card } from '@/ds/surfaces';
-import { PlatformMap } from './components/PlatformMap';
+import { PlatformMap } from './PlatformMap';
 import { RiLightbulbLine } from 'react-icons/ri';
+import { Metadata } from 'next';
+import { generateI18nSeoMetadata } from '@/utils/seo';
+
+export const generateMetadata = async ({ params }: I18nPageProps): Promise<Metadata> => {
+    return await generateI18nSeoMetadata({
+        url: '/seed/22',
+        lang: params.lng,
+        i18nNs: 'seed22',
+        images: [
+            { url: '/images/22.png' },
+        ],
+    });
+};
 
 const imageStyle: CSSProperties = {
     objectFit: 'scale-down',

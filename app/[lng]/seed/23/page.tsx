@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { I18nPageProps } from '@/i18n/settings';
 import { useTranslation } from '@/i18n/server';
 import { Typography } from '@/ds/displays';
@@ -6,9 +8,21 @@ import full from '@/assets/images/seed/23/full.png';
 import map1 from '@/assets/images/seed/23/1.png';
 import map2 from '@/assets/images/seed/23/2.png';
 import map3 from '@/assets/images/seed/23/3.png';
-
 import { CSSProperties } from 'react';
 import { Card } from '@/ds/surfaces';
+import { Metadata } from 'next';
+import { generateI18nSeoMetadata } from '@/utils/seo';
+
+export const generateMetadata = async ({ params }: I18nPageProps): Promise<Metadata> => {
+    return await generateI18nSeoMetadata({
+        url: '/seed/23',
+        lang: params.lng,
+        i18nNs: 'seed23',
+        images: [
+            { url: '/images/23.png' },
+        ],
+    });
+};
 
 const imageStyle: CSSProperties = {
     objectFit: 'scale-down',

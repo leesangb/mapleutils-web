@@ -4,6 +4,19 @@ import { useTranslation } from '@/i18n/server';
 import seed47 from '@/assets/images/seed/47.png';
 import NextImage from 'next/image';
 import { Card } from '@/ds/surfaces';
+import { Metadata } from 'next';
+import { generateI18nSeoMetadata } from '@/utils/seo';
+
+export const generateMetadata = async ({ params }: I18nPageProps): Promise<Metadata> => {
+    return await generateI18nSeoMetadata({
+        url: '/seed/47',
+        lang: params.lng,
+        i18nNs: 'seed47',
+        images: [
+            { url: '/images/47.png' },
+        ],
+    });
+};
 
 const Seed47Page = async ({ params }: I18nPageProps) => {
     const { t } = await useTranslation(params.lng, 'seed47');

@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { Card } from '@/ds/surfaces';
-import VideoCapture from './components/VideoCapture';
+import VideoCapture from './VideoCapture';
 import { I18nPageProps } from '@/i18n/settings';
 import { useTranslation } from '@/i18n/server';
 import { Typography } from '@/ds/displays';
@@ -11,6 +11,19 @@ import ko from '@/assets/images/seed/48/ko.png';
 import seed48 from '@/assets/images/seed/48.png';
 import styles from './index.module.css';
 import { RiArrowLeftRightLine } from 'react-icons/ri';
+import { Metadata } from 'next';
+import { generateI18nSeoMetadata } from '@/utils/seo';
+
+export const generateMetadata = async ({ params }: I18nPageProps): Promise<Metadata> => {
+    return await generateI18nSeoMetadata({
+        url: '/seed/48',
+        lang: params.lng,
+        i18nNs: 'seed48',
+        images: [
+            { url: '/images/48.png' },
+        ],
+    });
+};
 
 const Seed48Page = async ({ params }: I18nPageProps) => {
     const { t } = await useTranslation(params.lng, 'seed48');
