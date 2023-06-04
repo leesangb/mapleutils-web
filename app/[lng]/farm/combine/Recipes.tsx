@@ -3,7 +3,7 @@
 import { MonsterLifeRecipe } from '@/data/farm/recipes';
 import VirtualizedTable, { VirtualizedRowProps } from '@/components/virtualized/VirtualizedTable';
 import styled from 'styled-components';
-import MobCard from '../../components/MobCard';
+import MobCard from '../components/MobCard';
 import { media } from '@/ds';
 import { useState } from 'react';
 import { englishToHangul, isHangulMatching } from '@/utils/string';

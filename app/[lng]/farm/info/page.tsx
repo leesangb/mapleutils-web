@@ -1,68 +1,43 @@
-'use client';
+import 'server-only';
 
 import { Card } from '@/ds/surfaces';
-import { mobsByEffect } from '@/data/farm/mobsByEffect';
-import { Button } from '@/ds/inputs';
-import styled from 'styled-components';
-import { Typography } from '@/ds/displays';
-import MobCard from '../components/MobCard';
-import { useFarmInfoStore } from '@/store/useFarmInfoStore';
+import { MobsByEffect } from './MobsByEffect';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: '몬스터 라이프 몬스터 정리',
+    description: '옵션별로 몬스터를 찾아보세요!',
+    keywords: [
+        '몬스터 라이프',
+        '몬라',
+        '와르',
+        '젬',
+        '조합',
+        '레시피',
+        '농장',
+        '농린이',
+        '몬스터',
+        '라이프',
+        '추천',
+        '검색',
+        'SS급',
+        '스페셜',
+    ],
+    openGraph: {
+        title: '몬스터 라이프 조합식',
+        description: '몬스터라이프 모든 스페셜 몬스터의 조합식 정리',
+        images: [
+            { url: 'images/information.png' },
+        ],
+    },
+};
 
 const InfoPage = () => {
-    const { selected, setSelected } = useFarmInfoStore();
-    const information = mobsByEffect.find(m => m.name === selected)!;
-
     return (
         <Card>
-            <ButtonGroup>
-                {mobsByEffect.map((effect) =>
-                    <Button key={effect.name}
-                        onClick={() => setSelected(effect.name)}
-                        active={effect.name === selected}>
-                        {effect.name}
-                    </Button>,
-                )}
-            </ButtonGroup>
-            <hr />
-            <Typography as={'h1'}>
-                {information.name}
-            </Typography>
-            <Typography as={'h2'}>
-                스페셜 몬스터
-            </Typography>
-            <Grid>
-                {information.mobs.map((m) => (
-                    <MobCard mob={m} key={m.name} />
-                ))}
-            </Grid>
-
-            {information.normals.length > 0 && (
-                <>
-                    <hr />
-                    <Typography as={'h2'}>
-                        일반 몬스터
-                    </Typography>
-                    <Grid>
-                        {information.normals.map((m) => (
-                            <MobCard mob={m} key={m.name} />
-                        ))}
-                    </Grid>
-                </>
-            )}
+            <MobsByEffect />
         </Card>
     );
 };
-
-const ButtonGroup = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
-`;
 
 export default InfoPage;
