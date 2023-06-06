@@ -294,12 +294,12 @@ const Player = styled.section`
 
   @media (max-width: 800px) {
     width: 100%;
-    grid-template-columns: 1fr;
+    grid-template-columns: auto 1fr auto;
     grid-template-areas:
-        "title"
-        "hint"
-        "buttons"
-        "time";
+        "title title title"
+        "hint hint hint"
+        "help buttons more"
+        "time time time";
   }
 `;
 
