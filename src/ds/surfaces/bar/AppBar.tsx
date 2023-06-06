@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '@/ds/theme';
 import { CSSProperties, PropsWithChildren } from 'react';
+import { media } from '@/ds';
 
 interface AppBarProps {
     style?: CSSProperties;
@@ -32,4 +33,8 @@ const Container = styled.header`
   align-items: center;
   justify-content: space-between;
   z-index: ${theme.zIndex.appBar};
+
+  ${media.max('sm')} {
+    padding: 16px 8px;
+  }
 `;

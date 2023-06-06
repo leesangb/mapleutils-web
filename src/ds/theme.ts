@@ -169,9 +169,9 @@ const common: CommonTheme = {
     },
     borderRadius: '8px',
     zIndex: {
-        appBar: 1000,
+        appBar: 1100,
         sideBar: 1000,
-        tooltip: 1001,
+        tooltip: 1200,
         popover: 2000,
         modal: 9000,
     },

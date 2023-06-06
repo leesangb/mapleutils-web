@@ -1,10 +1,6 @@
 'use client';
 
 import GlobalStyle from '@/ds/global.style';
-import { AppBar, SideBar } from '@/ds/surfaces';
-import { AppNavigations } from './AppNavigations';
-import { ThemeSwitcher } from './ThemeSwitcher';
-import { SideNavigations } from './SideNavigations';
 import { Typography } from '@/ds/displays';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
@@ -13,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ModalsProvider } from '@/ds/surfaces/modal/ModalsProvider';
 import AdSense, { AdSenseSlot } from '@/components/adsense/AdSense';
 import { isProduction } from '@/utils/helper';
+import Navigations from './Navigations';
 
 const currentYear = new Date().getFullYear();
 
@@ -21,13 +18,7 @@ const Layout = ({ children }: PropsWithChildren) => {
     return (
         <>
             <GlobalStyle />
-            <AppBar>
-                <AppNavigations />
-                <ThemeSwitcher />
-            </AppBar>
-            <SideBar>
-                <SideNavigations />
-            </SideBar>
+            <Navigations />
             <ModalsProvider>
                 <Main>
                     {children}
@@ -46,6 +37,8 @@ const Layout = ({ children }: PropsWithChildren) => {
                 newestOnTop
                 closeOnClick
                 draggable
+                pauseOnFocusLoss={false}
+                limit={3}
                 pauseOnHover
             />
             <Footer>

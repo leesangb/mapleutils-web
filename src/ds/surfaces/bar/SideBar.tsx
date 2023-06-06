@@ -4,15 +4,11 @@ import { theme } from '@/ds/theme';
 import { Button } from '@/ds/inputs';
 import { Languages } from '@/i18n/settings';
 import { Avatar, Typography } from '@/ds/displays';
-import { media } from '@/ds';
+import { keyframes, media } from '@/ds';
 
-interface SideBarProps {
-    open?: boolean;
-}
-
-export const SideBar = ({ children }: PropsWithChildren<SideBarProps>) => {
+export const SideBar = ({ children, ...props }: PropsWithChildren) => {
     return (
-        <Container>
+        <Container {...props}>
             {children}
         </Container>
     );
@@ -28,7 +24,8 @@ interface SideBarLinkProps {
 
 const SideBarLinkButton = styled(Button)`
   padding: 6px;
-  gap: 8px;
+  margin: 0 8px;
+  gap: 16px;
   border: 0;
   background-color: transparent;
 `;
@@ -51,12 +48,14 @@ const Container = styled.div`
   width: ${theme.sideBar.width};
   top: calc(${theme.appBar.height} + 16px);
   left: 0;
+  box-sizing: border-box;
   padding: 12px 0;
   height: calc(100% - ${theme.appBar.height} - 56px);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   border-top: 1px solid ${theme.contour};
   border-right: 1px solid ${theme.contour};
   border-bottom: 1px solid ${theme.contour};
@@ -89,5 +88,24 @@ const Container = styled.div`
 
   ${media.max('sm')} {
     display: none;
+    top: ${theme.appBar.height};
+    left: 0;
+    width: 100%;
+    animation: ${keyframes.slideInDown} 0.125s ease-in-out;
+    height: calc(70vh);
+
+    &:hover {
+      width: 100%;
+    }
+
+
+    &[data-mobile-animation='opened'] {
+      display: flex;
+    }
+
+    &[data-mobile-animation='closing'] {
+      display: flex;
+      animation: ${keyframes.slideOutUp} 0.125s ease-in-out;
+    }
   }
 `;

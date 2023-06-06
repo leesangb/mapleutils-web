@@ -56,4 +56,14 @@ export const keyframes = {
         transform: scale(1);
       }
     `,
+    slideInDown: css`
+      0% {
+        transform: translateY(-100%);
+      }
+    `,
+    slideOutUp: css`
+      100% {
+        transform: translateY(-100%);
+      }
+    `,
 } as const;

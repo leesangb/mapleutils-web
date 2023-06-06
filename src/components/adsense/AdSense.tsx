@@ -40,12 +40,13 @@ const AdSense = ({ slot, format, responsive, width, height }: AdSenseProps) => {
     const isMounted = useIsMounted();
 
     useEffect(() => {
+        if (!isMounted) return;
         try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
+            window.adsbygoogle.push({});
         } catch (e) {
             console.error(e);
         }
-    }, [pathname]);
+    }, [isMounted, pathname, dimensions]);
 
     return isMounted ? (
         <Ins className='adsbygoogle'

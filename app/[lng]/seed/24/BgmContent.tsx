@@ -19,7 +19,7 @@ import { minmax, toMinuteSecond } from '@/utils/number';
 import { useAudio } from '@/hooks/useAudio';
 import { useTranslation } from '@/i18n/client';
 import { Button, RadioGroup, Slider } from '@/ds/inputs';
-import { media, theme } from '@/ds';
+import { theme } from '@/ds';
 import { TrackOrder, useSeed24Store } from '@/store/useSeed24Store';
 import { copy } from '@/utils/clipboard';
 import { toast } from 'react-toastify';
@@ -311,18 +311,5 @@ const TrackList = styled.ol`
   list-style: none;
   margin: 0;
   padding: 8px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-
-
-  ${media.max('lg')} {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  ${media.max('md')} {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 `;
