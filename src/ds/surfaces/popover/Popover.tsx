@@ -1,72 +1,29 @@
 import styled, { css } from 'styled-components';
-import { CSSProperties, PropsWithChildren, useEffect, useId, useRef, useState } from 'react';
-import { Button, ButtonProps } from '@/ds/inputs';
+import { cloneElement, CSSProperties, PropsWithChildren, ReactElement } from 'react';
 import { keyframes } from '@/ds';
-import { Tooltip, TooltipProps } from '@/ds/displays';
+import usePopover from '@/ds/hooks/usePopover';
+import { PopoverProvider } from '@/ds/surfaces/popover/PopoverProvider';
 
 type Alignment = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 interface PopoverProps {
     style?: CSSProperties;
     className?: string;
-    buttonProps: ButtonProps;
-    tooltipProps?: TooltipProps;
-    alignment?: Alignment;
-    panelProps?: {
-        style?: CSSProperties;
-        className?: string;
-    };
     fadeMs?: number;
 }
 
 export const Popover = ({
     style,
     className,
-    buttonProps,
-    tooltipProps,
     children,
-    panelProps,
-    alignment = 'bottom-right',
     fadeMs = 125,
 }: PropsWithChildren<PopoverProps>) => {
-    const [open, setOpen] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
-    const id = useId();
-
-    useEffect(() => {
-        if (open) {
-            let timeoutId: ReturnType<typeof setTimeout>;
-            const clickAway = (e: MouseEvent) => {
-                if (!(e.target as HTMLElement).closest(`[data-popover="${id}"]`)) {
-                    if (ref.current) {
-                        ref.current.style.opacity = '0';
-                    }
-                    timeoutId = setTimeout(() => {
-                        setOpen(false);
-                    }, fadeMs);
-                }
-            };
-            window.addEventListener('click', clickAway);
-            return () => {
-                window.removeEventListener('click', clickAway);
-                if (timeoutId) {
-                    clearTimeout(timeoutId);
-                }
-            };
-        }
-    }, [open, id]);
-
     return (
-        <Container style={style} className={className}>
-            <Tooltip title={''} {...tooltipProps}>
-                <Button {...buttonProps} onClick={() => setOpen(!open)} data-popover={id} />
-            </Tooltip>
-            {open && (
-                <PanelContainer ref={ref} $fadeMs={fadeMs} $alignment={alignment} {...panelProps} data-popover={id}>
-                    {children}
-                </PanelContainer>
-            )}
-        </Container>
+        <PopoverProvider fadeMs={fadeMs}>
+            <Container style={style} className={className}>
+                {children}
+            </Container>
+        </PopoverProvider>
     );
 };
 
@@ -97,6 +54,29 @@ const AlignmentMap = {
     `,
 };
 
+const Trigger = ({ children }: { children: (options: { open: () => void }) => ReactElement }) => {
+    const { setState, id } = usePopover();
+    return cloneElement(children({
+        open: () => setState('opened'),
+    }), { ['data-popover']: id });
+};
+
+Popover.Trigger = Trigger;
+
+interface PopoverContentProps {
+    style?: CSSProperties;
+    alignment?: Alignment;
+}
+
+const Content = ({ children, alignment = 'bottom-right', ...props }: PropsWithChildren<PopoverContentProps>) => {
+    const { state, fadeMs, id } = usePopover();
+    return state !== 'closed' ? (
+        <PanelContainer $fadeMs={fadeMs} $alignment={alignment} data-popover={id} {...props} data-popover-state={state}>
+            {children}
+        </PanelContainer>
+    ) : null;
+};
+
 const PanelContainer = styled.div<TransientProps<{ alignment: Alignment, fadeMs: number }>>`
   position: absolute;
   ${({ $alignment }) => AlignmentMap[$alignment]};
@@ -112,4 +92,10 @@ const PanelContainer = styled.div<TransientProps<{ alignment: Alignment, fadeMs:
   min-width: 120px;
   width: fit-content;
   transition: opacity ${({ $fadeMs }) => $fadeMs}ms ease-in-out;
+
+  &[data-popover-state='closing'] {
+    opacity: 0;
+  }
 `;
+
+Popover.Content = Content;
