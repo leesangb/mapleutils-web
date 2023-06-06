@@ -7,6 +7,8 @@ import { RiDiscordFill, RiGithubFill, RiHome4Line, RiKakaoTalkFill } from 'react
 import { Button } from '@/ds/inputs';
 import { Languages } from '@/i18n/settings';
 import { useTranslation } from '@/i18n/client';
+import { media } from '@/ds';
+import { Popover } from '@/ds/surfaces/popover/Popover';
 
 const locales: { locale: Languages, name: string }[] = [
     { locale: 'ko', name: '한국어 / KMS' },
@@ -21,12 +23,16 @@ export const AppNavigations = () => {
     return (
         <>
             <Nav>
-                <Button href={'/'} lang={locale} styles={{ fontSize: '12px' }}>
+                <LinkButton href={'/'} lang={locale}>
                     <RiHome4Line />
                     {t('home')}
-                </Button>
+                </LinkButton>
                 {locales.filter((l) => l.locale !== locale).map((l) => (
-                    <Button key={l.name} styles={{ fontSize: '12px' }} href={pathname} lang={l.locale}>{l.name}</Button>
+                    <LinkButton key={l.name} href={pathname} styles={{
+                        [media.max('xs')]: {
+                            display: 'none',
+                        },
+                    }} lang={l.locale}>{l.name}</LinkButton>
                 ))}
             </Nav>
             <Nav style={{ flexGrow: 0, marginRight: '8px' }}>
@@ -43,4 +49,14 @@ const Nav = styled.nav`
   gap: 8px;
   align-items: center;
   flex-grow: 1;
+`;
+
+const LinkButton = styled(Button)`
+  font-size: 12px;
+`;
+
+const SideLinks = styled(Popover)`
+  ${media.min('sm')} {
+    display: none;
+  }
 `;

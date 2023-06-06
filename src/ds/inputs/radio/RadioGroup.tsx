@@ -59,6 +59,7 @@ RadioGroup.OptionContainer = styled.div<TransientProps<Pick<RadioGroupProps, 'di
   display: flex;
   gap: 8px;
   flex-direction: ${p => p.$direction};
+  flex-wrap: wrap;
   justify-content: ${({ $align }) => $align === 'left' ? 'flex-start' : $align === 'right' ? 'flex-end' : 'center'};
 `;
 

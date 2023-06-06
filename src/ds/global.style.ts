@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { commonThemeVar, darkThemeVar, lightThemeVar, theme } from '@/ds/theme';
 import { pretendardCss } from '@/ds/fonts';
+import { media } from '@/ds/media';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -42,7 +43,22 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: ${theme.appBar.height} 0 0 ${theme.sideBar.width};
-    padding: 0;
+    padding: 16px;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        'main ads'
+        'footer footer';
+
+    ${media.max('sm')} {
+      margin: ${theme.appBar.height} 0 0 0;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+          'ads'
+          'main'
+          'footer';
+    }
   }
 
   * {

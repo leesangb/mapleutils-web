@@ -9,7 +9,7 @@ import { RiGiftLine, RiNodeTree, RiSearch2Line, RiStarFill, RiStarLine } from 'r
 import { getExtendCost } from '@/data/farm/monsterLifeCost';
 import GradeChip from './GradeChip';
 import CostChip from './CostChip';
-import useModals from '@/hooks/useModals';
+import useModals from '@/ds/hooks/useModals';
 import { MobFamilyTreeModal } from './MobFamilyTreeModal';
 import { monsterLifeFamilyMapping } from '@/data/farm/recipes';
 import { MobBoxModal } from './MobBoxModal';

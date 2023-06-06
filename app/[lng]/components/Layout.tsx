@@ -11,7 +11,6 @@ import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ModalsProvider } from '@/ds/surfaces/modal/ModalsProvider';
-import { theme } from '@/ds';
 import AdSense, { AdSenseSlot } from '@/components/adsense/AdSense';
 import { isProduction } from '@/utils/helper';
 
@@ -41,6 +40,7 @@ const Layout = ({ children }: PropsWithChildren) => {
                     width={250} height={600} fixed />
             </Aside>
             <ToastContainer
+                style={{ position: 'fixed', bottom: 0, left: '16px' }}
                 position='bottom-left'
                 autoClose={3000}
                 newestOnTop
@@ -59,19 +59,18 @@ const Layout = ({ children }: PropsWithChildren) => {
 };
 
 const Main = styled.main`
-  padding: 16px;
-  margin-right: 260px;
+  grid-area: main;
 `;
 
 const Footer = styled.footer`
+  grid-area: footer;
   padding: 16px;
 `;
 
 const Aside = styled.aside`
-  position: fixed;
-  width: 260px;
-  top: calc(${theme.appBar.height} + 16px);
-  right: 0;
+  grid-area: ads;
+  width: fit-content;
+  height: fit-content;
   border: ${isProduction ? 'none' : '1px solid red'};
   display: flex;
   justify-content: center;

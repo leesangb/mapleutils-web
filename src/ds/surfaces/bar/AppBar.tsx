@@ -9,13 +9,15 @@ interface AppBarProps {
 
 export const AppBar = ({ children }: PropsWithChildren<AppBarProps>) => {
     return (
-        <Container>{children}</Container>
+        <Container>
+            {children}
+        </Container>
     );
 };
 
 const Container = styled.header`
-  margin-top: calc(0px - ${theme.appBar.height});
-  margin-left: calc(0px - ${theme.sideBar.width});
+  top: 0;
+  left: 0;
   background-color: ${theme.surface.default};
   backdrop-filter: blur(${theme.appBar.blur});
   -webkit-backdrop-filter: blur(${theme.appBar.blur});

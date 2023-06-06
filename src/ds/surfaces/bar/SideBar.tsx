@@ -4,6 +4,7 @@ import { theme } from '@/ds/theme';
 import { Button } from '@/ds/inputs';
 import { Languages } from '@/i18n/settings';
 import { Avatar, Typography } from '@/ds/displays';
+import { media } from '@/ds';
 
 interface SideBarProps {
     open?: boolean;
@@ -48,8 +49,8 @@ SideBar.Link = function SideBarLink({ href, lang, active, title, subtitle }: Sid
 const Container = styled.div`
   position: fixed;
   width: ${theme.sideBar.width};
-  margin-top: 16px;
-  margin-left: calc(0px - ${theme.sideBar.width});
+  top: calc(${theme.appBar.height} + 16px);
+  left: 0;
   padding: 12px 0;
   height: calc(100% - ${theme.appBar.height} - 56px);
   display: flex;
@@ -84,5 +85,9 @@ const Container = styled.div`
 
   &::-webkit-scrollbar-thumb {
     background: ${theme.contour};
+  }
+
+  ${media.max('sm')} {
+    display: none;
   }
 `;
