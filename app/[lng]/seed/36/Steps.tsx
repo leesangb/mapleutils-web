@@ -8,6 +8,7 @@ import { rotateGrowOutRight } from '@/ds/css';
 import { seed36Data } from '@/data/seed/36';
 import styled, { css } from 'styled-components';
 import { Button } from '@/ds/inputs';
+import { media } from '@/ds';
 
 type Step = 0 | 1 | 2 | 3 | undefined;
 type Steps = [Step, Step, Step, Step, Step, Step, Step, Step]
@@ -134,6 +135,10 @@ const Tbody = styled.tbody`
   display: flex;
   gap: 8px;
   width: 100%;
+
+  ${media.max('sm')} {
+    gap: 4px;
+  }
 `;
 
 const Tr = styled.tr`
@@ -141,6 +146,10 @@ const Tr = styled.tr`
   gap: 8px;
   width: 100%;
   align-items: center;
+
+  ${media.max('sm')} {
+    gap: 4px;
+  }
 `;
 
 const Th = styled.th`

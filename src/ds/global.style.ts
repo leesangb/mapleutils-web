@@ -58,6 +58,7 @@ const GlobalStyle = createGlobalStyle`
           'ads'
           'main'
           'footer';
+      padding: 8px;
     }
   }
 

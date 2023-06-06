@@ -85,7 +85,7 @@ const Row = styled.tr`
     text-align: center;
   }
 
-  ${media.max('sm')} {
+  ${media.max('md')} {
     grid-template-columns: 1fr 20px 1fr;
     grid-template-areas: "mob equal left"
       "mob equal plus"
