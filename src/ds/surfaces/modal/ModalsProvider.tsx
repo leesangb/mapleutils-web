@@ -60,17 +60,17 @@ export const ModalsProvider = ({ children }: PropsWithChildren) => {
     const dispatch = useMemo(() => ({ open, close }), []);
 
     return (
-        <ModalsStateContext.Provider value={openedModals}>
-            <ModalsDispatchContext.Provider value={dispatch}>
-                {children}
+        <ModalsDispatchContext.Provider value={dispatch}>
+            {children}
+            <ModalsStateContext.Provider value={openedModals}>
                 <ModalsRoot $open={openedModals.length > 0}
                     onMouseUp={onMouseUp}>
                     {openedModals.map(({ Component, props }, index) => (
                         <Component key={index} {...props} />
                     ))}
                 </ModalsRoot>
-            </ModalsDispatchContext.Provider>
-        </ModalsStateContext.Provider>
+            </ModalsStateContext.Provider>
+        </ModalsDispatchContext.Provider>
     );
 };
 
