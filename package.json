@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@google-analytics/data": "^2.8.0",
+    "@tanstack/react-query": "^4.29.14",
     "@tanstack/react-virtual": "^3.0.0-beta.54",
     "@techstark/opencv-js": "^4.6.0-release.1",
     "accept-language": "^3.0.18",
@@ -47,6 +48,7 @@
     "@storybook/nextjs": "^7.0.18",
     "@storybook/react": "^7.0.18",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "@tanstack/eslint-plugin-query": "^4.29.9",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@total-typescript/ts-reset": "^0.4.2",
