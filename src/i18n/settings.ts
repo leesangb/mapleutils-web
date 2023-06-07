@@ -12,7 +12,7 @@ declare module 'i18next' {
 
 export type I18nPageProps<P = unknown> = P & {
     params: {
-        lng: Languages
+        lng: Languages;
     };
 }
 
