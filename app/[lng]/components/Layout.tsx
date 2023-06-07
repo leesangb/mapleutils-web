@@ -2,7 +2,7 @@
 
 import GlobalStyle from '@/ds/global.style';
 import { Typography } from '@/ds/displays';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,20 +10,28 @@ import { ModalsProvider } from '@/ds/surfaces/modal/ModalsProvider';
 import AdSense, { AdSenseSlot } from '@/components/adsense/AdSense';
 import { isProduction } from '@/utils/helper';
 import Navigations from './Navigations';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Comments } from '@/components/comments/Comments';
 
 const currentYear = new Date().getFullYear();
 
 const Layout = ({ children }: PropsWithChildren) => {
+    const [queryClient] = useState(
+        () => new QueryClient({ defaultOptions: { queries: { retry: 3, retryDelay: 1_000 } } }),
+    );
 
     return (
         <>
             <GlobalStyle />
             <Navigations />
-            <ModalsProvider>
-                <Main>
-                    {children}
-                </Main>
-            </ModalsProvider>
+            <QueryClientProvider client={queryClient}>
+                <ModalsProvider>
+                    <Main>
+                        {children}
+                    </Main>
+                    <Comments />
+                </ModalsProvider>
+            </QueryClientProvider>
             <Aside>
                 <AdSense slot={AdSenseSlot.RightContent}
                     format={'auto'}
