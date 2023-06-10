@@ -1,11 +1,11 @@
-import { TextField, TextFieldProps } from '@/ds/inputs/textField/TextField';
+import { Input, TextFieldProps } from '@/ds/inputs/textField/Input';
 import { RiSearchLine } from 'react-icons/ri';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 type SearchFieldProps = Omit<TextFieldProps, 'adornment'>;
 
-export const SearchField = ({ ...props }: SearchFieldProps) => {
+export const SearchInput = ({ ...props }: SearchFieldProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export const SearchField = ({ ...props }: SearchFieldProps) => {
 
     }, []);
 
-    return <TextField inputRef={inputRef} autoFocus {...props} adornment={{
+    return <Input ref={inputRef} autoFocus {...props} adornment={{
         start: <RiSearchLine />,
         end: <>
             <kbd>F3</kbd> <Span>/</Span> <kbd>Ctrl</kbd> <Span>+</Span> <kbd>F</kbd>

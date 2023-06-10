@@ -6,7 +6,7 @@ import useMediaStream from './useMediaStream';
 import OpenCV from './OpenCV';
 import { useSeed48Store } from '@/store/useSeed48Store';
 import styled from 'styled-components';
-import { Button, Slider, TextField } from '@/ds/inputs';
+import { Button, Input, Slider } from '@/ds/inputs';
 import { useTranslation } from '@/i18n/client';
 import {
     RiCameraFill,
@@ -169,21 +169,21 @@ const VideoCapture = () => {
                         x
                         <Slider min={0} max={200} value={settings.x}
                             onChange={(e) => settings.setX(Number(e.target.value))} />
-                        <TextField value={settings.x}
+                        <Input value={settings.x}
                             onChange={(e) => settings.setX(Number(e.target.value))} />
                     </Label>
                     <Label as={'label'}>
                         y
                         <Slider min={0} max={200} value={settings.y}
                             onChange={(e) => settings.setY(Number(e.target.value))} />
-                        <TextField value={settings.y}
+                        <Input value={settings.y}
                             onChange={(e) => settings.setY(Number(e.target.value))} />
                     </Label>
                     <Label as={'label'}>
                         ratio
                         <Slider min={0} max={200} value={settings.ratio}
                             onChange={(e) => settings.setRatio(Number(e.target.value))} />
-                        <TextField value={settings.ratio}
+                        <Input value={settings.ratio}
                             onChange={(e) => settings.setRatio(Number(e.target.value))} />
                     </Label>
 

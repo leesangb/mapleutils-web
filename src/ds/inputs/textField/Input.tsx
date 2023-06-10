@@ -1,38 +1,50 @@
-import { ComponentProps, ReactNode, Ref } from 'react';
+import { ComponentProps, forwardRef, ReactNode } from 'react';
 import styled from 'styled-components';
 
 export interface TextFieldProps extends ComponentProps<'input'> {
     fullWidth?: boolean;
+    label?: string;
     adornment?: {
         start?: ReactNode;
         end?: ReactNode;
     };
-    inputRef?: Ref<HTMLInputElement>;
 }
 
-export const TextField = ({
-    inputRef,
+// eslint-disable-next-line react/display-name
+export const Input = forwardRef<HTMLInputElement, TextFieldProps & ComponentProps<'input'>>(({
     fullWidth,
+    label,
     adornment = {},
     ...props
-}: TextFieldProps & ComponentProps<'input'>) => {
+}, ref) => {
     const { start, end } = adornment;
     return <Container $fullWidth={fullWidth}>
         {start && <Adornment $placement={'left'}>{start}</Adornment>}
-        <Input ref={inputRef} $left={!!start} $right={!!end} $fullWidth={fullWidth} {...props} />
+        {label && <Legend>{label}</Legend>}
+        <InputField ref={ref} $left={!!start} $right={!!end} $fullWidth={fullWidth} {...props} />
         {end && <Adornment $placement={'right'}>{end}</Adornment>}
     </Container>;
-};
+});
 
-const Container = styled.div<TransientProps<{ fullWidth?: boolean }>>`
+const Legend = styled.legend`
+  font-size: 12px;
+  padding: 0 8px;
+  line-height: 14px;
+  transition: color 0.125s ease-in-out, font-size 0.125s ease-in-out;
+  color: ${({ theme }) => theme.text.disabled};
+`;
+
+const Container = styled.fieldset<TransientProps<{ fullWidth?: boolean }>>`
   width: ${({ $fullWidth }) => $fullWidth ? '100%' : 'fit-content'};
   box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px;
+  margin: 0;
   border: 1px solid ${({ theme }) => theme.contour};
   border-radius: ${({ theme }) => theme.borderRadius};
+  transition: border-color 0.125s ease-in-out;
 
   &:focus-within > span:first-child {
     color: ${({ theme }) => theme.primary.default};
@@ -40,8 +52,17 @@ const Container = styled.div<TransientProps<{ fullWidth?: boolean }>>`
 
   &:focus-within {
     border-width: 2px;
-    padding: 7px;
+    padding: 8px 7px 7px 7px;
     border-color: ${({ theme }) => theme.primary.default};
+
+    &:not(:has(> legend)) {
+      padding: 7px;
+    }
+
+    ${Legend} {
+      color: ${({ theme }) => theme.primary.default};
+      font-size: 14px;
+    }
   }
 `;
 
@@ -52,11 +73,14 @@ const Adornment = styled.span<TransientProps<{ placement: 'left' | 'right' }>>`
   user-select: none;
 `;
 
-const Input = styled.input<TransientProps<Pick<TextFieldProps, 'fullWidth'> & { left?: boolean, right?: boolean }>>`
+const InputField = styled.input<TransientProps<Pick<TextFieldProps, 'fullWidth'> & {
+    left?: boolean,
+    right?: boolean
+}>>`
   transition: border-color 0.125s ease-in-out;
   font-size: 16px;
   width: 100%;
-  outline: none;
+  outline: transparent;
   border: none;
 
 

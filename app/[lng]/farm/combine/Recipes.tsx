@@ -7,7 +7,7 @@ import MobCard from '../components/MobCard';
 import { media } from '@/ds';
 import { useState } from 'react';
 import { englishToHangul, isHangulMatching } from '@/utils/string';
-import { SearchField } from '@/ds/inputs';
+import { SearchInput } from '@/ds/inputs';
 import { Tooltip } from '@/ds/displays';
 
 interface RecipesProps {
@@ -31,7 +31,7 @@ const Recipes = ({ recipes }: RecipesProps) => {
     return (
         <>
             <Tooltip title={englishToHangul(input)} placement={'top'}>
-                <SearchField fullWidth
+                <SearchInput fullWidth
                     value={input}
                     onFocus={(e) => e.target.select()}
                     onChange={(e) => setInput(e.target.value)}

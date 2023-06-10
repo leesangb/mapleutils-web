@@ -5,7 +5,7 @@ import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { useTranslation } from '@/i18n/client';
 import { useState } from 'react';
 import { englishToHangul, isHangulMatching, isMatching } from '@/utils/string';
-import { SearchField } from '@/ds/inputs';
+import { SearchInput } from '@/ds/inputs';
 import VirtualizedTable, { VirtualizedRowProps } from '@/components/virtualized/VirtualizedTable';
 import { Tooltip, Typography } from '@/ds/displays';
 import styled from 'styled-components';
@@ -27,7 +27,7 @@ export const HintContent = ({ data }: HintContentProps) => {
     return (
         <>
             <Tooltip title={locale === 'ko' ? englishToHangul(input) : ''} placement={'top'}>
-                <SearchField fullWidth
+                <SearchInput fullWidth
                     placeholder={t('searchPlaceholder')}
                     value={input}
                     onFocus={(e) => e.target.select()}

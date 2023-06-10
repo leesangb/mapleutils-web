@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { englishToHangul, isHangulMatching, isMatching } from '@/utils/string';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
-import { Button, SearchField } from '@/ds/inputs';
+import { Button, SearchInput } from '@/ds/inputs';
 import { useTranslation } from '@/i18n/client';
 import { Tooltip, Typography } from '@/ds/displays';
 import { media, theme } from '@/ds';
@@ -43,7 +43,7 @@ const QuestionAnswers = ({ data }: QuestionAnswersProps) => {
             <SearchBarContainer>
                 <Tooltip style={{ width: '100%' }} title={locale === 'ko' ? englishToHangul(input) : ''}
                     placement={'top'}>
-                    <SearchField fullWidth
+                    <SearchInput fullWidth
                         placeholder={t('searchPlaceholder')}
                         value={input}
                         onFocus={(e) => e.target.select()}

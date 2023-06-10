@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TextField } from './TextField';
+import { Input } from './Input';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
-const meta: Meta<typeof TextField> = {
-    title: 'ds/inputs/TextField',
-    component: TextField,
+const meta: Meta<typeof Input> = {
+    title: 'ds/inputs/Input',
+    component: Input,
     tags: ['autodocs'],
     argTypes: {},
 };
 
 export default meta;
 
-type Story = StoryObj<typeof TextField>;
+type Story = StoryObj<typeof Input>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Base: Story = {};
@@ -45,5 +45,11 @@ export const WithStartAndEndAdornment: Story = {
             start: '❤️',
             end: '❤️',
         },
+    },
+};
+
+export const WithLabel: Story = {
+    args: {
+        label: 'with label',
     },
 };

@@ -7,7 +7,7 @@ import { useSeed49Store } from '@/store/useSeed49Store';
 import { seed49Locations, SeedMobData } from '@/data/seed/49';
 import { englishToHangul, isHangulMatching, isMatching } from '@/utils/string';
 import { Tooltip, Typography } from '@/ds/displays';
-import { Button, SearchField } from '@/ds/inputs';
+import { Button, SearchInput } from '@/ds/inputs';
 import {
     RiCheckboxBlankLine,
     RiCheckboxFill,
@@ -61,7 +61,7 @@ const MobGrid = ({ mobs: seed49Mobs }: MobGridProps) => {
     return (
         <>
             <Tooltip title={locale === 'ko' ? englishToHangul(input) : ''} placement={'top'}>
-                <SearchField fullWidth
+                <SearchInput fullWidth
                     placeholder={t('searchPlaceholder')}
                     value={input}
                     onFocus={(e) => e.target.select()}
