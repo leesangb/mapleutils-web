@@ -3,7 +3,7 @@ import { RiSearchLine } from 'react-icons/ri';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-type SearchFieldProps = Omit<TextFieldProps, 'adornment'>;
+type SearchFieldProps = Omit<TextFieldProps, 'adornment' | 'ref'>;
 
 export const SearchInput = ({ ...props }: SearchFieldProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
