@@ -1,7 +1,7 @@
 import { ComponentProps, forwardRef, ReactNode } from 'react';
 import styled from 'styled-components';
 
-export interface TextFieldProps extends ComponentProps<'input'> {
+export interface TextFieldProps extends Omit<ComponentProps<'input'>, 'ref'> {
     fullWidth?: boolean;
     label?: string;
     adornment?: {
@@ -34,6 +34,29 @@ const Legend = styled.legend`
   color: ${({ theme }) => theme.text.disabled};
 `;
 
+const Adornment = styled.span<TransientProps<{ placement: 'left' | 'right' }>>`
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.text.disabled};
+  user-select: none;
+`;
+
+const InputField = styled.input<TransientProps<Pick<TextFieldProps, 'fullWidth'> & {
+    left?: boolean,
+    right?: boolean
+}>>`
+  transition: border-color 0.125s ease-in-out;
+  font-size: 16px;
+  width: 100%;
+  outline: transparent;
+  border: none;
+
+  &::placeholder {
+    font-weight: 300;
+    color: ${({ theme }) => theme.text.disabled};
+  }
+`;
+
 const Container = styled.fieldset<TransientProps<{ fullWidth?: boolean }>>`
   width: ${({ $fullWidth }) => $fullWidth ? '100%' : 'fit-content'};
   box-sizing: border-box;
@@ -63,29 +86,5 @@ const Container = styled.fieldset<TransientProps<{ fullWidth?: boolean }>>`
       color: ${({ theme }) => theme.primary.default};
       font-size: 14px;
     }
-  }
-`;
-
-const Adornment = styled.span<TransientProps<{ placement: 'left' | 'right' }>>`
-  display: flex;
-  align-items: center;
-  color: ${({ theme }) => theme.text.disabled};
-  user-select: none;
-`;
-
-const InputField = styled.input<TransientProps<Pick<TextFieldProps, 'fullWidth'> & {
-    left?: boolean,
-    right?: boolean
-}>>`
-  transition: border-color 0.125s ease-in-out;
-  font-size: 16px;
-  width: 100%;
-  outline: transparent;
-  border: none;
-
-
-  &::placeholder {
-    font-weight: 300;
-    color: ${({ theme }) => theme.text.disabled};
   }
 `;
