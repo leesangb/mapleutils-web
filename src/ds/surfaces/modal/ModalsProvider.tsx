@@ -30,10 +30,12 @@ export const ModalsProvider = ({ children }: PropsWithChildren) => {
     const [openedModals, setOpenedModals] = useState<ModalComponent[]>([]);
 
     const open = <T, >(modal: ModalComponent<T>) => {
+        document.body.style.overflow = 'hidden';
         setOpenedModals(modals => [...modals, modal]);
     };
 
     const close = <T, >(modal: Pick<ModalComponent<T>, 'Component'>) => {
+        document.body.style.removeProperty('overflow');
         setOpenedModals(modals => modals.filter(m => m.Component !== modal.Component));
     };
 
