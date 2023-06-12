@@ -16,6 +16,8 @@ export type ButtonProps = {
     styles?: Interpolation<CSSProperties>;
     variant?: 'outlined' | 'ghost';
     style?: CSSProperties;
+    disabled?: boolean;
+    type?: 'button' | 'submit' | 'reset';
 }
 
 export const Button = ({
@@ -27,6 +29,8 @@ export const Button = ({
     styles,
     target,
     variant = 'outlined',
+    disabled = false,
+    type = 'button',
     ...props
 }: ButtonProps) => {
     return href
@@ -51,7 +55,7 @@ export const Button = ({
         : (
             <StyledButton $active={active}
                 $variant={variant} $size={size}
-                $styles={styles} {...props}>
+                $styles={styles} disabled={disabled} type={type} {...props}>
                 {children}
             </StyledButton>
         );
@@ -60,17 +64,26 @@ export const Button = ({
 const variantMap = {
     outlined: css`
       border: 1px solid ${theme.contour};
+
+      &:disabled {
+        color: ${theme.text.disabled};
+      }
     `,
     ghost: css`
       background-color: transparent;
       border: none;
       padding: 9px;
+
+      &:disabled {
+        color: ${theme.text.disabled};
+      }
     `,
 };
 
 const sizeMap = {
     small: css`
       font-size: 12px;
+      padding: 6px;
     `,
     medium: css`
       font-size: 14px;
@@ -80,7 +93,7 @@ const sizeMap = {
     `,
 };
 
-const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'onClick' | 'href' | 'lang'>>>`
+const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'onClick' | 'href' | 'lang' | 'disabled' | 'type'>>>`
   position: relative;
   border-radius: ${theme.borderRadius};
   background-color: ${theme.surface.default};
@@ -120,4 +133,7 @@ const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'onClick' | 
   ${({ $styles }) => $styles && $styles}
   ${({ $variant }) => $variant && variantMap[$variant]}
   ${({ $size }) => $size && sizeMap[$size]}
+  &:disabled {
+    pointer-events: none;
+  }
 `;
