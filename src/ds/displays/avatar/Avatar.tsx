@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 import { theme } from '@/ds/theme';
+import { ReactNode } from 'react';
 
 interface AvatarProps {
     name: string;
     color?: string;
     backgroundColor?: string;
+    children?: ReactNode;
 }
 
-export const Avatar = ({ name, backgroundColor, color }: AvatarProps) => {
+export const Avatar = ({ name, backgroundColor, color, children }: AvatarProps) => {
     return (
-        <Container $backgroundColor={backgroundColor} $color={color}>{name.slice(0, 2)}</Container>
+        <Container $backgroundColor={backgroundColor} $color={color}>{children || name.slice(0, 2)}</Container>
     );
 };
 
