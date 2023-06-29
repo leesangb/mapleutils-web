@@ -4,7 +4,7 @@ import { Languages } from '@/i18n/settings';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { deleteComment, editComment, getComments, postComment } from '@/api/MapleutilsApi';
-import { CommentDeleteDto, CommentEditDto, CommentPostDto } from '@/components/comments';
+import { CommentDeleteDto, CommentEditDto, CommentPostDto } from './dto';
 
 /**
  * Legacy comments are stored in a separate database.

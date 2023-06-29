@@ -1,4 +1,4 @@
-import { CommentDeleteDto, CommentDto, CommentEditDto, CommentPostDto } from '@/components/comments';
+import { CommentDeleteDto, CommentDto, CommentEditDto, CommentPostDto } from './dto';
 import { API_URL } from '@/utils/constants';
 
 const fixComments = (comments: CommentDto[]) => comments.filter(comment => !comment.isDeleted || comment.children.length)
