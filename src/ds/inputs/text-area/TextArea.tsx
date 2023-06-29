@@ -5,12 +5,14 @@ interface TextAreaProps extends ComponentProps<'textarea'> {
     label?: string;
 }
 
-export const TextArea = ({ label, required, ...props }: TextAreaProps) => {
+export const TextArea = ({ label, required, style, ...props }: TextAreaProps) => {
     return (
-        <Fieldset>
-            {label && <Legend>{label}{required && ' *'}</Legend>}
-            <StyledTextArea {...props} />
-        </Fieldset>
+        <>
+            <Fieldset style={style}>
+                {label && <Legend>{label}{required && ' *'}</Legend>}
+                <StyledTextArea {...props} />
+            </Fieldset>
+        </>
     );
 };
 
