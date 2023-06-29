@@ -45,7 +45,7 @@ const Navigations = () => {
                         {t('home')}
                     </App.Link>
                     {locales.filter((l) => l.locale !== locale).map((l) => (
-                        <App.Link key={l.name} href={pathname} styles={{
+                        <App.Link key={l.name} href={pathname || '/'} styles={{
                             [media.max('xs')]: {
                                 display: 'none',
                             },
