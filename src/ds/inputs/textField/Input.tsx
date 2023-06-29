@@ -16,12 +16,13 @@ export const Input = forwardRef<HTMLInputElement, TextFieldProps & ComponentProp
     label,
     adornment = {},
     style,
+    required,
     ...props
 }, ref) => {
     const { start, end } = adornment;
     return <Container $fullWidth={fullWidth} style={style}>
         {start && <Adornment $placement={'left'}>{start}</Adornment>}
-        {label && <Legend>{label}</Legend>}
+        {label && <Legend>{label}{required && ' *'}</Legend>}
         <InputField ref={ref} $left={!!start} $right={!!end} $fullWidth={fullWidth} {...props} />
         {end && <Adornment $placement={'right'}>{end}</Adornment>}
     </Container>;

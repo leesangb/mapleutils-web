@@ -6,11 +6,14 @@ interface TextAreaProps extends ComponentProps<'textarea'> {
 }
 
 export const TextArea = ({ label, required, style, ...props }: TextAreaProps) => {
+    const rows = props.value?.toString().split('\n').length ?? 0;
+    const maxRows = rows < 4 ? 3 : rows;
+
     return (
         <>
             <Fieldset style={style}>
                 {label && <Legend>{label}{required && ' *'}</Legend>}
-                <StyledTextArea {...props} />
+                <StyledTextArea rows={maxRows} {...props} />
             </Fieldset>
         </>
     );
