@@ -68,4 +68,8 @@ const StyledTextArea = styled.textarea`
     font-weight: 300;
     color: ${({ theme }) => theme.text.disabled};
   }
+
+  &:disabled {
+    color: ${({ theme }) => theme.text.disabled};
+  }
 `;

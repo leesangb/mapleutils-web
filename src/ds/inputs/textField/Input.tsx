@@ -57,6 +57,10 @@ const InputField = styled.input<TransientProps<Pick<TextFieldProps, 'fullWidth'>
     font-weight: 300;
     color: ${({ theme }) => theme.text.disabled};
   }
+
+  &:disabled {
+    color: ${({ theme }) => theme.text.disabled};
+  }
 `;
 
 const Container = styled.fieldset<TransientProps<{ fullWidth?: boolean }>>`

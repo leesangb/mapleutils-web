@@ -49,7 +49,12 @@ const GlobalStyle = createGlobalStyle`
     grid-template-columns: 1fr auto;
     grid-template-areas:
         'main ads'
+        'comments ads'
         'footer footer';
+
+    &:has(> div[data-mobile-animation="opened"]) {
+      overflow: hidden;
+    }
 
     ${media.max('sm')} {
       margin: ${theme.appBar.height} 0 0 0;
@@ -57,6 +62,7 @@ const GlobalStyle = createGlobalStyle`
       grid-template-areas:
           'ads'
           'main'
+          'comments'
           'footer';
       padding: 8px;
     }
