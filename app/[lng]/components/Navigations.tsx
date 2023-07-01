@@ -102,24 +102,24 @@ const Navigations = () => {
                         }
                     </Side.Ul>
                 </Side.Nav>
-                <Side.Hr />
-                <Typography>{t('drawer.seedSimulator.shortName')}</Typography>
-                <Side.Nav>
-                    <Side.Ul>
-                        {
-                            [24, 39, 49]
-                                .map((f) => (
-                                    <Side.Li key={f}>
-                                        <SideBar.Link href={`/seed/${f}/simulator`}
-                                            lang={locale}
-                                            active={pathname === `/seed/${f}/simulator`}
-                                            title={f.toString()}
-                                            subtitle={t(`drawer.seedSimulator.${f}.shortDescription`) || ''} />
-                                    </Side.Li>
-                                ))
-                        }
-                    </Side.Ul>
-                </Side.Nav>
+                {/*<Side.Hr />*/}
+                {/*<Typography>{t('drawer.seedSimulator.shortName')}</Typography>*/}
+                {/*<Side.Nav>*/}
+                {/*    <Side.Ul>*/}
+                {/*        {*/}
+                {/*            [24, 39, 49]*/}
+                {/*                .map((f) => (*/}
+                {/*                    <Side.Li key={f}>*/}
+                {/*                        <SideBar.Link href={`/seed/${f}/simulator`}*/}
+                {/*                            lang={locale}*/}
+                {/*                            active={pathname === `/seed/${f}/simulator`}*/}
+                {/*                            title={f.toString()}*/}
+                {/*                            subtitle={t(`drawer.seedSimulator.${f}.shortDescription`) || ''} />*/}
+                {/*                    </Side.Li>*/}
+                {/*                ))*/}
+                {/*        }*/}
+                {/*    </Side.Ul>*/}
+                {/*</Side.Nav>*/}
             </SideBar>
             {
                 state === 'opened' && (
