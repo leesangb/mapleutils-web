@@ -6,5 +6,6 @@ module.exports = {
     exclude: [
         '/en/farm/*',
         '/zh-TW/farm/*',
+        '/api/*',
     ],
 };
