@@ -204,4 +204,5 @@ const ReplyTo = styled(Typography)`
   background-color: ${({ theme }) => theme.contour};
   padding: 2px 6px;
   border-radius: ${({ theme }) => theme.borderRadius};
+  white-space: nowrap;
 `;

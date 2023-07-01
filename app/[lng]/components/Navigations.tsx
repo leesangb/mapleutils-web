@@ -62,26 +62,9 @@ const Navigations = () => {
                 <ThemeSwitcher />
             </AppBar>
             <SideBar data-mobile-animation={state}>
-                <Typography>{t('drawer.seed.shortName')}</Typography>
-                <Side.Nav>
-                    <Side.Ul>
-                        {
-                            [22, 23, 24, 36, 39, 42, 47, 48, 49]
-                                .map((f) => (
-                                    <Side.Li key={f}>
-                                        <SideBar.Link href={`/seed/${f}`}
-                                            lang={locale}
-                                            active={pathname === `/seed/${f}`}
-                                            title={f.toString()}
-                                            subtitle={t(`drawer.seed.${f}.shortDescription`) || ''} />
-                                    </Side.Li>
-                                ))
-                        }
-                    </Side.Ul>
-                </Side.Nav>
+
                 {
                     locale === 'ko' && (<>
-                        <Side.Hr />
                         <Typography>{t('drawer.farm.shortName')}</Typography>
                         <Side.Nav>
                             <Side.Ul>
@@ -99,9 +82,26 @@ const Navigations = () => {
                                 }
                             </Side.Ul>
                         </Side.Nav>
+                        <Side.Hr />
                     </>)
                 }
-
+                <Typography>{t('drawer.seed.shortName')}</Typography>
+                <Side.Nav>
+                    <Side.Ul>
+                        {
+                            [22, 23, 24, 36, 39, 42, 47, 48, 49]
+                                .map((f) => (
+                                    <Side.Li key={f}>
+                                        <SideBar.Link href={`/seed/${f}`}
+                                            lang={locale}
+                                            active={pathname === `/seed/${f}`}
+                                            title={f.toString()}
+                                            subtitle={t(`drawer.seed.${f}.shortDescription`) || ''} />
+                                    </Side.Li>
+                                ))
+                        }
+                    </Side.Ul>
+                </Side.Nav>
                 <Side.Hr />
                 <Typography>{t('drawer.seedSimulator.shortName')}</Typography>
                 <Side.Nav>
