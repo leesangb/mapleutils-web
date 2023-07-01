@@ -2,6 +2,7 @@ import { useTranslation } from '@/i18n/server';
 import { I18nPageProps } from '@/i18n/settings';
 import { Typography } from '@/ds/displays';
 import { DISCORD_URL, GITHUB_RELEASE_URL, GITHUB_URL, KAKAOTALK_URL } from '@/utils/constants';
+import { Card } from '@/ds/surfaces';
 
 const Ko = () => {
     return (<>
@@ -21,16 +22,33 @@ const Ko = () => {
 };
 
 const En = () => {
-    return (<></>);
+    return (
+        <>
+            <Typography>
+                Bug reports or contact me via{' '}
+                <a href={DISCORD_URL}>discord</a> or comment below 😊
+            </Typography>
+            <Typography>
+                <a href={GITHUB_URL}>Github</a> issues and PRs are welcome!
+            </Typography>
+            <Typography>
+                Special thanks to <i>Billy | 2DBF</i> (GMS) for English translations
+            </Typography>
+            <Typography>
+                Special thanks to <i><a href={'https://github.com/takidog'}>takidog</a> | 多脂狗狗</i> (TMS)
+                for Traditional Chinese translations
+            </Typography>
+        </>
+    );
 };
 
 const HomePage = async ({ params }: I18nPageProps) => {
     const { t } = await useTranslation(params.lng, 'common');
     return (
-        <>
+        <Card>
             <Typography as={'h1'}>{t('welcome')}</Typography>
             {params.lng === 'ko' ? <Ko /> : <En />}
-        </>
+        </Card>
     );
 };
 
