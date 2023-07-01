@@ -12,8 +12,6 @@ import {
     RiPlayFill,
     RiQuestionLine,
     RiStopFill,
-    RiVolumeDownFill,
-    RiVolumeUpFill,
 } from 'react-icons/ri';
 import { minmax, toMinuteSecond } from '@/utils/number';
 import { useAudio } from '@/hooks/useAudio';
@@ -26,6 +24,8 @@ import { toast } from 'react-toastify';
 import { Popover } from '@/ds/surfaces/popover/Popover';
 import { TrackButton } from './TrackButton';
 import { TFunction } from 'i18next';
+import { PlayerButton } from '@/components/buttons';
+import { VolumeSlider } from '@/components/volume/VolumeSlider';
 
 interface BgmContentProps {
     data: TrackInfo[];
@@ -123,20 +123,7 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                     </Tooltip>
                 </ButtonsContainer>
 
-                <Volume>
-                    <Tooltip title={t('minVolume')} size={'small'} placement={'top'}>
-                        <Button variant={'ghost'} onClick={() => setVolume(0)}>
-                            <RiVolumeDownFill />
-                        </Button>
-                    </Tooltip>
-                    <VolumeSlider value={volume}
-                        onChange={e => setVolume(Number(e.target.value))} />
-                    <Tooltip title={t('maxVolume')} size={'small'} placement={'top'}>
-                        <Button variant={'ghost'} onClick={() => setVolume(100)}>
-                            <RiVolumeUpFill />
-                        </Button>
-                    </Tooltip>
-                </Volume>
+                <VolumeSlider value={volume} onChange={v => setVolume(v)} />
 
                 {audio && <Time>
                     <TimeSlider value={audio.time}
@@ -196,19 +183,6 @@ const Hint = styled.p`
   text-overflow: ellipsis;
 `;
 
-const Volume = styled.div`
-  width: 100%;
-  grid-area: volume;
-  gap: 8px;
-  display: flex;
-  justify-items: center;
-  align-items: center;
-
-  @media (max-width: 800px) {
-    display: none;
-  }
-`;
-
 const Time = styled.div`
   display: grid;
   grid-area: time;
@@ -217,10 +191,6 @@ const Time = styled.div`
   grid-template-areas:
     "time-slider time-slider"
     "current total";
-`;
-
-const VolumeSlider = styled(Slider).attrs({ min: 0, max: 100 })`
-  width: 100%;
 `;
 
 const TimeSlider = styled(Slider).attrs({ min: 0 })`
@@ -236,36 +206,6 @@ const ButtonsContainer = styled.div`
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(3, 1fr);
-`;
-
-const PlayerButton = styled.button`
-  justify-content: center;
-  align-items: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 30px;
-  width: 48px;
-  height: 48px;
-  padding: 8px;
-  border-radius: 50%;
-  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.surface.hover};
-  }
-
-  &:active {
-    transform: scale(0.9);
-    background-color: ${({ theme }) => theme.surface.active};
-  }
-
-  &:disabled {
-    background-color: transparent;
-    cursor: not-allowed;
-    transform: scale(0.7);
-    color: ${({ theme }) => theme.text.disabled};
-  }
 `;
 
 const Container = styled.div`

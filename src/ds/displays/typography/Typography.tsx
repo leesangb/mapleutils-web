@@ -21,26 +21,32 @@ const typographyCssMap: Partial<Record<NonNullable<TypographyProps['variant']>, 
     h1: `
       font-size: 32px;
       line-height: 1.5;
+      text-wrap: balance;
     `,
     h2: `
       font-size: 24px;
       line-height: 1.5;
+      text-wrap: balance;
     `,
     h3: `
       font-size: 20px;
       line-height: 1.5;
+      text-wrap: balance;
     `,
     h4: `
       font-size: 18px;
       line-height: 1.5;
+      text-wrap: balance;
     `,
     h5: `
       font-size: 16px;
       line-height: 1.5;
+      text-wrap: balance;
     `,
     h6: `
       font-size: 14px;
       line-height: 1.5;
+      text-wrap: balance;
     `,
 };
 
