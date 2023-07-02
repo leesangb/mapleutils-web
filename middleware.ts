@@ -33,6 +33,10 @@ const getRedirectUrl = (request: NextRequest): string | undefined => {
     const [empty, locale, ...paths] = request.nextUrl.pathname.split('/');
     const pathname = [empty, ...paths].join('/');
     const redirect = redirects[pathname];
+
+    if (locale !== 'ko' && (redirect?.startsWith('/farm') || pathname?.startsWith('/farm'))) {
+        return `/${locale}`;
+    }
     return redirect && `/${locale}${redirect}`;
 };
 
