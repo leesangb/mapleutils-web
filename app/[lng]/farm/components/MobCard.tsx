@@ -132,7 +132,7 @@ const Container = styled.div`
 const Image = styled.img.attrs({ draggable: false })`
   object-fit: scale-down;
   width: auto;
-  height: 96px;
+  height: 80px;
 
   box-sizing: border-box;
   padding: 8px;
@@ -201,6 +201,7 @@ const MobName = styled(Typography)`
   width: 100%;
   text-align: left;
   line-height: 1;
+  font-weight: 500;
 `;
 
 const MobEffect = styled(Typography)`

@@ -26,7 +26,7 @@ export const MobMiniCard = ({ mob, active }: MobMiniCardProps) => {
             </Tooltip>
             <Image src={`/images/monster-life/${mob.name}.png`} alt={mob.name} />
             <Tooltip title={'meso.kr에서 검색'} placement={'top'} size={'small'}>
-                <Button variant={'ghost'} size={'small'} onClick={e => {
+                <Button variant={'ghost'} size={'large'} onClick={e => {
                     if (window.matchMedia('(width <= 600px)').matches) {
                         return;
                     }
@@ -37,7 +37,7 @@ export const MobMiniCard = ({ mob, active }: MobMiniCardProps) => {
                     {mob.name}
                 </Button>
             </Tooltip>
-            <Typography as={'span'} fontSize={10} style={{ whiteSpace: 'pre-wrap' }}>{mob.effect}</Typography>
+            <Typography as={'span'} fontSize={11} style={{ whiteSpace: 'pre-wrap' }}>{mob.effect}</Typography>
             <FavoriteButton variant={'ghost'} onClick={() => toggleBookmark(mob.name)}>
                 {
                     isBookmarked(mob.name)

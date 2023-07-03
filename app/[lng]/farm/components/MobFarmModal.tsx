@@ -1,7 +1,6 @@
 import { MonsterLifeMob } from '@/data/farm/mobs';
 import { Modal } from '@/ds/surfaces';
 import { Button } from '@/ds/inputs';
-import { MESO_KR_URL } from '@/utils/constants';
 import { RiFileCopy2Fill, RiSearch2Line, RiThumbDownFill, RiThumbUpFill } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import { WachanFarm } from '@/types/Wachan';
@@ -9,6 +8,8 @@ import styled from 'styled-components';
 import { Typography } from '@/ds/displays';
 import { copy } from '@/utils/clipboard';
 import { toast } from 'react-toastify';
+import { getMesoKrUrl } from '@/utils/string';
+import { useWindowPopupContext } from '@/components/popup/useWindowPopupContext';
 
 interface MobFarmModalProps {
     mob: MonsterLifeMob;
@@ -18,10 +19,9 @@ interface MobFarmModalProps {
 const TRAILING_NOT_VALID_LETTERS = /^([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]+).*$/;
 
 export const MobFarmModal = ({ mob, onClose }: MobFarmModalProps) => {
-    const mesokr = mob.name.replace(/ /g, '+');
-
     const [farms, setFarms] = useState<WachanFarm[]>([]);
     const [loading, setLoading] = useState(true);
+    const { openPopup } = useWindowPopupContext();
 
     useEffect(() => {
         fetch(`/api/wachan?name=${encodeURI(mob.name)}`)
@@ -43,7 +43,14 @@ export const MobFarmModal = ({ mob, onClose }: MobFarmModalProps) => {
     return (
         <Modal title={`${mob.name} - 소유 농장`} onClose={onClose}>
             <Modal.Content style={{ width: '600px' }}>
-                <Button href={`${MESO_KR_URL}?n=${mesokr}`}>
+                <Button onClick={e => {
+                    if (window.matchMedia('(width <= 600px)').matches) {
+                        return;
+                    }
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openPopup((e.target as HTMLAnchorElement).href);
+                }} href={getMesoKrUrl(mob.name)} target={'_blank'}>
                     <RiSearch2Line /> meso.kr에서 <b>{mob.name}</b> 검색
                 </Button>
                 <hr />

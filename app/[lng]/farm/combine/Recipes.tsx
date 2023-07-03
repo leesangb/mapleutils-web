@@ -53,21 +53,31 @@ const RowComponent = ({ rowData, measureRef, ...props }: VirtualizedRowProps<Req
             <td style={{ gridArea: 'mob' }}>
                 <MobCard mob={mob} />
             </td>
-            <td style={{ gridArea: 'equal' }}>
+            <Equal>
                 =
-            </td>
+            </Equal>
             <td style={{ gridArea: 'left' }}>
                 <MobCard mob={left} />
             </td>
-            <td style={{ gridArea: 'plus' }}>
+            <Plus>
                 +
-            </td>
+            </Plus>
             <td style={{ gridArea: 'right' }}>
                 <MobCard mob={right} />
             </td>
         </Row>
     );
 };
+
+const Equal = styled.td`
+  grid-area: equal;
+  font-size: 24px;
+`;
+
+const Plus = styled.td`
+  grid-area: plus;
+  font-size: 24px;
+`;
 
 const Row = styled.tr`
   padding: 8px 0;
