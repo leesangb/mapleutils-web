@@ -1,4 +1,5 @@
 import * as Hangul from 'hangul-js';
+import { MESO_KR_URL } from '@/utils/constants';
 
 export const removeSpecialChars = (s: string): string => s.replace(/(\s|\?|-|\.|…|!|~|,)/g, '');
 export const removeSpecialCharsWithoutSpaces = (s: string): string => s.replace(/([-.…!~,])/g, '');
@@ -60,3 +61,5 @@ export const includesOneOf = (str: string, words: string[]): boolean => words.so
 export const formatNumberComma = (n: number): string => new Intl.NumberFormat().format(n);
 
 export const formatNumberK = (n: number): string => `${(n / 1000).toFixed(1)}k`;
+
+export const getMesoKrUrl = (mob: string) => `${MESO_KR_URL}?n=${mob.replace(/ /g, '+')}`;

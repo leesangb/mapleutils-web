@@ -29,6 +29,7 @@ const Content = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 0 64px;
 `;
 
 const Section = styled.section`

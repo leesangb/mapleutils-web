@@ -14,8 +14,9 @@ import { MobFamilyTreeModal } from './MobFamilyTreeModal';
 import { monsterLifeFamilyMapping } from '@/data/farm/recipes';
 import { MobBoxModal } from './MobBoxModal';
 import { MobFarmModal } from './MobFarmModal';
-import { MESO_KR_URL } from '@/utils/constants';
 import { useFarmBookmarkStore } from '@/store/useFarmBookbarkStore';
+import { getMesoKrUrl } from '@/utils/string';
+import { useWindowPopupContext } from '@/components/popup/useWindowPopupContext';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
@@ -24,6 +25,7 @@ interface MobCardProps {
 const MobCard = ({ mob }: MobCardProps) => {
     const cost = getExtendCost(mob);
     const { isBookmarked, toggleBookmark } = useFarmBookmarkStore();
+    const { openPopup } = useWindowPopupContext();
 
     const { open, close } = useModals();
 
@@ -87,7 +89,15 @@ const MobCard = ({ mob }: MobCardProps) => {
             <ButtonGroup>
                 <Button variant={'ghost'} size={'small'} style={{ marginRight: 'auto' }}
                     target={'_blank'}
-                    href={`${MESO_KR_URL}?n=${mob.name.replace(/ /g, '+')}`}>
+                    onClick={e => {
+                        if (window.matchMedia('(width <= 600px)').matches) {
+                            return;
+                        }
+                        e.preventDefault();
+                        e.stopPropagation();
+                        openPopup((e.target as HTMLAnchorElement).href);
+                    }}
+                    href={getMesoKrUrl(mob.name)}>
                     <RiSearch2Line /> meso.kr
                 </Button>
                 {
