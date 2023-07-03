@@ -76,8 +76,10 @@ const MobCard = ({ mob }: MobCardProps) => {
                 <ImageBackground>
                     <Image src={mob.img} alt={mob.name} />
                 </ImageBackground>
-                <MobName>{mob.name}</MobName>
-                <MobEffect as={'span'} color={theme.text.secondary}>{mob.effect}</MobEffect>
+                <MobContent>
+                    <MobName>{mob.name}</MobName>
+                    <MobEffect as={'span'} color={theme.text.secondary}>{mob.effect}</MobEffect>
+                </MobContent>
             </MobButton>
             <FavoriteButton variant={'ghost'} onClick={() => toggleBookmark(mob.name)}>
                 {
@@ -132,7 +134,7 @@ const Container = styled.div`
 const Image = styled.img.attrs({ draggable: false })`
   object-fit: scale-down;
   width: auto;
-  height: 80px;
+  height: 70px;
 
   box-sizing: border-box;
   padding: 8px;
@@ -147,11 +149,19 @@ const Image = styled.img.attrs({ draggable: false })`
 const ImageBackground = styled.div`
   margin: 0;
   padding: 0;
-  width: 100%;
   border-radius: ${({ theme }) => theme.borderRadius};
   background-color: ${({ theme }) => theme.background};
   text-align: center;
   transition: background-color 0.125s ease-in-out;
+`;
+
+const MobContent = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+  box-sizing: border-box;
+  gap: 4px;
 `;
 
 const MobButton = styled.button`
@@ -160,12 +170,12 @@ const MobButton = styled.button`
   margin: 0;
   border: 1px solid ${({ theme }) => theme.contour};
   border-radius: ${({ theme }) => theme.borderRadius};
-  padding: 8px 8px 40px 8px;
-  display: flex;
+  padding: 8px 8px 32px 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, auto));
   gap: 8px;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   transition: background-color 0.125s ease-in-out;
 
   &:hover {
@@ -202,16 +212,18 @@ const MobName = styled(Typography)`
   text-align: left;
   line-height: 1;
   font-weight: 500;
+  text-wrap: balance;
 `;
 
 const MobEffect = styled(Typography)`
   width: 100%;
   text-align: left;
   font-size: 12px;
-  line-height: 1;
+  line-height: 1.2;
   display: flex;
   align-items: center;
-  height: 24px;
+  white-space: pre-wrap;
+  min-height: 30px;
 `;
 
 const FavoriteButton = styled(Button)`
