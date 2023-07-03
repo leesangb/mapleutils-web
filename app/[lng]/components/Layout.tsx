@@ -12,6 +12,7 @@ import { isProduction } from '@/utils/helper';
 import Navigations from './Navigations';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Comments } from '@/components/comments/Comments';
+import { WindowPopupProvider } from '@/components/popup/WindowPopupProvider';
 
 const currentYear = new Date().getFullYear();
 
@@ -25,12 +26,14 @@ const Layout = ({ children }: PropsWithChildren) => {
             <GlobalStyle />
             <Navigations />
             <QueryClientProvider client={queryClient}>
-                <ModalsProvider>
-                    <Main>
-                        {children}
-                    </Main>
-                    <Comments />
-                </ModalsProvider>
+                <WindowPopupProvider>
+                    <ModalsProvider>
+                        <Main>
+                            {children}
+                        </Main>
+                        <Comments />
+                    </ModalsProvider>
+                </WindowPopupProvider>
             </QueryClientProvider>
             <Aside>
                 <AdSense slot={AdSenseSlot.RightContent}
