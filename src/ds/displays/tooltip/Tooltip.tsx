@@ -99,7 +99,7 @@ const Content = styled.span<Required<TransientProps<Pick<TooltipProps, 'placemen
   text-align: center;
   border-radius: ${({ theme }) => theme.borderRadius};
   width: max-content;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   opacity: 0;
   z-index: ${({ theme }) => theme.zIndex.tooltip};

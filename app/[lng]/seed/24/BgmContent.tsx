@@ -159,7 +159,6 @@ export const BgmContent = ({ data }: BgmContentProps) => {
 };
 
 const Image = styled.img`
-  image-rendering: pixelated;
   border-radius: 0;
 `;
 

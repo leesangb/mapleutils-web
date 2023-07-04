@@ -63,7 +63,6 @@ const HintRow = ({ rowData, measureRef, ...props }: VirtualizedRowProps<TrackInf
 };
 
 const Image = styled.img`
-  image-rendering: pixelated;
   border-radius: 0;
 `;
 

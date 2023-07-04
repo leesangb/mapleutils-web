@@ -83,12 +83,12 @@ const ModalsRoot = styled.div<TransientProps<{ open: boolean }>>`
   z-index: ${({ theme }) => theme.zIndex.modal};
   width: 100%;
   height: 100%;
-  transition: background-color 0.2s ease-in-out, backdrop-filter 0.2s linear;
+  transition: background-color 0.2s ease-in-out;
   pointer-events: ${({ $open }) => $open ? 'auto' : 'none'};
   background-color: ${({ $open, theme }) => $open ? theme.tooltip.background : 'transparent'};
   backdrop-filter: ${({ $open }) => $open ? 'blur(4px)' : 'none'};
   -webkit-backdrop-filter: ${({ $open }) => $open ? 'blur(4px)' : 'none'};
-  display: flex;
+  display: ${({ $open }) => $open ? 'flex' : 'none'};
   align-items: center;
   justify-content: center;
 `;

@@ -72,6 +72,5 @@ const TrackButtonContainer = styled.div`
 `;
 
 const Image = styled.img`
-  image-rendering: pixelated;
   border-radius: 0;
 `;

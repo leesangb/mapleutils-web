@@ -41,6 +41,7 @@ const ActionsContainer = styled.div`
 Modal.Actions = ModalActions;
 Modal.Content = styled.div`
   overflow: scroll;
+  max-height: 85dvh;
   max-height: 85vh;
 `;
 
@@ -51,7 +52,7 @@ const Container = styled(Card)`
   min-width: 320px;
   padding: 12px;
 
-  animation: ${keyframes.growInSmall} 0.2s ease-in-out;
+  animation: ${keyframes.fadeIn} 0.2s ease-in-out;
 `;
 
 const CloseButton = styled(Button)`
