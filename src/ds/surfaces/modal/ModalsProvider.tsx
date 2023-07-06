@@ -81,7 +81,8 @@ const ModalsRoot = styled.div<TransientProps<{ open: boolean }>>`
   top: 0;
   left: 0;
   z-index: ${({ theme }) => theme.zIndex.modal};
-  width: 100%;
+  width: 100vw;
+  width: 100dvw;
   height: 100%;
   transition: background-color 0.2s ease-in-out;
   pointer-events: ${({ $open }) => $open ? 'auto' : 'none'};

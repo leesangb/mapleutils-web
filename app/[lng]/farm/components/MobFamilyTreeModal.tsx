@@ -33,7 +33,8 @@ const Content = styled.div`
 `;
 
 const Section = styled.section`
-  width: 100%;
+  min-width: max-content;
+  overflow-y: scroll;
 
   &:not(:last-child) {
     margin-bottom: 16px;

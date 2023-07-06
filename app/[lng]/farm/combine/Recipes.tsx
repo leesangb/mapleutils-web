@@ -71,20 +71,29 @@ const RowComponent = ({ rowData, measureRef, ...props }: VirtualizedRowProps<Req
 
 const Equal = styled.td`
   grid-area: equal;
-  font-size: 24px;
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.contour};
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text.secondary};
+  user-select: none;
 `;
 
-const Plus = styled.td`
+const Plus = styled(Equal)`
   grid-area: plus;
-  font-size: 24px;
 `;
 
 const Row = styled.tr`
   padding: 8px 0;
   display: grid;
-  grid-template-columns: 1fr 20px 1fr 20px 1fr;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
   grid-template-areas: "mob equal left plus right";
-  gap: 4px;
+  gap: 8px;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid ${({ theme }) => theme.contour};

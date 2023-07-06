@@ -41,8 +41,8 @@ const ActionsContainer = styled.div`
 Modal.Actions = ModalActions;
 Modal.Content = styled.div`
   overflow: scroll;
-  max-height: 85dvh;
   max-height: 85vh;
+  max-height: 85dvh;
 `;
 
 const Container = styled(Card)`

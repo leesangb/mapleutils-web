@@ -92,7 +92,7 @@ const MobCard = ({ mob }: MobCardProps) => {
                 <Button variant={'ghost'} size={'small'} style={{ marginRight: 'auto' }}
                     target={'_blank'}
                     onClick={e => {
-                        if (window.matchMedia('(width <= 600px)').matches) {
+                        if (window.innerWidth <= 600) {
                             return;
                         }
                         e.preventDefault();
@@ -255,11 +255,6 @@ const LabelItem = styled.li`
   padding: 2px 4px;
   background-color: ${({ theme }) => theme.surface.default};
   transition: box-shadow 0.125s ease-in-out;
-
-  &:hover {
-    z-index: 1;
-    box-shadow: 0 0 4px 2px ${({ theme }) => theme.contour};
-  }
 `;
 
 export default MobCard;
