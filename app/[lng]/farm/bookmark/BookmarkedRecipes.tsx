@@ -4,7 +4,7 @@ import { useFarmBookmarkStore } from '@/store/useFarmBookbarkStore';
 import { monsterLifeFullRecipes } from '@/data/farm/recipes';
 import MobCard from '../components/MobCard';
 import { getMonsterBox } from '@/data/farm/monsterLifeBox';
-import { Link, Typography } from '@/ds/displays';
+import { Avatar, Link, Typography } from '@/ds/displays';
 import styled from 'styled-components';
 
 export const BookmarkedRecipes = () => {
@@ -24,13 +24,13 @@ export const BookmarkedRecipes = () => {
                                         <MobCard mob={mob} />
                                     </td>
                                     <td>
-                                    =
+                                        <Avatar name={'='} />
                                     </td>
                                     {parents?.length
                                         ? (
                                             <Parent>
                                                 <MobCard mob={parents[0]} />
-                                            +
+                                                <Avatar name={'+'} />
                                                 <MobCard mob={parents[1]} />
                                             </Parent>
                                         ) : (
@@ -66,6 +66,8 @@ const Row = styled.tr`
   gap: 8px;
   grid-template-columns: 1fr auto 2fr;
   margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid ${({ theme }) => theme.contour};
 `;
 
 const Parent = styled.td`

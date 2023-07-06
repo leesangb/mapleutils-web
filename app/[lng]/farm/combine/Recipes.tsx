@@ -8,7 +8,7 @@ import { media } from '@/ds';
 import { useState } from 'react';
 import { englishToHangul, isHangulMatching } from '@/utils/string';
 import { SearchInput } from '@/ds/inputs';
-import { Tooltip } from '@/ds/displays';
+import { Avatar, Tooltip } from '@/ds/displays';
 
 interface RecipesProps {
     recipes: Required<MonsterLifeRecipe>[];
@@ -53,40 +53,21 @@ const RowComponent = ({ rowData, measureRef, ...props }: VirtualizedRowProps<Req
             <td style={{ gridArea: 'mob' }}>
                 <MobCard mob={mob} />
             </td>
-            <Equal>
-                =
-            </Equal>
+            <td>
+                <Avatar name={'='} />
+            </td>
             <td style={{ gridArea: 'left' }}>
                 <MobCard mob={left} />
             </td>
-            <Plus>
-                +
-            </Plus>
+            <td>
+                <Avatar name={'+'} />
+            </td>
             <td style={{ gridArea: 'right' }}>
                 <MobCard mob={right} />
             </td>
         </Row>
     );
 };
-
-const Equal = styled.td`
-  grid-area: equal;
-  font-size: 16px;
-  display: grid;
-  place-items: center;
-  padding: 8px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid ${({ theme }) => theme.contour};
-  background-color: ${({ theme }) => theme.background};
-  color: ${({ theme }) => theme.text.secondary};
-  user-select: none;
-`;
-
-const Plus = styled(Equal)`
-  grid-area: plus;
-`;
 
 const Row = styled.tr`
   padding: 8px 0;
