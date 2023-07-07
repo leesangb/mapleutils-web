@@ -74,7 +74,8 @@ export const CommentPostForm = ({ onSuccess, parentId, repliedTo }: CommentPostF
                     required
                     disabled={isLoading}
                     placeholder={repliedTo ? t('comment.repliedTo', { name: repliedTo }) : t('comment.commentPlaceholder')} />
-                <Button disabled={isLoading} style={{ gridArea: 'submit' }} type={'submit'}>
+                <Button disabled={isLoading} style={{ gridArea: 'submit' }} type={'submit'}
+                    aria-label={t('comment.send')}>
                     <RiSendPlaneFill />
                 </Button>
 

@@ -74,14 +74,15 @@ const MobCard = ({ mob }: MobCardProps) => {
             </LabelList>
             <MobButton onClick={() => openMobFarmModal()}>
                 <ImageBackground>
-                    <Image src={mob.img} alt={mob.name} />
+                    <Image src={mob.img} alt={mob.name} loading={'lazy'} />
                 </ImageBackground>
                 <MobContent>
                     <MobName>{mob.name}</MobName>
                     <MobEffect as={'span'} color={theme.text.secondary}>{mob.effect}</MobEffect>
                 </MobContent>
             </MobButton>
-            <FavoriteButton variant={'ghost'} onClick={() => toggleBookmark(mob.name)}>
+            <FavoriteButton variant={'ghost'} onClick={() => toggleBookmark(mob.name)}
+                aria-label={isBookmarked(mob.name) ? '즐겨찾기 해제' : '즐겨찾기 등록'}>
                 {
                     isBookmarked(mob.name)
                         ? <RiStarFill color={'orange'} />
@@ -100,14 +101,16 @@ const MobCard = ({ mob }: MobCardProps) => {
                         openPopup((e.target as HTMLAnchorElement).href);
                     }}
                     href={getMesoKrUrl(mob.name)}>
-                    <RiSearch2Line /> meso.kr
+                    <RiSearch2Line /> <Typography as={'span'} fontSize={10}>meso.kr</Typography>
                 </Button>
                 {
                     (mob.other === '상자' || mob.name === '쁘띠 루미너스(빛)')
                     && (
                         <Button variant={'ghost'} size={'small'} onClick={() => openMobBoxModal()}>
                             <RiGiftLine />
-                            상자
+                            <Typography as={'span'} fontSize={10}>
+                                상자
+                            </Typography>
                         </Button>
                     )
                 }
@@ -116,7 +119,9 @@ const MobCard = ({ mob }: MobCardProps) => {
                     && (
                         <Button variant={'ghost'} size={'small'} onClick={() => openMobFamilyModal()}>
                             <RiNodeTree />
-                            전체 조합식
+                            <Typography as={'span'} fontSize={10}>
+                                전체 조합식
+                            </Typography>
                         </Button>
                     )
                 }
