@@ -19,7 +19,7 @@ export const Comments = ({}: CommentsProps) => {
     const count = comments.length + comments.reduce((acc, { children }) => acc + children.length, 0);
 
     return (
-        <Card as={'aside'} style={{ gridArea: 'comments' }}>
+        <Container>
             <Typography as={'h2'} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <RiChat1Fill /> {t('comment.comment')} {count}
             </Typography>
@@ -39,10 +39,15 @@ export const Comments = ({}: CommentsProps) => {
                     </CommentList.Item>
                 </Fragment>)}
             </CommentList>
-        </Card>
+        </Container>
     );
 };
 
 const Hr = styled.hr`
   margin-bottom: 4px;
+`;
+
+const Container = styled(Card).attrs({ as: 'aside' })`
+  grid-area: comments;
+  width: 100%;
 `;
