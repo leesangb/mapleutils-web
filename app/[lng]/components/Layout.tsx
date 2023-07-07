@@ -7,12 +7,14 @@ import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ModalsProvider } from '@/ds/surfaces/modal/ModalsProvider';
-import AdSense, { AdSenseSlot } from '@/components/adsense/AdSense';
 import { isProduction } from '@/utils/helper';
 import Navigations from './Navigations';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Comments } from '@/components/comments/Comments';
 import { WindowPopupProvider } from '@/components/popup/WindowPopupProvider';
+import { Button } from '@/ds/inputs';
+import { DISCORD_URL, GITHUB_URL, KAKAOTALK_URL } from '@/utils/constants';
+import { RiDiscordFill, RiGithubFill, RiKakaoTalkFill } from 'react-icons/ri';
 
 const currentYear = new Date().getFullYear();
 
@@ -35,12 +37,6 @@ const Layout = ({ children }: PropsWithChildren) => {
                     </ModalsProvider>
                 </WindowPopupProvider>
             </QueryClientProvider>
-            <Aside>
-                <AdSense slot={AdSenseSlot.RightContent}
-                    format={'auto'}
-                    responsive
-                    width={250} height={600} fixed />
-            </Aside>
             <ToastContainer
                 style={{ position: 'fixed', bottom: 0, left: '16px' }}
                 position='bottom-left'
@@ -53,10 +49,16 @@ const Layout = ({ children }: PropsWithChildren) => {
                 pauseOnHover
             />
             <Footer>
+                <Links>
+                    <Button href={KAKAOTALK_URL} size={'small'}><RiKakaoTalkFill fontSize={'16px'} /> 오픈카톡</Button>
+                    <Button href={GITHUB_URL} size={'small'}><RiGithubFill fontSize={'16px'} /> Github</Button>
+                    <Button href={DISCORD_URL} size={'small'}><RiDiscordFill fontSize={'16px'} /> Discord</Button>
+                </Links>
                 <Typography fontSize={12}>
                     © {currentYear} mapleutils All rights reserved. mapleutils is not associated with NEXON
                     Korea.
                 </Typography>
+
             </Footer>
         </>
     );
@@ -64,14 +66,25 @@ const Layout = ({ children }: PropsWithChildren) => {
 
 const Main = styled.main`
   grid-area: main;
+  width: 100%;
 `;
 
 const Footer = styled.footer`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
   grid-area: footer;
-  padding: 16px;
+`;
+
+const Links = styled.nav`
+  display: flex;
+  gap: 8px;
 `;
 
 const Aside = styled.aside`
+  position: fixed;
+  right: 16px;
   grid-area: ads;
   width: fit-content;
   height: fit-content;

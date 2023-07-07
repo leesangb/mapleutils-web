@@ -1,16 +1,14 @@
 'use client';
 
-import { AppBar, SideBar } from '@/ds/surfaces';
+import { AppBar } from '@/ds/surfaces';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { useTranslation } from '@/i18n/client';
-import { RiDiscordFill, RiGithubFill, RiHome4Line, RiKakaoTalkFill, RiMenu2Fill } from 'react-icons/ri';
+import { RiHome4Line, RiMenu2Fill } from 'react-icons/ri';
 import { media, theme } from '@/ds';
 import { Button } from '@/ds/inputs';
-import { DISCORD_URL, GITHUB_URL, KAKAOTALK_URL } from '@/utils/constants';
 import styled from 'styled-components';
 import { Languages } from '@/i18n/settings';
-import { Typography } from '@/ds/displays';
 import useAnimationState from '@/hooks/useAnimationState';
 import { useEffect } from 'react';
 
@@ -54,78 +52,28 @@ const Navigations = () => {
                         </App.Link>
                     ))}
                 </App.Nav>
-                <App.Nav style={{ flexGrow: 0, marginRight: '8px' }}>
-                    <Button href={KAKAOTALK_URL}><RiKakaoTalkFill fontSize={'16px'} /></Button>
-                    <Button href={GITHUB_URL}><RiGithubFill fontSize={'16px'} /></Button>
-                    <Button href={DISCORD_URL}><RiDiscordFill fontSize={'16px'} /></Button>
+
+                <App.Nav>
+                    {locale === 'ko' && (
+                        <>
+                            {['combine', 'info', 'bookmark'].map((f) => (
+                                <App.Link key={f} href={`/farm/${f}`} lang={locale} active={pathname === `/farm/${f}`}>
+                                    {t(`drawer.farm.${f}.shortName`)}
+                                </App.Link>
+                            ))}
+                        </>
+                    )}
+
+                    {
+                        [22, 23, 24, 36, 39, 42, 47, 48, 49].map((f) => (
+                            <App.Link key={f} href={`/seed/${f}`} lang={locale} active={pathname === `/seed/${f}`}>
+                                {f}
+                            </App.Link>
+                        ))
+                    }
                 </App.Nav>
                 <ThemeSwitcher />
             </AppBar>
-            <SideBar data-mobile-animation={state}>
-
-                {
-                    locale === 'ko' && (<>
-                        <Typography>{t('drawer.farm.shortName')}</Typography>
-                        <Side.Nav>
-                            <Side.Ul>
-                                {
-                                    ['combine', 'info', 'bookmark']
-                                        .map((f) => (
-                                            <Side.Li key={f}>
-                                                <SideBar.Link href={`/farm/${f}`}
-                                                    lang={locale}
-                                                    active={pathname === `/farm/${f}`}
-                                                    title={t(`drawer.farm.${f}.shortName`)}
-                                                    subtitle={t(`drawer.farm.${f}.longName`) || ''} />
-                                            </Side.Li>
-                                        ))
-                                }
-                            </Side.Ul>
-                        </Side.Nav>
-                        <Side.Hr />
-                    </>)
-                }
-                <Typography>{t('drawer.seed.shortName')}</Typography>
-                <Side.Nav>
-                    <Side.Ul>
-                        {
-                            [22, 23, 24, 36, 39, 42, 47, 48, 49]
-                                .map((f) => (
-                                    <Side.Li key={f}>
-                                        <SideBar.Link href={`/seed/${f}`}
-                                            lang={locale}
-                                            active={pathname === `/seed/${f}`}
-                                            title={f.toString()}
-                                            subtitle={t(`drawer.seed.${f}.shortDescription`) || ''} />
-                                    </Side.Li>
-                                ))
-                        }
-                    </Side.Ul>
-                </Side.Nav>
-                {/*<Side.Hr />*/}
-                {/*<Typography>{t('drawer.seedSimulator.shortName')}</Typography>*/}
-                {/*<Side.Nav>*/}
-                {/*    <Side.Ul>*/}
-                {/*        {*/}
-                {/*            [24, 39, 49]*/}
-                {/*                .map((f) => (*/}
-                {/*                    <Side.Li key={f}>*/}
-                {/*                        <SideBar.Link href={`/seed/${f}/simulator`}*/}
-                {/*                            lang={locale}*/}
-                {/*                            active={pathname === `/seed/${f}/simulator`}*/}
-                {/*                            title={f.toString()}*/}
-                {/*                            subtitle={t(`drawer.seedSimulator.${f}.shortDescription`) || ''} />*/}
-                {/*                    </Side.Li>*/}
-                {/*                ))*/}
-                {/*        }*/}
-                {/*    </Side.Ul>*/}
-                {/*</Side.Nav>*/}
-            </SideBar>
-            {
-                state === 'opened' && (
-                    <Side.ClickAway onClick={() => close()} />
-                )
-            }
         </>
     );
 };
