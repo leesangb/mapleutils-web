@@ -11,6 +11,8 @@ import styled from 'styled-components';
 import { Languages } from '@/i18n/settings';
 import useAnimationState from '@/hooks/useAnimationState';
 import { useEffect } from 'react';
+import { isProduction } from '../../../legacy/src/tools/helper';
+import { pageview } from '@/components/adsense/lib/gtag';
 
 const locales: { locale: Languages, name: string }[] = [
     { locale: 'ko', name: '한국어 / KMS' },
@@ -18,7 +20,7 @@ const locales: { locale: Languages, name: string }[] = [
     { locale: 'zh-TW', name: '繁體中文 / TMS' },
 ];
 const Navigations = () => {
-    const { pathname, locale } = useLocalizedPathname();
+    const { pathname, locale, localizedPathname } = useLocalizedPathname();
     const { t } = useTranslation({ ns: 'common' });
     const { state, open, close } = useAnimationState(125);
 
@@ -29,6 +31,14 @@ const Navigations = () => {
     useEffect(() => {
         close();
     }, [pathname]);
+
+    useEffect(() => {
+        if (isProduction) {
+            pageview(new URL(localizedPathname));
+        } else {
+            console.log('pageview', new URL(localizedPathname));
+        }
+    }, [localizedPathname]);
 
     return (
         <>
