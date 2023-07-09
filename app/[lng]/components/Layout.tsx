@@ -86,6 +86,7 @@ const Footer = styled.footer`
   gap: 8px;
   margin-top: 16px;
   grid-area: footer;
+  padding: 8px;
 `;
 
 const Links = styled.nav`

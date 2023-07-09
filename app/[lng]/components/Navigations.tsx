@@ -4,12 +4,11 @@ import { AppBar } from '@/ds/surfaces';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { useTranslation } from '@/i18n/client';
-import { RiHome4Line, RiMenu2Fill } from 'react-icons/ri';
-import { media, theme } from '@/ds';
+import { RiHome4Line } from 'react-icons/ri';
+import { media } from '@/ds';
 import { Button } from '@/ds/inputs';
 import styled from 'styled-components';
 import { Languages } from '@/i18n/settings';
-import useAnimationState from '@/hooks/useAnimationState';
 import { useEffect } from 'react';
 import { isProduction } from '../../../legacy/src/tools/helper';
 import { pageview } from '@/components/adsense/lib/gtag';
@@ -22,21 +21,12 @@ const locales: { locale: Languages, name: string }[] = [
 const Navigations = () => {
     const { pathname, locale, localizedPathname } = useLocalizedPathname();
     const { t } = useTranslation({ ns: 'common' });
-    const { state, open, close } = useAnimationState(125);
-
-    const toggleOpen = () => {
-        state === 'opened' ? close() : open();
-    };
-
-    useEffect(() => {
-        close();
-    }, [pathname]);
 
     useEffect(() => {
         if (isProduction) {
             pageview(new URL(localizedPathname));
         } else {
-            console.log('pageview', new URL(localizedPathname));
+            console.log('pageview', localizedPathname);
         }
     }, [localizedPathname]);
 
@@ -44,10 +34,6 @@ const Navigations = () => {
         <>
             <AppBar>
                 <App.Nav>
-                    <App.SideBarButton
-                        onClick={() => toggleOpen()}>
-                        <RiMenu2Fill />
-                    </App.SideBarButton>
                     <App.Link href={'/'} lang={locale}>
                         <RiHome4Line />
                         {t('home')}
@@ -101,44 +87,6 @@ const App = {
     SideBarButton: styled(Button)`
       ${media.min('sm')} {
         display: none;
-      }
-    `,
-};
-
-const Side = {
-    Nav: styled.nav`
-      width: 100%;
-    `,
-    Hr: styled.hr`
-      width: calc(100% - 16px);
-      margin: 8px 16px;
-    `,
-    Ul: styled.ul`
-      display: flex;
-      box-sizing: border-box;
-      white-space: nowrap;
-      width: 100%;
-      flex-direction: column;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    `,
-    Li: styled.li`
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-    `,
-    ClickAway: styled.div`
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100vw;
-      height: calc(100vh - ${theme.appBar.height});
-      z-index: calc(${theme.zIndex.sideBar} - 1);
-
-      ${media.min('sm')} {
-        display: none;
-        pointer-events: none;
       }
     `,
 };

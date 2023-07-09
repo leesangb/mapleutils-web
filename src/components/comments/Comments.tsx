@@ -19,10 +19,10 @@ interface CommentsProps {
 export const Comments = ({}: CommentsProps) => {
     const ref = useRef<HTMLDivElement>(null);
     const { t } = useTranslation();
-    const { data: comments, isLoading, isError, isFetched } = useGetComments();
+    const { data: comments, isLoading, isFetched } = useGetComments();
     const count = comments.length + comments.reduce((acc, { children }) => acc + children.length, 0);
 
-    const { state, open, close } = useAnimationState(125);
+    const { state, open } = useAnimationState(125);
 
     useEffect(() => {
         if (isFetched || isLoading) {
@@ -52,7 +52,7 @@ export const Comments = ({}: CommentsProps) => {
                 </Fragment>)}
             </CommentList>
             <Widget>
-                <ScrollToComments data-state={state} onClick={() => {
+                <ScrollToComments size={'large'} data-state={state} onClick={() => {
                     ref.current?.scrollIntoView({ behavior: 'smooth' });
                 }}>
                     <RiChat1Fill /> {count}

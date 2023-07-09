@@ -19,11 +19,13 @@ export const ScrollToTopButton = () => {
         isOnTop ? close() : open();
     }, [isOnTop]);
 
-    return <ScrollToTop data-state={state} ref={ref} onClick={() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }}>
-        <RiArrowUpSLine />
-    </ScrollToTop>;
+    return (
+        <ScrollToTop size={'large'} data-state={state} ref={ref} onClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}>
+            <RiArrowUpSLine />
+        </ScrollToTop>
+    );
 };
 
 const ScrollToTop = styled(Button)`
