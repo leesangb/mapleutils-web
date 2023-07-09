@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ModalsProvider } from '@/ds/surfaces/modal/ModalsProvider';
-import { isProduction } from '@/utils/helper';
 import Navigations from './Navigations';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Comments } from '@/components/comments/Comments';
@@ -15,6 +14,8 @@ import { WindowPopupProvider } from '@/components/popup/WindowPopupProvider';
 import { Button } from '@/ds/inputs';
 import { DISCORD_URL, GITHUB_URL, KAKAOTALK_URL } from '@/utils/constants';
 import { RiDiscordFill, RiGithubFill, RiKakaoTalkFill } from 'react-icons/ri';
+import { Widget } from '@/ds/surfaces/widget/Widget';
+import { ScrollToTopButton } from '@/components/buttons';
 
 const currentYear = new Date().getFullYear();
 
@@ -48,6 +49,12 @@ const Layout = ({ children }: PropsWithChildren) => {
                 limit={3}
                 pauseOnHover
             />
+            <Widgets>
+                <Widget>
+                    <ScrollToTopButton />
+                </Widget>
+            </Widgets>
+
             <Footer>
                 <Links>
                     <Button href={KAKAOTALK_URL} size={'small'}><RiKakaoTalkFill fontSize={'16px'} /> 오픈카톡</Button>
@@ -55,10 +62,9 @@ const Layout = ({ children }: PropsWithChildren) => {
                     <Button href={DISCORD_URL} size={'small'}><RiDiscordFill fontSize={'16px'} /> Discord</Button>
                 </Links>
                 <Typography fontSize={12}>
-                    © {currentYear} mapleutils All rights reserved. mapleutils is not associated with NEXON
+                    © 2020 - {currentYear} mapleutils All rights reserved. mapleutils is not associated with NEXON
                     Korea.
                 </Typography>
-
             </Footer>
         </>
     );
@@ -82,16 +88,15 @@ const Links = styled.nav`
   gap: 8px;
 `;
 
-const Aside = styled.aside`
+const Widgets = styled.aside.attrs({ id: 'widgets' })`
   position: fixed;
   right: 16px;
-  grid-area: ads;
-  width: fit-content;
-  height: fit-content;
-  border: ${isProduction ? 'none' : '1px solid red'};
+  bottom: 16px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+  z-index: ${({ theme }) => theme.zIndex.widget};
 `;
 
 export default Layout;

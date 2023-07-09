@@ -153,6 +153,7 @@ interface CommonTheme {
         tooltip: number;
         popover: number;
         modal: number;
+        widget: number;
     };
 }
 
@@ -171,9 +172,10 @@ const common: CommonTheme = {
     zIndex: {
         appBar: 1100,
         sideBar: 1000,
-        tooltip: 1200,
-        popover: 2000,
+        popover: 900,
+        tooltip: 950,
         modal: 9000,
+        widget: 1300,
     },
 };
 

@@ -58,6 +58,7 @@ export const CommentPostForm = ({ onSuccess, parentId, repliedTo }: CommentPostF
                     placeholder={t('comment.nickname')} />
                 <Input ref={passwordRef} label={t('comment.password')} minLength={6}
                     maxLength={16} name={'password'}
+                    autoComplete={'current-password'}
                     required
                     disabled={isLoading}
                     type={'password'}

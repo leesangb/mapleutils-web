@@ -1,5 +1,5 @@
 import { theme } from '@/ds/theme';
-import { CSSProperties, MouseEventHandler, ReactNode } from 'react';
+import { CSSProperties, forwardRef, MouseEventHandler, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { Languages } from '@/i18n/settings';
 import { Interpolation } from 'styled-components/dist/types';
@@ -20,7 +20,7 @@ export type ButtonProps = {
     type?: 'button' | 'submit' | 'reset';
 }
 
-export const Button = ({
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button({
     children,
     size,
     active,
@@ -32,11 +32,11 @@ export const Button = ({
     disabled = false,
     type = 'button',
     ...props
-}: ButtonProps) => {
+}, ref) {
     return href
         ? lang
             ? (
-                <StyledButton as={Link} href={href} lang={lang}
+                <StyledButton ref={ref} as={Link} href={href} lang={lang}
                     target={target}
                     $variant={variant} $size={size}
                     $active={active}
@@ -44,7 +44,7 @@ export const Button = ({
                     {children}
                 </StyledButton>
             ) : (
-                <StyledButton as={'a'} href={href}
+                <StyledButton ref={ref} as={'a'} href={href}
                     target={target}
                     $variant={variant} $size={size}
                     $active={active}
@@ -53,13 +53,13 @@ export const Button = ({
                 </StyledButton>
             )
         : (
-            <StyledButton $active={active}
+            <StyledButton ref={ref} $active={active}
                 $variant={variant} $size={size}
                 $styles={styles} disabled={disabled} type={type} {...props}>
                 {children}
             </StyledButton>
         );
-};
+});
 
 const variantMap = {
     outlined: css`
