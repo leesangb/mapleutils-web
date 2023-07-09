@@ -16,6 +16,7 @@ import { DISCORD_URL, GITHUB_URL, KAKAOTALK_URL } from '@/utils/constants';
 import { RiDiscordFill, RiGithubFill, RiKakaoTalkFill } from 'react-icons/ri';
 import { Widget } from '@/ds/surfaces/widget/Widget';
 import { ScrollToTopButton } from '@/components/buttons';
+import { AdLeft, AdRight, AdTop } from '@/components/adsense';
 
 const currentYear = new Date().getFullYear();
 
@@ -54,6 +55,10 @@ const Layout = ({ children }: PropsWithChildren) => {
                     <ScrollToTopButton />
                 </Widget>
             </Widgets>
+
+            <AdTop />
+            <AdLeft />
+            <AdRight />
 
             <Footer>
                 <Links>

@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${theme.background};
     color: ${theme.text.primary};
     font-family: ${theme.font};
+    scroll-behavior: smooth;
   }
 
   body {
@@ -48,20 +49,31 @@ const GlobalStyle = createGlobalStyle`
     align-items: center;
     justify-content: center;
     gap: 8px;
-    grid-template-columns: minmax(auto, 1200px);
+    grid-template-columns: minmax(160px, auto) minmax(auto, 1200px) minmax(160px, auto);
     grid-template-areas:
-        'main'
-        'comments'
-        'footer';
+        'adl adt adr'
+        'adl main adr'
+        'adl comments adr'
+        'adl footer adr';
 
     &:has(> div[data-mobile-animation="opened"]) {
       overflow: hidden;
+    }
+
+    @media (width <= 1528px) {
+      grid-template-columns: minmax(auto, 1200px) minmax(160px, auto);
+      grid-template-areas:
+        'adt adr'
+        'main adr'
+        'comments adr'
+        'footer adr';
     }
 
     ${media.max('sm')} {
       margin: ${theme.appBar.height} 0 0 0;
       grid-template-columns: 1fr;
       grid-template-areas:
+          'adt'
           'main'
           'comments'
           'footer';
