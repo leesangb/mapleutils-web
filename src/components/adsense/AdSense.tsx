@@ -21,6 +21,7 @@ interface AdSenseProps {
 
 const Ins = styled.ins`
   display: block;
+  width: 100%;
 `;
 
 const AdSense = ({ slot }: AdSenseProps) => {
