@@ -50,24 +50,47 @@ const RowComponent = ({ rowData, measureRef, ...props }: VirtualizedRowProps<Req
     const { mob, parents: [left, right] } = rowData;
     return (
         <Row ref={measureRef} {...props}>
-            <td style={{ gridArea: 'mob' }}>
+            <Mob>
                 <MobCard mob={mob} />
-            </td>
-            <td>
+            </Mob>
+            <Equal>
                 <Avatar name={'='} />
-            </td>
-            <td style={{ gridArea: 'left' }}>
+            </Equal>
+            <Left>
                 <MobCard mob={left} />
-            </td>
-            <td>
+            </Left>
+            <Plus>
                 <Avatar name={'+'} />
-            </td>
-            <td style={{ gridArea: 'right' }}>
+            </Plus>
+            <Right>
                 <MobCard mob={right} />
-            </td>
+            </Right>
         </Row>
     );
 };
+
+const Mob = styled.td`
+  grid-area: mob;
+`;
+
+const Plus = styled.td`
+  grid-area: plus;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Equal = styled.td`
+  grid-area: equal;
+`;
+
+const Left = styled.td`
+  grid-area: left;
+`;
+
+const Right = styled.td`
+  grid-area: right;
+`;
 
 const Row = styled.tr`
   padding: 8px 0;
@@ -86,11 +109,11 @@ const Row = styled.tr`
   }
 
   ${media.max('md')} {
-    grid-template-columns: 1fr 20px 1fr;
+    grid-template-columns: 1fr auto 1fr;
     grid-template-areas: "mob equal left"
       "mob equal plus"
       "mob equal right";
-    gap: 2px;
+    gap: 4px;
     padding: 4px 0;
   }
 `;
