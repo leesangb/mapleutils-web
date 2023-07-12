@@ -103,6 +103,26 @@ const Widgets = styled.aside.attrs({ id: 'widgets' })`
   gap: 8px;
   align-items: flex-end;
   z-index: ${({ theme }) => theme.zIndex.widget};
+
+  & button {
+    backdrop-filter: blur(4px);
+    transform: scale(0);
+    transition: transform 0.125s ease-in-out;
+    font-size: 16px;
+    max-height: 32px;
+
+    &[data-state="opened"] {
+      transform: scale(1);
+    }
+
+    &[data-state="closing"] {
+      transform: scale(0);
+    }
+
+    &[data-state="closed"] {
+      display: none;
+    }
+  }
 `;
 
 export default Layout;

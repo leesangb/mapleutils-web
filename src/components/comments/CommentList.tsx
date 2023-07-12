@@ -1,5 +1,5 @@
 import { PropsWithChildren, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ChildCommentDto, CommentDto } from '@/api/dto';
 import { Avatar, Typography } from '@/ds/displays';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
@@ -41,6 +41,25 @@ const isChildComment = (comment: CommentDto | ChildCommentDto): comment is Child
     return 'repliedTo' in comment;
 };
 
+const getRelativeDate = (date: Date, locale: string) => {
+    const formatter = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
+    const dateDiff = Date.now() - date.getTime();
+    const months = Math.round(dateDiff / (1000 * 60 * 60 * 24 * 30));
+    if (months > 1) {
+        return formatter.format(-months, 'months');
+    }
+    const days = Math.floor(dateDiff / (1000 * 60 * 60 * 24));
+    if (days) {
+        return formatter.format(-days, 'days');
+    }
+    const hours = Math.floor(dateDiff / (1000 * 60 * 60));
+    if (hours) {
+        return formatter.format(-hours, 'hours');
+    }
+    const minutes = Math.floor(dateDiff / (1000 * 60));
+    return formatter.format(-minutes, 'minutes');
+};
+
 const CommentListItem = ({ parentId, comment, children }: PropsWithChildren<CommentListItemProps>) => {
     const { locale } = useLocalizedPathname();
     const { t } = useTranslation();
@@ -48,6 +67,7 @@ const CommentListItem = ({ parentId, comment, children }: PropsWithChildren<Comm
     const [isReplying, setIsReplying] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const date = comment.creationDate.toLocaleString(locale);
+    const relativeDate = getRelativeDate(comment.creationDate, locale);
 
     return (
         <ListItem>
@@ -61,15 +81,15 @@ const CommentListItem = ({ parentId, comment, children }: PropsWithChildren<Comm
                 </Avatar>
                 <CommentContentWrapper>
                     <Typography>
-                        {!comment.isDeleted && <Name>
+                        {!comment.isDeleted && <Name $fill={comment.isAdmin}>
                             {
                                 comment.isAdmin
                                     ? <>상빈 <RiCheckFill /></>
                                     : comment.user
                             }
                         </Name>}
-                        <Typography as={'span'} fontSize={12}
-                            color={theme.text.secondary}>{date}</Typography>
+                        <Typography as={'span'} fontSize={12} title={date}
+                            color={theme.text.disabled}>{relativeDate}</Typography>
                     </Typography>
                     {
                         isEditing
@@ -159,15 +179,20 @@ const CommentContentWrapper = styled.div`
   width: 100%;
 `;
 
-const Name = styled.span`
-  border-radius: ${({ theme }) => theme.borderRadius};
-  background-color: ${({ theme }) => theme.contour};
+const Name = styled.span<TransientProps<{ fill: boolean }>>`
   font-size: 14px;
   padding: 2px 6px;
   display: inline-flex;
   gap: 4px;
   align-items: center;
   margin-right: 4px;
+  font-weight: 700;
+
+  ${({ $fill }) => $fill && css`
+    border-radius: ${({ theme }) => theme.borderRadius};
+    background-color: ${({ theme }) => theme.contour};
+    padding: 2px 6px;
+  `}
 `;
 
 CommentList.Item = CommentListItem;
@@ -201,8 +226,5 @@ const ReplyTo = styled(Typography)`
   align-items: center;
   gap: 4px;
   font-size: 12px;
-  background-color: ${({ theme }) => theme.contour};
-  padding: 2px 6px;
-  border-radius: ${({ theme }) => theme.borderRadius};
   white-space: nowrap;
 `;

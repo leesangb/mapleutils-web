@@ -1,7 +1,7 @@
 'use client';
 
 import { Card } from '@/ds/surfaces';
-import { Typography } from '@/ds/displays';
+import { Tooltip, Typography } from '@/ds/displays';
 import { CommentList } from '@/components/comments/CommentList';
 import { Fragment, useEffect, useRef } from 'react';
 import styled from 'styled-components';
@@ -52,11 +52,13 @@ export const Comments = ({}: CommentsProps) => {
                 </Fragment>)}
             </CommentList>
             <Widget>
-                <ScrollToComments size={'large'} data-state={state} onClick={() => {
-                    ref.current?.scrollIntoView({ behavior: 'smooth' });
-                }}>
-                    <RiChat1Fill /> {count}
-                </ScrollToComments>
+                <Tooltip title={t('comment.comment')} size={'small'} placement={'left'}>
+                    <Button size={'large'} data-state={state} onClick={() => {
+                        ref.current?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+                    }}>
+                        <RiChat1Fill /> {count}
+                    </Button>
+                </Tooltip>
             </Widget>
         </Container>
     );
@@ -70,22 +72,4 @@ const Container = styled(Card).attrs({ as: 'aside' })`
   grid-area: comments;
   width: 100%;
   scroll-margin-top: calc(${({ theme }) => theme.appBar.height} + 16px);
-`;
-
-const ScrollToComments = styled(Button)`
-  backdrop-filter: blur(4px);
-  transform: scale(0);
-  transition: transform 0.125s ease-in-out;
-
-  &[data-state="opened"] {
-    transform: scale(1);
-  }
-
-  &[data-state="closing"] {
-    transform: scale(0);
-  }
-
-  &[data-state="closed"] {
-    display: none;
-  }
 `;

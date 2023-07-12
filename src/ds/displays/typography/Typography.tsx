@@ -12,6 +12,7 @@ interface TypographyProps {
     color?: string;
     fontSize?: number;
     style?: CSSProperties;
+    title?: string;
 }
 
 const typographyCssMap: Partial<Record<NonNullable<TypographyProps['variant']>, string>> = {

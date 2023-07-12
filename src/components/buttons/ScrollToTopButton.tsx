@@ -1,6 +1,5 @@
 import { RiArrowUpSLine } from 'react-icons/ri';
 import { Button } from '@/ds/inputs';
-import styled from 'styled-components';
 import { useEffect, useRef, useSyncExternalStore } from 'react';
 import useAnimationState from '@/hooks/useAnimationState';
 
@@ -20,28 +19,10 @@ export const ScrollToTopButton = () => {
     }, [isOnTop]);
 
     return (
-        <ScrollToTop size={'large'} data-state={state} ref={ref} onClick={() => {
+        <Button size={'large'} data-state={state} ref={ref} onClick={() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }}>
             <RiArrowUpSLine />
-        </ScrollToTop>
+        </Button>
     );
 };
-
-const ScrollToTop = styled(Button)`
-  backdrop-filter: blur(4px);
-  transform: scale(0);
-  transition: transform 0.125s ease-in-out;
-
-  &[data-state="opened"] {
-    transform: scale(1);
-  }
-
-  &[data-state="closing"] {
-    transform: scale(0);
-  }
-
-  &[data-state="closed"] {
-    display: none;
-  }
-`;
