@@ -73,9 +73,11 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                 <Popover style={{ gridArea: 'more' }}>
                     <Popover.Trigger>
                         {({ open }) =>
-                            <Button variant={'ghost'} onClick={() => open()}>
-                                <RiMore2Fill />
-                            </Button>
+                            <Tooltip title={t('more')} placement={'top'} size={'small'}>
+                                <Button variant={'ghost'} onClick={() => open()}>
+                                    <RiMore2Fill />
+                                </Button>
+                            </Tooltip>
                         }
                     </Popover.Trigger>
                     <Popover.Content style={{ display: 'flex', flexDirection: 'column', width: 'max-content' }}>
