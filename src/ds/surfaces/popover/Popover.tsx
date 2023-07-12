@@ -54,10 +54,14 @@ const AlignmentMap = {
     `,
 };
 
-const Trigger = ({ children }: { children: (options: { open: () => void }) => ReactElement }) => {
-    const { setState, id } = usePopover();
+const Trigger = ({ children }: {
+    children: (options: { open: () => void, toggle: () => void, close: () => void, }) => ReactElement
+}) => {
+    const { setState, id, state } = usePopover();
     return cloneElement(children({
         open: () => setState('opened'),
+        toggle: () => state === 'opened' ? setState('closing') : setState('opened'),
+        close: () => setState('closing'),
     }), { ['data-popover']: id });
 };
 
@@ -73,8 +77,7 @@ const Content = ({ children, alignment = 'bottom-right', ...props }: PropsWithCh
     return state !== 'closed' ? (
         <PanelContainer $fadeMs={fadeMs} $alignment={alignment} data-popover={id} {...props} data-popover-state={state}>
             {children}
-        </PanelContainer>
-    ) : null;
+        </PanelContainer>) : null;
 };
 
 const PanelContainer = styled.div<TransientProps<{ alignment: Alignment, fadeMs: number }>>`

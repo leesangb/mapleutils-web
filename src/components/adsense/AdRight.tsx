@@ -14,7 +14,7 @@ export const AdRight = () => {
 const Container = styled.aside`
   grid-area: adr;
   position: fixed;
-  top: calc(${({ theme }) => theme.appBar.height} + 16px);
+  top: calc(${({ theme }) => theme.appBar.height} + 100px);
   right: 16px;
   width: 160px;
   height: fit-content;

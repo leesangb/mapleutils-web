@@ -13,7 +13,7 @@ export const AdLeft = () => {
 const Container = styled.aside`
   grid-area: adl;
   position: fixed;
-  top: calc(${({ theme }) => theme.appBar.height} + 16px);
+  top: calc(${({ theme }) => theme.appBar.height} + 100px);
   left: 16px;
   width: 160px;
   height: fit-content;

@@ -4,14 +4,15 @@ import { AppBar } from '@/ds/surfaces';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { useTranslation } from '@/i18n/client';
-import { RiHome4Line } from 'react-icons/ri';
-import { media } from '@/ds';
+import { RiHome4Line, RiTranslate } from 'react-icons/ri';
+import { media, theme } from '@/ds';
 import { Button } from '@/ds/inputs';
 import styled from 'styled-components';
 import { Languages } from '@/i18n/settings';
 import { useEffect } from 'react';
 import { isProduction } from '../../../legacy/src/tools/helper';
 import { pageview } from '@/components/adsense/lib/gtag';
+import { Popover } from '@/ds/surfaces/popover/Popover';
 
 const locales: { locale: Languages, name: string }[] = [
     { locale: 'ko', name: '한국어 / KMS' },
@@ -38,15 +39,7 @@ const Navigations = () => {
                         <RiHome4Line />
                         {t('home')}
                     </App.Link>
-                    {locales.filter((l) => l.locale !== locale).map((l) => (
-                        <App.Link key={l.name} href={pathname || '/'} styles={{
-                            [media.max('xs')]: {
-                                display: 'none',
-                            },
-                        }} lang={l.locale}>
-                            {l.name}
-                        </App.Link>
-                    ))}
+
                 </App.Nav>
 
                 <App.Nav>
@@ -68,7 +61,37 @@ const Navigations = () => {
                         ))
                     }
                 </App.Nav>
-                <ThemeSwitcher />
+
+                <RightSection>
+                    <Popover>
+                        <Popover.Trigger>
+                            {({ toggle }) =>
+                                <Button onClick={() => toggle()}>
+                                    <RiTranslate fontSize={'16px'} />
+                                </Button>
+                            }
+                        </Popover.Trigger>
+                        <Popover.Content style={{
+                            backgroundColor: theme.surface.default,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '8px',
+                            width: 'max-content',
+                        }}>
+                            {locales.filter((l) => l.locale !== locale).map((l) => (
+                                <App.Link key={l.name} href={pathname || '/'} styles={{
+                                    [media.max('xs')]: {
+                                        display: 'none',
+                                    },
+                                }} lang={l.locale}>
+                                    {l.name}
+                                </App.Link>
+                            ))}
+                        </Popover.Content>
+                    </Popover>
+
+                    <ThemeSwitcher />
+                </RightSection>
             </AppBar>
         </>
     );
@@ -90,5 +113,11 @@ const App = {
       }
     `,
 };
+
+const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
 
 export default Navigations;
