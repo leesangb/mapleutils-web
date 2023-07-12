@@ -52,7 +52,7 @@ const Container = styled(Card)`
   min-width: 320px;
   padding: 12px;
 
-  animation: ${keyframes.fadeIn} 0.2s ease-in-out;
+  animation: ${keyframes.growInSmall} 0.2s ease-in-out;
 `;
 
 const CloseButton = styled(Button)`

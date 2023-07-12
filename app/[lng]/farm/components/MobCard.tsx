@@ -145,6 +145,7 @@ const Image = styled.img.attrs({ draggable: false })`
   padding: 8px;
   user-select: none;
   pointer-events: none;
+  transition: transform 0.125s ease-in-out;
 
   ${media.max('sm')} {
     height: 64px;
@@ -182,20 +183,29 @@ const MobButton = styled.button`
   align-items: center;
   flex-direction: row;
   transition: background-color 0.125s ease-in-out;
+  overflow: hidden;
 
   &:hover {
-
     cursor: pointer;
     background-color: ${({ theme }) => theme.surface.default};
 
     & > ${ImageBackground} {
       background-color: ${({ theme }) => theme.surface.hover};
+
+      & > ${Image} {
+        transform: scale(1.125);
+      }
     }
   }
 
   &:active:not(:has(button:active)) {
     & > ${ImageBackground} {
       background-color: ${({ theme }) => theme.surface.active};
+
+
+      & > ${Image} {
+        transform: scale(0.95);
+      }
     }
   }
 `;
