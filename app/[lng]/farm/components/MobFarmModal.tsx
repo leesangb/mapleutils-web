@@ -49,7 +49,7 @@ export const MobFarmModal = ({ mob, onClose }: MobFarmModalProps) => {
                     }
                     e.preventDefault();
                     e.stopPropagation();
-                    openPopup((e.target as HTMLAnchorElement).href);
+                    openPopup(getMesoKrUrl(mob.name));
                 }} href={getMesoKrUrl(mob.name)} target={'_blank'}>
                     <RiSearch2Line /> meso.kr에서 <b>{mob.name}</b> 검색
                 </Button>

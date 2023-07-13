@@ -24,10 +24,14 @@ const Navigations = () => {
     const { t } = useTranslation({ ns: 'common' });
 
     useEffect(() => {
-        if (isProduction) {
-            pageview(new URL(localizedPathname));
-        } else {
-            console.log('pageview', localizedPathname);
+        try {
+            if (isProduction) {
+                pageview(new URL(localizedPathname));
+            } else {
+                console.log('pageview', localizedPathname);
+            }
+        } catch (error) {
+            console.error(error);
         }
     }, [localizedPathname]);
 
@@ -39,10 +43,6 @@ const Navigations = () => {
                         <RiHome4Line />
                         {t('home')}
                     </App.Link>
-
-                </App.Nav>
-
-                <App.Nav>
                     {locale === 'ko' && (
                         <>
                             {['combine', 'info', 'bookmark'].map((f) => (

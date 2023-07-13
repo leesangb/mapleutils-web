@@ -98,7 +98,7 @@ const MobCard = ({ mob }: MobCardProps) => {
                         }
                         e.preventDefault();
                         e.stopPropagation();
-                        openPopup((e.target as HTMLAnchorElement).href);
+                        openPopup(getMesoKrUrl(mob.name));
                     }}
                     href={getMesoKrUrl(mob.name)}>
                     <RiSearch2Line /> <Typography as={'span'} fontSize={10}>meso.kr</Typography>

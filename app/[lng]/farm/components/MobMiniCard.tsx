@@ -32,7 +32,7 @@ export const MobMiniCard = ({ mob, active }: MobMiniCardProps) => {
                     }
                     e.preventDefault();
                     e.stopPropagation();
-                    openPopup((e.target as HTMLAnchorElement).href);
+                    openPopup(getMesoKrUrl(mob.name));
                 }} target={'_blank'} href={getMesoKrUrl(mob.name)}>
                     {mob.name}
                 </Button>
