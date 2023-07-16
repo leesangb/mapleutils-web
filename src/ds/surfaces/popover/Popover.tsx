@@ -70,14 +70,15 @@ Popover.Trigger = Trigger;
 interface PopoverContentProps {
     style?: CSSProperties;
     alignment?: Alignment;
+    className?: string;
 }
 
 const Content = ({ children, alignment = 'bottom-right', ...props }: PropsWithChildren<PopoverContentProps>) => {
     const { state, fadeMs, id } = usePopover();
-    return state !== 'closed' ? (
+    return (
         <PanelContainer $fadeMs={fadeMs} $alignment={alignment} data-popover={id} {...props} data-popover-state={state}>
             {children}
-        </PanelContainer>) : null;
+        </PanelContainer>);
 };
 
 const PanelContainer = styled.div<TransientProps<{ alignment: Alignment, fadeMs: number }>>`
@@ -98,6 +99,10 @@ const PanelContainer = styled.div<TransientProps<{ alignment: Alignment, fadeMs:
 
   &[data-popover-state='closing'] {
     opacity: 0;
+  }
+
+  &[data-popover-state='closed'] {
+    display: none;
   }
 `;
 
