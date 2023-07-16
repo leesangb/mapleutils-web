@@ -5,7 +5,7 @@ import { ThemeSwitcher } from './ThemeSwitcher';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { useTranslation } from '@/i18n/client';
 import { RiHome4Line, RiTranslate } from 'react-icons/ri';
-import { media, theme } from '@/ds';
+import { media } from '@/ds';
 import { Button } from '@/ds/inputs';
 import styled from 'styled-components';
 import { Languages } from '@/i18n/settings';
@@ -71,22 +71,20 @@ const Navigations = () => {
                                 </Button>
                             }
                         </Popover.Trigger>
-                        <Popover.Content style={{
-                            backgroundColor: theme.surface.default,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '8px',
-                            width: 'max-content',
-                        }}>
-                            {locales.filter((l) => l.locale !== locale).map((l) => (
-                                <App.Link key={l.name} href={pathname || '/'} styles={{
-                                    [media.max('xs')]: {
-                                        display: 'none',
-                                    },
-                                }} lang={l.locale}>
-                                    {l.name}
-                                </App.Link>
-                            ))}
+                        <Popover.Content>
+                            <App.Nav $direction={'column'}>
+                                {locales.filter((l) => l.locale !== locale).map((l) => (
+                                    <App.Link key={l.name} href={pathname || '/'} styles={{
+                                        width: '100%',
+                                        boxSizing: 'border-box',
+                                        [media.max('xs')]: {
+                                            display: 'none',
+                                        },
+                                    }} lang={l.locale}>
+                                        {l.name}
+                                    </App.Link>
+                                ))}
+                            </App.Nav>
                         </Popover.Content>
                     </Popover>
 
@@ -98,8 +96,9 @@ const Navigations = () => {
 };
 
 const App = {
-    Nav: styled.nav`
+    Nav: styled.nav<TransientProps<{ direction?: 'row' | 'column' }>>`
       display: flex;
+      flex-direction: ${({ $direction }) => $direction || 'row'};
       gap: 8px;
       align-items: center;
       flex-grow: 1;

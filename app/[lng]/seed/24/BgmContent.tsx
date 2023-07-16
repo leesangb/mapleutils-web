@@ -72,31 +72,33 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                 </Tooltip>
                 <Popover style={{ gridArea: 'more' }}>
                     <Popover.Trigger>
-                        {({ open }) =>
+                        {({ toggle }) =>
                             <Tooltip title={t('more')} placement={'top'} size={'small'}>
-                                <Button variant={'ghost'} onClick={() => open()}>
+                                <Button variant={'ghost'} onClick={() => toggle()}>
                                     <RiMore2Fill />
                                 </Button>
                             </Tooltip>
                         }
                     </Popover.Trigger>
-                    <Popover.Content style={{ display: 'flex', flexDirection: 'column', width: 'max-content' }}>
-                        <Typography style={{ padding: '4px' }}>{t('settings')}</Typography>
-                        <Button variant={'ghost'} onClick={() => setCheck(!check)}>
-                            {check ? <RiCheckboxFill color={theme.primary.default} /> : <RiCheckboxBlankLine />}
-                            {t('showCheck')}
-                        </Button>
-                        <Button variant={'ghost'} onClick={() => setAutoClip(!autoClip)}>
-                            {autoClip ? <RiCheckboxFill color={theme.primary.default} /> : <RiCheckboxBlankLine />}
-                            {t('autoClipOnPlay')}
-                        </Button>
-                        <hr style={{ margin: '4px 0' }} />
-                        <Typography style={{ padding: '4px' }}>{t('sort')}</Typography>
-                        <RadioGroup name={'order'}
-                            getRender={(v) => <Typography as={'span'} fontSize={14}>{t(v)}</Typography>}
-                            value={order}
-                            onChange={setOrder}
-                            options={['default', 'nameAsc', 'nameDesc', 'nameLengthAsc', 'nameLengthDesc']} />
+                    <Popover.Content>
+                        <div style={{ display: 'flex', flexDirection: 'column', width: 'max-content' }}>
+                            <Typography style={{ padding: '4px' }}>{t('settings')}</Typography>
+                            <Button variant={'ghost'} onClick={() => setCheck(!check)}>
+                                {check ? <RiCheckboxFill color={theme.primary.default} /> : <RiCheckboxBlankLine />}
+                                {t('showCheck')}
+                            </Button>
+                            <Button variant={'ghost'} onClick={() => setAutoClip(!autoClip)}>
+                                {autoClip ? <RiCheckboxFill color={theme.primary.default} /> : <RiCheckboxBlankLine />}
+                                {t('autoClipOnPlay')}
+                            </Button>
+                            <hr style={{ margin: '4px 0' }} />
+                            <Typography style={{ padding: '4px' }}>{t('sort')}</Typography>
+                            <RadioGroup name={'order'}
+                                getRender={(v) => <Typography as={'span'} fontSize={14}>{t(v)}</Typography>}
+                                value={order}
+                                onChange={setOrder}
+                                options={['default', 'nameAsc', 'nameDesc', 'nameLengthAsc', 'nameLengthDesc']} />
+                        </div>
                     </Popover.Content>
                 </Popover>
                 <ButtonsContainer>
