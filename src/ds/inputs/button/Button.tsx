@@ -8,6 +8,8 @@ import { Link } from '@/ds/displays';
 export type ButtonProps = {
     size?: 'small' | 'medium' | 'large';
     onClick?: MouseEventHandler;
+    onMouseEnter?: MouseEventHandler;
+    onMouseLeave?: MouseEventHandler;
     children?: ReactNode;
     active?: boolean;
     href?: string;

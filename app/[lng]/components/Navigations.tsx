@@ -45,49 +45,83 @@ const Navigations = () => {
                     </App.Link>
                     {locale === 'ko' && (
                         <>
-                            {['combine', 'info', 'bookmark'].map((f) => (
-                                <App.Link key={f} href={`/farm/${f}`} lang={locale} active={pathname === `/farm/${f}`}>
-                                    {t(`drawer.farm.${f}.shortName`)}
-                                </App.Link>
-                            ))}
+                            <Popover>
+                                <Popover.Trigger>
+                                    {({ toggle, open, close }) =>
+                                        <div onMouseEnter={() => open()} onMouseLeave={() => close()}>
+                                            <Button onClick={() => toggle()}>
+                                                {t('drawer.farm.longName')}
+                                            </Button>
+                                            <Popover.Content alignment={'bottom-left'}>
+                                                <App.Nav $direction={'column'}>
+                                                    {['combine', 'info', 'bookmark'].map((f) => (
+                                                        <App.Link key={f} href={`/farm/${f}`} lang={locale}
+                                                            onClick={() => close()}
+                                                            styles={{ width: '100%' }}
+                                                            active={pathname === `/farm/${f}`}>
+                                                            {t(`drawer.farm.${f}.longName`)}
+                                                        </App.Link>
+                                                    ))}
+                                                </App.Nav>
+                                            </Popover.Content>
+                                        </div>
+                                    }
+                                </Popover.Trigger>
+                            </Popover>
                         </>
                     )}
 
-                    {
-                        [22, 23, 24, 36, 39, 42, 47, 48, 49].map((f) => (
-                            <App.Link key={f} href={`/seed/${f}`} lang={locale} active={pathname === `/seed/${f}`}>
-                                {f}
-                            </App.Link>
-                        ))
-                    }
+                    <Popover>
+                        <Popover.Trigger>
+                            {({ toggle, open, close }) =>
+                                <div onMouseEnter={() => open()} onMouseLeave={() => close()}>
+                                    <Button onClick={() => toggle()}>
+                                        {t('drawer.seed.longName')}
+                                    </Button>
+                                    <Popover.Content alignment={'bottom-left'}>
+                                        <App.Nav $direction={'column'} style={{ width: 'max-content' }}>
+                                            {
+                                                [22, 23, 24, 36, 39, 42, 47, 48, 49].map((f) => (
+                                                    <App.Link key={f} href={`/seed/${f}`} lang={locale}
+                                                        style={{ width: '100%' }}
+                                                        onClick={() => close()}
+                                                        active={pathname === `/seed/${f}`}>
+                                                        <b>{t(`drawer.seed.${f}.title`)}</b>: {t(`drawer.seed.${f}.shortDescription`)}
+                                                    </App.Link>
+                                                ))
+                                            }
+                                        </App.Nav>
+                                    </Popover.Content>
+                                </div>
+                            }
+                        </Popover.Trigger>
+                    </Popover>
                 </App.Nav>
 
                 <RightSection>
                     <Popover>
                         <Popover.Trigger>
-                            {({ toggle }) =>
-                                <Button onClick={() => toggle()}>
-                                    <RiTranslate fontSize={'16px'} />
-                                </Button>
+                            {({ toggle, open, close }) =>
+                                <div onMouseEnter={() => open()} onMouseLeave={() => close()}>
+                                    <Button onClick={() => toggle()}>
+                                        <RiTranslate fontSize={'16px'} />
+                                    </Button>
+                                    <Popover.Content>
+                                        <App.Nav $direction={'column'}>
+                                            {locales.filter((l) => l.locale !== locale).map((l) => (
+                                                <App.Link key={l.name} href={pathname || '/'}
+                                                    onClick={() => close()} styles={{
+                                                        width: '100%',
+                                                    }} lang={l.locale}>
+                                                    {l.name}
+                                                </App.Link>
+                                            ))}
+                                        </App.Nav>
+                                    </Popover.Content>
+                                </div>
                             }
                         </Popover.Trigger>
-                        <Popover.Content>
-                            <App.Nav $direction={'column'}>
-                                {locales.filter((l) => l.locale !== locale).map((l) => (
-                                    <App.Link key={l.name} href={pathname || '/'} styles={{
-                                        width: '100%',
-                                        boxSizing: 'border-box',
-                                        [media.max('xs')]: {
-                                            display: 'none',
-                                        },
-                                    }} lang={l.locale}>
-                                        {l.name}
-                                    </App.Link>
-                                ))}
-                            </App.Nav>
-                        </Popover.Content>
                     </Popover>
-
                     <ThemeSwitcher />
                 </RightSection>
             </AppBar>
@@ -105,6 +139,7 @@ const App = {
     `,
     Link: styled(Button)`
       font-size: 12px;
+      box-sizing: border-box;
     `,
     SideBarButton: styled(Button)`
       ${media.min('sm')} {
