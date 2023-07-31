@@ -19,7 +19,7 @@ interface ThemePalette {
     warning: SurfaceColor;
     info: SurfaceColor;
 
-    surface: InteractingColor;
+    surface: InteractingColor & SurfaceColor;
     background: string;
     contour: string;
     line: string;
@@ -68,6 +68,7 @@ const light: ThemePalette = {
     },
 
     surface: {
+        background: '#fafafa',
         default: 'rgba(255, 255, 255, 0.65)',
         hover: 'rgba(224, 224, 224, 0.5)',
         active: 'rgba(224, 224, 224, 0.85)',
@@ -115,6 +116,7 @@ const dark: ThemePalette = {
     },
 
     surface: {
+        background: 'rgb(36, 36, 36)',
         default: 'rgb(36, 36, 36, 0.8)',
         hover: 'rgba(52, 52, 52, 0.65)',
         active: 'rgba(52, 52, 52, 0.8)',

@@ -59,9 +59,9 @@ const Trigger = ({ children }: {
 }) => {
     const { setState, id, state } = usePopover();
     return cloneElement(children({
-        open: () => setState('opened'),
+        open: () => state.startsWith('clos') && setState('opened'),
         toggle: () => state === 'opened' ? setState('closing') : setState('opened'),
-        close: () => setState('closing'),
+        close: () => state.startsWith('open') && setState('closing'),
     }), { ['data-popover']: id });
 };
 
@@ -85,7 +85,7 @@ const PanelContainer = styled.div<TransientProps<{ alignment: Alignment, fadeMs:
   position: absolute;
   ${({ $alignment }) => AlignmentMap[$alignment]};
   border-radius: ${({ theme }) => theme.borderRadius};
-  background-color: ${({ theme }) => theme.surface.default};
+  background-color: ${({ theme }) => theme.surface.background};
   border: 1px solid ${({ theme }) => theme.contour};
   padding: 8px;
   z-index: ${({ theme }) => theme.zIndex.popover};
