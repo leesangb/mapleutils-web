@@ -10,19 +10,21 @@ import { getExtendCost } from '@/data/farm/monsterLifeCost';
 import GradeChip from './GradeChip';
 import CostChip from './CostChip';
 import useModals from '@/ds/hooks/useModals';
-import { MobFamilyTreeModal } from './MobFamilyTreeModal';
 import { monsterLifeFamilyMapping } from '@/data/farm/recipes';
 import { MobBoxModal } from './MobBoxModal';
 import { MobFarmModal } from './MobFarmModal';
 import { useFarmBookmarkStore } from '@/store/useFarmBookbarkStore';
 import { getMesoKrUrl } from '@/utils/string';
 import { useWindowPopupContext } from '@/components/popup/useWindowPopupContext';
+import { MobFamilyTreeModal } from './MobFamilyTreeModal';
 
 interface MobCardProps {
     mob: MonsterLifeMob;
+    showTree?: boolean;
+    active?: boolean;
 }
 
-const MobCard = ({ mob }: MobCardProps) => {
+const MobCard = ({ mob, showTree = true, active }: MobCardProps) => {
     const cost = getExtendCost(mob);
     const { isBookmarked, toggleBookmark } = useFarmBookmarkStore();
     const { openPopup } = useWindowPopupContext();
@@ -30,6 +32,7 @@ const MobCard = ({ mob }: MobCardProps) => {
     const { open, close } = useModals();
 
     const openMobFamilyModal = () => {
+        close({ Component: MobFamilyTreeModal });
         open({
             Component: MobFamilyTreeModal,
             props: {
@@ -73,7 +76,7 @@ const MobCard = ({ mob }: MobCardProps) => {
                 }
             </LabelList>
             <MobButton onClick={() => openMobFarmModal()}>
-                <ImageBackground>
+                <ImageBackground aria-selected={active}>
                     <Image src={mob.img} alt={mob.name} loading={'lazy'} />
                 </ImageBackground>
                 <MobContent>
@@ -115,7 +118,7 @@ const MobCard = ({ mob }: MobCardProps) => {
                     )
                 }
                 {
-                    monsterLifeFamilyMapping[mob.name]
+                    showTree && monsterLifeFamilyMapping[mob.name]
                     && (
                         <Button variant={'ghost'} size={'small'} onClick={() => openMobFamilyModal()}>
                             <RiNodeTree />
@@ -129,11 +132,17 @@ const MobCard = ({ mob }: MobCardProps) => {
         </Container>
     );
 };
-const Container = styled.div`
+const Container = styled.div<TransientProps<{ background?: string }>>`
+  ${media.min('sm')} {
+    min-width: 240px;
+  }
+
   position: relative;
   width: 100%;
   padding: 0;
   margin: 0;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  background-color: ${({ theme }) => theme.surface.default};
 `;
 
 const Image = styled.img.attrs({ draggable: false })`
@@ -159,6 +168,10 @@ const ImageBackground = styled.div`
   background-color: ${({ theme }) => theme.background};
   text-align: center;
   transition: background-color 0.125s ease-in-out;
+
+  &[aria-selected='true'] {
+    background-color: ${({ theme }) => theme.info.background};
+  }
 `;
 
 const MobContent = styled.div`
