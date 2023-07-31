@@ -26,7 +26,7 @@ const Navigations = () => {
     useEffect(() => {
         try {
             if (isProduction) {
-                pageview(new URL(localizedPathname));
+                pageview(localizedPathname);
             } else {
                 console.log('pageview', localizedPathname);
             }

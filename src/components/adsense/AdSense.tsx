@@ -33,7 +33,14 @@ const AdSense = ({ slot }: AdSenseProps) => {
         try {
             window.adsbygoogle.push({});
         } catch (e) {
-            console.error(e);
+            setTimeout(() => {
+                try {
+                    window.adsbygoogle.push({});
+                } catch (e) {
+                    console.error(e);
+                }
+            }, 2000);
+            // console.error(e);
         }
     }, [isMounted, pathname]);
 
