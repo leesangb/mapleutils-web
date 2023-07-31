@@ -22,9 +22,10 @@ interface MobCardProps {
     mob: MonsterLifeMob;
     showTree?: boolean;
     active?: boolean;
+    width?: string;
 }
 
-const MobCard = ({ mob, showTree = true, active }: MobCardProps) => {
+const MobCard = ({ mob, showTree = true, active, width }: MobCardProps) => {
     const cost = getExtendCost(mob);
     const { isBookmarked, toggleBookmark } = useFarmBookmarkStore();
     const { openPopup } = useWindowPopupContext();
@@ -63,7 +64,7 @@ const MobCard = ({ mob, showTree = true, active }: MobCardProps) => {
     };
 
     return (
-        <Container>
+        <Container $width={width}>
             <LabelList>
                 <LabelItem>
                     <GradeChip grade={mob.grade} category={mob.category} />
@@ -132,11 +133,11 @@ const MobCard = ({ mob, showTree = true, active }: MobCardProps) => {
         </Container>
     );
 };
-const Container = styled.div<TransientProps<{ background?: string }>>`
-  ${media.min('sm')} {
-    min-width: 240px;
-  }
 
+const Container = styled.div<TransientProps<{ width?: string }>>`
+  ${({ $width }) => $width && `max-width: ${$width};`}
+  ${({ $width }) => $width && `min-width: ${$width};`}
+  box-sizing: border-box;
   position: relative;
   width: 100%;
   padding: 0;

@@ -3,8 +3,12 @@
 import { Modal } from '@/ds/surfaces';
 import { MonsterLifeMob } from '@/data/farm/mobs';
 import {
+    BaseEdge,
     Controls,
     Edge,
+    EdgeLabelRenderer,
+    EdgeProps,
+    getBezierPath,
     Handle,
     MarkerType,
     Node,
@@ -20,15 +24,18 @@ import { familyMapping, FamilyNode } from '@/data/farm/treeBuilder';
 import styled from 'styled-components';
 import { Button } from '@/ds/inputs';
 import MobCard from './MobCard';
+import 'reactflow/dist/style.css';
 
 interface MobModalProps {
     mob: MonsterLifeMob;
     onClose: () => void;
 }
 
+const NODE_WIDTH = 240;
+
 const buildReactFlow = (mob: MonsterLifeMob): { nodes: Node[], edges: Edge[], name: string }[] => {
     const families = familyMapping[mob.name];
-    const WIDTH = 240;
+    const WIDTH = NODE_WIDTH;
     const HGAP = 24;
     const VGAP = 250;
 
@@ -48,6 +55,7 @@ const buildReactFlow = (mob: MonsterLifeMob): { nodes: Node[], edges: Edge[], na
             type: MarkerType.ArrowClosed,
             orient: 'auto-start-reverse',
         },
+        type: 'custom',
     });
 
     const computeNodes = (node: FamilyNode, position: XYPosition, siblingDistance: number): {
@@ -123,11 +131,43 @@ const MobNode = ({ data }: MobNodeProps) => {
     return (
         <>
             {top && <Handle type={'target'} position={Position.Top} />}
-            <MobCard mob={data.mob} showTree={data.showTree} active={data.mob.name === data.from} />
+            <MobCard mob={data.mob} showTree={data.showTree} active={data.mob.name === data.from}
+                width={`${NODE_WIDTH}px`} />
             {bottom && <Handle type={'source'} position={Position.Bottom} />}
         </>
     );
 };
+
+const CustomEdge = (props: EdgeProps) => {
+    const [edgePath, labelX, labelY] = getBezierPath(props);
+
+    return (
+        <>
+            <BaseEdge path={edgePath} markerStart={props.markerStart} style={props.style} />
+            {props.label && (
+                <EdgeLabelRenderer>
+                    <EdgeLabel
+                        style={{
+                            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+                        }}
+                    >
+                        {props.label}
+                    </EdgeLabel>
+                </EdgeLabelRenderer>
+            )}
+        </>
+    );
+};
+
+const EdgeLabel = styled.div.attrs({ className: 'nodrag nopan' })`
+  position: absolute;
+  font-size: 16px;
+  color: ${({ theme }) => theme.text.primary};
+  background-color: ${({ theme }) => theme.surface.default};
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.contour};
+`;
 
 const Tree = ({ nodes, edges, focusOn }: { nodes: Node[], edges: Edge[], focusOn: Node['id'] }) => {
     const { fitView, getZoom, setCenter } = useReactFlow();
@@ -156,6 +196,9 @@ const Tree = ({ nodes, edges, focusOn }: { nodes: Node[], edges: Edge[], focusOn
         edges={edges}
         nodeTypes={{
             mobCard: MobNode,
+        }}
+        edgeTypes={{
+            custom: CustomEdge,
         }}
         minZoom={0.75}
         maxZoom={1.5}
