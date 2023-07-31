@@ -65,12 +65,12 @@ export const ModalsProvider = ({ children }: PropsWithChildren) => {
         <ModalsDispatchContext.Provider value={dispatch}>
             {children}
             <ModalsStateContext.Provider value={openedModals}>
-                <ModalsRoot $open={openedModals.length > 0}
-                    onMouseUp={onMouseUp}>
-                    {openedModals.map(({ Component, props }, index) => (
-                        <Component key={index} {...props} />
-                    ))}
-                </ModalsRoot>
+                {openedModals.map(({ Component, props }, index) => (
+                    <ModalsRoot key={index} $open
+                        onMouseUp={onMouseUp}>
+                        <Component {...props} />
+                    </ModalsRoot>
+                ))}
             </ModalsStateContext.Provider>
         </ModalsDispatchContext.Provider>
     );

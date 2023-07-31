@@ -9,11 +9,12 @@ import { keyframes } from '@/ds';
 interface ModalProps {
     title?: string;
     onClose?: () => void;
+    onAnimationEnd?: () => void;
 }
 
-export const Modal = ({ children, title, onClose }: PropsWithChildren<ModalProps>) => {
+export const Modal = ({ children, title, onClose, onAnimationEnd }: PropsWithChildren<ModalProps>) => {
     return (
-        <Container role={'dialog'}>
+        <Container role={'dialog'} onAnimationEnd={onAnimationEnd}>
             {onClose && <CloseButton variant={'ghost'} onClick={() => onClose()}>
                 <RiCloseLine />
             </CloseButton>}
@@ -41,6 +42,7 @@ const ActionsContainer = styled.div`
 Modal.Actions = ModalActions;
 Modal.Content = styled.div`
   overflow: scroll;
+  max-width: 85vw;
   max-height: 85vh;
   max-height: 85dvh;
 `;
@@ -61,4 +63,5 @@ const CloseButton = styled(Button)`
   right: 4px;
   border-radius: 50%;
   font-size: 12px;
+  z-index: 1;
 `;
