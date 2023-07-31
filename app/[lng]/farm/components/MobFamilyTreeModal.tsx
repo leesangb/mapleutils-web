@@ -159,6 +159,7 @@ const Tree = ({ nodes, edges, focusOn }: { nodes: Node[], edges: Edge[], focusOn
         }}
         minZoom={0.75}
         maxZoom={1.5}
+        zoomOnDoubleClick={false}
         edgesUpdatable={false}
         nodesConnectable={false}
         nodesDraggable={false}>
