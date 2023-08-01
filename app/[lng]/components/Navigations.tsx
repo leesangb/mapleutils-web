@@ -10,7 +10,7 @@ import { Button } from '@/ds/inputs';
 import styled from 'styled-components';
 import { Languages } from '@/i18n/settings';
 import { useEffect } from 'react';
-import { isProduction } from '../../../legacy/src/tools/helper';
+import { isProduction } from '@/utils/helper';
 import { pageview } from '@/components/adsense/lib/gtag';
 import { Popover } from '@/ds/surfaces/popover/Popover';
 
