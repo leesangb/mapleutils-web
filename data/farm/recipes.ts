@@ -1,17 +1,15 @@
-import recipes from '@data/farm/recipes.json';
-import { getMonsterLifeMob, MonsterLifeMob, monsterLifeMobs } from '@data/farm/mobs';
+import recipes from './recipes.json';
+import { getMonsterLifeMob, MonsterLifeMob, monsterLifeMobs } from './mobs';
 
 export interface MonsterLifeRecipe {
     parents?: [MonsterLifeMob, MonsterLifeMob];
     mob: MonsterLifeMob;
 }
 
-
 export interface MonsterLifeRecipeLite {
     parents: [string, string];
     name: string;
 }
-
 
 export interface MonsterLifeFamily {
     child: MonsterLifeMob;
@@ -19,13 +17,11 @@ export interface MonsterLifeFamily {
     mother?: MonsterLifeFamily;
 }
 
-
 export interface MonsterLifeFamilyRoot extends MonsterLifeFamily {
     level: number;
 }
 
 const MONSTER_LIFE_RECIPES_LITE: MonsterLifeRecipeLite[] = recipes as MonsterLifeRecipeLite[];
-
 
 export const monsterLifeRecipes: Required<MonsterLifeRecipe>[] = MONSTER_LIFE_RECIPES_LITE.map((r) => ({
     parents: r.parents.map((p) => monsterLifeMobs.find((mob) => mob.name === p)!) as [MonsterLifeMob, MonsterLifeMob],
@@ -74,7 +70,6 @@ export const MONSTER_LIFE_FAMILIES: MonsterLifeFamilyRoot[] = monsterLifeRecipes
     buildFamily(r.mob.name),
 ).sort((a, b) => b.level - a.level);
 
-
 const buildFamilyMapping = (): { [mobName: string]: MonsterLifeFamilyRoot[] } => {
     const familyMapping: { [mobName: string]: MonsterLifeFamilyRoot[] } = {};
     const alreadyAdded: string[] = [];
@@ -104,6 +99,5 @@ const buildFamilyMapping = (): { [mobName: string]: MonsterLifeFamilyRoot[] } =>
 
     return familyMapping;
 };
-
 
 export const monsterLifeFamilyMapping: { [mobName: string]: MonsterLifeFamilyRoot[] } = buildFamilyMapping();

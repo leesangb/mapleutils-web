@@ -1,11 +1,19 @@
-/** @type {import('next').NextConfig} */
-const { i18n } = require('./next-i18next.config');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const webpack = require('webpack');
 
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    experimental: {
+        appDir: true,
+    },
+    swcMinify: true,
+    compiler: {
+        styledComponents: true,
+    },
     reactStrictMode: true,
-    i18n,
-    webpack5: true,
+    typescript: {
+        tsconfigPath: './tsconfig.build.json',
+    },
     webpack: (config, { isServer }) => {
         if (!isServer) {
             // for opencv.js
@@ -19,3 +27,5 @@ module.exports = {
         return config;
     },
 };
+
+module.exports = nextConfig;

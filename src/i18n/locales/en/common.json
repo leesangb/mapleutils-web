@@ -1,0 +1,137 @@
+{
+  "welcome": "Welcome!",
+  "discord": "Discord",
+  "reset": "Reset",
+  "clickToCopy": "Click to copy",
+  "copyItem": "Copy <{{text}}>",
+  "silhouette": "Silhouette",
+  "filters": "Filters",
+  "comments": "Comments",
+  "selectAll": "Select All",
+  "invert": "Invert",
+  "home": "Home",
+  "darkMode": "Dark mode",
+  "lightMode": "Light mode",
+  "comment": {
+    "title": "Comments",
+    "comment": "Comment",
+    "editComment": "Edit comment",
+    "feedbacks": "Feedbacks",
+    "nickname": "Nickname",
+    "password": "Password",
+    "passwordHelp": "Password Help",
+    "commentPlaceholder": "Type some comment...",
+    "letters": "letters",
+    "repliedTo": "Reply to {{name}}",
+    "deletedComment": "This comment has been deleted.",
+    "passwordIncorrect": "Incorrect password.",
+    "reply": "Reply",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteComment": "Delete comment"
+  },
+  "online": "Online",
+  "settings": "Settings",
+  "correctAnswerRate": "Correct answer rate",
+  "pageNotFound": "Page not found 😥",
+  "noResultsFound": "No results found... 😥",
+  "goToSeed24Simulator": "Go to Tower of Oz F24 Simulator",
+  "goToSeed39Simulator": "Go to Tower of Oz F39 Simulator",
+  "goToSeed49Simulator": "Go to Tower of Oz F49 Simulator",
+  "drawer": {
+    "seedSimulator": {
+      "longName": "Tower of Oz Simulator",
+      "shortName": "Simul",
+      "24": {
+        "title": "Tower of Oz F24",
+        "shortDescription": "Simulator"
+      },
+      "39": {
+        "title": "Tower of Oz F39",
+        "shortDescription": "Simulator"
+      },
+      "49": {
+        "title": "Tower of Oz F49",
+        "shortDescription": "Simulator"
+      },
+      "pointCalculator": {
+        "title": "Point calculator"
+      }
+    },
+    "seed": {
+      "longName": "Tower of Oz",
+      "shortName": "Oz",
+      "22": {
+        "title": "Tower of Oz F22",
+        "shortDescription": "Cloud platforms"
+      },
+      "23": {
+        "title": "Tower of Oz F23",
+        "shortDescription": "Invisible platforms"
+      },
+      "24": {
+        "title": "Tower of Oz F24",
+        "shortDescription": "Soundtracks"
+      },
+      "36": {
+        "title": "Tower of Oz F36",
+        "shortDescription": "Note"
+      },
+      "39": {
+        "title": "Tower of Oz F39",
+        "shortDescription": "Questions & Answers"
+      },
+      "42": {
+        "title": "Tower of Oz F42",
+        "shortDescription": "Platforms guide"
+      },
+      "47": {
+        "title": "Tower of Oz F47",
+        "shortDescription": "Invisible platforms"
+      },
+      "48": {
+        "title": "Tower of Oz F48",
+        "shortDescription": "Minimap overlay"
+      },
+      "49": {
+        "title": "Tower of Oz F49",
+        "shortDescription": "Mob guide"
+      }
+    },
+    "farm": {
+      "longName": "Monster Life",
+      "shortName": "Farm",
+      "combine": {
+        "longName": "Combine formula",
+        "shortName": "CF"
+      },
+      "info": {
+        "longName": "Mob list",
+        "shortName": "ML"
+      }
+    }
+  },
+  "default": "Default",
+  "nameAsc": "Alphabetically",
+  "nameDesc": "Alphabetically (Desc)",
+  "nameLengthAsc": "Length",
+  "nameLengthDesc": "Length (Desc)",
+  "sort": "Order",
+  "copyMessage": "<{{text}}> copied to clipboard!",
+  "more": "More",
+  "autoClipOnPlay": "Automatically copy on play",
+  "showCheck": "Show checkbox",
+  "copy": "Copy",
+  "play": "Play",
+  "pause": "Pause",
+  "stop": "Stop",
+  "next": "Next",
+  "start": "Start",
+  "restart": "Restart",
+  "cancel": "Cancel",
+  "spaceToPausePlay": "Spacebar to pause/play",
+  "upDownVolume": "↑/↓ Increase/Decrease volume",
+  "seek": "←/→ Seek backward/forward",
+  "maxVolume": "Max volume",
+  "minVolume": "Min volume"
+}

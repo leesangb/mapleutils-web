@@ -1,13 +1,11 @@
+/** @type {import('next-sitemap').IConfig} */
 module.exports = {
     siteUrl: 'https://mapleutils.com',
     generateRobotsTxt: true,
+    generateIndexSitemap: false,
     exclude: [
-        '/en/help/*',
-        '/help/*',
-        '/en/api/*',
-        '/api/*',
-        '/en/404',
-        '/404',
         '/en/farm/*',
+        '/zh-TW/farm/*',
+        '/api/*',
     ],
 };

@@ -1,7 +1,7 @@
-import { MonsterLifeInformation } from '@data/farm/index';
-import { includesOneOf } from '@tools/string';
-import { getGradeMultiplier } from '@data/farm/monsterLifeGrade';
-import { MonsterLifeMob, monsterLifeMobs } from '@data/farm/mobs';
+import { MonsterLifeInformation } from '.';
+import { includesOneOf } from '@/utils/string';
+import { getGradeMultiplier } from './monsterLifeGrade';
+import { MonsterLifeMob, monsterLifeMobs } from './mobs';
 
 const MONSTER_LIFE_NORMAL_MOBS: MonsterLifeMob[] = monsterLifeMobs.filter((m) => m.category !== '스페셜').sort(
     (a, b) => getGradeMultiplier(b.grade) - getGradeMultiplier(a.grade),

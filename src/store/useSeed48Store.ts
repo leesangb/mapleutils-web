@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { useIsMounted } from '@hooks/useIsMounted';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 const DEFAULT_X = 2;
 const DEFAULT_Y = 25;

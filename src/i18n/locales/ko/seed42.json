@@ -1,0 +1,15 @@
+{
+  "seo": {
+    "title": "더 시드 42층",
+    "keywords": "42층, 맵, 가이드, 투명, 발판",
+    "description": "더 시드 42층 가이드"
+  },
+  "title": "시드 42층",
+  "fakePlatforms": "가짜발판",
+  "lastPart": "마지막 구간",
+  "fakePlatformsOpacity": "가짜발판 투명도",
+  "path": "루트",
+  "none": "없음",
+  "route1": "루트 1",
+  "route2": "루트 2"
+}

@@ -1,0 +1,141 @@
+{
+  "welcome": "환영합니다!",
+  "discord": "디스코드",
+  "reset": "초기화",
+  "clickToCopy": "클릭하여 복사하기",
+  "copyItem": "<{{text}}> 복사하기",
+  "silhouette": "실루엣",
+  "filters": "필터",
+  "comments": "댓글",
+  "selectAll": "전체 선택",
+  "invert": "선택 반전",
+  "home": "홈",
+  "darkMode": "다크 모드",
+  "lightMode": "라이트 모드",
+  "online": "온라인",
+  "settings": "설정",
+  "next": "다음",
+  "restart": "다시시작",
+  "cancel": "취소",
+  "start": "시작",
+  "comment": {
+    "title": "댓글",
+    "comment": "댓글",
+    "feedbacks": "피드백",
+    "nickname": "닉네임",
+    "password": "비밀번호",
+    "passwordHelp": "비밀번호 도움말",
+    "commentPlaceholder": "댓글 추가...",
+    "editComment": "댓글 수정",
+    "letters": "글자",
+    "repliedTo": "{{name}}님에게",
+    "deletedComment": "삭제된 댓글입니다.",
+    "passwordIncorrect": "비밀번호가 일치하지 않습니다.",
+    "reply": "답글",
+    "edit": "수정",
+    "delete": "삭제",
+    "deleteComment": "댓글 삭제"
+  },
+  "correctAnswerRate": "정답률",
+  "pageNotFound": "페이지를 찾을 수 없습니다 😥",
+  "noResultsFound": "검색된 결과가 없습니다... 😥",
+  "goToSeed24Simulator": "더 시드 24층 시뮬레이터 바로가기",
+  "goToSeed39Simulator": "더 시드 39층 시뮬레이터 바로가기",
+  "goToSeed49Simulator": "더 시드 49층 시뮬레이터 바로가기",
+  "drawer": {
+    "seedSimulator": {
+      "longName": "더 시드 시뮬레이터",
+      "shortName": "시뮬",
+      "24": {
+        "title": "시드 24층",
+        "shortDescription": "시뮬레이터"
+      },
+      "39": {
+        "title": "시드 39층",
+        "shortDescription": "시뮬레이터"
+      },
+      "49": {
+        "title": "시드 49층",
+        "shortDescription": "시뮬레이터"
+      },
+      "pointCalculator": {
+        "title": "포인트 계산기"
+      }
+    },
+    "seed": {
+      "longName": "더 시드",
+      "shortName": "시드",
+      "22": {
+        "title": "시드 22층",
+        "shortDescription": "구름 발판"
+      },
+      "23": {
+        "title": "시드 23층",
+        "shortDescription": "맵 투명 발판"
+      },
+      "24": {
+        "title": "시드 24층",
+        "shortDescription": "마을 BGM"
+      },
+      "36": {
+        "title": "시드 36층",
+        "shortDescription": "기록지"
+      },
+      "39": {
+        "title": "시드 39층",
+        "shortDescription": "문제 족보"
+      },
+      "42": {
+        "title": "시드 42층",
+        "shortDescription": "발판 가이드"
+      },
+      "47": {
+        "title": "시드 47층",
+        "shortDescription": "맵 투명 발판"
+      },
+      "48": {
+        "title": "시드 48층",
+        "shortDescription": "오버레이 미니맵"
+      },
+      "49": {
+        "title": "시드 49층",
+        "shortDescription": "문제 족보"
+      }
+    },
+    "farm": {
+      "longName": "몬스터 라이프",
+      "shortName": "몬라",
+      "combine": {
+        "longName": "스페셜 조합식",
+        "shortName": "조합"
+      },
+      "info": {
+        "longName": "몬스터 정리",
+        "shortName": "몹"
+      },
+      "bookmark": {
+        "longName": "즐겨찾기",
+        "shortName": "★"
+      }
+    }
+  },
+  "default": "기본",
+  "nameAsc": "가나다",
+  "nameDesc": "가나다 (역순)",
+  "nameLengthAsc": "이름 글자 수",
+  "nameLengthDesc": "이름 글자 수 (역순)",
+  "sort": "정렬",
+  "copyMessage": "<{{text}}>를(을) 복사했습니다!",
+  "more": "더보기",
+  "autoClipOnPlay": "음악 선택 시 자동 복사",
+  "showCheck": "음악 체크 표시",
+  "copy": "복사하기",
+  "play": "재생",
+  "pause": "일시정지",
+  "stop": "정지",
+  "spaceToPausePlay": "스페이스바로 재생/일시정지",
+  "upDownVolume": "↑/↓로 볼륨 조절",
+  "seek": "←/→로 위치 조절",
+  "maxVolume": "음량 최대",
+  "minVolume": "음소거"
+}

@@ -1,0 +1,49 @@
+import { Locales } from '../../../src/tools/locales';
+import { QuestionAnswer, seed39Data, seed39DataGMS, seed39DataTMS } from '@data/seed/39';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import QuestionAnswerSimulator from '../../../src/components/seed/39/QuestionAnswerSimulator';
+import useI18nSeoProps from '../../../src/components/seo/useI18nSeoProps';
+import { Seo } from '../../../src/components/seo';
+import { I18nTitleCard } from '../../../src/components/card';
+import { Box } from '@mui/material';
+import { Comments } from '../../../src/components/comments';
+
+interface Seed39SimulatorPageProps {
+    data: QuestionAnswer[];
+}
+
+interface LocalesData39Mapping {
+    [key: string]: QuestionAnswer[];
+}
+
+const data39Mapping: LocalesData39Mapping = {
+    [Locales.Korean]: seed39Data.sort((a, b) => a.question.localeCompare(b.question)) as QuestionAnswer[],
+    [Locales.English]: seed39DataGMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)) as QuestionAnswer[],
+    [Locales.TraditionalChinese]: seed39DataTMS.sort((a, b) => (`${a.question}${a.choices[0]}`).localeCompare(`${b.question}${b.choices[0]}`)) as QuestionAnswer[],
+};
+
+const Seed39SimulatorPage = ({ data }: Seed39SimulatorPageProps) => {
+    const seoProps = useI18nSeoProps('seed39simulator');
+    return (
+        <>
+            <Seo {...seoProps} image={'/images/39.png'} />
+            <I18nTitleCard ns={'seed39simulator'} />
+            <Box display={'flex'} justifyContent={'center'}>
+                <QuestionAnswerSimulator data={data} />
+            </Box>
+            <Comments pageKey={'seed39simulator'} />
+        </>
+    );
+};
+
+
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+    return {
+        props: {
+            data: data39Mapping[locale],
+            ...(await serverSideTranslations(locale, ['common', 'seed39simulator'])),
+        },
+    };
+};
+
+export default Seed39SimulatorPage;

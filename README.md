@@ -7,14 +7,18 @@
 ## 주요 스택
 
 - [React.js](https://reactjs.org/)
-- [MUI](https://mui.com)
-- [Next.js](https://nextjs.org/)
+- [Next.js app dir](https://nextjs.org/)
 - [Hangul.js](https://github.com/e-/Hangul.js)
+- [Storybook](https://storybook.js.org/)
+- [Styled-components](https://styled-components.com/)
+- [React-Query](https://tanstack.com/query/latest)
+- [OpenCV](https://opencv.org/)
+- [i18next](https://www.i18next.com/)
 
 ## 설치 및 실행
 
 ```sh
-> npm install --legacy-peer-deps # install dependencies
+> npm install # install dependencies
 ```
 
 ```sh
@@ -40,9 +44,9 @@ GOOGLE_PRIVATE_KEY="<GOOGLE-API-SERVICE-ACCOUNT-PRIVATE-KEY>"
 ## i18n
 
 모든 페이지를 한글/영어 버전으로 볼 수 있습니다.
-`public/locales`폴더에 페이지 마다 번역 된 json파일이 있습니다.
+`src/i18n/locales`폴더에 페이지 마다 번역 된 json파일이 있습니다.
 
-한글 페이지 `https://mapleutils.com/[slug]`
+한글 페이지 `https://mapleutils.com/ko/[slug]`
 그 외 언어 `https://mapleutils.com/[lang]/[slug]` (예: `https://mapleutils.com/en/seed/39`)
 
 ---

@@ -1,4 +1,4 @@
-import { MonsterLifeMob } from '@data/farm/mobs';
+import { MonsterLifeMob } from './mobs';
 
 export type OptionName =
     | '전체'
@@ -26,4 +26,3 @@ export interface MonsterLifeInformation {
     mobs: MonsterLifeMob[];
     normals: MonsterLifeMob[];
 }
-

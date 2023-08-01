@@ -1,6 +1,6 @@
-import mobs from '@data/farm/mobs.json';
-import { getFarmCategoryEffect, MonsterLifeCategory } from '@data/farm/monsterLifeCategory';
-import { getGradeMultiplier, MonsterLifeGrade } from '@data/farm/monsterLifeGrade';
+import mobs from './mobs.json';
+import { getFarmCategoryEffect, MonsterLifeCategory } from './monsterLifeCategory';
+import { getGradeMultiplier, MonsterLifeGrade } from './monsterLifeGrade';
 
 export interface MonsterLifeMob {
     name: string;
@@ -22,7 +22,6 @@ const fixMob = (mob: MonsterLifeMob): MonsterLifeMob => {
     }`;
     return { ...mob, effect, img: encodeURI(`/images/monster-life/${mob.name}.png`) };
 };
-
 
 const MobData: MonsterLifeMob[] = mobs as MonsterLifeMob[];
 
