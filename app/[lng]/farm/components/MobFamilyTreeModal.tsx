@@ -15,7 +15,7 @@ import {
     useStoreApi,
     XYPosition,
 } from 'reactflow';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { familyMapping, FamilyNode } from '@/data/farm/treeBuilder';
 import styled from 'styled-components';
 import { Button } from '@/ds/inputs';
@@ -147,8 +147,11 @@ const MobNode = ({ data }: MobNodeProps) => {
 const Tree = ({ nodes, edges, focusOn }: { nodes: Node[], edges: Edge[], focusOn: Node['id'] }) => {
     const { fitView, getZoom, setCenter } = useReactFlow();
     const store = useStoreApi();
+    const focused = useRef(false);
 
     const focusNode = (key: string) => {
+        if (focused.current)
+            return;
         const zoom = Math.min(getZoom(), 1);
         const { nodeInternals } = store.getState();
         const node = nodeInternals.get(key);
@@ -160,7 +163,12 @@ const Tree = ({ nodes, edges, focusOn }: { nodes: Node[], edges: Edge[], focusOn
         } else {
             fitView({ duration: 200 });
         }
+        focused.current = true;
     };
+
+    useEffect(() => {
+        focused.current = false;
+    }, [nodes[0]?.id]);
 
     return <ReactFlow
         fitView
@@ -172,7 +180,7 @@ const Tree = ({ nodes, edges, focusOn }: { nodes: Node[], edges: Edge[], focusOn
         nodeTypes={{
             mobCard: MobNode,
         }}
-        minZoom={0.75}
+        minZoom={0.25}
         maxZoom={1.5}
         zoomOnDoubleClick={false}
         edgesUpdatable={false}
