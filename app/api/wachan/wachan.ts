@@ -13,9 +13,15 @@ export const getWachanFarms = async (name: string): Promise<WachanFarm[]> => {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams(formData),
+            cache: 'force-cache',
+            next: {
+                revalidate: 3600,
+            },
         });
 
         const farmResponse = await response.json() as WachanResponse;
+
+        console.log(farmResponse);
 
         const farmArray = farmResponse.farm_list
             .map(toWachanFarm)
