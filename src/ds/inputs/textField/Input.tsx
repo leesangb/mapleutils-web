@@ -52,6 +52,7 @@ const InputField = styled.input<TransientProps<Pick<TextFieldProps, 'fullWidth'>
   width: 100%;
   outline: transparent;
   border: none;
+  scroll-margin: ${({ theme }) => `calc(${theme.appBar.height} + 32px)`};
 
   &::placeholder {
     font-weight: 300;
