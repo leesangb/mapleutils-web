@@ -18,6 +18,7 @@ export const SearchInput = ({ ...props }: SearchFieldProps) => {
                 e.preventDefault();
                 inputRef.current?.focus();
                 inputRef.current?.select();
+                inputRef.current?.scrollIntoView({ behavior: 'smooth' });
             }
         };
 
