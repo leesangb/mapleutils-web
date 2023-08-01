@@ -1,4 +1,4 @@
-import { buildFamily } from '@/data/farm/treeBuilder';
+import { buildFamily, familyMapping } from '@/data/farm/treeBuilder';
 
 describe('buildFamily', () => {
     it('각성한 락 스피릿', () => {
@@ -27,7 +27,7 @@ describe('buildFamily', () => {
     });
 
     it('강화형 베릴', () => {
-        const family = buildFamily('강화형 베릴');
+        const family = familyMapping['강화형 베릴'][0];
         expect(family).toMatchObject({
             current: {
                 name: '쁘띠 메르세데스',
