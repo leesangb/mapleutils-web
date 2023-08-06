@@ -1,6 +1,6 @@
 import { PropsWithChildren, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { ChildCommentDto, CommentDto } from '@/api/dto';
+import { ChildCommentDto, CommentDto } from '@/api/schema/comment.type';
 import { Avatar, Typography } from '@/ds/displays';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { useTranslation } from '@/i18n/client';

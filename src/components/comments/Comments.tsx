@@ -19,9 +19,8 @@ interface CommentsProps {
 export const Comments = ({}: CommentsProps) => {
     const ref = useRef<HTMLDivElement>(null);
     const { t } = useTranslation();
-    const { data: comments, isLoading, isFetched } = useGetComments();
-    const count = comments.length + comments.reduce((acc, { children }) => acc + children.length, 0);
-
+    const { data: page, isLoading, isFetched } = useGetComments();
+    const count = page.totalCount;
     const { state, open } = useAnimationState(125);
 
     useEffect(() => {
@@ -38,9 +37,9 @@ export const Comments = ({}: CommentsProps) => {
             <Hr />
             <CommentPostForm />
             <CommentList>
-                {comments.map((comment) => <Fragment key={comment.id}>
+                {page.data.map((comment) => <Fragment key={comment.id}>
                     <CommentList.Item comment={comment}>
-                        {comment.children.length ?
+                        {comment.children?.length ?
                             <CommentList isChild>
                                 {comment.children.map((child) => <CommentList.Item key={child.id}
                                     parentId={comment.id}

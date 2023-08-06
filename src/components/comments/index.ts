@@ -1,2 +1,2 @@
-export * from '../../api/dto';
+export * from '../../api/schema/comment.type';
 export * from './Comments';

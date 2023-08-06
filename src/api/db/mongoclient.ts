@@ -1,13 +1,10 @@
 import { PrismaClient } from '@prisma/client';
-import { CommentDeleteDto, CommentDto, CommentEditDto, CommentPostDto } from '@/api';
 import { hashPassword, verifyPassword } from '@/utils/password';
-import { ChildCommentSchema, CommentSchema } from '@/api/schema/comment.zod';
+import { CommentDeleteDto, CommentDto, CommentEditDto, CommentPostDto, CommentSchema } from '@/api/schema/comment.zod';
 import { ApiPaginatedResponse } from '@/api/schema/api.zod';
 import { NotFoundError, PasswordNotMatchError } from '@/api/responses/error';
 
 const client = new PrismaClient();
-
-const fixReactions = (reactions: string | null) => reactions?.split(',').filter(Boolean);
 
 export const getComments = async (pageKey: string, page: number, pageSize: number): Promise<ApiPaginatedResponse<CommentDto>> => {
     try {
@@ -52,10 +49,7 @@ export const getComments = async (pageKey: string, page: number, pageSize: numbe
             }),
         ]);
 
-        const parsedComments = parentComments.map(comment => CommentSchema.parse(({
-            ...comment,
-            reactions: fixReactions(comment.reactions),
-        })));
+        const parsedComments = parentComments.map(comment => CommentSchema.parse(comment));
 
         const childComments = await client.comments.findMany({
             where: {
@@ -68,7 +62,7 @@ export const getComments = async (pageKey: string, page: number, pageSize: numbe
 
         parsedComments.forEach(comment => {
             comment.children = childComments.filter(cc => cc.parentId === comment.id)
-                .map(cc => ChildCommentSchema.parse(({ ...cc, reactions: fixReactions(cc.reactions) })))
+                .map(cc => CommentSchema.parse(cc))
                 .sort((a, b) => a.creationDate.getDate() - b.creationDate.getDate());
         });
 
@@ -92,7 +86,7 @@ export const postComment = async (comment: CommentPostDto) => {
     try {
         const now = new Date();
         const { hashed: password, salt } = hashPassword(comment.password);
-        const created = await client.comments.create({
+        return await client.comments.create({
             data: {
                 text: comment.text,
                 pageKey: comment.pageKey,
@@ -108,15 +102,14 @@ export const postComment = async (comment: CommentPostDto) => {
                 isDeleted: false,
             },
         });
-        return Boolean(created);
     } catch (e) {
         console.error(e);
-        return false;
+        return null;
     }
 
 };
 
-export const updateComment = async ({ id, password, text }: CommentEditDto) => {
+export const editComment = async ({ id, password, text }: CommentEditDto) => {
     const comment = await client.comments.findUnique({
         where: {
             id,
@@ -130,17 +123,20 @@ export const updateComment = async ({ id, password, text }: CommentEditDto) => {
         throw new PasswordNotMatchError();
     }
 
-    const updated = await client.comments.update({
-        data: {
-            text,
-            modificationDate: new Date(),
-        },
-        where: {
-            id,
-        },
-    });
-
-    return Boolean(updated);
+    try {
+        return await client.comments.update({
+            data: {
+                text,
+                modificationDate: new Date(),
+            },
+            where: {
+                id,
+            },
+        });
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
 };
 
 export const deleteComment = async ({ id, password }: CommentDeleteDto) => {
@@ -158,14 +154,22 @@ export const deleteComment = async ({ id, password }: CommentDeleteDto) => {
         throw new PasswordNotMatchError();
     }
 
-    const deleted = await client.comments.update({
-        data: {
-            isDeleted: true,
-        },
-        where: {
-            id,
-        },
-    });
+    try {
+        const deleted = await client.comments.update({
+            data: {
+                isDeleted: true,
+            },
+            where: {
+                id,
+            },
+        });
 
-    return Boolean(deleted);
+        return {
+            id: deleted.id,
+            parentId: deleted.parentId,
+        };
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
 };

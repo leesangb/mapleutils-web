@@ -4,11 +4,21 @@ export const CommentBaseSchema = z.object({
     id: z.string(),
     text: z.string(),
     user: z.string(),
-    creationDate: z.date(),
-    modificationDate: z.date(),
+    creationDate: z.coerce.date(),
+    modificationDate: z.coerce.date(),
     isAdmin: z.boolean(),
     isDeleted: z.boolean(),
-    reactions: z.array(z.string()).nullable().optional(),
+    reactions: z.string().nullable().optional(),
+    parentId: z.string().nullable().optional(),
+    repliedTo: z.string().nullable().optional(),
+});
+
+export type CommentDto = z.infer<typeof CommentBaseSchema> & {
+    children?: CommentDto[];
+};
+
+export const CommentSchema: z.ZodType<CommentDto> = CommentBaseSchema.extend({
+    children: z.lazy(() => z.array(CommentSchema).optional()),
 });
 
 export const CommentPostSchema = z.object({
@@ -33,10 +43,15 @@ export const CommentDeleteSchema = z.object({
     password: z.string(),
 });
 
-export const ChildCommentSchema = CommentBaseSchema.extend({
-    repliedTo: z.string().optional(),
+export const CommentDeleteResponseSchema = z.object({
+    id: z.string(),
+    parentId: z.string().nullable().optional(),
 });
 
-export const CommentSchema = CommentBaseSchema.extend({
-    children: z.array(ChildCommentSchema).optional(),
-});
+export type CommentDeletedResponseDto = z.infer<typeof CommentDeleteResponseSchema>;
+
+export type CommentPostDto = z.infer<typeof CommentPostSchema>;
+
+export type CommentEditDto = z.infer<typeof CommentEditSchema>;
+
+export type CommentDeleteDto = z.infer<typeof CommentDeleteSchema>;
