@@ -35,6 +35,7 @@ export const CommentEditForm = ({ comment, onSucess }: CommentEditFormProps) => 
                 passwordRef.current!.value = '';
                 setContent('');
                 onSucess?.();
+                toast.success(t('comment.editSuccess'));
             },
             onError: () => {
                 toast.error(t('comment.passwordIncorrect'));

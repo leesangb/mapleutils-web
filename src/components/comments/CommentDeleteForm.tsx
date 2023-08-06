@@ -29,6 +29,7 @@ export const CommentDeleteForm = ({ commentId, onSuccess }: CommentDeleteFormPro
             onSuccess: () => {
                 passwordRef.current!.value = '';
                 onSuccess?.();
+                toast.success(t('comment.deleteSuccess'));
             },
             onError: (e) => {
                 console.log(e);

@@ -34,7 +34,9 @@
     "reply": "답글",
     "edit": "수정",
     "delete": "삭제",
-    "deleteComment": "댓글 삭제"
+    "deleteComment": "댓글 삭제",
+    "deleteSuccess": "댓글이 삭제되었습니다.",
+    "editSuccess": "댓글이 수정되었습니다."
   },
   "correctAnswerRate": "정답률",
   "pageNotFound": "페이지를 찾을 수 없습니다 😥",
