@@ -122,7 +122,7 @@ export const useEditComment = () => {
     const pageKey = getCommentPageKey(pathname, locale);
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: async (comment: CommentEditDto) => await editComment(comment),
+        mutationFn: async (comment: Omit<CommentEditDto, 'pageKey'>) => await editComment({ ...comment, pageKey }),
         onSuccess: (comment) => {
             if (!comment) {
                 return;
