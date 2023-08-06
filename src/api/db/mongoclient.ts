@@ -13,14 +13,12 @@ export const getComments = async (pageKey: string, page: number, pageSize: numbe
                 where: {
                     pageKey,
                     parentId: null,
-                    isDeleted: false,
                 },
             }),
             client.comments.findMany({
                 where: {
                     pageKey,
                     parentId: null,
-                    isDeleted: false,
                 },
                 orderBy: {
                     creationDate: 'desc',
@@ -43,7 +41,13 @@ export const getComments = async (pageKey: string, page: number, pageSize: numbe
             }),
         ]);
 
-        const parsedComments = parentComments.map(comment => CommentSchema.parse(comment));
+        const parsedComments = parentComments.map(comment => {
+            const parsed = CommentSchema.parse(comment);
+            if (parsed.isDeleted) {
+                parsed.text = '';
+            }
+            return parsed;
+        });
 
         const childComments = await client.comments.findMany({
             where: {
@@ -66,9 +70,11 @@ export const getComments = async (pageKey: string, page: number, pageSize: numbe
                 .sort((a, b) => a.creationDate.getDate() - b.creationDate.getDate());
         });
 
+        const comments = parsedComments.filter(c => !c.isDeleted || c.isDeleted && c.children?.length);
+
         return {
-            data: parsedComments,
-            totalCount: parsedComments.length + childComments.length,
+            data: comments,
+            totalCount: comments.reduce((acc, c) => acc + 1 + (c.children?.length || 0), 0),
             pageCount: pageSize === 0 ? 0 : Math.floor(parentCount / pageSize),
         };
 
