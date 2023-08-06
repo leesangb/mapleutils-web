@@ -8,17 +8,11 @@ const client = new PrismaClient();
 
 export const getComments = async (pageKey: string, page: number, pageSize: number): Promise<ApiPaginatedResponse<CommentDto>> => {
     try {
-        const [parentCount, totalCount, parentComments] = await Promise.all([
+        const [parentCount, parentComments] = await Promise.all([
             client.comments.count({
                 where: {
                     pageKey,
                     parentId: null,
-                    isDeleted: false,
-                },
-            }),
-            client.comments.count({
-                where: {
-                    pageKey,
                     isDeleted: false,
                 },
             }),
@@ -62,13 +56,19 @@ export const getComments = async (pageKey: string, page: number, pageSize: numbe
 
         parsedComments.forEach(comment => {
             comment.children = childComments.filter(cc => cc.parentId === comment.id)
-                .map(cc => CommentSchema.parse(cc))
+                .map(cc => {
+                    const child = CommentSchema.parse(cc);
+                    if (child.isDeleted) {
+                        child.text = '';
+                    }
+                    return child;
+                })
                 .sort((a, b) => a.creationDate.getDate() - b.creationDate.getDate());
         });
 
         return {
             data: parsedComments,
-            totalCount,
+            totalCount: parsedComments.length + childComments.length,
             pageCount: pageSize === 0 ? 0 : Math.floor(parentCount / pageSize),
         };
 

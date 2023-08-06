@@ -101,7 +101,9 @@ const CommentListItem = ({ parentId, comment, children }: PropsWithChildren<Comm
                                         </ReplyTo>
                                     }
                                     <Typography style={{ marginBottom: comment.isDeleted ? '8px' : '0' }}>
-                                        {comment.text || t('comment.deletedComment')}
+                                        {comment.isDeleted
+                                            ? t('comment.deletedComment')
+                                            : comment.text}
                                     </Typography>
                                 </CommentContent>
                             )
