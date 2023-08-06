@@ -28,7 +28,9 @@
     "reply": "Reply",
     "edit": "Edit",
     "delete": "Delete",
-    "deleteComment": "Delete comment"
+    "deleteComment": "Delete comment",
+    "deleteSuccess": "Comment deleted successfully.",
+    "editSuccess": "Comment edited successfully."
   },
   "online": "Online",
   "settings": "Settings",

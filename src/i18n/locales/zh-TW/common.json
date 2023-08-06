@@ -28,7 +28,9 @@
     "reply": "回復",
     "edit": "編輯",
     "delete": "刪除",
-    "deleteComment": "刪除評論"
+    "deleteComment": "刪除評論",
+    "deleteSuccess": "評論已刪除。",
+    "editSuccess": "評論已編輯。"
   },
   "online": "線上",
   "settings": "設定",

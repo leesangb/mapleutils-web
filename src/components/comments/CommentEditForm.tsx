@@ -1,19 +1,20 @@
-import { ChildCommentDto, CommentDto, useEditComment } from '@/api';
+import { useEditComment } from '@/api';
 import { Button, Input, TextArea } from '@/ds/inputs';
 import { FormEvent, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { useTranslation } from '@/i18n/client';
 import { toast } from 'react-toastify';
+import { CommentDto } from '@/api/schema/comment.zod';
 
 const MAX_LENGTH = 500;
 
 interface CommentEditFormProps {
-    comment: CommentDto | ChildCommentDto;
-    onSucess?: () => void;
+    comment: CommentDto;
+    onSuccess?: () => void;
 }
 
-export const CommentEditForm = ({ comment, onSucess }: CommentEditFormProps) => {
+export const CommentEditForm = ({ comment, onSuccess }: CommentEditFormProps) => {
     const { t } = useTranslation();
     const [content, setContent] = useState<string>(comment.text);
     const passwordRef = useRef<HTMLInputElement>(null);
@@ -34,7 +35,8 @@ export const CommentEditForm = ({ comment, onSucess }: CommentEditFormProps) => 
             onSuccess: () => {
                 passwordRef.current!.value = '';
                 setContent('');
-                onSucess?.();
+                onSuccess?.();
+                toast.success(t('comment.editSuccess'));
             },
             onError: () => {
                 toast.error(t('comment.passwordIncorrect'));
