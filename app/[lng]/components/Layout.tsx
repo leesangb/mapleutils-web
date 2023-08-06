@@ -22,7 +22,7 @@ const currentYear = new Date().getFullYear();
 
 const Layout = ({ children }: PropsWithChildren) => {
     const [queryClient] = useState(
-        () => new QueryClient({ defaultOptions: { queries: { retry: 3, retryDelay: 1_000 } } }),
+        () => new QueryClient({ defaultOptions: { queries: { retry: 1, retryDelay: 1_000 } } }),
     );
 
     return (
