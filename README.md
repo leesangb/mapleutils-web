@@ -14,6 +14,8 @@
 - [React-Query](https://tanstack.com/query/latest)
 - [OpenCV](https://opencv.org/)
 - [i18next](https://www.i18next.com/)
+- [zod](https://zod.dev/)
+- [prisma](https://www.prisma.io/)
 
 ## 설치 및 실행
 
@@ -35,10 +37,15 @@
 ## 환경변수
 
 ```dotenv
-GOOGLE_ANALYTICS_VIEW_ID="<GOOGLE-ANALYTICS-VIEW-ID>"
-GOOGLE_CLIENT_EMAIL="<GOOGLE-API-SERVICE-ACCOUNT-MAIL>"
-GOOGLE_CLIENT_ID="<GOOGLE-API-SERVICE-ACCOUNT-ID>"
-GOOGLE_PRIVATE_KEY="<GOOGLE-API-SERVICE-ACCOUNT-PRIVATE-KEY>"
+# comments
+MONGODB_URL="<your-mongodb-connection-string>"
+
+# google analytics
+GOOGLE_ANALYTICS_VIEW_ID="<your-google-analytics-view-id>"
+GOOGLE_CLIENT_EMAIL="<your-google-service-account-email>"
+GOOGLE_CLIENT_ID="<your-google-service-account-id>"
+GOOGLE_PRIVATE_KEY="<your-google-service-account-private-key>"
+
 ```
 
 ## i18n
