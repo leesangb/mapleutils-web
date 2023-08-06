@@ -1,6 +1,5 @@
 import { PropsWithChildren, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { ChildCommentDto, CommentDto } from '@/api/schema/comment.type';
 import { Avatar, Typography } from '@/ds/displays';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { useTranslation } from '@/i18n/client';
@@ -13,6 +12,7 @@ import sb from '@/assets/images/sangbin.png';
 import { CommentEditForm } from '@/components/comments/CommentEditForm';
 import { CommentDeleteForm } from '@/components/comments/CommentDeleteForm';
 import { Reactions } from '@/components/comments/Reactions';
+import { CommentDto } from '@/api/schema/comment.zod';
 
 interface CommentListProps {
     isChild?: boolean;
@@ -33,13 +33,9 @@ const List = styled.ol<TransientProps<{ isChild?: boolean }>>`
 `;
 
 interface CommentListItemProps {
-    comment: CommentDto | ChildCommentDto;
+    comment: CommentDto;
     parentId?: string;
 }
-
-const isChildComment = (comment: CommentDto | ChildCommentDto): comment is ChildCommentDto => {
-    return 'repliedTo' in comment;
-};
 
 const getRelativeDate = (date: Date, locale: string) => {
     const formatter = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
@@ -94,11 +90,11 @@ const CommentListItem = ({ parentId, comment, children }: PropsWithChildren<Comm
                     {
                         isEditing
                             ? <>
-                                <CommentEditForm comment={comment} onSucess={() => setIsEditing(false)} />
+                                <CommentEditForm comment={comment} onSuccess={() => setIsEditing(false)} />
                             </>
                             : (
                                 <CommentContent>
-                                    {!comment.isDeleted && isChildComment(comment) && comment.repliedTo &&
+                                    {!comment.isDeleted && comment.repliedTo &&
                                         <ReplyTo as={'span'}>
                                             {comment.repliedTo}
                                             <RiReplyFill fontSize={12} />
@@ -134,8 +130,8 @@ const CommentListItem = ({ parentId, comment, children }: PropsWithChildren<Comm
                                         </Button>
                                     </CommentActionListItem>
                                 </CommentActionList>
-                                {comment.reactions.length > 0 && (
-                                    <Reactions reactions={comment.reactions} />
+                                {comment.reactions && comment.reactions.length > 0 && (
+                                    <Reactions reactions={comment.reactions.split(',')} />
                                 )}
 
                             </CommentToolbar>
