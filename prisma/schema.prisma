@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url = env("MONGODB_URL")
+}
+
+model comments {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  text              String @map("Text")
+  user              String @map("User")
+  password          String @map("Password")
+  salt              String @map("Salt")
+  pageKey           String @map("PageKey")
+  parentId          String? @map("ParentId")
+  repliedTo         String? @map("RepliedTo")
+  isAdmin           Boolean @map("IsAdmin")
+  isDeleted         Boolean @map("IsDeleted")
+  creationDate      DateTime @map("CreationDate")
+  modificationDate  DateTime @map("ModificationDate")
+  reactions         String? @map("Reactions")
+}
