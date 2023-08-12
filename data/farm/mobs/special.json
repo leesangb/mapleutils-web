@@ -1,5 +1,29 @@
 [
   {
+    "name": "흰 모래토끼",
+    "category": "스페셜",
+    "effect": "점프력 +3",
+    "grade": "C"
+  },
+  {
+    "name": "애벌레",
+    "category": "스페셜",
+    "effect": "이동속도 +1",
+    "grade": "C"
+  },
+  {
+    "name": "주니어 씰",
+    "category": "스페셜",
+    "effect": "최대 HP +100",
+    "grade": "B"
+  },
+  {
+    "name": "갈색 모래토끼",
+    "category": "스페셜",
+    "effect": "이동속도 +5",
+    "grade": "B"
+  },
+  {
     "name": "각성한 락 스피릿",
     "category": "스페셜",
     "effect": "올스탯 +5",
