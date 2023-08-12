@@ -1,4 +1,4 @@
-import { MonsterLifeMob } from './mobs';
+import { Mob } from './mobs';
 
 const COST = {
     special: {
@@ -17,8 +17,8 @@ const COST = {
     },
 };
 
-export const getExtendCost = (mob: MonsterLifeMob): number => {
+export const getExtendCost = (mob: Mob): number => {
     if (mob.grade === 'SS') return 0;
     if (mob.grade === 'S') return 4;
-    return mob.category === '스페셜' ? COST.special[mob.grade] : COST.normal[mob.grade];
+    return mob.category === 'special' ? COST.special[mob.grade] : COST.normal[mob.grade];
 };

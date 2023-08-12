@@ -89,7 +89,7 @@ type MobGrade = keyof typeof gradeMultiplier;
 
 type MobCategory = keyof typeof categoryEffectMap | 'special';
 
-type Mob = {
+export type Mob = {
     name: string;
     grade: MobGrade;
     category: MobCategory;
@@ -128,3 +128,80 @@ const SPECIAL_MOBS: Mob[] = special.map(mob => ({
 export const monsterLifeMobs = [...NORMAL_MOBS, ...SPECIAL_MOBS];
 const monsterLifeMobsMap = new Map(monsterLifeMobs.map(mob => [mob.name, mob]));
 export const getMonsterLifeMob = (name: string): Mob | undefined => monsterLifeMobsMap.get(name);
+
+export const mobsByEffect = {
+    all: {
+        normals: NORMAL_MOBS,
+        specials: SPECIAL_MOBS,
+    },
+    allStat: {
+        normals: [],
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('올스탯')),
+    },
+    str: {
+        normals: NORMAL_MOBS.filter(m => ['dog', 'cow', 'soldier'].includes(m.category)),
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('힘')),
+    },
+    dex: {
+        normals: NORMAL_MOBS.filter(m => ['bird', 'monkey_bear', 'reptile', 'demon'].includes(m.category)),
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('민첩')),
+    },
+    luk: {
+        normals: NORMAL_MOBS.filter(m => ['cat', 'dog', 'demon', 'spirit'].includes(m.category)),
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('행운')),
+    },
+    int: {
+        normals: NORMAL_MOBS.filter(m => ['soldier', 'demihuman', 'spirit', 'reptile'].includes(m.category)),
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('지능')),
+    },
+    hp: {
+        normals: NORMAL_MOBS.filter(m => ['pig'].includes(m.category)),
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('최대 HP')),
+    },
+    attack: {
+        normals: [],
+        specials: SPECIAL_MOBS.filter(m => ['공격력', '마력'].some(e => m.effect.includes(e))),
+    },
+    boss: {
+        normals: [],
+        specials: SPECIAL_MOBS.filter(m => ['보스', '방어율', '파이널'].some(e => m.effect.includes(e))),
+    },
+    damage: {
+        normals: [],
+        specials: SPECIAL_MOBS.filter(m => !['보스', '크리', '파이널'].some(e => m.effect.includes(e)) && ['데미지'].some(e => m.effect.includes(e))),
+    },
+    critical: {
+        normals: [],
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('크리티컬')),
+    },
+    buffDuration: {
+        normals: [],
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('버프')),
+    },
+    reuse: {
+        normals: [],
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('재사용')),
+    },
+    summon: {
+        normals: NORMAL_MOBS.filter(m => ['yeti_pepe'].includes(m.category)),
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('소환수')),
+    },
+    status: {
+        normals: [],
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('상태이상')),
+    },
+    hit: {
+        normals: [],
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('피격')),
+    },
+    exp: {
+        normals: NORMAL_MOBS.filter(m => ['erdas', 'toy'].includes(m.category)),
+        specials: SPECIAL_MOBS.filter(m => ['메소', '캐릭터의', '드롭'].some(e => m.effect.includes(e))),
+    },
+    farm: {
+        normals: NORMAL_MOBS.filter(m => ['mushroom'].includes(m.category)),
+        specials: SPECIAL_MOBS.filter(m => m.effect.includes('농장')),
+    },
+} as const;
+
+export type MobEffectGroup = keyof typeof mobsByEffect;

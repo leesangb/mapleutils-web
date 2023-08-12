@@ -1,8 +1,8 @@
 import recipes from './recipes.json';
-import { getMonsterLifeMob, MonsterLifeMob } from '@/data/farm/mobs';
+import { getMonsterLifeMob, Mob } from '@/data/farm/mobs';
 
 export type FamilyNode = {
-    current: MonsterLifeMob;
+    current: Mob;
     height: number;
     father?: FamilyNode;
     mother?: FamilyNode;

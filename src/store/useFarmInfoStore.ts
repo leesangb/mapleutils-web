@@ -1,26 +1,27 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { useIsMounted } from '@/hooks/useIsMounted';
-import { OptionName } from '@/data/farm';
+import { MobEffectGroup } from '@/data/farm/mobs';
 
 type FarmInfoState = StoreProps<{
-    selected: OptionName;
+    selected: MobEffectGroup;
 }>
 
 const usePersistedFarmInfoStore = create<FarmInfoState>()(
     persist(
         (set) => ({
-            selected: '전체',
+            selected: 'all',
             setSelected: (selected) => set({ selected }),
         }),
         {
             name: 'FARM_INFO',
+            version: 1,
         },
     ),
 );
 
 const emptyState: FarmInfoState = {
-    selected: '전체',
+    selected: 'all',
     setSelected: () => {
     },
 };

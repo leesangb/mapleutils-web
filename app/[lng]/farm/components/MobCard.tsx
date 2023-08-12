@@ -1,6 +1,6 @@
 'use client';
 
-import { MonsterLifeMob } from '@/data/farm/mobs';
+import { Mob } from '@/data/farm/mobs';
 import styled from 'styled-components';
 import { Button } from '@/ds/inputs';
 import { Typography } from '@/ds/displays';
@@ -10,7 +10,7 @@ import { getExtendCost } from '@/data/farm/monsterLifeCost';
 import GradeChip from './GradeChip';
 import CostChip from './CostChip';
 import useModals from '@/ds/hooks/useModals';
-import { monsterLifeFamilyMapping } from '@/data/farm/recipes';
+import { familyMapping } from '@/data/farm/treeBuilder';
 import { MobBoxModal } from './MobBoxModal';
 import { MobFarmModal } from './MobFarmModal';
 import { useFarmBookmarkStore } from '@/store/useFarmBookbarkStore';
@@ -19,7 +19,7 @@ import { useWindowPopupContext } from '@/components/popup/useWindowPopupContext'
 import { MobFamilyTreeModal } from './MobFamilyTreeModal';
 
 interface MobCardProps {
-    mob: MonsterLifeMob;
+    mob: Mob;
     showTree?: boolean;
     active?: boolean;
     width?: string;
@@ -119,7 +119,7 @@ const MobCard = ({ mob, showTree = true, active, width }: MobCardProps) => {
                     )
                 }
                 {
-                    showTree && monsterLifeFamilyMapping[mob.name]
+                    showTree && familyMapping[mob.name]
                     && (
                         <Button variant={'ghost'} size={'small'} onClick={() => openMobFamilyModal()}>
                             <RiNodeTree />

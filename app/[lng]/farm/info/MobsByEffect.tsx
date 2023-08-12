@@ -1,36 +1,37 @@
 'use client';
 
 import { useFarmInfoStore } from '@/store/useFarmInfoStore';
-import { mobsByEffect } from '@/data/farm/mobsByEffect';
+
 import { Button } from '@/ds/inputs';
 import { Typography } from '@/ds/displays';
 import MobCard from '../components/MobCard';
 import styled from 'styled-components';
+import { mobsByEffect } from '@/data/farm/mobs';
 
 export const MobsByEffect = () => {
     const { selected, setSelected } = useFarmInfoStore();
-    const information = mobsByEffect.find(m => m.name === selected)!;
+    const information = mobsByEffect[selected] || mobsByEffect.all;
 
     return (
         <>
             <ButtonGroup>
-                {mobsByEffect.map((effect) =>
-                    <Button key={effect.name}
-                        onClick={() => setSelected(effect.name)}
-                        active={effect.name === selected}>
-                        {effect.name}
+                {Object.keys(mobsByEffect).map((effect) =>
+                    <Button key={effect}
+                        onClick={() => setSelected(effect as keyof typeof mobsByEffect)}
+                        active={effect === selected}>
+                        {effect}
                     </Button>,
                 )}
             </ButtonGroup>
             <hr />
             <Typography as={'h1'}>
-                {information.name}
+                {selected}
             </Typography>
             <Typography as={'h2'}>
                 스페셜 몬스터
             </Typography>
             <Grid>
-                {information.mobs.map((m) => (
+                {information.specials.map((m) => (
                     <MobCard mob={m} key={m.name} />
                 ))}
             </Grid>
