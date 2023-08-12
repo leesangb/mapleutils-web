@@ -2,7 +2,7 @@ import { MonsterLifeMob } from '@/data/farm/mobs';
 import { Modal } from '@/ds/surfaces';
 import { Button } from '@/ds/inputs';
 import { RiFileCopy2Fill, RiSearch2Line, RiThumbDownFill, RiThumbUpFill } from 'react-icons/ri';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { WachanFarm } from '@/types/Wachan';
 import styled from 'styled-components';
 import { Typography } from '@/ds/displays';
@@ -10,6 +10,7 @@ import { copy } from '@/utils/clipboard';
 import { toast } from 'react-toastify';
 import { getMesoKrUrl } from '@/utils/string';
 import { useWindowPopupContext } from '@/components/popup/useWindowPopupContext';
+import { useQuery } from '@tanstack/react-query';
 
 interface MobFarmModalProps {
     mob: MonsterLifeMob;
@@ -18,27 +19,22 @@ interface MobFarmModalProps {
 
 const TRAILING_NOT_VALID_LETTERS = /^([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]+).*$/;
 
-export const MobFarmModal = ({ mob, onClose }: MobFarmModalProps) => {
-    const [farms, setFarms] = useState<WachanFarm[]>([]);
-    const [loading, setLoading] = useState(true);
-    const { openPopup } = useWindowPopupContext();
+const getMob = async (name: string) => {
+    const result = await fetch(`/api/wachan?name=${encodeURI(name)}`);
+    if (!result.ok) {
+        throw new Error('Failed to fetch');
+    }
+    const json = await result.json();
+    return json as WachanFarm[];
+};
 
-    useEffect(() => {
-        fetch(`/api/wachan?name=${encodeURI(mob.name)}`)
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error('Failed to fetch');
-                }
-                return res.json() as Promise<WachanFarm[]>;
-            })
-            .then((res) => {
-                setFarms(res);
-                setLoading(false);
-            })
-            .catch(e => {
-                console.error(e);
-            });
-    }, []);
+export const MobFarmModal = ({ mob, onClose }: MobFarmModalProps) => {
+    const { openPopup } = useWindowPopupContext();
+    const {data: farms, isLoading} = useQuery({
+        queryKey: ['mob', mob.name],
+        queryFn: () => getMob(mob.name),
+        initialData: [],
+    });
 
     return (
         <Modal title={`${mob.name} - 소유 농장`} onClose={onClose}>
@@ -54,7 +50,7 @@ export const MobFarmModal = ({ mob, onClose }: MobFarmModalProps) => {
                     <RiSearch2Line /> meso.kr에서 <b>{mob.name}</b> 검색
                 </Button>
                 <hr />
-                {loading ? (<></>) : (
+                {isLoading ? (<></>) : (
                     <Table>
                         <TableHead>
                             <TableRow>
