@@ -20,9 +20,6 @@ export const getWachanFarms = async (name: string): Promise<WachanFarm[]> => {
         });
 
         const farmResponse = await response.json() as WachanResponse;
-
-        console.log(farmResponse);
-
         const farmArray = farmResponse.farm_list
             .map(toWachanFarm)
             .filter(farm => farm.upVote - farm.downVote >= 0);
