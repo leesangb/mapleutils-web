@@ -1,5 +1,4 @@
-import { MonsterLifeGrade } from './monsterLifeGrade';
-import { MonsterLifeMob } from './mobs';
+import { Mob } from './mobs';
 
 export interface MonsterLifeBox {
     name: string;
@@ -37,7 +36,7 @@ const petitLuminous: MonsterLifeBox = {
     price: [582_000],
 };
 
-const GRADE_BOX: Record<MonsterLifeGrade, MonsterLifeBox[]> = {
+const GRADE_BOX = {
     ['C']: [normal],
     ['B']: [normal],
     ['B+']: [normal],
@@ -47,6 +46,10 @@ const GRADE_BOX: Record<MonsterLifeGrade, MonsterLifeBox[]> = {
     ['SS']: [great],
 };
 
-export const getMonsterBox = (mob: MonsterLifeMob): MonsterLifeBox[] => {
-    return mob.category !== '스페셜' ? [] : mob.name === '쁘띠 루미너스(빛)' ? [petitLuminous] : GRADE_BOX[mob.grade];
+export const getMonsterBox = (mob: Mob): MonsterLifeBox[] => {
+    return mob.category !== 'special'
+        ? []
+        : mob.name === '쁘띠 루미너스(빛)'
+            ? [petitLuminous]
+            : GRADE_BOX[mob.grade];
 };
