@@ -1,11 +1,115 @@
 [
   {
+    "name": "날뛰는 인형",
+    "grade": "C"
+  },
+  {
+    "name": "라츠",
+    "grade": "C"
+  },
+  {
+    "name": "레츠",
+    "grade": "C"
+  },
+  {
+    "name": "북치는 토끼",
+    "grade": "C"
+  },
+  {
+    "name": "브라운테니",
+    "grade": "C"
+  },
+  {
+    "name": "더키 패밀리",
+    "grade": "B"
+  },
+  {
+    "name": "돌리온",
+    "grade": "B"
+  },
+  {
+    "name": "블랙 라츠",
+    "grade": "B"
+  },
+  {
+    "name": "큘라",
+    "grade": "B"
+  },
+  {
+    "name": "팬더테니",
+    "grade": "B"
+  },
+  {
+    "name": "롤링 돌리온",
+    "grade": "B+"
+  },
+  {
+    "name": "마몬",
+    "grade": "B+"
+  },
+  {
+    "name": "망가진 인형",
+    "grade": "B+"
+  },
+  {
     "name": "핑크테니",
     "grade": "B+"
   },
   {
+    "name": "훈련용 짚인형",
+    "grade": "B+"
+  },
+  {
+    "name": "데스테니",
+    "grade": "A"
+  },
+  {
+    "name": "바이킹베어",
+    "grade": "A"
+  },
+  {
+    "name": "밸리베어",
+    "grade": "A"
+  },
+  {
+    "name": "부서진 인형",
+    "grade": "A"
+  },
+  {
+    "name": "삐에로 인형",
+    "grade": "A"
+  },
+  {
+    "name": "소울테니",
+    "grade": "A"
+  },
+  {
+    "name": "장난감 목마",
+    "grade": "A"
+  },
+  {
+    "name": "플라잉 리오",
+    "grade": "A"
+  },
+  {
+    "name": "훈련용 나무인형",
+    "grade": "A"
+  },
+  {
+    "name": "마스터 데스테니",
+    "grade": "S"
+  },
+  {
+    "name": "선인인형",
+    "grade": "S"
+  },
+  {
     "name": "장난감 흑기사",
     "grade": "S"
+  },
+  {
+    "name": "스칼리온",
+    "grade": "SS"
   },
   {
     "name": "타르가",

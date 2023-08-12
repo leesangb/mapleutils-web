@@ -1,6 +1,122 @@
 [
   {
+    "name": "라라룽",
+    "grade": "C"
+  },
+  {
+    "name": "음흉한 여우",
+    "grade": "C"
+  },
+  {
+    "name": "주니어 불독",
+    "grade": "C"
+  },
+  {
+    "name": "카카룽",
+    "grade": "C"
+  },
+  {
+    "name": "페넥",
+    "grade": "C"
+  },
+  {
+    "name": "헥터",
+    "grade": "C"
+  },
+  {
+    "name": "골든 페넥",
+    "grade": "B"
+  },
+  {
+    "name": "도굴꾼의 사냥개",
+    "grade": "B"
+  },
+  {
+    "name": "들개",
+    "grade": "B"
+  },
+  {
+    "name": "물 도둑",
+    "grade": "B"
+  },
+  {
+    "name": "캐피바라",
+    "grade": "B"
+  },
+  {
+    "name": "화이트팽",
+    "grade": "B"
+  },
+  {
+    "name": "라키",
+    "grade": "B+"
+  },
+  {
+    "name": "멋쟁이 들개",
+    "grade": "B+"
+  },
+  {
+    "name": "부하 늑대",
+    "grade": "B+"
+  },
+  {
+    "name": "불독",
+    "grade": "B+"
+  },
+  {
+    "name": "삼미호",
+    "grade": "B+"
+  },
+  {
+    "name": "갈기털 하이에나",
+    "grade": "A"
+  },
+  {
+    "name": "라칸",
+    "grade": "A"
+  },
+  {
+    "name": "라쿤",
+    "grade": "A"
+  },
+  {
+    "name": "송곳니 하이에나",
+    "grade": "A"
+  },
+  {
+    "name": "파이어독",
+    "grade": "A"
+  },
+  {
+    "name": "험악한 들개",
+    "grade": "A"
+  },
+  {
+    "name": "호브 헥터",
+    "grade": "A"
+  },
+  {
+    "name": "구름여우",
+    "grade": "A+"
+  },
+  {
+    "name": "라이칸스로프",
+    "grade": "A+"
+  },
+  {
+    "name": "블러드투스",
+    "grade": "A+"
+  },
+  {
+    "name": "웨어울프",
+    "grade": "A+"
+  },
+  {
     "name": "대장 블러드투스",
+    "grade": "S"
+  },
+  {
+    "name": "불너구리",
     "grade": "S"
   },
   {

@@ -1,10 +1,158 @@
 [
   {
+    "name": "고스트",
+    "grade": "C"
+  },
+  {
+    "name": "깨비",
+    "grade": "C"
+  },
+  {
+    "name": "망령",
+    "grade": "C"
+  },
+  {
+    "name": "유령",
+    "grade": "C"
+  },
+  {
+    "name": "제동귀신",
+    "grade": "C"
+  },
+  {
+    "name": "주니어 레이스",
+    "grade": "C"
+  },
+  {
+    "name": "도계몽",
+    "grade": "B"
+  },
+  {
+    "name": "돌도깨비",
+    "grade": "B"
+  },
+  {
+    "name": "레이스",
+    "grade": "B"
+  },
+  {
+    "name": "밴드몽",
+    "grade": "B"
+  },
+  {
+    "name": "추억의 수호병",
+    "grade": "B"
+  },
+  {
+    "name": "크로노스",
+    "grade": "B"
+  },
+  {
     "name": "할로윈 펌프킨",
     "grade": "B"
   },
   {
+    "name": "리빠몽",
+    "grade": "B+"
+  },
+  {
+    "name": "몽롱귀신",
+    "grade": "B+"
+  },
+  {
+    "name": "셰이드",
+    "grade": "B+"
+  },
+  {
+    "name": "짜요몽",
+    "grade": "B+"
+  },
+  {
+    "name": "추억의 수호대장",
+    "grade": "B+"
+  },
+  {
+    "name": "후회의 수호병",
+    "grade": "B+"
+  },
+  {
+    "name": "힘센 돌도깨비",
+    "grade": "B+"
+  },
+  {
+    "name": "노란 왕도깨비",
+    "grade": "A"
+  },
+  {
+    "name": "드러몽",
+    "grade": "A"
+  },
+  {
+    "name": "망각의 수호병",
+    "grade": "A"
+  },
+  {
+    "name": "불씨몽",
+    "grade": "A"
+  },
+  {
+    "name": "원시몽",
+    "grade": "A"
+  },
+  {
+    "name": "초록 왕도깨비",
+    "grade": "A"
+  },
+  {
+    "name": "파란 왕도깨비",
+    "grade": "A"
+  },
+  {
+    "name": "하프몽",
+    "grade": "A"
+  },
+  {
+    "name": "후회의 수호대장",
+    "grade": "A"
+  },
+  {
+    "name": "망각의 수호대장",
+    "grade": "A+"
+  },
+  {
+    "name": "부끄몽",
+    "grade": "A+"
+  },
+  {
+    "name": "수줍몽",
+    "grade": "A+"
+  },
+  {
+    "name": "야광귀",
+    "grade": "A+"
+  },
+  {
+    "name": "어둠의 수호대장",
+    "grade": "A+"
+  },
+  {
+    "name": "천구",
+    "grade": "A+"
+  },
+  {
+    "name": "파이어 스티드",
+    "grade": "A+"
+  },
+  {
+    "name": "블랙 나이트",
+    "grade": "S"
+  },
+  {
     "name": "잭오랜턴",
+    "grade": "S"
+  },
+  {
+    "name": "타락한 시간의 수호대장",
     "grade": "S"
   },
   {

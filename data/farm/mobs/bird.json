@@ -1,7 +1,147 @@
 [
   {
+    "name": "닭",
+    "grade": "C"
+  },
+  {
+    "name": "오리",
+    "grade": "C"
+  },
+  {
+    "name": "처프",
+    "grade": "C"
+  },
+  {
+    "name": "키요",
+    "grade": "C"
+  },
+  {
+    "name": "티노",
+    "grade": "C"
+  },
+  {
+    "name": "티브",
+    "grade": "C"
+  },
+  {
+    "name": "흰 닭",
+    "grade": "C"
+  },
+  {
+    "name": "도둑 까마귀",
+    "grade": "B"
+  },
+  {
+    "name": "밀렵꾼의 매",
+    "grade": "B"
+  },
+  {
+    "name": "습격자",
+    "grade": "B"
+  },
+  {
+    "name": "참새",
+    "grade": "B"
+  },
+  {
+    "name": "티루",
+    "grade": "B"
+  },
+  {
+    "name": "티무",
+    "grade": "B"
+  },
+  {
+    "name": "하프",
+    "grade": "B"
+  },
+  {
+    "name": "도둑 까마귀",
+    "grade": "B+"
+  },
+  {
     "name": "도둑까마귀",
     "grade": "B+"
+  },
+  {
+    "name": "도둑참새",
+    "grade": "B+"
+  },
+  {
+    "name": "변형된 티노",
+    "grade": "B+"
+  },
+  {
+    "name": "불량 병아리",
+    "grade": "B+"
+  },
+  {
+    "name": "블러드 하프",
+    "grade": "B+"
+  },
+  {
+    "name": "티구르",
+    "grade": "B+"
+  },
+  {
+    "name": "팔락조",
+    "grade": "B+"
+  },
+  {
+    "name": "노곤한 바이킹",
+    "grade": "A"
+  },
+  {
+    "name": "변형된 티구르",
+    "grade": "A"
+  },
+  {
+    "name": "변형된 티루",
+    "grade": "A"
+  },
+  {
+    "name": "비행 병아리",
+    "grade": "A"
+  },
+  {
+    "name": "시그너스 센츄리온",
+    "grade": "A"
+  },
+  {
+    "name": "시그너스 하스타티",
+    "grade": "A"
+  },
+  {
+    "name": "피곤한 바이킹",
+    "grade": "A"
+  },
+  {
+    "name": "넉넉한 바이킹",
+    "grade": "A+"
+  },
+  {
+    "name": "마스터 하프",
+    "grade": "A+"
+  },
+  {
+    "name": "푸근한 바이킹",
+    "grade": "A+"
+  },
+  {
+    "name": "플라잉 이글",
+    "grade": "A+"
+  },
+  {
+    "name": "플라잉 호크",
+    "grade": "A+"
+  },
+  {
+    "name": "호루스",
+    "grade": "A+"
+  },
+  {
+    "name": "근엄한 바이킹",
+    "grade": "S"
   },
   {
     "name": "진지한 바이킹",

@@ -1,7 +1,119 @@
 [
   {
+    "name": "버크",
+    "grade": "C"
+  },
+  {
+    "name": "소",
+    "grade": "C"
+  },
+  {
+    "name": "양",
+    "grade": "C"
+  },
+  {
+    "name": "염소",
+    "grade": "C"
+  },
+  {
+    "name": "쟁기소",
+    "grade": "C"
+  },
+  {
+    "name": "흑염소",
+    "grade": "C"
+  },
+  {
+    "name": "검은 양",
+    "grade": "B"
+  },
+  {
+    "name": "타우로마시스",
+    "grade": "B"
+  },
+  {
+    "name": "타우로스피어",
+    "grade": "B"
+  },
+  {
+    "name": "헹키",
+    "grade": "B"
+  },
+  {
+    "name": "듀얼 버크",
+    "grade": "B+"
+  },
+  {
+    "name": "레인디어",
+    "grade": "B+"
+  },
+  {
+    "name": "블러드 레인디어",
+    "grade": "B+"
+  },
+  {
+    "name": "트라고스",
+    "grade": "B+"
+  },
+  {
+    "name": "가네시",
+    "grade": "A"
+  },
+  {
+    "name": "골든 맘무트",
+    "grade": "A"
+  },
+  {
+    "name": "맘무트",
+    "grade": "A"
+  },
+  {
+    "name": "옐로우 컬리 카우",
+    "grade": "A"
+  },
+  {
+    "name": "천록",
+    "grade": "A"
+  },
+  {
+    "name": "퍼플 컬리 카우",
+    "grade": "A"
+  },
+  {
+    "name": "교도관 라이노",
+    "grade": "A+"
+  },
+  {
+    "name": "그린 플라워 카우",
+    "grade": "A+"
+  },
+  {
+    "name": "길잃은 루돌프",
+    "grade": "A+"
+  },
+  {
+    "name": "불량 루돌프",
+    "grade": "A+"
+  },
+  {
+    "name": "블루 플라워 카우",
+    "grade": "A+"
+  },
+  {
+    "name": "열쇠지기 루소",
+    "grade": "A+"
+  },
+  {
     "name": "라이카",
     "grade": "S"
+  },
+  {
+    "name": "마스터 버크",
+    "grade": "S"
+  },
+  {
+    "name": "라이카",
+    "grade": "SS"
   },
   {
     "name": "크세르크세스",

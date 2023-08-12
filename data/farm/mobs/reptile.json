@@ -1,10 +1,114 @@
 [
   {
+    "name": "리게이터",
+    "grade": "C"
+  },
+  {
+    "name": "엄티",
+    "grade": "C"
+  },
+  {
+    "name": "이글루 터틀",
+    "grade": "C"
+  },
+  {
+    "name": "주니어 네키",
+    "grade": "C"
+  },
+  {
+    "name": "크로코",
+    "grade": "C"
+  },
+  {
+    "name": "구렁이",
+    "grade": "B"
+  },
+  {
+    "name": "귀마개 프릴드",
+    "grade": "B"
+  },
+  {
+    "name": "노란 도마뱀",
+    "grade": "B"
+  },
+  {
+    "name": "목도리 프릴드",
+    "grade": "B"
+  },
+  {
+    "name": "빨간 도마뱀",
+    "grade": "B"
+  },
+  {
+    "name": "게비알",
+    "grade": "B+"
+  },
+  {
+    "name": "벨라모아",
+    "grade": "B+"
+  },
+  {
+    "name": "청화사",
+    "grade": "B+"
+  },
+  {
+    "name": "캇파",
+    "grade": "B+"
+  },
+  {
+    "name": "홍화사",
+    "grade": "B+"
+  },
+  {
+    "name": "레드 드래곤터틀",
+    "grade": "A"
+  },
+  {
+    "name": "레드 크로키",
+    "grade": "A"
+  },
+  {
+    "name": "문지기 크로키",
+    "grade": "A"
+  },
+  {
+    "name": "블루 드래곤터틀",
+    "grade": "A"
+  },
+  {
+    "name": "공허의 사제",
+    "grade": "A+"
+  },
+  {
+    "name": "파라오 스네이크",
+    "grade": "A+"
+  },
+  {
+    "name": "해외여행 구렁이",
+    "grade": "A+"
+  },
+  {
+    "name": "고대 주황 거북이",
+    "grade": "S"
+  },
+  {
+    "name": "고대 파랑 거북이",
+    "grade": "S"
+  },
+  {
+    "name": "다일",
+    "grade": "S"
+  },
+  {
     "name": "이계의 사제",
     "grade": "S"
   },
   {
     "name": "교도관 아니",
+    "grade": "SS"
+  },
+  {
+    "name": "이계의 사제장",
     "grade": "SS"
   }
 ]

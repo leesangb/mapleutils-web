@@ -1,10 +1,94 @@
 [
   {
+    "name": "루팡",
+    "grade": "C"
+  },
+  {
+    "name": "밍구",
+    "grade": "C"
+  },
+  {
+    "name": "사나운 원숭이",
+    "grade": "C"
+  },
+  {
+    "name": "흰털 아기원숭이",
+    "grade": "C"
+  },
+  {
+    "name": "달곰",
+    "grade": "B"
+  },
+  {
+    "name": "어미 원숭이",
+    "grade": "B"
+  },
+  {
+    "name": "판다곰",
+    "grade": "B"
+  },
+  {
+    "name": "흰털 어미원숭이",
+    "grade": "B"
+  },
+  {
+    "name": "광대 원숭이",
+    "grade": "B+"
+  },
+  {
+    "name": "베어울프",
+    "grade": "B+"
+  },
+  {
+    "name": "카트베어",
+    "grade": "B+"
+  },
+  {
+    "name": "좀비루팡",
+    "grade": "A"
+  },
+  {
+    "name": "폭주족 원숭이",
+    "grade": "A"
+  },
+  {
+    "name": "흉터곰",
+    "grade": "A"
+  },
+  {
+    "name": "갈색 가시 곰",
+    "grade": "A+"
+  },
+  {
+    "name": "곰라큘라",
+    "grade": "A+"
+  },
+  {
+    "name": "사랑에 빠진 달곰",
+    "grade": "A+"
+  },
+  {
     "name": "사랑에 빠진 판다곰",
     "grade": "A+"
   },
   {
+    "name": "흰 가시 곰",
+    "grade": "A+"
+  },
+  {
+    "name": "원공",
+    "grade": "S"
+  },
+  {
     "name": "태륜",
     "grade": "S"
+  },
+  {
+    "name": "소공",
+    "grade": "SS"
+  },
+  {
+    "name": "파우스트",
+    "grade": "SS"
   }
 ]
