@@ -2,6 +2,7 @@
 
 import styled from 'styled-components';
 import { ReactNode } from 'react';
+import { media } from '@/ds';
 
 type BottomFloatingBarProps = {
     children: ReactNode;
@@ -36,4 +37,8 @@ const Container = styled.aside`
   box-sizing: border-box;
   backdrop-filter: blur(${({ theme }) => theme.appBar.blur});
   -webkit-backdrop-filter: blur(${({ theme }) => theme.appBar.blur});
+  
+  ${media.max('sm')} {
+    display: none;
+  }
 `;

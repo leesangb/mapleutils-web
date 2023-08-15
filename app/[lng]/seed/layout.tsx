@@ -13,7 +13,7 @@ const Layout = ({ children, params: { lng } }: PropsWithChildren<I18nPageProps>)
             <BottomFloatingBar>
                 {
                     [22, 23, 24, 36, 39, 42, 47, 48, 49].map((f) => (
-                        <Button href={`/${lng}/seed/${f}`} key={f} active={pathname.includes(`/seed/${f}`)}>
+                        <Button lang={lng} href={`/seed/${f}`} key={f} active={pathname.includes(`/seed/${f}`)}>
                             {f}
                         </Button>
                     ))
