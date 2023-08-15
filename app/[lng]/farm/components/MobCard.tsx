@@ -78,7 +78,10 @@ const MobCard = ({ mob, showTree = true, active, width }: MobCardProps) => {
             </LabelList>
             <MobButton onClick={() => openMobFarmModal()}>
                 <ImageBackground aria-selected={active}>
-                    <Image src={mob.img} alt={mob.name} loading={'lazy'} />
+                    <picture>
+                        <source srcSet={mob.img.replace('.png', '.webp')} type={'image/webp'} />
+                        <Image src={mob.img} alt={mob.name} loading={'lazy'} />
+                    </picture>
                 </ImageBackground>
                 <MobContent>
                     <MobName>{mob.name}</MobName>
@@ -207,7 +210,7 @@ const MobButton = styled.button`
       & > ${ImageBackground} {
         background-color: ${({ theme }) => theme.surface.hover};
 
-        & > ${Image} {
+        & > picture > ${Image} {
           transform: scale(1.125);
         }
       }
