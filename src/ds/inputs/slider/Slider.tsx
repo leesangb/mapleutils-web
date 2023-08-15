@@ -10,8 +10,10 @@ export const Slider = styled.input.attrs({ type: 'range' })`
   position: relative;
   overflow: hidden;
 
-  &:hover {
-    cursor: pointer;
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &:active {
@@ -48,10 +50,12 @@ export const Slider = styled.input.attrs({ type: 'range' })`
     -100vmax var(--clip-top), -100vmax var(--clip-bottom), 0 var(--clip-bottom), var(--clip-edges) 100%,
     var(--clip-further) var(--clip-further));
   }
-
-  &:hover::-webkit-slider-thumb {
-    color: ${({ theme }) => theme.primary.hover};
-    cursor: grab;
+  
+  @media (hover: hover) {
+    &:hover::-webkit-slider-thumb {
+      color: ${({ theme }) => theme.primary.hover};
+      cursor: grab;
+    }
   }
 
   &:active::-webkit-slider-thumb {

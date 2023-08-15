@@ -182,7 +182,10 @@ const MobButton = styled(Button).attrs({ variant: 'ghost' })`
   justify-content: center;
   background-color: ${({ active, theme }) => active ? theme.primary.hover : theme.background};
 
-  &:hover {
-    background-color: ${({ active, theme }) => active ? theme.primary.hover : theme.surface.active};
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${({ active, theme }) => active ? theme.primary.hover : theme.surface.active};
+    }
   }
 `;

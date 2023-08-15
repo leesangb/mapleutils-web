@@ -2,7 +2,7 @@
 
 export { Card } from './card/Card';
 export { AppBar } from './bar/AppBar';
-export { SideBar } from './bar/SideBar';
+export { BottomFloatingBar } from './bar/BottomFloatingBar';
 export * from './accordion/Accordion';
 export * from './tab/Tabs';
 export { Collapse } from './collapse/Collapse';

@@ -51,8 +51,11 @@ const Track = styled.button<TransientProps<{ active?: boolean }>>`
   transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   background-color: ${({ theme, $active }) => $active ? theme.primary.background : 'transparent'};
 
-  &:hover {
-    background-color: ${({ theme, $active }) => $active ? theme.primary.hover : theme.surface.hover};
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${({ theme, $active }) => $active ? theme.primary.hover : theme.surface.hover};
+    }
   }
 
   &:active {

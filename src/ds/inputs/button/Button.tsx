@@ -110,8 +110,10 @@ const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'onClick' | 
   align-items: center;
   transition: background-color 0.125s ease-in-out;
 
-  &:hover {
-    background-color: ${theme.surface.hover};
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${theme.surface.hover};
+    }
   }
 
   &:active {
@@ -124,8 +126,10 @@ const StyledButton = styled.button<TransientProps<Omit<ButtonProps, 'onClick' | 
       transition: background-color 0.125s ease-in-out;
     }
 
-    &:hover {
-      background-color: ${theme.primary.hover};
+    @media (hover: hover) {
+      &:hover {
+        background-color: ${theme.primary.hover};
+      }
     }
 
     &:active {

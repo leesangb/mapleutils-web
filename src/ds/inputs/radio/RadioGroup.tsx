@@ -91,8 +91,10 @@ const Container = styled.div`
   cursor: pointer;
   transition: 0.125s background-color ease-in-out;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.surface.hover};
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${({ theme }) => theme.surface.hover};
+    }
   }
 
   &:active {

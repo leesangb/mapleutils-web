@@ -97,8 +97,10 @@ const Summary = styled.summary`
   align-items: center;
   gap: 8px;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.surface.hover};
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${({ theme }) => theme.surface.hover};
+    }
   }
 
   &:active {

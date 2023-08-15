@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Avatar, Typography } from '@/ds/displays';
 import { useLocalizedPathname } from '@/hooks/useLocalizedPathname';
 import { useTranslation } from '@/i18n/client';
-import { theme } from '@/ds';
+import { media, theme } from '@/ds';
 import { Button } from '@/ds/inputs';
 import { RiCheckFill, RiCloseFill, RiDeleteBin2Fill, RiPencilFill, RiReplyFill } from 'react-icons/ri';
 import { CommentPostForm } from '@/components/comments/CommentPostForm';
@@ -100,11 +100,11 @@ const CommentListItem = ({ parentId, comment, children }: PropsWithChildren<Comm
                                             <RiReplyFill fontSize={12} />
                                         </ReplyTo>
                                     }
-                                    <Typography style={{ marginBottom: comment.isDeleted ? '8px' : '0' }}>
+                                    <CommentText style={{ marginBottom: comment.isDeleted ? '8px' : '0' }}>
                                         {comment.isDeleted
                                             ? t('comment.deletedComment')
                                             : comment.text}
-                                    </Typography>
+                                    </CommentText>
                                 </CommentContent>
                             )
                     }
@@ -218,6 +218,13 @@ const CommentContent = styled.div`
   gap: 8px;
 `;
 
+const CommentText = styled(Typography)`
+  white-space: pre-line;
+  ${media.max(('sm'))} {
+    word-break: break-all;
+  }
+`;
+
 const ReplyTo = styled(Typography)`
   color: ${({ theme }) => theme.text.secondary};
   display: flex;
@@ -225,4 +232,5 @@ const ReplyTo = styled(Typography)`
   gap: 4px;
   font-size: 12px;
   white-space: nowrap;
+  margin: 12px 0 8px -40px;
 `;

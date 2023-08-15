@@ -199,15 +199,17 @@ const MobButton = styled.button`
   transition: background-color 0.125s ease-in-out;
   overflow: hidden;
 
-  &:hover {
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.surface.default};
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+      background-color: ${({ theme }) => theme.surface.default};
+    
+      & > ${ImageBackground} {
+        background-color: ${({ theme }) => theme.surface.hover};
 
-    & > ${ImageBackground} {
-      background-color: ${({ theme }) => theme.surface.hover};
-
-      & > ${Image} {
-        transform: scale(1.125);
+        & > ${Image} {
+          transform: scale(1.125);
+        }
       }
     }
   }

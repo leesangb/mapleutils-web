@@ -85,6 +85,7 @@ const Footer = styled.footer`
   flex-direction: column;
   gap: 8px;
   margin-top: 16px;
+  margin-bottom: 64px;
   grid-area: footer;
   padding: 8px;
 `;
