@@ -71,8 +71,11 @@ const Container = styled(Card)<TransientProps<{ active: boolean }>>`
 
   transition: transform 0.125s ease-in-out;
 
-  &:hover {
-    transform: scale(1.1);
+
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   z-index: 1;

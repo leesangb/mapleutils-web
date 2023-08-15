@@ -163,10 +163,12 @@ const LocationChip = styled.span`
   padding: 2px 4px;
   background-color: ${({ theme }) => theme.surface.default};
   transition: box-shadow 0.125s ease-in-out;
-
-  &:hover {
-    z-index: 1;
-    box-shadow: 0 0 4px 2px ${({ theme }) => theme.contour};
+  
+  @media (hover: hover) {
+    &:hover {
+      z-index: 1;
+      box-shadow: 0 0 4px 2px ${({ theme }) => theme.contour};
+    }
   }
 `;
 
@@ -246,16 +248,18 @@ const MobButton = styled.button`
   flex-direction: column;
   transition: background-color 0.125s ease-in-out;
 
-  &:hover {
-    & > ${ImageBackground} > ${Image} {
-      filter: brightness(100%);
-    }
+  @media (hover: hover) {
+    &:hover {
+      & > ${ImageBackground} > ${Image} {
+        filter: brightness(100%);
+      }
 
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.surface.default};
+      cursor: pointer;
+      background-color: ${({ theme }) => theme.surface.default};
 
-    & > ${ImageBackground} {
-      background-color: ${({ theme }) => theme.surface.hover};
+      & > ${ImageBackground} {
+        background-color: ${({ theme }) => theme.surface.hover};
+      }
     }
   }
 

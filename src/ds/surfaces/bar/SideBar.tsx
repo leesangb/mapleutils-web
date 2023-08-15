@@ -69,8 +69,10 @@ const Container = styled.div`
   will-change: width;
   z-index: ${theme.zIndex.sideBar};
 
-  &:hover {
-    width: 192px;
+  @media (hover: hover) {
+    &:hover {
+      width: 192px;
+    }
   }
 
   &::-webkit-scrollbar {
@@ -94,8 +96,10 @@ const Container = styled.div`
     animation: ${keyframes.slideInDown} 0.125s ease-in-out;
     height: calc(70vh);
 
-    &:hover {
-      width: 100%;
+    @media (hover: hover) {
+      &:hover {
+        width: 100%;
+      }
     }
 
 

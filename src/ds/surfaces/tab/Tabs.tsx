@@ -102,9 +102,11 @@ const Tab = styled.button.attrs({ role: 'tab' })`
   transition: all 0.2s ease-in-out;
   position: relative;
   border-radius: ${({ theme }) => theme.borderRadius};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.surface.hover};
+  
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${({ theme }) => theme.surface.hover};
+    }
   }
 
   &:active {

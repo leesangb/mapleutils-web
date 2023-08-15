@@ -13,8 +13,10 @@ export const PlayerButton = styled.button`
   border-radius: 50%;
   transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.surface.hover};
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${({ theme }) => theme.surface.hover};
+    }
   }
 
   &:active {

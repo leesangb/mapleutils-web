@@ -122,7 +122,9 @@ const Content = styled.span<Required<TransientProps<Pick<TooltipProps, 'placemen
 const Container = styled.div`
   position: relative;
 
-  &:hover > *:not(:disabled) + ${Content},
+  @media (hover: hover) {
+    &:hover > *:not(:disabled) + ${Content},
+  }
   &:active > ${Content} {
     display: block;
     opacity: 1;
