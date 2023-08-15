@@ -47,9 +47,9 @@ const Navigations = () => {
                         <>
                             <Popover>
                                 <Popover.Trigger>
-                                    {({ toggle, open, close }) =>
+                                    {({ open, close }) =>
                                         <div onMouseEnter={() => open()} onMouseLeave={() => close()}>
-                                            <Button onClick={() => toggle()}>
+                                            <Button onClick={() => open()}>
                                                 {t('drawer.farm.longName')}
                                             </Button>
                                             <Popover.Content alignment={'bottom-left'}>
@@ -73,9 +73,9 @@ const Navigations = () => {
 
                     <Popover>
                         <Popover.Trigger>
-                            {({ toggle, open, close }) =>
+                            {({ open, close }) =>
                                 <div onMouseEnter={() => open()} onMouseLeave={() => close()}>
-                                    <Button onClick={() => toggle()}>
+                                    <Button onClick={() => open()}>
                                         {t('drawer.seed.longName')}
                                     </Button>
                                     <Popover.Content alignment={'bottom-left'}>
@@ -101,9 +101,9 @@ const Navigations = () => {
                 <RightSection>
                     <Popover>
                         <Popover.Trigger>
-                            {({ toggle, open, close }) =>
+                            {({ open, close }) =>
                                 <div onMouseEnter={() => open()} onMouseLeave={() => close()}>
-                                    <Button onClick={() => toggle()}>
+                                    <Button onClick={() => open()}>
                                         <RiTranslate fontSize={'16px'} />
                                     </Button>
                                     <Popover.Content>
