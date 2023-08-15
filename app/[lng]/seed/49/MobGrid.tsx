@@ -132,7 +132,10 @@ const Component = ({ data }: VirtualizedMasonryDataProps<SeedMobData>) => {
             }}>
                 <LocationChip>{t(data.location)}</LocationChip>
                 <ImageBackground>
-                    <Image src={data.img} alt={t(data.name)} style={{ height: data.height + IMAGE_PADDING * 2 }} />
+                    <picture>
+                        <source srcSet={data.img.replace('.png', '.webp')} type={'image/webp'}/>
+                        <Image src={data.img} alt={t(data.name)} style={{ height: data.height + IMAGE_PADDING * 2 }} />
+                    </picture>
                 </ImageBackground>
                 <Typography>{t(data.name)}</Typography>
                 <Tooltip style={{ position: 'absolute', bottom: '8px', right: '8px' }} placement={'left'}
@@ -250,7 +253,7 @@ const MobButton = styled.button`
 
   @media (hover: hover) {
     &:hover {
-      & > ${ImageBackground} > ${Image} {
+      & > ${ImageBackground} > picture > ${Image} {
         filter: brightness(100%);
       }
 

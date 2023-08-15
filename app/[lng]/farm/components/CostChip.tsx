@@ -7,9 +7,13 @@ interface CostChipProps {
 }
 
 const CostChip = ({ cost }: CostChipProps) => {
+    const imageSrc = `/images/monster-life/${cost > 499 ? '와르' : '젬'}.png`;
     return (
         <Container>
-            <Image src={`/images/monster-life/${cost > 499 ? '와르' : '젬'}.png`} alt={'cost'} />
+            <picture>
+                <source srcSet={imageSrc.replace('.png', '.webp')} type={'image/webp'} />
+                <Image src={imageSrc} alt={'cost'} />
+            </picture>
             <ImageTooltip title={cost > 499 ? '와르' : '젬'} size={'small'} placement={'right'}>
                 {formatNumberComma(cost)}
             </ImageTooltip>
