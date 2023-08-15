@@ -11,7 +11,8 @@
     "test": "jest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prisma-update": "prisma generate"
+    "prisma-update": "prisma generate",
+    "image-to-webp": "node ./scripts/optimize-image.js"
   },
   "dependencies": {
     "@google-analytics/data": "^2.8.0",

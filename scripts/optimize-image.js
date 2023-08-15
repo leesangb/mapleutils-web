@@ -40,4 +40,4 @@ const toWebp = (image) => {
         .catch((err) => console.log(err));
 };
 
-getImages('../public/images').forEach((image) => toWebp(image));
+getImages('./public/images').forEach((image) => toWebp(image));
