@@ -10,6 +10,8 @@ import VirtualizedTable, { VirtualizedRowProps } from '@/components/virtualized/
 import { Tooltip, Typography } from '@/ds/displays';
 import styled from 'styled-components';
 import { media, theme } from '@/ds';
+import { copy } from '@/utils/clipboard';
+import { toast } from 'react-toastify';
 
 interface HintContentProps {
     data: TrackInfo[];
@@ -47,8 +49,11 @@ export const HintContent = ({ data }: HintContentProps) => {
 
 const HintRow = ({ rowData, measureRef, ...props }: VirtualizedRowProps<TrackInfo>) => {
     const { name, hint, coverImg } = rowData;
+    const { t } = useTranslation();
     return (
-        <Row ref={measureRef} {...props}>
+        <Row onClick={() => {
+            copy(name).then(() => toast.success(t('copyMessage', { text: name })));
+        }} ref={measureRef} {...props}>
             <GridIconCell>
                 <Image src={coverImg} alt={name} />
             </GridIconCell>
@@ -100,6 +105,13 @@ const Row = styled.tr`
     grid-template-areas:
     "icon name"
     "hint hint";
+  }
+  
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${({ theme }) => theme.background};
+      cursor: pointer;
+    }
   }
 `;
 
