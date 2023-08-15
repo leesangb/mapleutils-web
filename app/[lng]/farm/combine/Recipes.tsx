@@ -3,12 +3,16 @@
 import { MonsterLifeRecipe } from '@/data/farm/recipes';
 import VirtualizedTable, { VirtualizedRowProps } from '@/components/virtualized/VirtualizedTable';
 import styled from 'styled-components';
-import MobCard from '../components/MobCard';
-import { media } from '@/ds';
 import { useState } from 'react';
 import { englishToHangul, isHangulMatching } from '@/utils/string';
-import { SearchInput } from '@/ds/inputs';
-import { Avatar, Tooltip } from '@/ds/displays';
+import { Button, RadioGroup, SearchInput } from '@/ds/inputs';
+import { Tooltip, Typography } from '@/ds/displays';
+import { useFarmDirectionStore } from '@/store/useFarmDirectionStore';
+import { rotateGrowOutLeft } from '@/ds/css';
+import { RiSettings2Fill } from 'react-icons/ri';
+import { Popover } from '@/ds/surfaces/popover/Popover';
+import { useTranslation } from '@/i18n/client';
+import { RecipeRow } from '../components/RecipeRow';
 
 interface RecipesProps {
     recipes: Required<MonsterLifeRecipe>[];
@@ -16,6 +20,8 @@ interface RecipesProps {
 
 const Recipes = ({ recipes }: RecipesProps) => {
     const [input, setInput] = useState<string>('');
+    const { direction, setDirection } = useFarmDirectionStore();
+    const { t } = useTranslation({ ns: 'farmCombine' });
 
     const data = recipes.filter((recipe) =>
         isHangulMatching(input,
@@ -30,13 +36,39 @@ const Recipes = ({ recipes }: RecipesProps) => {
 
     return (
         <>
-            <Tooltip title={englishToHangul(input)} placement={'top'}>
-                <SearchInput fullWidth
-                    value={input}
-                    onFocus={(e) => e.target.select()}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder={'몬스터 이름, 카테고리, 효과 검색 (예: 각성한 락 스피릿, ㄳㅎㄽㅍㄹ, 악마, frvf...), 영어, 초성 검색 ✅'} />
-            </Tooltip>
+            <SearchBarContainer>
+                <Tooltip style={{ width: '100%' }} title={englishToHangul(input)} placement={'top'}>
+                    <SearchInput fullWidth
+                        value={input}
+                        onFocus={(e) => e.target.select()}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder={'몬스터 이름, 카테고리, 효과 검색 (예: 각성한 락 스피릿, ㄳㅎㄽㅍㄹ, 악마, frvf...), 영어, 초성 검색 ✅'} />
+                </Tooltip>
+                <Popover>
+                    <Popover.Trigger>
+                        {({toggle}) =>
+                            <Tooltip title={t('settings')}>
+                                <Button styles={[{ marginLeft: 'auto' }, rotateGrowOutLeft]}
+                                    onClick={() => toggle()}>
+                                    <RiSettings2Fill />
+                                </Button>
+                            </Tooltip>
+                        }
+                    </Popover.Trigger>
+                    <Popover.Content>
+                        <Settings>
+                            <Typography style={{ padding: '4px' }}>
+                                순서
+                            </Typography>
+                            <RadioGroup name={'direction'}
+                                getRender={(v) => <Typography as={'span'} fontSize={14}>{t(v)}</Typography>}
+                                value={direction}
+                                onChange={setDirection}
+                                options={['LEFT_TO_RIGHT', 'RIGHT_TO_LEFT']} />
+                        </Settings>
+                    </Popover.Content>
+                </Popover>
+            </SearchBarContainer>
             <VirtualizedTable data={data}
                 height={'calc(100vh - var(--appBar_height) * 3.5)'}
                 estimatedRowHeight={() => 205}
@@ -47,75 +79,23 @@ const Recipes = ({ recipes }: RecipesProps) => {
 };
 
 const RowComponent = ({ rowData, measureRef, ...props }: VirtualizedRowProps<Required<MonsterLifeRecipe>>) => {
-    const { mob, parents: [left, right] } = rowData;
+    const { direction } = useFarmDirectionStore();
     return (
-        <Row ref={measureRef} {...props}>
-            <Left>
-                <MobCard mob={left} />
-            </Left>
-            <Plus>
-                <Avatar name={'+'} />
-            </Plus>
-            <Right>
-                <MobCard mob={right} />
-            </Right>
-            <Equal>
-                <Avatar name={'='} />
-            </Equal>
-            <Mob>
-                <MobCard mob={mob} />
-            </Mob>
-        </Row>
+        <RecipeRow recipe={rowData} direction={direction} ref={measureRef} {...props} />
     );
 };
 
-const Mob = styled.td`
-  grid-area: mob;
-`;
-
-const Plus = styled.td`
-  grid-area: plus;
+const SearchBarContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-`;
-
-const Equal = styled.td`
-  grid-area: equal;
-`;
-
-const Left = styled.td`
-  grid-area: left;
-`;
-
-const Right = styled.td`
-  grid-area: right;
-`;
-
-const Row = styled.tr`
-  padding: 8px 0;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1fr;
-  grid-template-areas: "left plus right equal mob";
   gap: 8px;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid ${({ theme }) => theme.contour};
+  margin-bottom: 8px;
+`;
 
-  & > td {
-    padding: 0;
-    margin: 0;
-    text-align: center;
-  }
-
-  ${media.max('md')} {
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-areas: "left equal mob"
-      "plus equal mob"
-      "right equal mob";
-    gap: 4px;
-    padding: 4px 0;
-  }
+const Settings = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: max-content;
 `;
 
 export default Recipes;
