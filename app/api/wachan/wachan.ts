@@ -13,7 +13,6 @@ export const getWachanFarms = async (name: string): Promise<WachanFarm[]> => {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams(formData),
-            cache: 'force-cache',
             next: {
                 revalidate: 3600,
             },
