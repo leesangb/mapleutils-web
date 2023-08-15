@@ -50,12 +50,6 @@ const RowComponent = ({ rowData, measureRef, ...props }: VirtualizedRowProps<Req
     const { mob, parents: [left, right] } = rowData;
     return (
         <Row ref={measureRef} {...props}>
-            <Mob>
-                <MobCard mob={mob} />
-            </Mob>
-            <Equal>
-                <Avatar name={'='} />
-            </Equal>
             <Left>
                 <MobCard mob={left} />
             </Left>
@@ -65,6 +59,12 @@ const RowComponent = ({ rowData, measureRef, ...props }: VirtualizedRowProps<Req
             <Right>
                 <MobCard mob={right} />
             </Right>
+            <Equal>
+                <Avatar name={'='} />
+            </Equal>
+            <Mob>
+                <MobCard mob={mob} />
+            </Mob>
         </Row>
     );
 };
@@ -96,7 +96,7 @@ const Row = styled.tr`
   padding: 8px 0;
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr;
-  grid-template-areas: "mob equal left plus right";
+  grid-template-areas: "left plus right equal mob";
   gap: 8px;
   align-items: center;
   justify-content: center;
@@ -110,9 +110,9 @@ const Row = styled.tr`
 
   ${media.max('md')} {
     grid-template-columns: 1fr auto 1fr;
-    grid-template-areas: "mob equal left"
-      "mob equal plus"
-      "mob equal right";
+    grid-template-areas: "left equal mob"
+      "plus equal mob"
+      "right equal mob";
     gap: 4px;
     padding: 4px 0;
   }
