@@ -81,7 +81,7 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                         }
                     </Popover.Trigger>
                     <Popover.Content>
-                        <div style={{ display: 'flex', flexDirection: 'column', width: 'max-content' }}>
+                        <Settings>
                             <Typography style={{ padding: '4px' }}>{t('settings')}</Typography>
                             <Button variant={'ghost'} onClick={() => setCheck(!check)}>
                                 {check ? <RiCheckboxFill color={theme.primary.default} /> : <RiCheckboxBlankLine />}
@@ -98,7 +98,7 @@ export const BgmContent = ({ data }: BgmContentProps) => {
                                 value={order}
                                 onChange={setOrder}
                                 options={['default', 'nameAsc', 'nameDesc', 'nameLengthAsc', 'nameLengthDesc']} />
-                        </div>
+                        </Settings>
                     </Popover.Content>
                 </Popover>
                 <ButtonsContainer>
@@ -255,4 +255,10 @@ const TrackList = styled.ol`
   margin: 0;
   padding: 8px;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+`;
+
+const Settings = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: max-content;
 `;
