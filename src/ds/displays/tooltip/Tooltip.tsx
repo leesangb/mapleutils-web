@@ -123,7 +123,10 @@ const Container = styled.div`
   position: relative;
 
   @media (hover: hover) {
-    &:hover > *:not(:disabled) + ${Content},
+    &:hover > *:not(:disabled) + ${Content} {
+      display: block;
+      opacity: 1;
+    }
   }
   &:active > ${Content} {
     display: block;
