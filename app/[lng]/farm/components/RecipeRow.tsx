@@ -58,7 +58,7 @@ const Right = styled.td`
 `;
 
 const Row = styled.tr<TransientProps<{ direction: 'LEFT_TO_RIGHT' | 'RIGHT_TO_LEFT' }>>`
-  padding: 8px 0;
+  padding: 8px 12px;
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr;
   grid-template-areas: ${({ $direction }) => $direction === 'LEFT_TO_RIGHT' ? '"left plus right equal mob"' : '"mob equal left plus right"'};
