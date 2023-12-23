@@ -6,8 +6,6 @@ import GradeChip from './GradeChip';
 import { RiStarFill, RiStarLine } from 'react-icons/ri';
 import { Button } from '@/ds/inputs';
 import { useFarmBookmarkStore } from '@/store/useFarmBookbarkStore';
-import { getMesoKrUrl } from '@/utils/string';
-import { useWindowPopupContext } from '@/components/popup/useWindowPopupContext';
 
 interface MobMiniCardProps {
     mob: MonsterLifeMob;
@@ -16,7 +14,6 @@ interface MobMiniCardProps {
 
 export const MobMiniCard = ({ mob, active }: MobMiniCardProps) => {
     const { isBookmarked, toggleBookmark } = useFarmBookmarkStore();
-    const { openPopup } = useWindowPopupContext();
 
     return (
         <Container $active={!!active}>
@@ -25,18 +22,9 @@ export const MobMiniCard = ({ mob, active }: MobMiniCardProps) => {
                 <GradeChip grade={mob.grade} />
             </Tooltip>
             <Image src={`/images/monster-life/${mob.name}.png`} alt={mob.name} />
-            <Tooltip title={'meso.kr에서 검색'} placement={'top'} size={'small'}>
-                <Button variant={'ghost'} size={'large'} onClick={e => {
-                    if (window.matchMedia('(width <= 600px)').matches) {
-                        return;
-                    }
-                    e.preventDefault();
-                    e.stopPropagation();
-                    openPopup(getMesoKrUrl(mob.name));
-                }} target={'_blank'} href={getMesoKrUrl(mob.name)}>
-                    {mob.name}
-                </Button>
-            </Tooltip>
+            <Typography>
+                {mob.name}
+            </Typography>
             <Typography as={'span'} fontSize={11} style={{ whiteSpace: 'pre-wrap' }}>{mob.effect}</Typography>
             <FavoriteButton variant={'ghost'} onClick={() => toggleBookmark(mob.name)}>
                 {

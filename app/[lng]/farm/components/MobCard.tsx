@@ -5,17 +5,14 @@ import styled from 'styled-components';
 import { Button } from '@/ds/inputs';
 import { Typography } from '@/ds/displays';
 import { media, theme } from '@/ds';
-import { RiGiftLine, RiNodeTree, RiSearch2Line, RiStarFill, RiStarLine } from 'react-icons/ri';
+import { RiGiftLine, RiNodeTree, RiStarFill, RiStarLine } from 'react-icons/ri';
 import { getExtendCost } from '@/data/farm/monsterLifeCost';
 import GradeChip from './GradeChip';
 import CostChip from './CostChip';
 import useModals from '@/ds/hooks/useModals';
 import { monsterLifeFamilyMapping } from '@/data/farm/recipes';
 import { MobBoxModal } from './MobBoxModal';
-import { MobFarmModal } from './MobFarmModal';
 import { useFarmBookmarkStore } from '@/store/useFarmBookbarkStore';
-import { getMesoKrUrl } from '@/utils/string';
-import { useWindowPopupContext } from '@/components/popup/useWindowPopupContext';
 import { MobFamilyTreeModal } from './MobFamilyTreeModal';
 
 interface MobCardProps {
@@ -28,7 +25,6 @@ interface MobCardProps {
 const MobCard = ({ mob, showTree = true, active, width }: MobCardProps) => {
     const cost = getExtendCost(mob);
     const { isBookmarked, toggleBookmark } = useFarmBookmarkStore();
-    const { openPopup } = useWindowPopupContext();
 
     const { open, close } = useModals();
 
@@ -53,16 +49,6 @@ const MobCard = ({ mob, showTree = true, active, width }: MobCardProps) => {
         });
     };
 
-    const openMobFarmModal = () => {
-        open({
-            Component: MobFarmModal,
-            props: {
-                onClose: () => close({ Component: MobFarmModal }),
-                mob: mob,
-            },
-        });
-    };
-
     return (
         <Container $width={width}>
             <LabelList>
@@ -76,7 +62,7 @@ const MobCard = ({ mob, showTree = true, active, width }: MobCardProps) => {
                     </LabelItem>
                 }
             </LabelList>
-            <MobButton onClick={() => openMobFarmModal()}>
+            <MobButton onClick={openMobFamilyModal}>
                 <ImageBackground aria-selected={active}>
                     <picture>
                         <source srcSet={mob.img.replace('.png', '.webp')} type={'image/webp'} />
@@ -97,37 +83,24 @@ const MobCard = ({ mob, showTree = true, active, width }: MobCardProps) => {
                 }
             </FavoriteButton>
             <ButtonGroup>
-                <Button variant={'ghost'} size={'small'} style={{ marginRight: 'auto' }}
-                    target={'_blank'}
-                    onClick={e => {
-                        if (window.innerWidth <= 600) {
-                            return;
-                        }
-                        e.preventDefault();
-                        e.stopPropagation();
-                        openPopup(getMesoKrUrl(mob.name));
-                    }}
-                    href={getMesoKrUrl(mob.name)}>
-                    <RiSearch2Line /> <Typography as={'span'} fontSize={10}>meso.kr</Typography>
-                </Button>
                 {
-                    (mob.other === '상자' || mob.name === '쁘띠 루미너스(빛)')
+                    showTree && monsterLifeFamilyMapping[mob.name]
                     && (
-                        <Button variant={'ghost'} size={'small'} onClick={() => openMobBoxModal()}>
-                            <RiGiftLine />
+                        <Button variant={'ghost'} size={'small'} onClick={openMobFamilyModal}>
+                            <RiNodeTree />
                             <Typography as={'span'} fontSize={10}>
-                                상자
+                                전체 조합식
                             </Typography>
                         </Button>
                     )
                 }
                 {
-                    showTree && monsterLifeFamilyMapping[mob.name]
+                    (mob.other === '상자' || mob.name === '쁘띠 루미너스(빛)')
                     && (
-                        <Button variant={'ghost'} size={'small'} onClick={() => openMobFamilyModal()}>
-                            <RiNodeTree />
+                        <Button variant={'ghost'} size={'small'} onClick={openMobBoxModal}>
+                            <RiGiftLine />
                             <Typography as={'span'} fontSize={10}>
-                                전체 조합식
+                                상자
                             </Typography>
                         </Button>
                     )
