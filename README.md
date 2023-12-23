@@ -112,7 +112,6 @@ GOOGLE_PRIVATE_KEY="<your-google-service-account-private-key>"
 스페셜 몬스터의 조합식을 보여줍니다.
 
 - [x] 전체 조합식 보기
-- [x] `http://wachan.me`데이터 불러오기 / `https://meso.kr`바로가기
 
 ### 몬스터 정리
 
