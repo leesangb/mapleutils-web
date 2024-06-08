@@ -13,16 +13,14 @@ type Story = StoryObj<typeof Accordion>;
 
 export const Default: Story = {
     args: {
-        children: <>
-            <AccordionSummary>
-                accordion
-            </AccordionSummary>
-            <AccordionContent>
-                <h1>
-                    안녕하세요!
-                </h1>
-            </AccordionContent>
-        </>,
+        children: (
+            <>
+                <AccordionSummary>accordion</AccordionSummary>
+                <AccordionContent>
+                    <h1>안녕하세요!</h1>
+                </AccordionContent>
+            </>
+        ),
     },
 };
 
