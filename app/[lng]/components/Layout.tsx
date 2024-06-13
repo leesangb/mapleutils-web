@@ -2,13 +2,12 @@
 
 import GlobalStyle from '@/ds/global.style';
 import { Typography } from '@/ds/displays';
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ModalsProvider } from '@/ds/surfaces/modal/ModalsProvider';
 import Navigations from './Navigations';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Comments } from '@/components/comments/Comments';
 import { WindowPopupProvider } from '@/components/popup/WindowPopupProvider';
 import { Button } from '@/ds/inputs';
@@ -21,24 +20,19 @@ import { AdLeft, AdRight, AdTop } from '@/components/adsense';
 const currentYear = new Date().getFullYear();
 
 const Layout = ({ children }: PropsWithChildren) => {
-    const [queryClient] = useState(
-        () => new QueryClient({ defaultOptions: { queries: { retry: 1, retryDelay: 1_000 } } }),
-    );
 
     return (
         <>
             <GlobalStyle />
             <Navigations />
-            <QueryClientProvider client={queryClient}>
-                <WindowPopupProvider>
-                    <ModalsProvider>
-                        <Main>
-                            {children}
-                        </Main>
-                        <Comments />
-                    </ModalsProvider>
-                </WindowPopupProvider>
-            </QueryClientProvider>
+            <WindowPopupProvider>
+                <ModalsProvider>
+                    <Main>
+                        {children}
+                    </Main>
+                    <Comments />
+                </ModalsProvider>
+            </WindowPopupProvider>
             <ToastContainer
                 style={{ position: 'fixed', bottom: 0, left: '16px' }}
                 position='bottom-left'
