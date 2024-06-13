@@ -20,8 +20,9 @@ export const CommentPostForm = ({ onSuccess, parentId, repliedTo }: CommentPostF
     const passwordRef = useRef<HTMLInputElement>(null);
     const [content, setContent] = useState<string>('');
 
-    const { mutate, isLoading } = usePostComment();
+    const { mutate, status } = usePostComment();
 
+    const isLoading = status === 'pending';
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         if (!nameRef.current || !passwordRef.current || !content) {
