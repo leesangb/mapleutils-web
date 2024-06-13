@@ -2,6 +2,7 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import acceptLanguage from 'accept-language';
 import { cookieName, fallbackLng, languages, Languages } from '@/i18n/settings';
+import { withPathname } from '@/server/pathname';
 
 acceptLanguage.languages([...languages]);
 
@@ -41,30 +42,36 @@ const getRedirectUrl = (request: NextRequest): string | undefined => {
 };
 
 export function middleware(request: NextRequest) {
-    const lng: Languages = getLanguageFromRequest(request);
-    if (!languages.some(lang => request.nextUrl.pathname.startsWith(`/${lang}`))
-        && !request.nextUrl.pathname.startsWith('/api')) {
-        return NextResponse.redirect(new URL(`/${lng}${request.nextUrl.pathname}`, request.url));
-    }
-
-    const redirectUrl = getRedirectUrl(request);
-    if (redirectUrl) {
-        console.log(redirectUrl);
-        return NextResponse.redirect(new URL(redirectUrl, request.url));
-    }
-
-    const referer = request.headers.get('referer');
-    if (referer) {
-        const refererUrl = new URL(referer);
-        const lngInReferer = languages.find((lang) => refererUrl.pathname.startsWith(`/${lang}`));
-        const response = NextResponse.next();
-        if (lngInReferer) {
-            response.cookies.set(cookieName, lngInReferer);
+    const getResponse = () => {
+        const lng: Languages = getLanguageFromRequest(request);
+        if (!languages.some(lang => request.nextUrl.pathname.startsWith(`/${lang}`))
+            && !request.nextUrl.pathname.startsWith('/api')) {
+            return NextResponse.redirect(new URL(`/${lng}${request.nextUrl.pathname}`, request.url));
         }
-        return response;
-    }
 
-    return NextResponse.next();
+        const redirectUrl = getRedirectUrl(request);
+        if (redirectUrl) {
+            console.log(redirectUrl);
+            return NextResponse.redirect(new URL(redirectUrl, request.url));
+        }
+
+        const referer = request.headers.get('referer');
+        if (referer) {
+            const refererUrl = new URL(referer);
+            const lngInReferer = languages.find((lang) => refererUrl.pathname.startsWith(`/${lang}`));
+            const response = NextResponse.next();
+            if (lngInReferer) {
+                response.cookies.set(cookieName, lngInReferer);
+            }
+            return response;
+        }
+
+        return NextResponse.next();
+    };
+
+    const response = getResponse();
+
+    return withPathname(request, response);
 }
 
 // See "Matching Paths" below to learn more
