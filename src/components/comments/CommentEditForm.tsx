@@ -19,8 +19,9 @@ export const CommentEditForm = ({ comment, onSuccess }: CommentEditFormProps) =>
     const [content, setContent] = useState<string>(comment.text);
     const passwordRef = useRef<HTMLInputElement>(null);
 
-    const { mutate, isLoading } = useEditComment();
+    const { mutate, status } = useEditComment();
 
+    const isLoading = status === 'pending';
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         if (!passwordRef.current || !content) {

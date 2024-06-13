@@ -13,12 +13,12 @@ const meta: Meta<typeof RadioGroup> = {
 
 export default meta;
 
-type Story = StoryObj<typeof RadioGroup<{ v: number, k: string }>>;
+type Story = StoryObj<typeof RadioGroup<{ v: number; k: string }>>;
 
 export const Example: Story = {
     args: {
         name: 'hi',
-        options: [1, 2, 3, 4].map(i => ({ v: i, k: `option ${i}` })),
+        options: [1, 2, 3, 4].map((i) => ({ v: i, k: `option ${i}` })),
         value: { v: 1, k: '1+k' },
         getCompare: (a, b) => a.v === b.v,
         getRender: (value) => value.k,
@@ -26,6 +26,6 @@ export const Example: Story = {
     },
     render: (args) => {
         const [, setArgs] = useArgs();
-        return <RadioGroup  {...args} onChange={value => setArgs({ value })} />;
+        return <RadioGroup {...args} onChange={(value) => setArgs({ value })} />;
     },
 };

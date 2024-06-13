@@ -13,9 +13,10 @@ interface CommentDeleteFormProps {
 
 export const CommentDeleteForm = ({ commentId, onSuccess }: CommentDeleteFormProps) => {
     const passwordRef = useRef<HTMLInputElement>(null);
-    const { mutate, isLoading } = useDeleteComment();
+    const { mutate, status } = useDeleteComment();
     const { t } = useTranslation();
 
+    const isLoading = status === 'pending';
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         if (!passwordRef.current) {
